@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vantage Construction Website
 
-## Getting Started
+Cutting-edge marketing site for **Vantage Construction** — luxury custom home builder serving Central & Northern New Jersey (Warren, Watchung, Basking Ridge, Millburn–Short Hills).
 
-First, run the development server:
+## Stack
+
+- **Next.js** (App Router) + TypeScript
+- **Tailwind CSS v4**
+- SEO: metadata API, JSON-LD (LocalBusiness / HowTo / FAQ / Product), sitemap, robots, canonicals
+- Content-driven plan explorer with individual plan pages
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key routes
 
-## Learn More
+| Path | Purpose |
+|------|---------|
+| `/` | Homepage + intent selector |
+| `/available-homes` | Interactive plan explorer |
+| `/available-homes/[slug]` | Individual plan SEO pages |
+| `/custom-homes/process` | 7-step build process |
+| `/transformations/*` | Existing home services |
+| `/land/*` | Land, multi-lot, spec homes |
+| `/partners/realtors` | Realtor commission program |
+| `/partners/investors` | Investor partnerships |
+| `/locations/[slug]` | Local SEO hub pages |
+| `/start` | Consultation lead form |
 
-To learn more about Next.js, take a look at the following resources:
+## Company facts (source of truth)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Content is centralized in:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `src/lib/company.ts`
+- `src/lib/plans.ts`
+- `src/lib/content.ts`
 
-## Deploy on Vercel
+Do not invent new prices, projects, or claims — update these files from client-approved data only.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Optional:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://vantageconstruct.com
+```
+
+## Deploy
+
+Connect this repo to Vercel (or any Node host), set `NEXT_PUBLIC_SITE_URL`, and deploy the production build.
