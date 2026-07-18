@@ -12,7 +12,7 @@ export function CtaBanner({
     <section className="section">
       <div className="container-v">
         <div className="card relative overflow-hidden px-8 py-12 text-center sm:px-12">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,120,0.14),transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,160,78,0.18),transparent_55%)]" />
           <div className="relative">
             <p className="eyebrow justify-center">Complimentary consultation</p>
             <h2 className="mx-auto mt-4 max-w-3xl font-display text-4xl text-ivory sm:text-5xl">

@@ -9,7 +9,7 @@ export function ProcessTimeline({ compact = false }: { compact?: boolean }) {
         <li key={step.number} className="card overflow-hidden">
           <details className="group" open={!compact && step.number === 1}>
             <summary className="flex cursor-pointer list-none items-start gap-4 p-6 sm:items-center">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border-strong bg-black/20 font-display text-xl text-gold">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border-strong bg-bg-elevated font-display text-xl text-gold-deep">
                 {step.number}
               </span>
               <div className="min-w-0 flex-1">

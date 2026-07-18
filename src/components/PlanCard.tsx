@@ -5,7 +5,7 @@ import { formatPrice } from "@/lib/plans";
 export function PlanCard({ plan }: { plan: HomePlan }) {
   return (
     <article className="card card-hover flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-[16/10] bg-gradient-to-br from-[#2a241c] via-[#1a1714] to-[#0f0e0c]">
+      <div className="relative aspect-[16/10] bg-gradient-to-br from-[#f0e6d4] via-[#e8dcc6] to-[#d9c7a8]">
         <div className="absolute inset-0 flex items-end p-5">
           <div>
             <span className="badge">{plan.style}</span>
@@ -15,7 +15,7 @@ export function PlanCard({ plan }: { plan: HomePlan }) {
             </p>
           </div>
         </div>
-        <div className="absolute right-4 top-4 rounded-full border border-border bg-black/30 px-3 py-1 text-xs text-gold backdrop-blur">
+        <div className="absolute right-4 top-4 rounded-full border border-border bg-white/80 px-3 py-1 text-xs text-gold-deep backdrop-blur">
           From {formatPrice(plan.priceFrom)}
         </div>
       </div>

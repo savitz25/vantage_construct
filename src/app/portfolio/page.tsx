@@ -23,7 +23,7 @@ export default function PortfolioPage() {
         <div className="container-wide grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {portfolioProjects.map((project) => (
             <article key={project.name} className="card overflow-hidden">
-              <div className="aspect-[16/10] bg-gradient-to-br from-[#2c261e] via-[#17140f] to-[#0c0b0a]" />
+              <div className="aspect-[16/10] bg-gradient-to-br from-[#f0e6d4] via-[#e4d5b8] to-[#d2bf9a]" />
               <div className="p-6">
                 <p className="text-xs uppercase tracking-[0.16em] text-gold">{project.type}</p>
                 <h2 className="mt-2 font-display text-2xl text-ivory">{project.name}</h2>

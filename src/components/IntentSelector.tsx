@@ -38,7 +38,7 @@ export function IntentSelector() {
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {intents.map((item) => (
         <Link key={item.href} href={item.href} className="card card-hover group p-6">
-          <h3 className="font-display text-2xl text-ivory transition group-hover:text-gold-bright">
+          <h3 className="font-display text-2xl text-ivory transition group-hover:text-gold-deep">
             {item.title}
           </h3>
           <p className="mt-2 text-sm text-text-muted">{item.body}</p>

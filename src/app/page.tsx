@@ -62,15 +62,15 @@ export default function HomePage() {
             </div>
 
             <div className="card relative overflow-hidden p-8">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,120,0.18),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(201,160,78,0.16),transparent_50%)]" />
               <div className="relative">
-                <p className="text-sm uppercase tracking-[0.2em] text-gold">The Vantage Difference</p>
+                <p className="text-sm uppercase tracking-[0.2em] text-gold-deep">The Vantage Difference</p>
                 <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
                   Homes that still delight clients 15+ years later
                 </h2>
                 <ul className="mt-6 space-y-4">
                   {company.differentiators.slice(0, 4).map((item) => (
-                    <li key={item.title} className="border-l border-gold/40 pl-4">
+                    <li key={item.title} className="border-l border-gold/50 pl-4">
                       <p className="font-medium text-ivory">{item.title}</p>
                       <p className="mt-1 text-sm text-text-muted">{item.body}</p>
                     </li>

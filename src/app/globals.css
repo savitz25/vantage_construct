@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0c0b0a;
-  --bg-elevated: #141210;
-  --bg-soft: #1a1714;
-  --surface: #211e1a;
-  --border: rgba(212, 175, 120, 0.18);
-  --border-strong: rgba(212, 175, 120, 0.35);
-  --text: #f5f0e8;
-  --text-muted: #b8aea0;
-  --text-dim: #8a8074;
-  --gold: #d4af78;
-  --gold-bright: #e8c99a;
-  --gold-deep: #a8844f;
-  --ivory: #f7f2ea;
+  /* Bright warm luxury palette */
+  --bg: #fbf9f6;
+  --bg-elevated: #f3efe8;
+  --bg-soft: #ebe5db;
+  --surface: #ffffff;
+  --border: rgba(120, 95, 55, 0.14);
+  --border-strong: rgba(140, 105, 50, 0.28);
+  --text: #1c1916;
+  --text-muted: #5a534a;
+  --text-dim: #857c70;
+  --gold: #b8893d;
+  --gold-bright: #c9a04e;
+  --gold-deep: #8f6a28;
+  --ivory: #1a1612; /* primary heading / high-contrast text on light */
   --accent-wood: #8b6914;
-  --success: #7d9b76;
+  --success: #5f8a58;
   --danger: #c45c4a;
   --radius: 0.75rem;
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  --shadow: 0 18px 50px rgba(40, 30, 15, 0.08);
 }
 
 @theme inline {
@@ -57,8 +58,8 @@ body {
 }
 
 ::selection {
-  background: rgba(212, 175, 120, 0.35);
-  color: var(--ivory);
+  background: rgba(184, 137, 61, 0.25);
+  color: var(--text);
 }
 
 h1,
@@ -94,7 +95,7 @@ a {
   font-size: 0.72rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-deep);
   font-weight: 600;
 }
 
@@ -127,32 +128,33 @@ a {
 
 .btn-primary {
   background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
-  color: #1a140c;
-  box-shadow: 0 10px 30px rgba(212, 175, 120, 0.22);
+  color: #fffdf8;
+  box-shadow: 0 10px 28px rgba(184, 137, 61, 0.28);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 14px 36px rgba(212, 175, 120, 0.32);
+  box-shadow: 0 14px 36px rgba(184, 137, 61, 0.38);
 }
 
 .btn-secondary {
   border-color: var(--border-strong);
-  color: var(--ivory);
-  background: transparent;
+  color: var(--text);
+  background: var(--surface);
 }
 
 .btn-secondary:hover {
   border-color: var(--gold);
-  color: var(--gold-bright);
+  color: var(--gold-deep);
+  background: #fffdf8;
 }
 
 .btn-ghost {
-  color: var(--gold);
+  color: var(--gold-deep);
   padding-inline: 0.5rem;
 }
 
 .card {
-  background: linear-gradient(180deg, rgba(33, 30, 26, 0.95), rgba(20, 18, 16, 0.98));
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: calc(var(--radius) + 0.25rem);
   box-shadow: var(--shadow);
@@ -165,7 +167,7 @@ a {
 .card-hover:hover {
   border-color: var(--border-strong);
   transform: translateY(-3px);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 22px 55px rgba(40, 30, 15, 0.12);
 }
 
 .section {
@@ -185,21 +187,21 @@ a {
   pointer-events: none;
   position: absolute;
   inset: 0;
-  opacity: 0.035;
+  opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .hero-grid {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 175, 120, 0.16), transparent 55%),
-    radial-gradient(ellipse 40% 30% at 90% 20%, rgba(168, 132, 79, 0.08), transparent 50%),
-    linear-gradient(180deg, #0c0b0a 0%, #12100e 100%);
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(201, 160, 78, 0.22), transparent 55%),
+    radial-gradient(ellipse 45% 35% at 92% 18%, rgba(184, 137, 61, 0.1), transparent 50%),
+    linear-gradient(180deg, #fffdf9 0%, #f7f2ea 55%, #f3efe8 100%);
 }
 
 .divider-gold {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0.45;
+  opacity: 0.55;
 }
 
 .input,
@@ -208,7 +210,7 @@ a {
   width: 100%;
   border-radius: 0.75rem;
   border: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.25);
+  background: #fffdf9;
   color: var(--text);
   padding: 0.85rem 1rem;
   font: inherit;
@@ -220,7 +222,7 @@ a {
 .textarea:focus,
 .select:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 175, 120, 0.15);
+  box-shadow: 0 0 0 3px rgba(184, 137, 61, 0.18);
 }
 
 .textarea {
@@ -255,9 +257,10 @@ a {
   align-items: center;
   border-radius: 999px;
   border: 1px solid var(--border);
+  background: rgba(255, 253, 248, 0.9);
   padding: 0.3rem 0.75rem;
   font-size: 0.75rem;
-  color: var(--gold);
+  color: var(--gold-deep);
   letter-spacing: 0.04em;
 }
 

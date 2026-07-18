@@ -27,13 +27,13 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "border-b border-border bg-[rgba(12,11,10,0.92)] backdrop-blur-xl"
+          ? "border-b border-border bg-[rgba(251,249,246,0.92)] backdrop-blur-xl shadow-[0_8px_30px_rgba(40,30,15,0.06)]"
           : "bg-transparent"
       }`}
     >
       <div className="container-wide flex h-[4.5rem] items-center justify-between gap-4">
         <Link href="/" className="group flex flex-col" onClick={() => setOpen(false)}>
-          <span className="font-display text-2xl tracking-[0.04em] text-ivory transition group-hover:text-gold-bright">
+          <span className="font-display text-2xl tracking-[0.04em] text-ivory transition group-hover:text-gold-deep">
             Vantage
           </span>
           <span className="text-[0.65rem] uppercase tracking-[0.28em] text-text-dim">
@@ -51,7 +51,7 @@ export function Header() {
             >
               <Link
                 href={item.href}
-                className="rounded-full px-3 py-2 text-sm text-text-muted transition hover:text-gold-bright"
+                className="rounded-full px-3 py-2 text-sm text-text-muted transition hover:text-gold-deep"
               >
                 {item.label}
               </Link>
@@ -62,7 +62,7 @@ export function Header() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block rounded-lg px-3 py-2.5 text-sm text-text-muted transition hover:bg-white/5 hover:text-gold-bright"
+                        className="block rounded-lg px-3 py-2.5 text-sm text-text-muted transition hover:bg-bg-elevated hover:text-gold-deep"
                       >
                         {child.label}
                       </Link>
@@ -77,7 +77,7 @@ export function Header() {
         <div className="flex items-center gap-2 sm:gap-3">
           <a
             href={`tel:${company.phoneTel}`}
-            className="hidden text-sm text-text-muted transition hover:text-gold-bright md:inline"
+            className="hidden text-sm text-text-muted transition hover:text-gold-deep md:inline"
           >
             {company.phone}
           </a>
@@ -86,7 +86,7 @@ export function Header() {
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-ivory xl:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-ivory xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
