@@ -102,8 +102,8 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ slu
                     alt={planImageAlt(plan.name, plan.sqft, plan.style, "Floor plan")}
                     fill
                     sizes="100vw"
-                    className="object-contain p-4"
-                    style={{ objectFit: "contain" }}
+                    className="bg-white p-4"
+                    objectFit="contain"
                   />
                 </div>
               </div>

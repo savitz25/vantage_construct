@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { DesignStudio } from "@/components/design-studio/DesignStudio";
+import { ImagePreload } from "@/components/design-studio/ImagePreload";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { company } from "@/lib/company";
 import { studioFaqs } from "@/lib/design-studio/options";
+import { styleMedia } from "@/lib/plan-media";
 import { createMetadata, faqJsonLd, howToJsonLd, localBusinessJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -14,8 +16,13 @@ export const metadata = createMetadata({
 });
 
 export default function DesignStudioPage() {
+  const preloadHrefs = Object.values(styleMedia)
+    .slice(0, 3)
+    .map((m) => m.image);
+
   return (
     <>
+      <ImagePreload hrefs={preloadHrefs} />
       <JsonLd data={localBusinessJsonLd()} />
       <JsonLd data={faqJsonLd(studioFaqs)} />
       <JsonLd

@@ -92,9 +92,9 @@ export function PlanDetailModal({ plan, open, onClose, onSelect }: Props) {
                 alt={displayAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
-                className={`${showFloor ? "object-contain bg-white p-2" : "object-cover"}`}
+                className={showFloor ? "bg-white p-2" : ""}
                 priority
-                style={showFloor ? { objectFit: "contain" } : { objectFit: "cover" }}
+                objectFit={showFloor ? "contain" : "cover"}
               />
             </div>
 

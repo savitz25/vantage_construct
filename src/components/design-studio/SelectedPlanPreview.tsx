@@ -69,8 +69,8 @@ export function SelectedPlanPreview({
           )}
           fill
           sizes="100vw"
-          className={showFloor ? "object-contain bg-white p-4" : "object-cover"}
-          style={showFloor ? { objectFit: "contain" } : { objectFit: "cover" }}
+          className={showFloor ? "bg-white p-4" : ""}
+          objectFit={showFloor ? "contain" : "cover"}
           priority
         />
       </div>
