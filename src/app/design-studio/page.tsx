@@ -43,11 +43,11 @@ export default function DesignStudioPage() {
           <a href="#studio" className="btn btn-primary">
             Enter the Design Studio
           </a>
+          <Link href="/cost-to-build-a-house-nj" className="btn btn-secondary">
+            Cost calculator
+          </Link>
           <Link href="/available-homes" className="btn btn-secondary">
             Browse available homes
-          </Link>
-          <Link href="/custom-homes/process" className="btn btn-secondary">
-            See the 7-step process
           </Link>
         </div>
       </PageHero>

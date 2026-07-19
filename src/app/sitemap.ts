@@ -13,6 +13,7 @@ const staticRoutes = [
   "/custom-homes/accessory-buildings",
   "/available-homes",
   "/design-studio",
+  "/cost-to-build-a-house-nj",
   "/transformations",
   "/transformations/process",
   "/transformations/additions",

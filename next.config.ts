@@ -39,6 +39,26 @@ const nextConfig: NextConfig = {
         destination: "/design-studio",
         permanent: true,
       },
+      {
+        source: "/cost-to-build-a-house-calculator-north-jersey",
+        destination: "/cost-to-build-a-house-nj",
+        permanent: true,
+      },
+      {
+        source: "/cost-to-build-a-house-calculator-north-jersey/",
+        destination: "/cost-to-build-a-house-nj",
+        permanent: true,
+      },
+      {
+        source: "/cost-to-build-a-house-calculator",
+        destination: "/cost-to-build-a-house-nj",
+        permanent: true,
+      },
+      {
+        source: "/cost-to-build-a-house-calculator/",
+        destination: "/cost-to-build-a-house-nj",
+        permanent: true,
+      },
     ];
   },
 };

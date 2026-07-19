@@ -57,6 +57,16 @@ Interactive lead engine at `/design-studio` (alias: `/design-your-vantage-vision
 - Optional CRM webhook via env vars below
 - GA4-friendly events fire through `gtag` / `dataLayer`
 
+## Vision Cost Studio
+
+North Jersey construction cost + design calculator at `/cost-to-build-a-house-nj`.
+
+- Live estimate engine calibrated to Vantage plan anchors
+- Interactive layered house model for add-ons
+- Free instant range; itemized breakdown gated
+- API: `/api/cost-studio/lead`
+- Docs: `docs/COST-STUDIO.md`
+
 ## Environment
 
 Optional:

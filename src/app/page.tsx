@@ -41,11 +41,11 @@ export default function HomePage() {
                 <Link href="/design-studio" className="btn btn-primary">
                   Design Your Vantage Vision
                 </Link>
+                <Link href="/cost-to-build-a-house-nj" className="btn btn-secondary">
+                  Cost calculator
+                </Link>
                 <Link href="/available-homes" className="btn btn-secondary">
                   Explore available designs
-                </Link>
-                <Link href="/start" className="btn btn-secondary">
-                  Schedule consultation
                 </Link>
               </div>
               <dl className="mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8">
@@ -94,27 +94,39 @@ export default function HomePage() {
       </section>
 
       <section className="section-sm">
-        <div className="container-wide">
+        <div className="container-wide grid gap-4 lg:grid-cols-2">
           <Link
             href="/design-studio"
             className="card card-hover relative block overflow-hidden p-8 sm:p-10"
           >
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(201,160,78,0.16),transparent_50%)]" />
-            <div className="relative grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
-              <div>
-                <p className="eyebrow">Flagship experience</p>
-                <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
-                  Design Your Vantage Vision
-                </h2>
-                <p className="mt-4 max-w-2xl text-text-muted">
-                  An interactive luxury design studio — size, style, exterior character, finishes,
-                  and lifestyle — with transparent conceptual ranges and a Vision Summary that
-                  prepares your no-surprises consultation.
-                </p>
-              </div>
-              <div className="flex lg:justify-end">
-                <span className="btn btn-primary">Open Design Studio →</span>
-              </div>
+            <div className="relative">
+              <p className="eyebrow">Flagship experience</p>
+              <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
+                Design Your Vantage Vision
+              </h2>
+              <p className="mt-4 text-text-muted">
+                Interactive design studio — size, style, finishes, lifestyle — ending in a Vision
+                Summary for a no-surprises consultation.
+              </p>
+              <span className="btn btn-primary mt-6">Open Design Studio →</span>
+            </div>
+          </Link>
+          <Link
+            href="/cost-to-build-a-house-nj#calculator"
+            className="card card-hover relative block overflow-hidden p-8 sm:p-10"
+          >
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(107,143,154,0.18),transparent_50%)]" />
+            <div className="relative">
+              <p className="eyebrow">Cost on steroids</p>
+              <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
+                Vision Cost Studio
+              </h2>
+              <p className="mt-4 text-text-muted">
+                Live North Jersey construction ranges with an interactive house model — free instant
+                estimate, detailed breakdown when you&apos;re ready.
+              </p>
+              <span className="btn btn-primary mt-6">Open cost calculator →</span>
             </div>
           </Link>
         </div>

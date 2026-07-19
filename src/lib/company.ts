@@ -120,6 +120,7 @@ export const nav = [
     ],
   },
   { label: "Design Studio", href: "/design-studio" },
+  { label: "Cost Studio", href: "/cost-to-build-a-house-nj" },
   { label: "Portfolio", href: "/portfolio" },
   {
     label: "About",
