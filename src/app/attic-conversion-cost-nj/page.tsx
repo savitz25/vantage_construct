@@ -6,9 +6,9 @@ import { estimateDisclaimer } from "@/lib/transformations/disclaimers";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Attic Conversion Cost NJ | Attic Studio / Upper Level Builder",
+  title: "Attic Conversion Cost NJ | Finish Attic into Bedroom | Attic Studio",
   description:
-    "Design a luxury attic conversion in North Jersey. Explore private suites, offices, and lofts — dormers, baths, skylights — with a live planning cost estimate from Vantage.",
+    "Attic conversion cost calculator for North Jersey — finish an attic into a bedroom, suite, or office. Dormers, baths, skylights, and live planning estimates for Warren, Basking Ridge, and nearby towns.",
   path: "/attic-conversion-cost-nj",
 });
 

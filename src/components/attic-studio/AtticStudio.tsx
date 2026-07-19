@@ -55,8 +55,17 @@ export function AtticStudio() {
   }
 
   function patch<K extends keyof AtticSelections>(key: K, value: AtticSelections[K]) {
-    setSel((prev) => ({ ...prev, [key]: value }));
-    trackAtticEvent("feature_changed", { feature: key, value: String(value) });
+    setSel((prev) => {
+      const next = { ...prev, [key]: value };
+      const nextEst = calculateAtticEstimate(next);
+      trackAtticEvent("feature_changed", { feature: key, value: String(value) });
+      trackAtticEvent("estimate_updated", {
+        mid: nextEst.mid,
+        low: nextEst.low,
+        high: nextEst.high,
+      });
+      return next;
+    });
     if (key !== "visionId") setViewMode("configurator");
   }
 

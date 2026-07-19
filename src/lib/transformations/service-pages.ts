@@ -2,6 +2,8 @@ export type SpaceTile = {
   title: string;
   body: string;
   gradient: string;
+  /** Optional luxury photo for use-case gallery */
+  image?: string;
 };
 
 export type TrustPillar = {
@@ -343,102 +345,114 @@ export const atticsPage: TransformServiceContent = {
   spaceHeading: "What could your attic become?",
   spaces: [
     {
-      title: "Primary or guest suites",
-      body: "Quiet sleeping spaces with light, storage, and privacy away from the main floor.",
+      title: "Primary suite",
+      body: "Sky-level sanctuary — bedroom, spa bath, and quiet separation with egress designed in.",
       gradient: "from-[#2a2430] via-[#3d3448] to-[#1a161f]",
+      image: "/media/attics/primary-suite.jpg",
     },
     {
-      title: "Studios & creative lofts",
-      body: "Daylit rooms for art, music, or making — designed for comfort, not just square footage.",
-      gradient: "from-[#24302c] via-[#384840] to-[#161c1a]",
+      title: "Guest suite",
+      body: "Hospitality with privacy and dignity for visiting family — full bath optional.",
+      gradient: "from-[#1f2a32] via-[#2f4450] to-[#141c22]",
+      image: "/media/attics/guest-suite.jpg",
     },
     {
-      title: "Home offices",
-      body: "Acoustic separation and a real door between work and life.",
+      title: "Home office / creative studio",
+      body: "Acoustic separation, daylight, and a real door between work and life.",
       gradient: "from-[#1c2433] via-[#2a384c] to-[#121820]",
+      image: "/media/attics/home-office.jpg",
     },
     {
-      title: "Teen / multi-gen retreats",
-      body: "Independent living energy upstairs with safe access and code-smart design.",
+      title: "Teen retreat",
+      body: "Independent hangout energy upstairs with safe access and code-smart design.",
       gradient: "from-[#30241c] via-[#483828] to-[#1c1612]",
+      image: "/media/attics/teen-retreat.jpg",
     },
     {
-      title: "Reading lofts & flex rooms",
-      body: "Soft, bright, quietly luxurious — the room nobody wants to leave.",
+      title: "Playroom / flex space",
+      body: "Durable finishes and smart storage that grow with your kids — then flex later.",
+      gradient: "from-[#24302c] via-[#384840] to-[#161c1a]",
+      image: "/media/attics/playroom-flex.jpg",
+    },
+    {
+      title: "Reading loft / bonus room",
+      body: "Window seats, soft light, and a ceiling that feels intentional — not leftover volume.",
       gradient: "from-[#2c2818] via-[#403c28] to-[#1a1810]",
-    },
-    {
-      title: "Storage done beautifully",
-      body: "Kneewall systems and built-ins that reclaim chaos without looking utilitarian.",
-      gradient: "from-[#282420] via-[#3c3830] to-[#161412]",
+      image: "/media/attics/reading-loft.jpg",
     },
   ],
-  trustHeading: "Structure, stairs, and air — done right",
+  trustHeading: "Structure, Stairs, Light & Comfort — Done Right",
   trustIntro:
-    "Attics fail when they’re treated like leftover space. We treat them like real living rooms that happen to sit under the rafters.",
+    "Attics fail when they’re treated like leftover space. We treat them like real living rooms that happen to sit under the rafters — and we’re honest when the structure can’t support the dream.",
   trustPillars: [
     {
-      title: "Structural honesty",
-      body: "Load capacity, collar ties, and floor systems evaluated before we promise a suite.",
+      title: "Structural evaluation honesty",
+      body: "Load capacity, collar ties, and floor systems evaluated before we promise a suite. If a dig-up of expectations is needed, you’ll hear it early — not after cabinetry is ordered.",
     },
     {
-      title: "Stairs & access",
-      body: "Comfortable, code-smart access that feels like architecture — not a pull-down ladder afterthought.",
+      title: "Stairs and access",
+      body: "Comfortable, code-smart access that feels like architecture — not a pull-down ladder afterthought. Circulation is designed with the main house, not bolted on.",
     },
     {
-      title: "Light & egress",
-      body: "Dormers, windows, and egress strategy planned for safety, brightness, and resale.",
+      title: "Natural light and egress",
+      body: "Dormers, windows, skylights, and egress strategy planned for safety, brightness, and resale. Sleeping rooms meet code from day one.",
     },
     {
-      title: "Comfort envelope",
-      body: "Insulation, ventilation, and HVAC so summer heat and winter chill don’t define the room.",
+      title: "Insulation, HVAC & year-round comfort",
+      body: "Envelope and mechanicals so summer heat and winter chill don’t define the room. Comfort engineering is scope — not an upgrade afterthought.",
     },
   ],
   pricingHeading: "What attic conversions typically cost",
   pricingIntro:
-    "Ranges depend on dormers, baths, stairs, and structural work. These bands are for planning only.",
+    "Transparent planning bands for North Jersey. Dormers, baths, stairs, and finish level drive range — use the Attic Studio for a personalized conceptual estimate.",
   priceBands: [
     {
       scope: "Finished loft / office",
       includes: "Access upgrades, insulation, finishes",
-      range: "Often starting mid–five to low–six figures",
+      range: "Typically ~$55k–$110k+",
     },
     {
       scope: "Suite with bath",
       includes: "Sleeping room + full bath + egress",
-      range: "Commonly low– to mid–six figures",
+      range: "Commonly ~$95k–$180k+",
     },
     {
       scope: "Dormer / major reconfiguration",
-      includes: "Roof geometry changes + full living program",
-      range: "Project-specific — site evaluation required",
+      includes: "Roof geometry + full living program",
+      range: "Often $150k–$280k+ · site evaluation required",
     },
   ],
   pricingNote:
-    "Estimates only. Final pricing after structural review and Design & Discovery.",
-  caseHeading: "Volume reclaimed",
+    "Conceptual estimates only. Final pricing after structural evaluation, Design & Discovery, and current material & labor costs. Open the Attic Studio for a live planning range.",
+  caseHeading: "From storage volume to the favorite floor upstairs",
   caseStory: {
-    problem: "A dark attic used only for boxes — but ceiling volume that begged for a suite.",
+    problem:
+      "A North Jersey family with a large unfinished attic — great roof volume, no usable lifestyle space, and kids outgrowing the main floor.",
     solution:
-      "Structural reinforcement, proper stairs, dormer light, and a spa-level bath planned for egress and comfort.",
-    result: "A private upper retreat that feels intentional — not “finished attic.”",
+      "Structural reinforcement and proper stairs first, then paired dormers for light and headroom, a spa-level bath with egress designed in, and finishes matched to the main home so the upper level felt intentional.",
+    result:
+      "A private sky-level retreat the family actually uses — permitted, comfortable year-round, and documented for resale. Not “finished attic.” A real floor of the house.",
   },
   faqs: [
+    {
+      q: "How much does an attic conversion cost in New Jersey?",
+      a: "Planning ranges often start in the mid–five figures for finished lofts and climb into the six figures for suites with baths or dormers. The Attic Studio gives a live conceptual range — then we refine after structural review.",
+    },
     {
       q: "Can every attic become living space?",
       a: "Not always. Structure, height, access, and egress determine feasibility. We’ll assess honestly before design investment.",
     },
     {
+      q: "Can you finish an attic into a bedroom in NJ?",
+      a: "Often yes when height, structure, and egress work. Sleeping rooms require code-compliant egress — typically a proper window or equivalent — which we design from the start.",
+    },
+    {
       q: "Do attic bedrooms need egress?",
-      a: "Sleeping rooms must meet code. We design compliant solutions from the start.",
+      a: "Yes. Sleeping rooms must meet code. We design compliant solutions from day one so resale and insurance don’t become surprises.",
     },
     {
       q: "Will it be too hot in summer?",
-      a: "Not if the envelope and mechanicals are planned correctly. Comfort engineering is part of the scope — not an upgrade afterthought.",
-    },
-    {
-      q: "How much does an attic conversion cost in NJ?",
-      a: "Planning ranges often start in the mid–five figures for simple lofts and climb into the six figures for suites with baths or dormers. Final pricing after structural review.",
+      a: "Not if insulation, ventilation, and HVAC are planned correctly. Comfort engineering is part of the scope — not an afterthought.",
     },
     {
       q: "Do I need permits for an attic remodel?",

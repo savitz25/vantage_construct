@@ -3,6 +3,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { SmartImage } from "@/components/SmartImage";
 import { TrackedLink } from "@/components/TrackedLink";
 import { RelatedServices } from "@/components/transformations/RelatedServices";
 import type { TransformServiceContent } from "@/lib/transformations/service-pages";
@@ -97,10 +98,21 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {c.spaces.map((space) => (
               <article key={space.title} className="card overflow-hidden p-0">
-                <div
-                  className={`aspect-[16/10] bg-gradient-to-br ${space.gradient}`}
-                  aria-hidden
-                />
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  {space.image ? (
+                    <SmartImage
+                      src={space.image}
+                      alt={`${space.title} — Vantage inspiration`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${space.gradient}`}
+                      aria-hidden
+                    />
+                  )}
+                </div>
                 <div className="p-6">
                   <h3 className="font-display text-2xl text-ivory">{space.title}</h3>
                   <p className="mt-2 text-sm text-text-muted">{space.body}</p>
@@ -149,12 +161,10 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
               className="btn btn-primary mt-8"
               serviceTool={{
                 service: serviceKey,
-                ctaLabel: "Get a personalized range in the Basement Builder",
+                ctaLabel: c.toolCard.cta,
               }}
             >
-              {c.path.includes("basement")
-                ? "Get a personalized range in the Basement Builder"
-                : c.toolCard.cta}
+              {c.toolCard.cta}
             </TrackedLink>
           ) : null}
         </div>
