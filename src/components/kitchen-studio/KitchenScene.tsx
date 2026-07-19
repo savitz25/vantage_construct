@@ -5,7 +5,13 @@ import { getStyle } from "@/lib/kitchen-studio/styles";
 import type { KitchenSelections } from "@/lib/kitchen-studio/types";
 
 /** Stylized editorial kitchen — all materials repaint from selections. */
-export function KitchenScene({ selections }: { selections: KitchenSelections }) {
+export function KitchenScene({
+  selections,
+  compact = false,
+}: {
+  selections: KitchenSelections;
+  compact?: boolean;
+}) {
   const style = getStyle(selections.styleId);
   const counter = getCounter(selections.counter);
   const hardware = getHardware(selections.hardware);
@@ -37,14 +43,19 @@ export function KitchenScene({ selections }: { selections: KitchenSelections }) 
 
   return (
     <div
-      className="relative overflow-hidden rounded-2xl border border-border shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
+      className={`relative overflow-hidden border border-border ${
+        compact
+          ? "mx-auto h-[min(260px,36vh)] w-full max-w-xl rounded-xl shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]"
+          : "rounded-2xl shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
+      }`}
       style={{ background: wall }}
       aria-label={`${style.name} kitchen preview`}
     >
       <svg
         viewBox="0 0 800 520"
-        className="h-auto w-full transition-colors duration-300"
+        className={`w-full transition-colors duration-300 ${compact ? "h-full" : "h-auto"}`}
         role="img"
+        preserveAspectRatio={compact ? "xMidYMid slice" : "xMidYMid meet"}
       >
         <defs>
           <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">

@@ -153,8 +153,8 @@ export function AtticStudio() {
             </div>
           </div>
         ) : (
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="space-y-5">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] lg:items-start">
+            <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
@@ -181,27 +181,29 @@ export function AtticStudio() {
               </div>
 
               {viewMode === "photo" ? (
-                <div className="relative overflow-hidden rounded-2xl border border-border shadow-[0_20px_60px_rgba(40,30,15,0.12)]">
-                  <div className="relative aspect-[16/10] w-full">
+                <div className="relative mx-auto h-[min(260px,36vh)] w-full max-w-xl overflow-hidden rounded-xl border border-border shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]">
+                  <div className="absolute inset-0">
                     <SmartImage
                       src={vision.heroImage}
                       alt={`${vision.name} luxury attic`}
                       fill
                       priority
-                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      sizes="(max-width: 1024px) 100vw, 560px"
                     />
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2">
-                    <span className="rounded-full bg-white/92 px-3 py-1.5 text-sm font-medium text-ivory shadow-sm backdrop-blur">
+                  <div className="absolute bottom-2 left-2 right-2 flex flex-wrap items-center justify-between gap-2">
+                    <span className="rounded-full bg-white/92 px-2.5 py-1 text-xs font-medium text-ivory shadow-sm backdrop-blur">
                       {vision.lifestyleName}
                     </span>
-                    <span className="rounded-full bg-white/85 px-3 py-1 text-[0.65rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
+                    <span className="rounded-full bg-white/85 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
                       Inspiration photo
                     </span>
                   </div>
                 </div>
               ) : (
-                <AtticScene selections={sel} />
+                <div className="mx-auto w-full max-w-2xl">
+                  <AtticScene selections={sel} compact />
+                </div>
               )}
 
               <p className="text-sm text-text-muted">

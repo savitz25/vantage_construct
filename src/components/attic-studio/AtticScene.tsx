@@ -4,7 +4,13 @@ import { getVision } from "@/lib/attic-studio/visions";
 import type { AtticSelections } from "@/lib/attic-studio/types";
 
 /** Stylized attic cross-section — dormers, skylights, bath, and storage repaint live. */
-export function AtticScene({ selections }: { selections: AtticSelections }) {
+export function AtticScene({
+  selections,
+  compact = false,
+}: {
+  selections: AtticSelections;
+  compact?: boolean;
+}) {
   const vision = getVision(selections.visionId);
   const wall = vision.wall;
   const floor = vision.floor;
@@ -23,11 +29,20 @@ export function AtticScene({ selections }: { selections: AtticSelections }) {
 
   return (
     <div
-      className="relative overflow-hidden rounded-2xl border border-border shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
+      className={`relative overflow-hidden border border-border ${
+        compact
+          ? "mx-auto h-[min(260px,36vh)] w-full max-w-xl rounded-xl shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]"
+          : "rounded-2xl shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
+      }`}
       style={{ background: wall }}
       aria-label={`${vision.name} attic preview`}
     >
-      <svg viewBox="0 0 800 480" className="h-auto w-full" role="img">
+      <svg
+        viewBox="0 0 800 480"
+        className={`w-full ${compact ? "h-full" : "h-auto"}`}
+        role="img"
+        preserveAspectRatio={compact ? "xMidYMid slice" : "xMidYMid meet"}
+      >
         <defs>
           <linearGradient id="atticFloor" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={shade(floor, 12)} />

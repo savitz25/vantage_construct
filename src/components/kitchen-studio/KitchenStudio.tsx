@@ -70,9 +70,9 @@ export function KitchenStudio() {
   };
 
   return (
-    <div id="tool" className="section scroll-mt-28 pt-6 sm:pt-8">
+    <div id="tool" className="section scroll-mt-28 !py-8 sm:!py-10">
       <div className="container-wide">
-        <div className="mb-8 flex flex-wrap items-center gap-3">
+        <div className="mb-6 flex flex-wrap items-center gap-3">
           <button
             type="button"
             onClick={() => setStep("style")}
@@ -109,7 +109,7 @@ export function KitchenStudio() {
               Twelve high-end looks photographed for inspiration. Pick a starting canvas — then swap
               counters, backsplash, island, and hardware with a live planning estimate.
             </p>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {kitchenStyles.map((s) => (
                 <button
                   key={s.id}
@@ -119,22 +119,22 @@ export function KitchenStudio() {
                     sel.styleId === s.id ? "ring-2 ring-gold" : ""
                   }`}
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-bg-soft">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-bg-soft">
                     <SmartImage
                       src={s.heroImage}
                       alt={`${s.name} luxury kitchen inspiration`}
                       fill
                       className="transition duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                    <span className="absolute bottom-3 left-3 right-3 font-display text-xl text-white drop-shadow">
+                    <span className="absolute bottom-2 left-2 right-2 font-display text-lg text-white drop-shadow sm:text-xl">
                       {s.name}
                     </span>
                   </div>
-                  <div className="p-4">
-                    <p className="text-sm text-text-muted line-clamp-2">{s.tagline}</p>
-                    <span className="mt-3 inline-block text-sm text-gold-deep">
+                  <div className="p-3">
+                    <p className="text-xs text-text-muted line-clamp-2 sm:text-sm">{s.tagline}</p>
+                    <span className="mt-2 inline-block text-xs text-gold-deep sm:text-sm">
                       Select this style →
                     </span>
                   </div>
@@ -143,8 +143,8 @@ export function KitchenStudio() {
             </div>
           </div>
         ) : (
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="space-y-5">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] lg:items-start">
+            <div className="space-y-4">
               {/* Photo / configurator toggle */}
               <div className="flex flex-wrap items-center gap-2">
                 <button
@@ -172,27 +172,29 @@ export function KitchenStudio() {
               </div>
 
               {viewMode === "photo" ? (
-                <div className="relative overflow-hidden rounded-2xl border border-border shadow-[0_20px_60px_rgba(40,30,15,0.12)]">
-                  <div className="relative aspect-[16/10] w-full">
+                <div className="relative mx-auto h-[min(260px,36vh)] w-full max-w-xl overflow-hidden rounded-xl border border-border shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]">
+                  <div className="absolute inset-0">
                     <SmartImage
                       src={style.heroImage}
                       alt={`${style.name} luxury kitchen`}
                       fill
                       priority
-                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      sizes="(max-width: 1024px) 100vw, 560px"
                     />
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2">
-                    <span className="rounded-full bg-white/92 px-3 py-1.5 text-sm font-medium text-ivory shadow-sm backdrop-blur">
+                  <div className="absolute bottom-2 left-2 right-2 flex flex-wrap items-center justify-between gap-2">
+                    <span className="rounded-full bg-white/92 px-2.5 py-1 text-xs font-medium text-ivory shadow-sm backdrop-blur">
                       {style.name}
                     </span>
-                    <span className="rounded-full bg-white/85 px-3 py-1 text-[0.65rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
+                    <span className="rounded-full bg-white/85 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
                       Inspiration photo
                     </span>
                   </div>
                 </div>
               ) : (
-                <KitchenScene selections={sel} />
+                <div className="mx-auto w-full max-w-2xl">
+                  <KitchenScene selections={sel} compact />
+                </div>
               )}
 
               <p className="text-sm text-text-muted">
@@ -221,13 +223,13 @@ export function KitchenStudio() {
                 <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
                   Explore other styles
                 </p>
-                <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+                <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
                   {kitchenStyles.map((s) => (
                     <button
                       key={s.id}
                       type="button"
                       onClick={() => pickStyle(s.id)}
-                      className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-lg border transition ${
+                      className={`relative h-14 w-24 shrink-0 overflow-hidden rounded-lg border transition sm:h-16 sm:w-28 ${
                         s.id === sel.styleId
                           ? "border-gold ring-1 ring-gold"
                           : "border-border opacity-90 hover:opacity-100"
@@ -238,9 +240,9 @@ export function KitchenStudio() {
                         src={s.heroImage}
                         alt={s.name}
                         fill
-                        sizes="128px"
+                        sizes="112px"
                       />
-                      <span className="absolute inset-x-0 bottom-0 bg-black/55 px-1 py-0.5 text-[0.6rem] text-white">
+                      <span className="absolute inset-x-0 bottom-0 bg-black/55 px-1 py-0.5 text-[0.55rem] text-white">
                         {s.name.split(" ")[0]}
                       </span>
                     </button>
