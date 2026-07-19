@@ -7,7 +7,7 @@ import { SmartImage } from "@/components/SmartImage";
 import { TrackedLink } from "@/components/TrackedLink";
 import { RelatedServices } from "@/components/transformations/RelatedServices";
 import type { TransformServiceContent } from "@/lib/transformations/service-pages";
-import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/seo";
+import { faqJsonLd, serviceJsonLd } from "@/lib/seo";
 
 export function TransformLifestylePage({ content }: { content: TransformServiceContent }) {
   const c = content;
@@ -44,13 +44,6 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           path: c.path,
           serviceType: crumbLabel,
         })}
-      />
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: "Transformations", path: "/transformations" },
-          { name: crumbLabel, path: c.path },
-        ])}
       />
       <Breadcrumbs items={crumbs} />
 

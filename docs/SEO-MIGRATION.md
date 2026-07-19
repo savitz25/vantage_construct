@@ -86,34 +86,30 @@ Cost to Build a House in NJ Calculator | North Jersey Custom Home | Vantage Cons
 
 ## Priority 2 — Local SEO (weeks 1–6)
 
-1. **Google Business Profile**
-   - Category: Custom Home Builder (+ Remodeler)
-   - Service areas: Warren, Watchung, Basking Ridge, Millburn-Short Hills + counties
-   - 30+ project photos, weekly posts, correct website URL
+See **`docs/LOCAL-SEO-PLAYBOOK.md`** for full GBP / reviews / citations checklist.
 
-2. **Review engine**
-   - Post-project text/email with direct GBP review link
-   - Goal: 2–4 new Google reviews/month
-   - Respond to every review
-
-3. **NAP consistency**
-   - Name: Vantage Construction Inc  
-   - Address: 16 Saddlemount Ave, Warren, NJ 07059  
-   - Phone: (908) 350-0989  
-
-4. **Town pages**
-   - Strengthen existing `/locations/*` with real project photos + local permit/lot notes  
-   - Prefer 4–6 deep pages over many thin ones  
+1. **Google Business Profile** — website → custombuilds; category Custom Home Builder  
+2. **Review engine** — post-project SMS + email (step 7 Celebrate Beginnings)  
+3. **NAP** — Vantage Construction Inc · 16 Saddlemount Ave, Warren, NJ 07059 · (908) 350-0989  
+4. **Town pages (code ✅ expanded)**  
+   - `/locations/warren-nj`  
+   - `/locations/watchung-nj`  
+   - `/locations/basking-ridge-nj`  
+   - `/locations/millburn-short-hills-nj`  
+   - `/locations/westfield-nj` (added)  
+   - Next: add real project photos per town
 
 ---
 
 ## Priority 3 — Content & authority (weeks 2–12)
 
-1. Optimize Cost Studio with real $/sq ft ranges (Victor CONFIRM numbers)  
-2. Promote Move or Improve + NJ Graduated Percent Fee angle to local press/agents  
-3. Insights: 2 posts/month, **Victor Lobozzo** byline + bio (builder #029289)  
-4. Named project/case study pages  
-5. Backlinks: Houzz/BBB, partners, realtors, local press  
+See **`docs/SEO-CONTENT-CALENDAR.md`**.
+
+1. **Cost Studio (code ✅ expanded)** — $/sq ft anchors ~$241–$348, methodology, FAQs, internal links  
+2. **Move or Improve** — transfer-fee angle in on-page copy; PR outreach still manual  
+3. Insights: 2 posts/month, Victor byline — calendar ready; full article routes next  
+4. Named project/case study pages — pending portfolio assets  
+5. Backlinks: Houzz/BBB, partners, realtors, local press
 
 ---
 

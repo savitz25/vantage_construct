@@ -89,6 +89,15 @@ export function localBusinessJsonLd() {
     ],
     description: company.description,
     priceRange: "$$$$",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "17:00",
+      },
+    ],
+    // Appointments common for luxury builders — refine if GBP hours differ
     knowsAbout: [
       "Custom home building",
       "Luxury home remodeling",
@@ -111,6 +120,44 @@ export function localBusinessJsonLd() {
       },
     ],
     sameAs: [company.social.houzz, company.social.facebook],
+  };
+}
+
+/** Article schema for Insights / blog posts — E-E-A-T with Victor byline */
+export function articleJsonLd({
+  title,
+  description,
+  path,
+  datePublished,
+  dateModified,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    url: absoluteUrl(path),
+    datePublished,
+    dateModified: dateModified ?? datePublished,
+    author: {
+      "@type": "Person",
+      name: company.founder,
+      jobTitle: "Master Builder / Developer",
+      worksFor: { "@id": `${SITE_URL}/#business` },
+    },
+    publisher: {
+      "@type": "Organization",
+      name: company.name,
+      "@id": `${SITE_URL}/#business`,
+      url: SITE_URL,
+    },
+    mainEntityOfPage: absoluteUrl(path),
   };
 }
 

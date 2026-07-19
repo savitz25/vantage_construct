@@ -6,8 +6,8 @@ import { company } from "@/lib/company";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Service Areas & Location Guides",
-  description: `Luxury custom home builder serving ${company.focusTowns.join(", ")} and surrounding communities in ${company.counties.join(", ")} counties.`,
+  title: "Custom Home Builder Service Areas NJ | Town Guides",
+  description: `Luxury custom home builder serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, Westfield and ${company.counties.join(", ")} counties. Local guides with real project paths.`,
   path: "/locations",
 });
 

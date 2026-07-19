@@ -391,7 +391,11 @@ export const garageOptions = [
 export const costFaqs = [
   {
     q: "What does it cost per square foot to build a custom home in North Jersey?",
-    a: "Luxury custom construction in Central & Northern New Jersey often ranges from roughly the mid-$200s to $600+/sq ft depending on size, finish tier, and complexity. Vantage’s published plan anchors currently imply base construction starting near ~$240–$350/sq ft before site-specific upgrades — finish level, basement program, and lifestyle packages can raise totals meaningfully.",
+    a: "Luxury custom construction in Central & Northern New Jersey often ranges from roughly the mid-$200s to $600+/sq ft depending on size, finish tier, and complexity. Vantage’s published plan anchors currently imply base construction starting near ~$241–$348/sq ft before site-specific upgrades — finish level, basement program, and lifestyle packages can raise totals meaningfully.",
+  },
+  {
+    q: "What does it cost to build a house in New Jersey in 2026?",
+    a: "For quality custom construction (not production tract homes), many North Jersey projects land in multi-hundreds of dollars per square foot for the building alone. A mid-size luxury home might start near high-six to low-seven figures for construction before land — estate programs go higher. Use this Cost Studio for a personalized range, then validate with Design & Discovery.",
   },
   {
     q: "Does this calculator include land?",
@@ -408,5 +412,13 @@ export const costFaqs = [
   {
     q: "Can I use this for a knockdown rebuild?",
     a: "Yes. Choose the knockdown path to include a construction-side complexity premium. Demolition logistics and site restoration still require lot-specific evaluation.",
+  },
+  {
+    q: "Is the Cost Studio free?",
+    a: "Yes. You can generate an instant construction range without paying. Sharing contact details unlocks a fuller itemized breakdown and lets our team follow up if you want help interpreting the numbers.",
+  },
+  {
+    q: "Who is behind these numbers?",
+    a: "Vantage Construction Inc — a family-owned luxury builder led by Victor Lobozzo (N.J. Registered Builder #029289) with 35+ years across Central & Northern New Jersey. Anchors come from our published plan pricing, not anonymous online averages.",
   },
 ] as const;

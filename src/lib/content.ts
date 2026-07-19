@@ -251,33 +251,5 @@ export const faqs = [
   },
 ] as const;
 
-export const locationHubs = [
-  {
-    slug: "warren-nj",
-    name: "Warren",
-    county: "Somerset",
-    blurb:
-      "Our home base. Family-owned luxury custom homes, renovations, and land work rooted in deep local knowledge of Warren Township.",
-  },
-  {
-    slug: "watchung-nj",
-    name: "Watchung",
-    county: "Somerset",
-    blurb:
-      "Distinctive custom residences and property transformations in one of Central New Jersey’s most desirable hilltop communities.",
-  },
-  {
-    slug: "basking-ridge-nj",
-    name: "Basking Ridge",
-    county: "Somerset",
-    blurb:
-      "Luxury custom builds, knockdowns, and renovations tailored to Basking Ridge’s character and lifestyle.",
-  },
-  {
-    slug: "millburn-short-hills-nj",
-    name: "Millburn–Short Hills",
-    county: "Essex",
-    blurb:
-      "High-end custom homes and renovations in Millburn and Short Hills, built to the exacting standards these communities expect.",
-  },
-] as const;
+/** Location cards / sitemap — full copy lives in src/lib/locations/towns.ts */
+export { townHubs as locationHubs } from "./locations/towns";
