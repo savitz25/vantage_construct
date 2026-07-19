@@ -12,13 +12,21 @@ export function InvestorOverviewForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    investmentRange: string;
+    preferredStructure: (typeof structures)[number];
+    notes: string;
+  }>({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     investmentRange: investmentRanges[1],
-    preferredStructure: "Exploring" as (typeof structures)[number],
+    preferredStructure: "Exploring",
     notes: "",
   });
 
