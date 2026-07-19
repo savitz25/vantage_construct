@@ -463,14 +463,14 @@ export const kitchensPage: TransformServiceContent = {
   headline: "Where every gathering begins",
   subhead:
     "Luxury kitchen renovations that balance beauty, storage, and flow — so holidays, weeknights, and wine nights finally work. Serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding Somerset, Morris, Union, and Essex towns since 1990.",
-  primaryCta: { label: "Schedule a kitchen consultation", href: "/start" },
-  secondaryCta: { label: "Explore home additions", href: "/transformations/additions" },
+  primaryCta: { label: "Open the Kitchen Studio", href: "/kitchen-remodel-cost-nj#tool" },
+  secondaryCta: { label: "Schedule a consultation", href: "/start" },
   toolCard: {
-    badge: "Related tool",
-    title: "Thinking bigger than a kitchen?",
-    body: "If the real fix is more space — not just new cabinets — open the Move or Improve calculator to compare expanding versus relocating in North Jersey.",
-    cta: "Open the Move or Improve calculator",
-    href: "/move-or-improve-calculator-nj#tool",
+    badge: "Interactive tool · Kitchen Studio",
+    title: "Design your kitchen in minutes",
+    body: "Explore 12 high-end styles and swap counters, backsplash, island, and hardware live — with a North Jersey planning estimate. Then we build it with real millwork, appliances, and craftsmanship.",
+    cta: "Open the Kitchen Studio",
+    href: "/kitchen-remodel-cost-nj#tool",
   },
   spaceHeading: "What kind of kitchen are you building?",
   spaces: [
@@ -581,7 +581,7 @@ export const kitchensPage: TransformServiceContent = {
   ],
   closeHeading: "Design the kitchen you’ll live in every day",
   closeBody:
-    "Schedule a complimentary consultation. We’ll walk the existing space, talk layout and lifestyle, and outline a clear path from concept to craftsmanship.",
+    "Open the Kitchen Studio to shape your vision and planning range, or schedule a complimentary consultation — phone, Zoom, or on site.",
 };
 
 export const garagesPage: TransformServiceContent = {

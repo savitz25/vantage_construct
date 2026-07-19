@@ -128,9 +128,10 @@ export const nav = [
       { label: "All Studios", href: "/studios" },
       { label: "Design Studio", href: "/design-studio" },
       { label: "Cost Studio", href: "/cost-to-build-a-house-nj" },
+      { label: "Kitchen Studio", href: "/kitchen-remodel-cost-nj" },
+      { label: "Basement Builder", href: "/finished-basement-cost-nj" },
       { label: "Move or Improve?", href: "/move-or-improve-calculator-nj" },
       { label: "ADU Payback", href: "/adu-cost-calculator-nj" },
-      { label: "Basement Builder", href: "/finished-basement-cost-nj" },
     ],
   },
   {

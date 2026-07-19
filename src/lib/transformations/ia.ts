@@ -72,11 +72,17 @@ export const transformSecondaryLinks = [
 /** Interactive tool landers tied to transformations. */
 export const transformTools: TransformToolLink[] = [
   {
+    label: "Kitchen Studio",
+    href: "/kitchen-remodel-cost-nj",
+    body: "12 high-end styles with live swaps for counters, islands, backsplash, and hardware — plus a planning estimate.",
+    badge: "New",
+    featured: true,
+  },
+  {
     label: "Basement Builder",
     href: "/finished-basement-cost-nj",
     body: "Design your lower level in 60 seconds — theater, gym, bar, guest suite — with a live planning estimate.",
-    badge: "Most popular",
-    featured: true,
+    badge: "Lower levels",
   },
   {
     label: "Move or Improve?",
@@ -114,6 +120,7 @@ export const transformServicePaths = [
   "/transformations/outdoor-living",
   "/transformations/attics",
   "/transformations/remodeling",
+  "/kitchen-remodel-cost-nj",
   "/finished-basement-cost-nj",
   "/move-or-improve-calculator-nj",
   "/adu-cost-calculator-nj",
@@ -126,6 +133,14 @@ export const transformServicePaths = [
  * - Tool → service: "Learn how we build them" / "Learn how we build {noun}"
  */
 export const serviceToolPairs = [
+  {
+    servicePath: "/transformations/kitchens",
+    serviceLabel: "Kitchen Remodeling",
+    toolPath: "/kitchen-remodel-cost-nj",
+    toolLabel: "Kitchen Studio",
+    openCta: "Open the Kitchen Studio",
+    learnCta: "Learn how we build kitchens",
+  },
   {
     servicePath: "/transformations/basements",
     serviceLabel: "Finished Basements",

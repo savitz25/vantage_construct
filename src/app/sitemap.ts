@@ -18,6 +18,7 @@ const staticRoutes = [
   "/move-or-improve-calculator-nj",
   "/adu-cost-calculator-nj",
   "/finished-basement-cost-nj",
+  "/kitchen-remodel-cost-nj",
   "/transformations",
   "/transformations/process",
   "/transformations/basements",

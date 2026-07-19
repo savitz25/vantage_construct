@@ -35,7 +35,7 @@ export default function TransformationsPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Link href={featuredTool.href} className="btn btn-primary">
-            Open the Basement Builder
+            Open the {featuredTool.label}
           </Link>
           <Link href="/start" className="btn btn-secondary">
             Schedule a consultation
@@ -60,7 +60,9 @@ export default function TransformationsPage() {
                   {featuredTool.label}
                 </h2>
                 <p className="mt-3 max-w-xl text-text-muted">{featuredTool.body}</p>
-                <span className="btn btn-primary mt-6 inline-flex">Open the Basement Builder →</span>
+                <span className="btn btn-primary mt-6 inline-flex">
+                  Open the {featuredTool.label} →
+                </span>
               </div>
             </Link>
 
