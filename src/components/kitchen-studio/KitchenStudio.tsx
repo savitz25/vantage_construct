@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { SmartImage } from "@/components/SmartImage";
 import { ToolLeadGate } from "@/components/transformations/ToolLeadGate";
 import { trackKitchenEvent } from "@/lib/kitchen-studio/analytics";
 import {
@@ -35,6 +36,7 @@ const initial: KitchenSelections = {
 export function KitchenStudio() {
   const [step, setStep] = useState<"style" | "customize">("style");
   const [sel, setSel] = useState<KitchenSelections>(initial);
+  const [viewMode, setViewMode] = useState<"photo" | "configurator">("photo");
 
   useEffect(() => {
     trackKitchenEvent("tool_started");
@@ -50,12 +52,15 @@ export function KitchenStudio() {
       ...s.defaults,
     });
     trackKitchenEvent("style_selected", { style: id });
+    setViewMode("photo");
     setStep("customize");
   }
 
   function patch<K extends keyof KitchenSelections>(key: K, value: KitchenSelections[K]) {
     setSel((prev) => ({ ...prev, [key]: value }));
     trackKitchenEvent("feature_changed", { feature: key, value: String(value) });
+    // Material swaps shine on the live configurator
+    if (key !== "styleId") setViewMode("configurator");
   }
 
   const summaryPayload = {
@@ -67,7 +72,6 @@ export function KitchenStudio() {
   return (
     <div id="tool" className="section scroll-mt-28 pt-6 sm:pt-8">
       <div className="container-wide">
-        {/* Step tabs */}
         <div className="mb-8 flex flex-wrap items-center gap-3">
           <button
             type="button"
@@ -92,7 +96,7 @@ export function KitchenStudio() {
             2 · Customize features
           </button>
           <span className="ml-auto text-xs text-text-dim">
-            {kitchenStyles.length} designer styles · live estimate
+            {kitchenStyles.length} luxury styles · live estimate
           </span>
         </div>
 
@@ -102,72 +106,150 @@ export function KitchenStudio() {
               Choose your kitchen style
             </h2>
             <p className="mt-2 max-w-2xl text-text-muted">
-              Twelve curated high-end looks. Pick a starting canvas — then swap counters, backsplash,
-              island, and hardware live.
+              Twelve high-end looks photographed for inspiration. Pick a starting canvas — then swap
+              counters, backsplash, island, and hardware with a live planning estimate.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {kitchenStyles.map((s) => (
                 <button
                   key={s.id}
                   type="button"
                   onClick={() => pickStyle(s.id)}
-                  className={`card card-hover overflow-hidden p-0 text-left transition ${
+                  className={`card card-hover group overflow-hidden p-0 text-left transition ${
                     sel.styleId === s.id ? "ring-2 ring-gold" : ""
                   }`}
                 >
-                  <div
-                    className="aspect-[16/10] relative"
-                    style={{
-                      background: `linear-gradient(145deg, ${s.wall} 0%, ${s.cabinet} 55%, ${s.floor} 100%)`,
-                    }}
-                  >
-                    <div
-                      className="absolute bottom-3 left-3 right-3 h-6 rounded-sm opacity-90"
-                      style={{ background: s.cabinetDoor }}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-bg-soft">
+                    <SmartImage
+                      src={s.heroImage}
+                      alt={`${s.name} luxury kitchen inspiration`}
+                      fill
+                      className="transition duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div
-                      className="absolute bottom-9 left-6 right-6 h-2 rounded-sm"
-                      style={{ background: "#f0ebe4" }}
-                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                    <span className="absolute bottom-3 left-3 right-3 font-display text-xl text-white drop-shadow">
+                      {s.name}
+                    </span>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-display text-xl text-ivory">{s.name}</h3>
-                    <p className="mt-1 text-xs text-text-muted line-clamp-2">{s.tagline}</p>
+                    <p className="text-sm text-text-muted line-clamp-2">{s.tagline}</p>
+                    <span className="mt-3 inline-block text-sm text-gold-deep">
+                      Select this style →
+                    </span>
                   </div>
                 </button>
               ))}
             </div>
           </div>
         ) : (
-          <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="space-y-6">
-              <KitchenScene selections={sel} />
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="space-y-5">
+              {/* Photo / configurator toggle */}
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setViewMode("photo")}
+                  className={`rounded-full border px-3 py-1.5 text-xs ${
+                    viewMode === "photo"
+                      ? "border-gold bg-gold/10 text-gold-deep"
+                      : "border-border text-text-muted"
+                  }`}
+                >
+                  Style photography
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("configurator")}
+                  className={`rounded-full border px-3 py-1.5 text-xs ${
+                    viewMode === "configurator"
+                      ? "border-gold bg-gold/10 text-gold-deep"
+                      : "border-border text-text-muted"
+                  }`}
+                >
+                  Live material preview
+                </button>
+              </div>
 
-              {/* Portfolio proof strip — gradient placeholders by style tags */}
+              {viewMode === "photo" ? (
+                <div className="relative overflow-hidden rounded-2xl border border-border shadow-[0_20px_60px_rgba(40,30,15,0.12)]">
+                  <div className="relative aspect-[16/10] w-full">
+                    <SmartImage
+                      src={style.heroImage}
+                      alt={`${style.name} luxury kitchen`}
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                    />
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2">
+                    <span className="rounded-full bg-white/92 px-3 py-1.5 text-sm font-medium text-ivory shadow-sm backdrop-blur">
+                      {style.name}
+                    </span>
+                    <span className="rounded-full bg-white/85 px-3 py-1 text-[0.65rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
+                      Inspiration photo
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <KitchenScene selections={sel} />
+              )}
+
+              <p className="text-sm text-text-muted">
+                {style.description}{" "}
+                {viewMode === "photo" ? (
+                  <button
+                    type="button"
+                    className="text-gold-deep hover:underline"
+                    onClick={() => setViewMode("configurator")}
+                  >
+                    Switch to live material preview →
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="text-gold-deep hover:underline"
+                    onClick={() => setViewMode("photo")}
+                  >
+                    View style photography →
+                  </button>
+                )}
+              </p>
+
+              {/* Other style thumbs for quick switch */}
               <div>
                 <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
-                  Style inspiration · {style.name}
-                </p>
-                <p className="mt-1 text-sm text-text-muted">
-                  {style.description} Real Vantage project photography can be tagged here by style.
+                  Explore other styles
                 </p>
                 <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-                  {style.portfolioTags.map((tag, i) => (
-                    <div
-                      key={tag}
-                      className="h-20 w-32 shrink-0 rounded-lg border border-border"
-                      style={{
-                        background: `linear-gradient(${120 + i * 40}deg, ${style.cabinet}, ${style.wall}, ${style.floor})`,
-                      }}
-                      title={`Portfolio: ${tag}`}
-                    />
+                  {kitchenStyles.map((s) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => pickStyle(s.id)}
+                      className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-lg border transition ${
+                        s.id === sel.styleId
+                          ? "border-gold ring-1 ring-gold"
+                          : "border-border opacity-90 hover:opacity-100"
+                      }`}
+                      title={s.name}
+                    >
+                      <SmartImage
+                        src={s.heroImage}
+                        alt={s.name}
+                        fill
+                        sizes="128px"
+                      />
+                      <span className="absolute inset-x-0 bottom-0 bg-black/55 px-1 py-0.5 text-[0.6rem] text-white">
+                        {s.name.split(" ")[0]}
+                      </span>
+                    </button>
                   ))}
                 </div>
               </div>
             </div>
 
             <div className="space-y-5">
-              {/* Estimate pill */}
               <div className="card p-6">
                 <p className="text-xs uppercase tracking-[0.14em] text-text-dim">
                   Planning investment
@@ -191,7 +273,6 @@ export function KitchenStudio() {
                 </p>
               </div>
 
-              {/* Style re-pick */}
               <div className="card p-5">
                 <div className="flex items-center justify-between gap-2">
                   <div>

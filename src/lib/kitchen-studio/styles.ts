@@ -12,7 +12,9 @@ export type KitchenStyle = {
   name: string;
   tagline: string;
   description: string;
-  /** Wall color behind cabinets */
+  /** Luxury hero photograph for style cards + customize view */
+  heroImage: string;
+  /** Wall color behind cabinets (SVG scene) */
   wall: string;
   /** Upper/lower cabinet body */
   cabinet: string;
@@ -36,6 +38,7 @@ export type KitchenStyle = {
 export const kitchenStyles: KitchenStyle[] = [
   {
     id: "modern-farmhouse",
+    heroImage: "/media/kitchens/modern-farmhouse.jpg",
     name: "Modern Farmhouse",
     tagline: "Warm white, open shelving energy, lived-in elegance",
     description: "Shaker bones, soft whites, and a welcoming island for everyday gathering.",
@@ -55,6 +58,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "warm-organic",
+    heroImage: "/media/kitchens/warm-organic.jpg",
     name: "Warm Organic Modern",
     tagline: "Natural wood, soft curves, quiet luxury",
     description: "White oak warmth, tactile stone, and a calm modern plan.",
@@ -74,6 +78,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "classic-transitional",
+    heroImage: "/media/kitchens/classic-transitional.jpg",
     name: "Classic Transitional",
     tagline: "Timeless balance of traditional and modern",
     description: "Refined moldings, soft neutrals, and hardware that ages gracefully.",
@@ -93,6 +98,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "sleek-european",
+    heroImage: "/media/kitchens/sleek-european.jpg",
     name: "Sleek European",
     tagline: "Handleless lines, integrated appliances, quiet drama",
     description: "Minimal massing with panel-ready appliances and stone that does the talking.",
@@ -112,6 +118,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "traditional-luxury",
+    heroImage: "/media/kitchens/traditional-luxury.jpg",
     name: "Traditional Luxury",
     tagline: "Paneled elegance, statement hoods, heirloom detail",
     description: "Furniture-grade cabinetry, layered moldings, and a formal entertaining plan.",
@@ -131,6 +138,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "coastal-hamptons",
+    heroImage: "/media/kitchens/coastal-hamptons.jpg",
     name: "Coastal / Hamptons",
     tagline: "Airy blues, bright light, relaxed polish",
     description: "Crisp whites, soft sea tones, and an island built for long summers.",
@@ -150,6 +158,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "forest-moody",
+    heroImage: "/media/kitchens/forest-moody.jpg",
     name: "Forest / Moody Modern",
     tagline: "Deep green cabinetry, rich stone, intimate glow",
     description: "A jewel-box kitchen with dramatic color and soft ambient light.",
@@ -169,6 +178,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "industrial-loft",
+    heroImage: "/media/kitchens/industrial-loft.jpg",
     name: "Industrial Loft",
     tagline: "Raw materials, dark metals, urban edge",
     description: "Concrete energy, black metal, and open loft proportions.",
@@ -188,6 +198,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "japandi",
+    heroImage: "/media/kitchens/japandi.jpg",
     name: "Japandi / Minimal Warm",
     tagline: "Restraint, light wood, meditative calm",
     description: "Scandinavian warmth meets Japanese simplicity — less clutter, more intention.",
@@ -207,6 +218,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "white-brass",
+    heroImage: "/media/kitchens/white-brass.jpg",
     name: "Timeless White & Brass",
     tagline: "Bright, classic, endlessly photographable",
     description: "The North Jersey favorite — luminous cabinets, warm brass, and soft stone.",
@@ -226,6 +238,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "dark-dramatic",
+    heroImage: "/media/kitchens/dark-dramatic.jpg",
     name: "Dark & Dramatic",
     tagline: "Charcoal cabinetry, high-contrast stone, evening energy",
     description: "A nighttime kitchen that entertains as well as it cooks.",
@@ -245,6 +258,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "scandinavian",
+    heroImage: "/media/kitchens/scandinavian.jpg",
     name: "Light Scandinavian Luxury",
     tagline: "Pale wood, air, and effortless function",
     description: "Light oak, clean lines, and a soft northern light aesthetic.",
