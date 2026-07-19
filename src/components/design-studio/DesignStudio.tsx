@@ -28,9 +28,14 @@ import {
   type Priority,
   type StudioStep,
 } from "@/lib/design-studio/types";
+import { lifestyleMedia, roofMedia, sizeBandMedia, styleMedia } from "@/lib/plan-media";
 import { EstimateBar } from "./EstimateBar";
 import { OptionCard } from "./OptionCard";
+import { PlanDetailModal } from "./PlanDetailModal";
+import { PlanVisualCard } from "./PlanVisualCard";
 import { ProgressBar } from "./ProgressBar";
+import { SelectedPlanPreview } from "./SelectedPlanPreview";
+import { VisualChoiceCard } from "./VisualChoiceCard";
 
 const STORAGE_KEY = "vantage-design-studio-v1";
 
@@ -85,6 +90,7 @@ export function DesignStudio() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [emailNote, setEmailNote] = useState<string | null>(null);
+  const [detailSlug, setDetailSlug] = useState<string | null>(null);
 
   useEffect(() => {
     setState(loadState());
@@ -277,8 +283,10 @@ export function DesignStudio() {
 
   const s = state.selections;
   const sizePlans = s.sizeBand
-    ? plans.filter((p) => p.sizeBand === s.sizeBand).slice(0, 6)
-    : plans.slice(0, 6);
+    ? plans.filter((p) => p.sizeBand === s.sizeBand)
+    : plans;
+  const selectedPlan = s.planSlug ? plans.find((p) => p.slug === s.planSlug) : null;
+  const detailPlan = detailSlug ? plans.find((p) => p.slug === detailSlug) : null;
 
   const palette = exteriorPalettes.find((p) => p.id === s.exteriorPalette);
   const style = styleOptions.find((st) => st.id === s.style);
@@ -368,51 +376,59 @@ export function DesignStudio() {
               <h2 className="font-display text-4xl text-ivory">Home size</h2>
               <p className="mt-3 max-w-2xl text-text-muted">
                 Choose a size band seeded from real Vantage available-home starting prices — or start
-                from a specific plan.
+                from a specific plan and see the actual design first.
               </p>
               <div className="mt-8 grid gap-4 lg:grid-cols-3">
                 {sizeOptions.map((opt) => (
-                  <OptionCard
+                  <VisualChoiceCard
                     key={opt.id}
                     selected={s.sizeBand === opt.id && !s.planSlug}
                     title={opt.label}
                     meta={opt.rangeLabel}
                     description={`${opt.anchor}. ${opt.description}`}
+                    imageSrc={sizeBandMedia[opt.id]}
+                    imageAlt={`${opt.label} representative custom home design`}
                     onClick={() =>
                       patchSelections(
                         { sizeBand: opt.id, planSlug: null },
                         { category: "size_band", value: opt.id },
                       )
                     }
-                  >
-                    <div className="h-28 bg-gradient-to-br from-[#f0e6d4] via-[#e4d5b8] to-[#d2bf9a]" />
-                  </OptionCard>
+                  />
                 ))}
               </div>
+
+              {selectedPlan ? (
+                <div className="mt-10">
+                  <SelectedPlanPreview
+                    plan={selectedPlan}
+                    onOpenDetails={() => setDetailSlug(selectedPlan.slug)}
+                  />
+                </div>
+              ) : null}
 
               <div className="mt-12">
                 <h3 className="font-display text-3xl text-ivory">
                   Or start from a specific available plan
                 </h3>
                 <p className="mt-2 text-sm text-text-muted">
-                  Showing plans
-                  {s.sizeBand ? " in your selected size band" : " from our catalog"}. You can change
-                  anytime.
+                  Every card shows a real exterior elevation from the Available Homes catalog.
+                  {s.sizeBand ? " Showing plans in your selected size band." : " Showing the full catalog."}
                 </p>
-                <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {sizePlans.map((plan) => (
-                    <OptionCard
+                <div className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  {sizePlans.map((plan, index) => (
+                    <PlanVisualCard
                       key={plan.slug}
+                      plan={plan}
                       selected={s.planSlug === plan.slug}
-                      title={plan.name}
-                      meta={`${plan.sqft.toLocaleString()} sq ft · from $${plan.priceFrom.toLocaleString()}`}
-                      description={plan.style}
-                      onClick={() =>
+                      priority={index < 3}
+                      onSelect={() =>
                         patchSelections(
                           { planSlug: plan.slug, sizeBand: plan.sizeBand },
                           { category: "plan", value: plan.slug },
                         )
                       }
+                      onOpenDetails={() => setDetailSlug(plan.slug)}
                     />
                   ))}
                 </div>
@@ -426,6 +442,20 @@ export function DesignStudio() {
                 onNext={() => completeStep("size", "style")}
                 nextDisabled={!s.sizeBand && !s.planSlug}
               />
+
+              {detailPlan ? (
+                <PlanDetailModal
+                  plan={detailPlan}
+                  open={Boolean(detailPlan)}
+                  onClose={() => setDetailSlug(null)}
+                  onSelect={() =>
+                    patchSelections(
+                      { planSlug: detailPlan.slug, sizeBand: detailPlan.sizeBand },
+                      { category: "plan", value: detailPlan.slug },
+                    )
+                  }
+                />
+              ) : null}
             </div>
           ) : null}
 
@@ -438,19 +468,22 @@ export function DesignStudio() {
                 Design & Discovery.
               </p>
               <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {styleOptions.map((opt) => (
-                  <OptionCard
-                    key={opt.id}
-                    selected={s.style === opt.id}
-                    title={opt.label}
-                    description={opt.lifestyle}
-                    onClick={() =>
-                      patchSelections({ style: opt.id }, { category: "style", value: opt.id })
-                    }
-                  >
-                    <div className={`h-36 bg-gradient-to-br ${opt.gradient}`} />
-                  </OptionCard>
-                ))}
+                {styleOptions.map((opt) => {
+                  const media = styleMedia[opt.id];
+                  return (
+                    <VisualChoiceCard
+                      key={opt.id}
+                      selected={s.style === opt.id}
+                      title={opt.label}
+                      description={opt.lifestyle}
+                      imageSrc={media?.image}
+                      imageAlt={media?.alt || opt.label}
+                      onClick={() =>
+                        patchSelections({ style: opt.id }, { category: "style", value: opt.id })
+                      }
+                    />
+                  );
+                })}
               </div>
               <NavButtons
                 onBack={() => goTo("size")}
@@ -473,17 +506,25 @@ export function DesignStudio() {
                   <div>
                     <h3 className="font-display text-2xl text-ivory">Roof type</h3>
                     <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                      {roofOptions.map((opt) => (
-                        <OptionCard
-                          key={opt.id}
-                          selected={s.roof === opt.id}
-                          title={opt.label}
-                          description={opt.description}
-                          onClick={() =>
-                            patchSelections({ roof: opt.id }, { category: "roof", value: opt.id })
-                          }
-                        />
-                      ))}
+                      {roofOptions.map((opt) => {
+                        const media = roofMedia[opt.id];
+                        return (
+                          <VisualChoiceCard
+                            key={opt.id}
+                            selected={s.roof === opt.id}
+                            title={opt.label}
+                            description={opt.description}
+                            imageSrc={media?.image}
+                            imageAlt={media?.alt || opt.label}
+                            onClick={() =>
+                              patchSelections(
+                                { roof: opt.id },
+                                { category: "roof", value: opt.id },
+                              )
+                            }
+                          />
+                        );
+                      })}
                     </div>
                   </div>
                   <div>
@@ -625,16 +666,21 @@ export function DesignStudio() {
                 Multi-select the experiences that matter. Ranges update transparently as you choose.
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {lifestyleOptions.map((opt) => (
-                  <OptionCard
-                    key={opt.id}
-                    multi
-                    selected={s.lifestyle.includes(opt.id)}
-                    title={opt.label}
-                    description={opt.description}
-                    onClick={() => toggleLifestyle(opt.id)}
-                  />
-                ))}
+                {lifestyleOptions.map((opt) => {
+                  const media = lifestyleMedia[opt.id];
+                  return (
+                    <VisualChoiceCard
+                      key={opt.id}
+                      multi
+                      selected={s.lifestyle.includes(opt.id)}
+                      title={opt.label}
+                      description={opt.description}
+                      imageSrc={media?.image}
+                      imageAlt={media?.alt || opt.label}
+                      onClick={() => toggleLifestyle(opt.id)}
+                    />
+                  );
+                })}
               </div>
               {s.lifestyle.includes("other") ? (
                 <div className="mt-6">

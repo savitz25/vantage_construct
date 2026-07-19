@@ -1,21 +1,35 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { HomePlan } from "@/lib/plans";
 import { formatPrice } from "@/lib/plans";
+import { getPlanMedia, planImageAlt } from "@/lib/plan-media";
 
 export function PlanCard({ plan }: { plan: HomePlan }) {
+  const media = getPlanMedia(plan.slug);
+  const hero = media?.hero;
+
   return (
     <article className="card card-hover flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-[16/10] bg-gradient-to-br from-[#f0e6d4] via-[#e8dcc6] to-[#d9c7a8]">
-        <div className="absolute inset-0 flex items-end p-5">
-          <div>
-            <span className="badge">{plan.style}</span>
-            <p className="mt-3 font-display text-3xl text-ivory">
-              {plan.sqft.toLocaleString()}{" "}
-              <span className="text-base tracking-wide text-text-dim">sq ft</span>
-            </p>
-          </div>
+      <div className="relative aspect-[16/10] bg-bg-elevated">
+        {hero ? (
+          <Image
+            src={hero}
+            alt={planImageAlt(plan.name, plan.sqft, plan.style, "Front elevation")}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#f0e6d4] via-[#e8dcc6] to-[#d9c7a8]" />
+        )}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-5 pt-16">
+          <span className="badge !border-white/30 !bg-white/15 !text-white">{plan.style}</span>
+          <p className="mt-2 font-display text-3xl text-white">
+            {plan.sqft.toLocaleString()}{" "}
+            <span className="text-base tracking-wide text-white/80">sq ft</span>
+          </p>
         </div>
-        <div className="absolute right-4 top-4 rounded-full border border-border bg-white/80 px-3 py-1 text-xs text-gold-deep backdrop-blur">
+        <div className="absolute right-4 top-4 rounded-full border border-white/30 bg-white/90 px-3 py-1 text-xs font-semibold text-gold-deep backdrop-blur">
           From {formatPrice(plan.priceFrom)}
         </div>
       </div>
@@ -37,6 +51,9 @@ export function PlanCard({ plan }: { plan: HomePlan }) {
             <span className="rounded-full border border-border px-2.5 py-1 text-gold">
               ADU potential
             </span>
+          ) : null}
+          {media?.floorPlan ? (
+            <span className="rounded-full border border-border px-2.5 py-1">Floor plan</span>
           ) : null}
         </div>
         <div className="mt-auto pt-6">

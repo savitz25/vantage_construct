@@ -1,0 +1,288 @@
+{
+  "cypress-hollow-farmhouse": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/11/1479-cad-image-front.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/11/1479-cad-image-left.webp",
+    "floorPlan": "https://vantageconstruct.com/wp-content/uploads/2024/12/1479-basement-stair-location_1.jpg",
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/1479-cad-image-front.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/1479-cad-image-left.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/1479-cad-image-rear.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/1479-cad-image-right.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1479-basement-stair-location_1.jpg",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1479-floor-plan.jpg"
+    ],
+    "matchCount": 10
+  },
+  "cozy-craftsman-cottage": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/11/hpg-872-frontv2.webp",
+    "hover": null,
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/hpg-872-frontv2.webp"
+    ],
+    "matchCount": 1
+  },
+  "modern-homestead": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/11/1448-day-render.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/11/1448-night-render.webp",
+    "floorPlan": "https://vantageconstruct.com/wp-content/uploads/2024/11/1448-basement-stair-location.webp",
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/1448-day-render.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/1448-night-render.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/1448-basement-stair-location.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/1448-bonus-floor-plan.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/plan-1448-interior-01.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/plan-1448-interior-02.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/plan-1448-interior-03.webp"
+    ],
+    "matchCount": 13
+  },
+  "classic-bungalow-retreat": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/11/9081-thumb.webp",
+    "hover": null,
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/9081-thumb.webp"
+    ],
+    "matchCount": 1
+  },
+  "willow-haven": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/11/18009-front-elevation.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/11/18009rear-elevation-1.webp",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/18009-front-elevation.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/18009rear-elevation-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/18009rear-elevation.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_front_day.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_bedroom01.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_bedroom02.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_bedroom03.webp"
+    ],
+    "matchCount": 19
+  },
+  "ridgeview-haven": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2025/01/ridgeview-hires-drone1_1.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2025/01/ridgeview-hires11.webp",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/ridgeview-hires-drone1_1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/ridgeview-hires11.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/ridgeview-hires12.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/ridgeview-hires16.webp"
+    ],
+    "matchCount": 33
+  },
+  "whispering-pine": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/12/1998t-day-render-resized.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/12/1998t-dusk-render.webp",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1998t-day-render-resized.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1998t-dusk-render.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1998t-front-cad-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1998t-left-cad-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/7229_kitchen2_2.webp"
+    ],
+    "matchCount": 8
+  },
+  "magnolia-retreat": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/11/2192r1.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/11/2192r11.webp",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2192r1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2192r11.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2192r12.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2192r13.webp"
+    ],
+    "matchCount": 11
+  },
+  "westbrook-estate": {
+    "hero": null,
+    "hover": null,
+    "floorPlan": null,
+    "gallery": [],
+    "matchCount": 0
+  },
+  "silverleaf-manor": {
+    "hero": null,
+    "hover": null,
+    "floorPlan": null,
+    "gallery": [],
+    "matchCount": 0
+  },
+  "fairview-ranch": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-day-render.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-left-cad.webp",
+    "floorPlan": "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-basement-stair-location.webp",
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-day-render.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-left-cad.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-rear-cad.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-right-cad.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-basement-stair-location.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-floor-plan.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-dining.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/2407-great-room.webp"
+    ],
+    "matchCount": 11
+  },
+  "silo-house": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-fall_photo-1.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-fall_photo-10.webp",
+    "floorPlan": "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-3car-plan.webp",
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-fall_photo-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-fall_photo-10.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-fall_photo-2.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-fall_photo-3.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-3car-plan.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/2425-3car-plan-bonus.webp"
+    ],
+    "matchCount": 15
+  },
+  "laurelwood": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2025/01/5252rearwob.webp",
+    "hover": null,
+    "floorPlan": "https://vantageconstruct.com/wp-content/uploads/2025/01/2482fp1.webp",
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/5252rearwob.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/2482fp1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/2482fp2.webp"
+    ],
+    "matchCount": 4
+  },
+  "grand-vista": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/12/7375-kitchen-v2.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/12/7375-living-room-v2.webp",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/7375-kitchen-v2.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/7375-living-room-v2.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/7375-loft-v4.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/7375-kitchen-v2.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/7375-living-room-v2.webp"
+    ],
+    "matchCount": 3
+  },
+  "alderwood-barndominium": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/12/10060-1.jpg",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/12/10060-2.jpg",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/10060-1.jpg",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/10060-2.jpg",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/10060-3.jpg",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/10060-4.jpg"
+    ],
+    "matchCount": 6
+  },
+  "meadowbrook-estate": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/12/1062-kitchen-otherside-final_01.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/12/1062236-cl20001front2.webp",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1062-kitchen-otherside-final_01.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1062236-cl20001front2.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1062236-cl20001front3.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/final-edit-1062-m.bedroom-otherside-final-copy.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1062-kitchen-otherside-final_01.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/1062-living-final-copy.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/final-edit-1062-dining-final-copy.webp"
+    ],
+    "matchCount": 15
+  },
+  "millbrook-manor": {
+    "hero": null,
+    "hover": null,
+    "floorPlan": null,
+    "gallery": [],
+    "matchCount": 0
+  },
+  "emerald-cottage": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/12/8812-2-Car-Side.jpg",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/12/8812-3-Car-Front.jpg",
+    "floorPlan": "https://vantageconstruct.com/wp-content/uploads/2024/12/8812-3D-Floor-1.jpg",
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/8812-2-Car-Side.jpg",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/8812-3-Car-Front.jpg",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/8812-3-Car-Side.jpg",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/8812-3D-Floor-1.jpg",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/8812-3D-Floor-2.jpg"
+    ],
+    "matchCount": 17
+  },
+  "lakeside-loft": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-cad-front.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-cad-left.webp",
+    "floorPlan": "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-first-floor-plan.webp",
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-cad-front.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-cad-left.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-cad-right.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-natural-wood-front.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-first-floor-plan.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/2992-second-floor-plan.webp"
+    ],
+    "matchCount": 7
+  },
+  "willow-ridge-farmhouse": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_front_day.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_front_day2.webp",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_front_day.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_front_day2.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_front_dusk1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/12/willowbrook_front_dusk2.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/8815_diningv3-custom.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/8815_kitchenv3-custom.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2024/11/8815_living2v3-custom.webp"
+    ],
+    "matchCount": 27
+  },
+  "highland-manor": {
+    "hero": null,
+    "hover": null,
+    "floorPlan": null,
+    "gallery": [],
+    "matchCount": 0
+  },
+  "chateau-royale": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2025/01/3349farmr1-1.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2025/01/3349farmr10-1.webp",
+    "floorPlan": "https://vantageconstruct.com/wp-content/uploads/2025/01/3349fp1c-1.webp",
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/3349farmr1-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/3349farmr10-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/3349farmr2-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/3349farmr3-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/3349fp1c-1.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/3349fp2c-1.webp"
+    ],
+    "matchCount": 11
+  },
+  "bridgewater-manor": {
+    "hero": null,
+    "hover": null,
+    "floorPlan": null,
+    "gallery": [],
+    "matchCount": 0
+  },
+  "grand-alpine": {
+    "hero": "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-exterior-01.webp",
+    "hover": "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-exterior-02.webp",
+    "floorPlan": null,
+    "gallery": [
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-exterior-01.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-exterior-02.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-exterior-03.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-exterior-04.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-interior-01.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-interior-02.webp",
+      "https://vantageconstruct.com/wp-content/uploads/2025/01/wellington-interior-03.webp"
+    ],
+    "matchCount": 17
+  }
+}

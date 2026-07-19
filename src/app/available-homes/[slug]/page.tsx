@@ -1,9 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { formatPrice, getPlanBySlug, plans, pricingDisclaimer } from "@/lib/plans";
+import { getPlanMedia, planImageAlt } from "@/lib/plan-media";
 import { createMetadata, productOfferJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -29,6 +31,8 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ slu
   const related = plans
     .filter((p) => p.sizeBand === plan.sizeBand && p.slug !== plan.slug)
     .slice(0, 3);
+  const media = getPlanMedia(plan.slug);
+  const gallery = media?.gallery?.length ? media.gallery : media?.hero ? [media.hero] : [];
 
   return (
     <>
@@ -55,6 +59,62 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ slu
           {plan.aduCandidate ? <span className="badge">ADU potential</span> : null}
         </div>
       </PageHero>
+
+      {gallery.length ? (
+        <section className="section-sm pt-0">
+          <div className="container-wide">
+            <div className="relative aspect-[21/9] min-h-[260px] overflow-hidden rounded-2xl border border-border bg-bg-elevated">
+              <Image
+                src={gallery[0]}
+                alt={planImageAlt(plan.name, plan.sqft, plan.style, "Front elevation")}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+            {gallery.length > 1 ? (
+              <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                {gallery.slice(1, 5).map((src, i) => (
+                  <div
+                    key={src + i}
+                    className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-bg-elevated"
+                  >
+                    <Image
+                      src={src}
+                      alt={planImageAlt(plan.name, plan.sqft, plan.style, `Design view ${i + 2}`)}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : null}
+            {media?.floorPlan ? (
+              <div className="card mt-6 overflow-hidden p-0">
+                <div className="border-b border-border px-5 py-3 text-sm font-medium text-gold-deep">
+                  Floor plan
+                </div>
+                <div className="relative aspect-[16/10] bg-white">
+                  <Image
+                    src={media.floorPlan}
+                    alt={planImageAlt(plan.name, plan.sqft, plan.style, "Floor plan")}
+                    fill
+                    sizes="100vw"
+                    className="object-contain p-4"
+                  />
+                </div>
+              </div>
+            ) : null}
+            {media?.representative ? (
+              <p className="mt-3 text-sm text-text-dim">
+                Representative elevation — fully customizable during Design & Discovery.
+              </p>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       <section className="section pt-0">
         <div className="container-v grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
@@ -91,6 +151,12 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ slu
             <div className="mt-6 flex flex-col gap-3">
               <Link href="/start" className="btn btn-primary">
                 Schedule consultation
+              </Link>
+              <Link
+                href={`/design-studio`}
+                className="btn btn-secondary"
+              >
+                Start Design Studio with this plan
               </Link>
               <Link href="/available-homes" className="btn btn-secondary">
                 Back to all plans
