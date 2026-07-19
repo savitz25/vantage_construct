@@ -88,6 +88,12 @@ export const transformTools: TransformToolLink[] = [
     label: "Garage Studio",
     href: "/accessory-building-cost-nj",
     body: "Custom garages, carriage houses, workshops, and ADU outbuildings — configure bays, doors, and living space above.",
+    badge: "Garages",
+  },
+  {
+    label: "Outdoor Living Studio",
+    href: "/outdoor-kitchen-cost-nj",
+    body: "Outdoor kitchens, covered lounges, fire features, and resort-style yards — live design + planning estimate.",
     badge: "New",
   },
   {
@@ -135,6 +141,7 @@ export const transformServicePaths = [
   "/kitchen-remodel-cost-nj",
   "/attic-conversion-cost-nj",
   "/accessory-building-cost-nj",
+  "/outdoor-kitchen-cost-nj",
   "/finished-basement-cost-nj",
   "/move-or-improve-calculator-nj",
   "/adu-cost-calculator-nj",
@@ -170,6 +177,14 @@ export const serviceToolPairs = [
     toolLabel: "Garage Studio",
     openCta: "Open the Garage Studio",
     learnCta: "Learn how we build them",
+  },
+  {
+    servicePath: "/transformations/outdoor-living",
+    serviceLabel: "Outdoor Living",
+    toolPath: "/outdoor-kitchen-cost-nj",
+    toolLabel: "Outdoor Living Studio",
+    openCta: "Open the Outdoor Living Studio",
+    learnCta: "Learn how we build outdoor living",
   },
   {
     servicePath: "/transformations/basements",

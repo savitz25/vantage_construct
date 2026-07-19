@@ -746,14 +746,17 @@ export const outdoorPage: TransformServiceContent = {
   headline: "Extend the season. Elevate every evening.",
   subhead:
     "Decks, porches, sunrooms, outdoor kitchens, and fireplaces designed as true living rooms without walls — for Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding communities.",
-  primaryCta: { label: "Schedule a consultation", href: "/start" },
-  secondaryCta: { label: "View process", href: "/transformations/process" },
+  primaryCta: {
+    label: "Open the Outdoor Living Studio",
+    href: "/outdoor-kitchen-cost-nj#tool",
+  },
+  secondaryCta: { label: "Schedule a consultation", href: "/start" },
   toolCard: {
-    badge: "Complementary space",
-    title: "Pair outdoor living with a finished lower level",
-    body: "Walk-out basements and indoor entertaining often complete the outdoor estate. Open the Basement Builder to plan cinema, bar, and guest zones that flow to the patio.",
-    cta: "Open the Basement Builder",
-    href: "/finished-basement-cost-nj#tool",
+    badge: "Interactive tool · Outdoor Living Studio",
+    title: "Design your outdoor kitchen & living space in minutes",
+    body: "Choose resort backyard, outdoor kitchen, fire lounge, or pavilion — then configure cover, fire, seating, and finishes with a live North Jersey planning estimate.",
+    cta: "Open the Outdoor Living Studio",
+    href: "/outdoor-kitchen-cost-nj#tool",
   },
   spaceHeading: "Curate your outdoor estate",
   spaces: [
@@ -761,31 +764,37 @@ export const outdoorPage: TransformServiceContent = {
       title: "Outdoor kitchens",
       body: "Cooking, serving, and gathering — planned for flow, utilities, and weather.",
       gradient: "from-[#2e2418] via-[#4a3820] to-[#1a1410]",
+      image: "/media/outdoor/outdoor-kitchen.jpg",
     },
     {
-      title: "Covered porches & sunrooms",
-      body: "Four-season comfort with architecture that belongs on the house.",
+      title: "Covered living & lounge",
+      body: "Pavilions and pergolas that feel like true outdoor rooms.",
       gradient: "from-[#243028] via-[#384838] to-[#141c18]",
+      image: "/media/outdoor/covered-lounge.jpg",
     },
     {
-      title: "Decks & multi-level terraces",
-      body: "Structure you can trust, detailing that feels custom — not big-box.",
-      gradient: "from-[#30281c] via-[#483c28] to-[#1c1810]",
-    },
-    {
-      title: "Fireplaces & fire features",
+      title: "Fire & conversation",
       body: "The magnet that turns a patio into a room after dark.",
       gradient: "from-[#331c18] via-[#4c2c24] to-[#1f100e]",
+      image: "/media/outdoor/fire-conversation.jpg",
     },
     {
-      title: "Poolside living rooms",
-      body: "Shade, seating, and outdoor entertainment zones for resort-level hosting.",
+      title: "Resort-style backyard",
+      body: "Kitchen, cover, fire, and lounge as one outdoor estate.",
+      gradient: "from-[#30281c] via-[#483c28] to-[#1c1810]",
+      image: "/media/outdoor/full-resort.jpg",
+    },
+    {
+      title: "Poolside living",
+      body: "Shade, seating, and entertaining steps from the water.",
       gradient: "from-[#1c2833] via-[#2c3c4c] to-[#101820]",
+      image: "/media/outdoor/poolside.jpg",
     },
     {
-      title: "Lighting & evening architecture",
-      body: "Layered light that makes the exterior as intentional as the interior.",
+      title: "Entertainment pavilion",
+      body: "Fully covered hosting with kitchen and bar energy.",
       gradient: "from-[#1a1c2e] via-[#2a2e48] to-[#10121c]",
+      image: "/media/outdoor/entertainment-pavilion.jpg",
     },
   ],
   trustHeading: "Outdoor rooms that last in New Jersey weather",
@@ -811,26 +820,26 @@ export const outdoorPage: TransformServiceContent = {
   ],
   pricingHeading: "What outdoor living typically costs",
   pricingIntro:
-    "Scope ranges from refined decking packages to full outdoor kitchen environments. Estimates only.",
+    "Transparent planning bands for North Jersey. Kitchen complexity, covered structure, and fire features drive range — use the Outdoor Living Studio for a personalized estimate.",
   priceBands: [
     {
-      scope: "Premium deck / terrace",
-      includes: "Structure, railing, finish surfaces",
-      range: "Often mid–five to low–six figures",
+      scope: "Patio + fire lounge",
+      includes: "Hardscape, fire pit or linear fire, seating zone",
+      range: "Typically ~$45k–$95k+",
     },
     {
-      scope: "Covered porch / sunroom",
-      includes: "Roofed outdoor room, finishes, electrical",
-      range: "Commonly low– to mid–six figures",
+      scope: "Covered living / pavilion",
+      includes: "Structure, flooring, electrical, finishes",
+      range: "Commonly ~$90k–$180k+",
     },
     {
       scope: "Outdoor kitchen + entertaining",
-      includes: "Cooking suite, structure, lighting, fireplace",
-      range: "Project-specific — frequently mid–six figures+",
+      includes: "Cooking suite, cover, lighting, fire optional",
+      range: "Often $150k–$300k+ · site evaluation required",
     },
   ],
   pricingNote:
-    "Final pricing after site evaluation. Landscape, pool equipment, and hardscape partners coordinated as needed.",
+    "Conceptual estimates only. Final pricing after site evaluation. Landscape, pool equipment, and hardscape partners coordinated as needed. Open the Outdoor Living Studio for a live range.",
   caseHeading: "Evenings that never leave home",
   caseStory: {
     problem: "A beautiful yard with no true outdoor room — unusable after dark or in shoulder seasons.",
@@ -866,5 +875,5 @@ export const outdoorPage: TransformServiceContent = {
   ],
   closeHeading: "Bring the resort home",
   closeBody:
-    "Schedule a complimentary consultation. We’ll walk the property and map the outdoor living experience that fits how you entertain.",
+    "Open the Outdoor Living Studio to shape your vision and planning range, or schedule a complimentary consultation — site, utilities, and architecture honesty included.",
 };

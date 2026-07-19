@@ -131,6 +131,7 @@ export const nav = [
       { label: "Kitchen Studio", href: "/kitchen-remodel-cost-nj" },
       { label: "Attic Studio", href: "/attic-conversion-cost-nj" },
       { label: "Garage Studio", href: "/accessory-building-cost-nj" },
+      { label: "Outdoor Living Studio", href: "/outdoor-kitchen-cost-nj" },
       { label: "Basement Builder", href: "/finished-basement-cost-nj" },
       { label: "Move or Improve?", href: "/move-or-improve-calculator-nj" },
       { label: "ADU Payback", href: "/adu-cost-calculator-nj" },

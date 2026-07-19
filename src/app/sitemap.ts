@@ -21,6 +21,7 @@ const staticRoutes = [
   "/kitchen-remodel-cost-nj",
   "/attic-conversion-cost-nj",
   "/accessory-building-cost-nj",
+  "/outdoor-kitchen-cost-nj",
   "/transformations",
   "/transformations/process",
   "/transformations/basements",
