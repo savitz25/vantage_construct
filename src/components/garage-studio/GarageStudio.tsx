@@ -15,6 +15,11 @@ import {
   livingAbove,
 } from "@/lib/garage-studio/options";
 import { calculateGarageEstimate, formatRange, formatUsd } from "@/lib/garage-studio/pricing";
+import {
+  garagePresets,
+  presetRangeLabel,
+  type GaragePreset,
+} from "@/lib/garage-studio/presets";
 import { garagePurposes, getPurpose } from "@/lib/garage-studio/purposes";
 import type {
   AmenityId,
@@ -36,11 +41,29 @@ const initial: GarageSelections = {
   ...defaultPurpose.defaults,
 };
 
+function selectionsMatchPreset(sel: GarageSelections, preset: GaragePreset): boolean {
+  const p = preset.selections;
+  if (
+    sel.purposeId !== p.purposeId ||
+    sel.bays !== p.bays ||
+    sel.door !== p.door ||
+    sel.exterior !== p.exterior ||
+    sel.livingAbove !== p.livingAbove ||
+    sel.bath !== p.bath ||
+    sel.finish !== p.finish
+  ) {
+    return false;
+  }
+  if (sel.amenities.length !== p.amenities.length) return false;
+  return p.amenities.every((a) => sel.amenities.includes(a));
+}
+
 export function GarageStudio() {
   const [step, setStep] = useState<"purpose" | "customize">("purpose");
   const [sel, setSel] = useState<GarageSelections>(initial);
   const [viewMode, setViewMode] = useState<"photo" | "configurator">("photo");
   const [showMore, setShowMore] = useState(false);
+  const [activePresetId, setActivePresetId] = useState<string | null>(null);
 
   useEffect(() => {
     trackGarageEvent("tool_started");
@@ -49,15 +72,25 @@ export function GarageStudio() {
   const estimate = useMemo(() => calculateGarageEstimate(sel), [sel]);
   const purpose = getPurpose(sel.purposeId);
 
+  function applyPreset(preset: GaragePreset) {
+    setSel({ ...preset.selections, amenities: [...preset.selections.amenities] });
+    setActivePresetId(preset.id);
+    trackGarageEvent("preset_selected", { preset: preset.id });
+    setViewMode("photo");
+    setStep("customize");
+  }
+
   function pickPurpose(id: GaragePurposeId) {
     const p = getPurpose(id);
     setSel({ purposeId: id, ...p.defaults });
+    setActivePresetId(null);
     trackGarageEvent("purpose_selected", { purpose: id });
     setViewMode("photo");
     setStep("customize");
   }
 
   function patch<K extends keyof GarageSelections>(key: K, value: GarageSelections[K]) {
+    setActivePresetId(null);
     setSel((prev) => {
       const next = { ...prev, [key]: value };
       const nextEst = calculateGarageEstimate(next);
@@ -73,6 +106,7 @@ export function GarageStudio() {
   }
 
   function toggleAmenity(id: AmenityId) {
+    setActivePresetId(null);
     setSel((prev) => {
       const on = prev.amenities.includes(id);
       const amenitiesNext = on
@@ -95,10 +129,15 @@ export function GarageStudio() {
     setViewMode("configurator");
   }
 
+  const matchedPreset =
+    garagePresets.find((p) => activePresetId === p.id || selectionsMatchPreset(sel, p)) ?? null;
+
   const summaryPayload = {
     ...sel,
     purposeName: purpose.name,
     lifestyleName: purpose.lifestyleName,
+    presetId: matchedPreset?.id ?? activePresetId,
+    presetName: matchedPreset?.name,
     estimate,
   };
 
@@ -135,12 +174,70 @@ export function GarageStudio() {
 
         {step === "purpose" ? (
           <div>
+            {/* Suggested starter packages */}
+            <div className="mb-10">
+              <p className="eyebrow">Suggested starting points</p>
+              <h2 className="mt-2 font-display text-3xl text-ivory sm:text-4xl">
+                Start from a curated package
+              </h2>
+              <p className="mt-2 max-w-2xl text-text-muted">
+                One-click combinations with size, doors, living space, and amenities pre-set. You
+                can fine-tune everything after.
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {garagePresets.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    onClick={() => applyPreset(preset)}
+                    className="card card-hover group overflow-hidden p-0 text-left transition"
+                  >
+                    <div className="relative aspect-[16/9] overflow-hidden bg-bg-soft">
+                      <SmartImage
+                        src={preset.heroImage}
+                        alt={preset.name}
+                        fill
+                        className="transition duration-500 group-hover:scale-[1.03]"
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+                      <span className="absolute left-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-[0.65rem] font-medium text-gold-deep">
+                        {preset.badge}
+                      </span>
+                      <span className="absolute bottom-2 left-2 right-2 font-display text-xl text-white drop-shadow">
+                        {preset.name}
+                      </span>
+                    </div>
+                    <div className="p-4">
+                      <p className="text-sm text-text-muted">{preset.tagline}</p>
+                      <ul className="mt-2 flex flex-wrap gap-1.5">
+                        {preset.highlights.map((h) => (
+                          <li
+                            key={h}
+                            className="rounded-full border border-border bg-bg-elevated px-2 py-0.5 text-[0.65rem] text-text-dim"
+                          >
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-3 text-sm font-medium text-gold-deep">
+                        From {presetRangeLabel(preset)}
+                      </p>
+                      <span className="mt-1 inline-block text-xs text-gold-deep">
+                        Start with this package →
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <h2 className="font-display text-3xl text-ivory sm:text-4xl">
-              What do you want to create?
+              Or choose a building type
             </h2>
             <p className="mt-2 max-w-2xl text-text-muted">
-              Start with purpose — the highest-impact choice. Then refine size, living space above,
-              doors, and exterior with live visuals and a planning estimate.
+              Browse all purposes — then refine size, living space above, doors, and exterior with
+              live visuals and a planning estimate.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {garagePurposes.map((p) => (
@@ -307,8 +404,12 @@ export function GarageStudio() {
               <div className="card p-4">
                 <div className="flex items-center justify-between gap-2">
                   <div>
-                    <p className="text-xs text-text-dim">Primary purpose</p>
-                    <p className="font-display text-lg text-ivory">{purpose.name}</p>
+                    <p className="text-xs text-text-dim">
+                      {matchedPreset ? "Starter package" : "Primary purpose"}
+                    </p>
+                    <p className="font-display text-lg text-ivory">
+                      {matchedPreset?.name ?? purpose.name}
+                    </p>
                   </div>
                   <button
                     type="button"
@@ -320,8 +421,31 @@ export function GarageStudio() {
                 </div>
               </div>
 
+              {/* Quick switch packages while customizing */}
+              <div>
+                <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
+                  Switch package
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {garagePresets.map((preset) => (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => applyPreset(preset)}
+                      className={`rounded-full border px-3 py-1.5 text-xs transition ${
+                        matchedPreset?.id === preset.id
+                          ? "border-gold bg-gold/10 text-gold-deep"
+                          : "border-border text-text-muted hover:border-gold/40"
+                      }`}
+                    >
+                      {preset.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Highest-impact toggles first */}
-              <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
+              <p className="mt-2 text-xs uppercase tracking-[0.14em] text-gold-deep">
                 Highest impact
               </p>
 
