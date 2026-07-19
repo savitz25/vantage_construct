@@ -1,22 +1,55 @@
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { TrackedLink } from "@/components/TrackedLink";
 import type { TransformServiceContent } from "@/lib/transformations/service-pages";
 import { faqJsonLd } from "@/lib/seo";
 
 export function TransformLifestylePage({ content }: { content: TransformServiceContent }) {
   const c = content;
+  const crumbLabel =
+    c.path.includes("basements")
+      ? "Finished Basements"
+      : c.path.includes("kitchens")
+        ? "Kitchen Remodeling"
+        : c.path.includes("additions")
+          ? "Home Additions"
+          : c.path.includes("garages")
+            ? "Garages & Accessory Buildings"
+            : c.path.includes("outdoor")
+              ? "Outdoor Living"
+              : c.path.includes("attics")
+                ? "Attic Conversions"
+                : c.eyebrow.split("·")[0]?.trim() || "Service";
+  const crumbs = [
+    { label: "Home", href: "/" },
+    { label: "Transformations", href: "/transformations" },
+    { label: crumbLabel },
+  ];
+  const serviceKey = c.path.replace("/transformations/", "") || "overview";
 
   return (
     <>
       <JsonLd data={faqJsonLd(c.faqs)} />
+      <Breadcrumbs items={crumbs} />
 
       <PageHero eyebrow={c.eyebrow} title={c.headline} description={c.subhead}>
         <div className="flex flex-wrap gap-3">
-          <Link href={c.primaryCta.href} className="btn btn-primary">
-            {c.primaryCta.label}
-          </Link>
+          {c.toolCard ? (
+            <TrackedLink
+              href={c.toolCard.href}
+              className="btn btn-primary"
+              serviceTool={{ service: serviceKey, ctaLabel: c.primaryCta.label }}
+            >
+              {c.primaryCta.label}
+            </TrackedLink>
+          ) : (
+            <Link href={c.primaryCta.href} className="btn btn-primary">
+              {c.primaryCta.label}
+            </Link>
+          )}
           <Link href={c.secondaryCta.href} className="btn btn-secondary">
             {c.secondaryCta.label}
           </Link>
@@ -26,9 +59,10 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
       {c.toolCard ? (
         <section className="section-sm border-y border-border bg-bg-elevated">
           <div className="container-wide">
-            <Link
+            <TrackedLink
               href={c.toolCard.href}
               className="card card-hover relative block overflow-hidden p-8 sm:p-10"
+              serviceTool={{ service: serviceKey, ctaLabel: c.toolCard.cta }}
             >
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(201,160,78,0.16),transparent_55%)]" />
               <div className="relative grid gap-6 md:grid-cols-[1.3fr_0.7fr] md:items-center">
@@ -43,7 +77,7 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
                   <span className="btn btn-primary">{c.toolCard.cta} →</span>
                 </div>
               </div>
-            </Link>
+            </TrackedLink>
           </div>
         </section>
       ) : null}
@@ -101,9 +135,18 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           </div>
           <p className="mt-6 max-w-3xl text-xs text-text-dim">{c.pricingNote}</p>
           {c.toolCard ? (
-            <Link href={c.toolCard.href} className="btn btn-primary mt-8">
-              Get a personalized range
-            </Link>
+            <TrackedLink
+              href={c.toolCard.href}
+              className="btn btn-primary mt-8"
+              serviceTool={{
+                service: serviceKey,
+                ctaLabel: "Get a personalized range in the Basement Builder",
+              }}
+            >
+              {c.path.includes("basement")
+                ? "Get a personalized range in the Basement Builder"
+                : c.toolCard.cta}
+            </TrackedLink>
           ) : null}
         </div>
       </section>
@@ -144,6 +187,31 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           </div>
         </div>
       </section>
+
+      {/* Mid-close tool reinforcement for pages with a related calculator */}
+      {c.toolCard ? (
+        <section className="section-sm border-y border-border bg-bg-elevated">
+          <div className="container-v text-center">
+            <p className="eyebrow">Interactive planning</p>
+            <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
+              {c.toolCard.title}
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-text-muted">{c.toolCard.body}</p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <TrackedLink
+                href={c.toolCard.href}
+                className="btn btn-primary"
+                serviceTool={{ service: serviceKey, ctaLabel: c.toolCard.cta }}
+              >
+                {c.toolCard.cta}
+              </TrackedLink>
+              <Link href="/start" className="btn btn-secondary">
+                Schedule a consultation
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="section-sm border-t border-border">
         <div className="container-v text-center">

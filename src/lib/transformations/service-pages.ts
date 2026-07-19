@@ -60,12 +60,12 @@ export const basementsPage: TransformServiceContent = {
   headline: "Unlock your home’s hidden estate",
   subhead:
     "Stop thinking of it as a basement. Start thinking of it as your private cinema, wellness retreat, or speakeasy. Vantage transforms subterranean footprints into the most desired square footage in your home — across Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding Somerset, Morris, Union, and Essex towns since 1990.",
-  primaryCta: { label: "Design your lower level", href: "/finished-basement-cost-nj#tool" },
+  primaryCta: { label: "Open the Basement Builder", href: "/finished-basement-cost-nj#tool" },
   secondaryCta: { label: "Schedule a consultation", href: "/start" },
   toolCard: {
-    badge: "Interactive tool",
+    badge: "Interactive tool · Highest intent",
     title: "Design your lower level in 60 seconds",
-    body: "Pick the spaces you want — theater, gym, bar, guest suite, office — and watch your layout and estimate take shape in real time. No sign-up needed to see your range.",
+    body: "Pick the spaces you want — theater, gym, bar, guest suite, office — and watch your layout and estimate take shape in real time. No sign-up needed to see your range. Then learn how we build them dry, legal, and to main-floor standards.",
     cta: "Open the Basement Builder",
     href: "/finished-basement-cost-nj#tool",
   },
@@ -190,7 +190,7 @@ export const basementsPage: TransformServiceContent = {
   ],
   closeHeading: "Let’s look at what’s under your house",
   closeBody:
-    "Start with the Basement Builder to shape your vision and get a range, or go straight to a complimentary consultation — phone or Zoom, no obligation.",
+    "Open the Basement Builder to shape your vision and get a planning range, or schedule a complimentary consultation — phone, Zoom, or on site, no obligation.",
 };
 
 export const additionsPage: TransformServiceContent = {
@@ -203,15 +203,15 @@ export const additionsPage: TransformServiceContent = {
   subhead:
     "Primary suites, great rooms, kitchens, and multi-room expansions that match your architecture — without giving up your neighborhood, schools, or rate. Serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding counties since 1990.",
   primaryCta: {
-    label: "Run Move or Improve?",
+    label: "Open the Move or Improve calculator",
     href: "/move-or-improve-calculator-nj#tool",
   },
   secondaryCta: { label: "Schedule a consultation", href: "/start" },
   toolCard: {
     badge: "Interactive tool",
     title: "Should you move — or add on?",
-    body: "Compare true North Jersey selling costs against the addition that solves the same problem. Instant insight, no sign-up required.",
-    cta: "Open Move or Improve calculator",
+    body: "Compare true North Jersey selling costs against the addition that solves the same problem. Instant insight, no sign-up required — then learn how we build seamless expansions.",
+    cta: "Open the Move or Improve calculator",
     href: "/move-or-improve-calculator-nj#tool",
   },
   spaceHeading: "What are you adding?",
@@ -449,8 +449,8 @@ export const kitchensPage: TransformServiceContent = {
   toolCard: {
     badge: "Related tool",
     title: "Thinking bigger than a kitchen?",
-    body: "If the real fix is more space — not just new cabinets — run Move or Improve to compare expanding versus relocating in North Jersey.",
-    cta: "Open Move or Improve calculator",
+    body: "If the real fix is more space — not just new cabinets — open the Move or Improve calculator to compare expanding versus relocating in North Jersey.",
+    cta: "Open the Move or Improve calculator",
     href: "/move-or-improve-calculator-nj#tool",
   },
   spaceHeading: "What kind of kitchen are you building?",
@@ -582,8 +582,8 @@ export const garagesPage: TransformServiceContent = {
   toolCard: {
     badge: "Related studio",
     title: "Planning a full property vision?",
-    body: "For new homes and ADUs, explore Design Studio and ADU Payback. For garage additions on an existing estate, start with a site consultation.",
-    cta: "Open ADU Payback tool",
+    body: "For new homes and ADUs, explore Design Studio and the ADU Payback calculator. For garage additions on an existing estate, start with a site consultation.",
+    cta: "Open the ADU Payback calculator",
     href: "/adu-cost-calculator-nj#tool",
   },
   spaceHeading: "What are you housing?",

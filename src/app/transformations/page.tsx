@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
 import {
@@ -21,6 +22,12 @@ export default function TransformationsPage() {
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Transformations" },
+        ]}
+      />
       <PageHero
         eyebrow="Transformations · Existing homes"
         title="Elevate the home you already love"
@@ -28,10 +35,10 @@ export default function TransformationsPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Link href={featuredTool.href} className="btn btn-primary">
-            Open Basement Builder
+            Open the Basement Builder
           </Link>
-          <Link href="/transformations/process" className="btn btn-secondary">
-            Existing home process
+          <Link href="/start" className="btn btn-secondary">
+            Schedule a consultation
           </Link>
         </div>
       </PageHero>
@@ -53,7 +60,7 @@ export default function TransformationsPage() {
                   {featuredTool.label}
                 </h2>
                 <p className="mt-3 max-w-xl text-text-muted">{featuredTool.body}</p>
-                <span className="btn btn-primary mt-6 inline-flex">Design your lower level →</span>
+                <span className="btn btn-primary mt-6 inline-flex">Open the Basement Builder →</span>
               </div>
             </Link>
 

@@ -33,7 +33,7 @@ export function BasementBuilderTool() {
   }
 
   return (
-    <div id="tool" className="section pt-8">
+    <div id="tool" className="section pt-6 sm:pt-8">
       <div className="container-wide grid gap-8 lg:grid-cols-[1fr_1fr]">
         <div className="space-y-6">
           <div className="card space-y-5 p-6">
@@ -175,9 +175,14 @@ export function BasementBuilderTool() {
             <p className="mt-4 text-xs text-text-dim">
               *{estimateDisclaimer} {financingDisclaimer}
             </p>
-            <Link href="/transformations/basements" className="btn btn-primary mt-5">
-              Finished basement services
-            </Link>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/start" className="btn btn-primary">
+                Schedule a consultation
+              </Link>
+              <Link href="/transformations/basements" className="btn btn-secondary">
+                Learn how we build them
+              </Link>
+            </div>
           </div>
 
           <ToolLeadGate
