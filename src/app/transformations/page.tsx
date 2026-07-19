@@ -10,7 +10,7 @@ import {
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Home Transformations | Renovations, Additions & Lower Levels",
+  title: "Home Transformations NJ | Renovations, Additions & Lower Levels",
   description:
     "Luxury renovations across Central & Northern NJ — finished basements, kitchens, additions, garages, outdoor living, and attics. Interactive tools and clear process.",
   path: "/transformations",

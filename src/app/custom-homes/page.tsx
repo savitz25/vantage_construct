@@ -5,7 +5,7 @@ import { customHomeServices } from "@/lib/content";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Luxury Custom Homes",
+  title: "Custom Home Builder NJ | Luxury Homes Central & Northern New Jersey",
   description:
     "Build a luxury custom home in Central & Northern New Jersey with Vantage Construction — transparent process, elite craftsmanship, no surprises.",
   path: "/custom-homes",

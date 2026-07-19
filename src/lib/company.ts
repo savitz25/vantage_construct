@@ -74,7 +74,8 @@ export const company = {
   ],
   founderBio:
     "For over three decades, Victor Lobozzo has led Vantage Construction in building some of the finest luxury residences in Central and Northern New Jersey. Known for his attention to detail and cost-conscious approach, Victor combines old-world craftsmanship with modern innovation to create homes of lasting value. His exceptional responsiveness and hands-on involvement throughout every project have earned him a reputation as one of the most respected builders in the region, with clients still delighted with their homes 15+ years later. As founder of this family-owned business, Victor ensures every project reflects the superior quality, integrity, and craftsmanship synonymous with the Vantage Construction name.",
-  siteUrl: "https://vantageconstruct.com",
+  /** Canonical public site — keep in sync with src/lib/site.ts default */
+  siteUrl: "https://vantagecustombuilds.com",
 } as const;
 
 export const nav = [

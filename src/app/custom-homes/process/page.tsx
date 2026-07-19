@@ -6,7 +6,7 @@ import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { createMetadata, howToJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Custom Home Building Process",
+  title: "Custom Home Building Process NJ | 7-Step No-Surprises Path",
   description:
     "Discover Vantage Construction’s proven 7-step custom home building process in Central New Jersey — from vision to celebration with no surprises.",
   path: "/custom-homes/process",

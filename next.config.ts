@@ -7,10 +7,15 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "vantageconstruct.com",
       },
+      {
+        protocol: "https",
+        hostname: "vantagecustombuilds.com",
+      },
     ],
   },
   async redirects() {
     return [
+      // Legacy WordPress / marketing URLs → new architecture
       { source: "/schedule", destination: "/start", permanent: true },
       { source: "/schedule/", destination: "/start", permanent: true },
       { source: "/available", destination: "/available-homes", permanent: true },
@@ -25,12 +30,20 @@ const nextConfig: NextConfig = {
       { source: "/investors/", destination: "/partners/investors", permanent: true },
       { source: "/photos", destination: "/available-homes", permanent: true },
       { source: "/photos/", destination: "/available-homes", permanent: true },
-      { source: "/portfolio", destination: "/", permanent: true },
-      { source: "/portfolio/", destination: "/", permanent: true },
+      { source: "/portfolio", destination: "/available-homes", permanent: true },
+      { source: "/portfolio/", destination: "/available-homes", permanent: true },
       { source: "/faq", destination: "/insights/faq", permanent: true },
       { source: "/faq/", destination: "/insights/faq", permanent: true },
       { source: "/contact", destination: "/start", permanent: true },
       { source: "/contact/", destination: "/start", permanent: true },
+      { source: "/basements", destination: "/transformations/basements", permanent: true },
+      { source: "/basements/", destination: "/transformations/basements", permanent: true },
+      { source: "/additions", destination: "/transformations/additions", permanent: true },
+      { source: "/additions/", destination: "/transformations/additions", permanent: true },
+      { source: "/kitchens", destination: "/transformations/kitchens", permanent: true },
+      { source: "/kitchens/", destination: "/transformations/kitchens", permanent: true },
+      { source: "/remodeling", destination: "/transformations/remodeling", permanent: true },
+      { source: "/remodeling/", destination: "/transformations/remodeling", permanent: true },
       {
         source: "/design-your-vantage-vision",
         destination: "/design-studio",

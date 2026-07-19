@@ -4,7 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Whole-Home Remodeling & Renovations NJ | Vantage",
+  title: "Whole-Home Remodeling NJ | Luxury Renovations",
   description:
     "High-end whole-home remodeling in Central & Northern New Jersey — kitchens, baths, layouts, and multi-room renovations with Vantage craftsmanship.",
   path: "/transformations/remodeling",

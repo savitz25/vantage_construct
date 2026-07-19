@@ -264,7 +264,7 @@ export function DesignStudio() {
         "",
         studioEstimateDisclaimer,
         "",
-        "Schedule a complimentary consultation: https://vantageconstruct.com/start",
+        "Schedule a complimentary consultation: https://vantagecustombuilds.com/start",
       ].join("\n"),
     );
     window.location.href = `mailto:${state.contact.email}?subject=${encodeURIComponent(

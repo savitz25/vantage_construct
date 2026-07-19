@@ -4,7 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Knockdowns & Rebuilds",
+  title: "Knockdown Rebuild NJ | Teardown & Custom Home Rebuild",
   description:
     "Transform your existing property into a luxury custom home with Vantage Construction’s knockdown and rebuild expertise across Central & Northern New Jersey.",
   path: "/custom-homes/rebuilds",

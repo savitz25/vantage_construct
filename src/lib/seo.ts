@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { company } from "./company";
+import { absoluteUrl, SITE_URL } from "./site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vantageconstruct.com";
-
-export function absoluteUrl(path = "/") {
-  return new URL(path, siteUrl).toString();
-}
+export { absoluteUrl, SITE_URL };
 
 export function createMetadata({
   title,
@@ -18,10 +15,7 @@ export function createMetadata({
   path?: string;
   noIndex?: boolean;
 }): Metadata {
-  const fullTitle =
-    title === company.name
-      ? `${company.name} | Luxury Custom Home Builder Central New Jersey`
-      : `${title} | ${company.name}`;
+  const fullTitle = formatPageTitle(title);
 
   return {
     title: fullTitle,
@@ -44,16 +38,29 @@ export function createMetadata({
   };
 }
 
+/** Build title tags without double-branding. Prefer: Service NJ | Modifier | Vantage Construction */
+function formatPageTitle(title: string): string {
+  if (title === company.name) {
+    return `${company.name} | Luxury Custom Home Builder | Central & Northern NJ`;
+  }
+  // Normalize trailing "| Vantage" to full legal brand
+  let cleaned = title.replace(/\s*\|\s*Vantage\s*$/i, "").trim();
+  if (cleaned.includes(company.name)) return cleaned;
+  return `${cleaned} | ${company.name}`;
+}
+
 export function localBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
+    "@id": `${SITE_URL}/#business`,
     name: company.name,
     legalName: company.legalName,
-    url: siteUrl,
+    url: SITE_URL,
     telephone: company.phone,
     email: company.email,
     foundingDate: String(company.founded),
+    image: absoluteUrl("/media/plans/fallback-luxury-home.svg"),
     founder: {
       "@type": "Person",
       name: company.founder,
@@ -67,6 +74,12 @@ export function localBusinessJsonLd() {
       postalCode: company.address.zip,
       addressCountry: "US",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      // Warren Township, NJ approximate — refine when GBP pin confirmed
+      latitude: 40.6343,
+      longitude: -74.5049,
+    },
     areaServed: [
       ...company.focusTowns.map((t) => ({ "@type": "City", name: `${t}, NJ` })),
       ...company.counties.map((c) => ({
@@ -76,6 +89,27 @@ export function localBusinessJsonLd() {
     ],
     description: company.description,
     priceRange: "$$$$",
+    knowsAbout: [
+      "Custom home building",
+      "Luxury home remodeling",
+      "Home additions",
+      "Finished basements",
+      "Kitchen remodeling",
+      "ADU construction",
+      "Knockdown rebuilds",
+    ],
+    hasCredential: [
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "license",
+        name: `N.J. Registered Builder #${company.licenses.builder}`,
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "license",
+        name: `N.J. Home Improvement Contractor #${company.licenses.hic}`,
+      },
+    ],
     sameAs: [company.social.houzz, company.social.facebook],
   };
 }
@@ -140,6 +174,7 @@ export function serviceJsonLd({
     serviceType: serviceType ?? name,
     url: absoluteUrl(path),
     provider: {
+      "@id": `${SITE_URL}/#business`,
       "@type": "HomeAndConstructionBusiness",
       name: company.name,
       telephone: company.phone,
@@ -197,5 +232,18 @@ export function productOfferJsonLd(plan: {
       description:
         "Base construction price. Land, sitework, permits, and utilities not included.",
     },
+  };
+}
+
+export function webSiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: company.name,
+    description: company.description,
+    publisher: { "@id": `${SITE_URL}/#business` },
+    inLanguage: "en-US",
   };
 }

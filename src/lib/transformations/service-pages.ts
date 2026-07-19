@@ -55,7 +55,7 @@ export type TransformServiceContent = {
 
 export const basementsPage: TransformServiceContent = {
   path: "/transformations/basements",
-  seoTitle: "Finished Basements NJ | Lower Level Living | Vantage",
+  seoTitle: "Finished Basements NJ | Custom Basement Remodeling",
   seoDescription:
     "Luxury finished basements in Central & Northern NJ — private cinemas, wellness suites, speakeasies, and guest quarters. Moisture-first construction, transparent ranges, and a 60-second Basement Builder.",
   eyebrow: "Finished basements · Lower level living",
@@ -197,7 +197,7 @@ export const basementsPage: TransformServiceContent = {
 
 export const additionsPage: TransformServiceContent = {
   path: "/transformations/additions",
-  seoTitle: "Home Additions NJ | Primary Suites & Expansions | Vantage",
+  seoTitle: "Home Additions NJ | Primary Suites & Expansions",
   seoDescription:
     "Luxury home additions in Central & Northern New Jersey — primary suites, kitchens, great rooms. Seamless architecture, transparent process, Move or Improve calculator.",
   eyebrow: "Home additions · Right-size living",
@@ -326,7 +326,7 @@ export const additionsPage: TransformServiceContent = {
 
 export const atticsPage: TransformServiceContent = {
   path: "/transformations/attics",
-  seoTitle: "Attic Conversions NJ | Upper Level Sanctuaries | Vantage",
+  seoTitle: "Attic Conversion NJ | Finish Attic into Bedroom",
   seoDescription:
     "Luxury attic conversions in Central & Northern New Jersey — sky-level suites, offices, and lofts. Structure, egress, and comfort engineered properly. Design yours in the Attic Studio.",
   eyebrow: "Attic conversions · Upper-level sanctuaries",
@@ -470,7 +470,7 @@ export const atticsPage: TransformServiceContent = {
 
 export const kitchensPage: TransformServiceContent = {
   path: "/transformations/kitchens",
-  seoTitle: "Kitchen Remodeling NJ | Luxury Kitchen Renovations | Vantage",
+  seoTitle: "Kitchen Remodeling NJ | Luxury Kitchen Renovations",
   seoDescription:
     "Luxury kitchen remodeling in Central & Northern New Jersey — islands, light, storage, and entertaining flow with transparent process and lasting craftsmanship.",
   eyebrow: "Kitchen remodeling · The heart of the home",
@@ -600,7 +600,7 @@ export const kitchensPage: TransformServiceContent = {
 
 export const garagesPage: TransformServiceContent = {
   path: "/transformations/garages",
-  seoTitle: "Custom Garages NJ | Carriage Houses & Accessory Buildings | Vantage",
+  seoTitle: "Custom Garages NJ | Carriage Houses & Accessory Buildings",
   seoDescription:
     "Luxury custom garages, carriage houses, workshops, and accessory buildings in Central & Northern New Jersey. Design yours in the Garage Studio.",
   eyebrow: "Garages & accessory buildings · Estate architecture",
@@ -739,7 +739,7 @@ export const garagesPage: TransformServiceContent = {
 
 export const outdoorPage: TransformServiceContent = {
   path: "/transformations/outdoor-living",
-  seoTitle: "Outdoor Living NJ | Decks, Porches, Kitchens & Sunrooms | Vantage",
+  seoTitle: "Outdoor Living NJ | Outdoor Kitchens, Decks & Pavilions",
   seoDescription:
     "Luxury outdoor living in Central & Northern New Jersey — decks, porches, sunrooms, outdoor kitchens, and fireplaces built to the same standard as the home.",
   eyebrow: "Outdoor living · Resort at home",
@@ -880,7 +880,7 @@ export const outdoorPage: TransformServiceContent = {
 
 export const primarySuitePage: TransformServiceContent = {
   path: "/transformations/primary-suite",
-  seoTitle: "Primary Suite Remodel NJ | Luxury Owner’s Suite | Vantage",
+  seoTitle: "Primary Suite Remodel NJ | Luxury Owner’s Suite",
   seoDescription:
     "Luxury primary suite remodels and additions in Central & Northern New Jersey — spa baths, walk-in closets, private retreats. Design yours in the Primary Suite Studio.",
   eyebrow: "Primary suite · Private retreat",

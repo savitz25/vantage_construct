@@ -1,79 +1,79 @@
 import type { MetadataRoute } from "next";
 import { locationHubs } from "@/lib/content";
 import { plans } from "@/lib/plans";
+import { SITE_URL } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vantageconstruct.com";
-
-const staticRoutes = [
-  "/",
-  "/custom-homes",
-  "/custom-homes/process",
-  "/custom-homes/rebuilds",
-  "/custom-homes/adus",
-  "/custom-homes/accessory-buildings",
-  "/available-homes",
-  "/design-studio",
-  "/cost-to-build-a-house-nj",
-  "/studios",
-  "/move-or-improve-calculator-nj",
-  "/adu-cost-calculator-nj",
-  "/finished-basement-cost-nj",
-  "/kitchen-remodel-cost-nj",
-  "/attic-conversion-cost-nj",
-  "/accessory-building-cost-nj",
-  "/outdoor-kitchen-cost-nj",
-  "/primary-suite-cost-nj",
-  "/transformations",
-  "/transformations/primary-suite",
-  "/transformations/process",
-  "/transformations/basements",
-  "/transformations/kitchens",
-  "/transformations/additions",
-  "/transformations/garages",
-  "/transformations/outdoor-living",
-  "/transformations/attics",
-  "/transformations/remodeling",
-  "/land",
-  "/land/evaluation",
-  "/land/spec-homes",
-  "/land/multi-lot",
-  "/partners",
-  "/partners/realtors",
-  "/partners/investors",
-  "/about",
-  "/about/careers",
-  "/commercial",
-  "/insights",
-  "/insights/faq",
-  "/insights/blog",
-  "/start",
-  "/privacy",
-  "/terms",
-  "/locations",
+/** All indexable routes — only canonical paths on the production domain */
+const staticRoutes: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
+  { path: "/", priority: 1, changeFrequency: "weekly" },
+  { path: "/custom-homes", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/custom-homes/process", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/custom-homes/rebuilds", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/custom-homes/adus", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/custom-homes/accessory-buildings", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/available-homes", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/design-studio", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/cost-to-build-a-house-nj", priority: 0.95, changeFrequency: "weekly" },
+  { path: "/studios", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/move-or-improve-calculator-nj", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/adu-cost-calculator-nj", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/finished-basement-cost-nj", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/kitchen-remodel-cost-nj", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/attic-conversion-cost-nj", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/accessory-building-cost-nj", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/outdoor-kitchen-cost-nj", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/primary-suite-cost-nj", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/transformations", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/transformations/basements", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/transformations/kitchens", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/transformations/additions", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/transformations/primary-suite", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/transformations/garages", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/transformations/outdoor-living", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/transformations/attics", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/transformations/remodeling", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/transformations/process", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/land", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/land/evaluation", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/land/spec-homes", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/land/multi-lot", priority: 0.65, changeFrequency: "monthly" },
+  { path: "/partners", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/partners/realtors", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/partners/investors", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/about", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/about/careers", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/commercial", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/insights", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/insights/faq", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/insights/blog", priority: 0.65, changeFrequency: "weekly" },
+  { path: "/locations", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/start", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticEntries = staticRoutes.map((path) => ({
-    url: `${siteUrl}${path}`,
+  const staticEntries = staticRoutes.map((route) => ({
+    url: `${SITE_URL}${route.path}`,
     lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: path === "/" ? 1 : 0.7,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 
   const planEntries = plans.map((plan) => ({
-    url: `${siteUrl}/available-homes/${plan.slug}`,
+    url: `${SITE_URL}/available-homes/${plan.slug}`,
     lastModified: now,
     changeFrequency: "weekly" as const,
-    priority: 0.8,
+    priority: 0.75,
   }));
 
   const locationEntries = locationHubs.map((loc) => ({
-    url: `${siteUrl}/locations/${loc.slug}`,
+    url: `${SITE_URL}/locations/${loc.slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
-    priority: 0.75,
+    priority: 0.8,
   }));
 
   return [...staticEntries, ...planEntries, ...locationEntries];
