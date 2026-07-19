@@ -142,29 +142,34 @@ export const customHomeServices = [
 
 export const transformationServices = [
   {
-    title: "Additions",
-    href: "/transformations/additions",
-    body: "Expand living space with a seamless addition that matches your home’s style and enhances value.",
-  },
-  {
-    title: "Remodeling & Renovations",
-    href: "/transformations/remodeling",
-    body: "Transform outdated spaces into beautiful, functional rooms that reflect your style.",
-  },
-  {
     title: "Lower Level Living",
     href: "/transformations/basements",
     body: "Private cinemas, wellness suites, speakeasies, and guest quarters — the best square footage you already own.",
   },
   {
-    title: "Attic Sanctuaries",
-    href: "/transformations/attics",
-    body: "Upper-level suites, studios, and offices reclaimed from volume under the roof.",
+    title: "Kitchen Remodeling",
+    href: "/transformations/kitchens",
+    body: "The heart of the home reimagined — islands, light, storage, and entertaining flow.",
+  },
+  {
+    title: "Home Additions",
+    href: "/transformations/additions",
+    body: "Expand living space with a seamless addition that matches your home’s style and enhances value.",
+  },
+  {
+    title: "Garages & Accessory Buildings",
+    href: "/transformations/garages",
+    body: "Collector garages, workshops, studios, and carriage-style buildings with main-house craftsmanship.",
   },
   {
     title: "Outdoor Living Estate",
     href: "/transformations/outdoor-living",
     body: "Porches, sunrooms, decks, outdoor kitchens, and fireplaces for resort-level evenings at home.",
+  },
+  {
+    title: "Attic Sanctuaries",
+    href: "/transformations/attics",
+    body: "Upper-level suites, studios, and offices reclaimed from volume under the roof.",
   },
 ] as const;
 

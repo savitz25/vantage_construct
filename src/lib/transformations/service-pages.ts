@@ -435,6 +435,265 @@ export const atticsPage: TransformServiceContent = {
     "Schedule a complimentary consultation. We’ll evaluate structure, access, and what’s possible under your roof.",
 };
 
+export const kitchensPage: TransformServiceContent = {
+  path: "/transformations/kitchens",
+  seoTitle: "Kitchen Remodeling NJ | Luxury Kitchen Renovations | Vantage",
+  seoDescription:
+    "Luxury kitchen remodeling in Central & Northern New Jersey — islands, light, storage, and entertaining flow with transparent process and lasting craftsmanship.",
+  eyebrow: "Kitchen remodeling · The heart of the home",
+  headline: "Where every gathering begins",
+  subhead:
+    "Luxury kitchen renovations that balance beauty, storage, and flow — so holidays, weeknights, and wine nights finally work. Serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding Somerset, Morris, Union, and Essex towns since 1990.",
+  primaryCta: { label: "Schedule a kitchen consultation", href: "/start" },
+  secondaryCta: { label: "Explore home additions", href: "/transformations/additions" },
+  toolCard: {
+    badge: "Related tool",
+    title: "Thinking bigger than a kitchen?",
+    body: "If the real fix is more space — not just new cabinets — run Move or Improve to compare expanding versus relocating in North Jersey.",
+    cta: "Open Move or Improve calculator",
+    href: "/move-or-improve-calculator-nj#tool",
+  },
+  spaceHeading: "What kind of kitchen are you building?",
+  spaces: [
+    {
+      title: "Entertainer’s open kitchens",
+      body: "Islands that host, sightlines to the great room, and lighting scenes for cooking and company.",
+      gradient: "from-[#2e2418] via-[#4a3820] to-[#1a1410]",
+    },
+    {
+      title: "Chef-ready work triangles",
+      body: "Serious appliances, prep zones, and ventilation — without sacrificing the room’s elegance.",
+      gradient: "from-[#1f2a32] via-[#2f4450] to-[#141c22]",
+    },
+    {
+      title: "Classic & transitional elegance",
+      body: "Timeless cabinetry, panel-ready appliances, and details that still feel right in fifteen years.",
+      gradient: "from-[#2a241c] via-[#3d3428] to-[#1a1612]",
+    },
+    {
+      title: "Sculleries & back kitchens",
+      body: "The luxury of a show kitchen up front — and a hardworking prep kitchen behind the scenes.",
+      gradient: "from-[#243028] via-[#354838] to-[#161c18]",
+    },
+    {
+      title: "Breakfast & morning rooms",
+      body: "Daylight, banquettes, and coffee stations that make everyday life feel considered.",
+      gradient: "from-[#2c2818] via-[#403c28] to-[#1a1810]",
+    },
+    {
+      title: "Kitchen + addition packages",
+      body: "When the footprint is the problem, we expand the room and rebuild the heart of the home as one project.",
+      gradient: "from-[#1c2433] via-[#2a384c] to-[#121820]",
+    },
+  ],
+  trustHeading: "Beautiful now. Built to cook for decades.",
+  trustIntro:
+    "A luxury kitchen fails when it’s only finishes. We plan structure, plumbing, electrical, and ventilation so the room performs as well as it photographs.",
+  trustPillars: [
+    {
+      title: "Layout before millwork",
+      body: "Traffic, islands, appliance clearances, and storage strategy locked before cabinetry is ordered.",
+    },
+    {
+      title: "Systems & ventilation",
+      body: "Gas, electric, water, and range hood exhaust planned for real cooking — not just catalog looks.",
+    },
+    {
+      title: "Living-in-place realism",
+      body: "Clear sequencing and temporary kitchen planning so your household can function during the remodel.",
+    },
+    {
+      title: "Craft & coordination",
+      body: "Cabinetry, stone, tile, and lighting managed as one scope with the same standards as our custom homes.",
+    },
+  ],
+  pricingHeading: "What kitchen remodels typically cost",
+  pricingIntro:
+    "North Jersey luxury kitchens vary widely with cabinetry, stone, appliances, and whether walls move. These bands are for early planning only.",
+  priceBands: [
+    {
+      scope: "Refresh renovation",
+      includes: "Surfaces, lighting, select cabinetry updates",
+      range: "Often mid–five to low–six figures",
+    },
+    {
+      scope: "Full luxury kitchen",
+      includes: "Cabinetry, appliances, stone, layout refinements",
+      range: "Commonly ~$120k–$250k+",
+    },
+    {
+      scope: "Kitchen + structural expansion",
+      includes: "Addition or wall removals + full finish package",
+      range: "Frequently $250k–$450k+",
+    },
+  ],
+  pricingNote:
+    "Estimates only. Final pricing after site evaluation and Design & Discovery. Appliance packages and custom millwork drive upper ranges.",
+  caseHeading: "From cramped to the room everyone stays in",
+  caseStory: {
+    problem:
+      "A dated galley kitchen in a loved North Jersey home — no island, poor light, and zero hosting capacity for family dinners.",
+    solution:
+      "Opened a wall, re-planned the work triangle, introduced a substantial island, and upgraded lighting and storage without losing the home’s character.",
+    result:
+      "The kitchen became the true center of the house — functional for weeknights and effortless for holidays.",
+  },
+  faqs: [
+    {
+      q: "How much does a luxury kitchen remodel cost in NJ?",
+      a: "Many full luxury kitchens land in the low- to mid–six figures depending on cabinetry, appliances, stone, and structural changes. We’ll give you a planning range after seeing your space.",
+    },
+    {
+      q: "Can you open walls or expand the kitchen?",
+      a: "Yes. We evaluate structure first, then plan openings or small additions so the kitchen gains light and flow the right way.",
+    },
+    {
+      q: "Do I need to move out during a kitchen remodel?",
+      a: "Often not. We discuss temporary cooking setups and sequencing so most families stay in place.",
+    },
+    {
+      q: "How long does a kitchen renovation take?",
+      a: "Design, selections, lead times, and construction vary. You’ll receive a written timeline before work begins.",
+    },
+    {
+      q: "Do you handle permits for kitchen remodels?",
+      a: "When electrical, plumbing, structural, or other permit-triggering work is involved, we manage municipal permits and inspections.",
+    },
+  ],
+  closeHeading: "Design the kitchen you’ll live in every day",
+  closeBody:
+    "Schedule a complimentary consultation. We’ll walk the existing space, talk layout and lifestyle, and outline a clear path from concept to craftsmanship.",
+};
+
+export const garagesPage: TransformServiceContent = {
+  path: "/transformations/garages",
+  seoTitle: "Custom Garages NJ | Accessory Buildings & Workshops | Vantage",
+  seoDescription:
+    "Luxury custom garages and accessory buildings in Central & Northern New Jersey — collector bays, workshops, studios, and carriage houses matched to your architecture.",
+  eyebrow: "Garages & accessory buildings · Purpose-built craft",
+  headline: "Buildings that earn their place on the property",
+  subhead:
+    "Collector garages, workshops, art studios, and carriage-style structures designed with the same architectural intention as the main residence. Serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding communities since 1990.",
+  primaryCta: { label: "Schedule a consultation", href: "/start" },
+  secondaryCta: {
+    label: "New-build accessory buildings",
+    href: "/custom-homes/accessory-buildings",
+  },
+  toolCard: {
+    badge: "Related studio",
+    title: "Planning a full property vision?",
+    body: "For new homes and ADUs, explore Design Studio and ADU Payback. For garage additions on an existing estate, start with a site consultation.",
+    cta: "Open ADU Payback tool",
+    href: "/adu-cost-calculator-nj#tool",
+  },
+  spaceHeading: "What are you housing?",
+  spaces: [
+    {
+      title: "Collector & multi-bay garages",
+      body: "Climate-aware bays, lighting, and detailing worthy of the cars (or collections) inside.",
+      gradient: "from-[#1c2433] via-[#2a384c] to-[#121820]",
+    },
+    {
+      title: "Workshops & maker spaces",
+      body: "Power, storage, ventilation, and durable finishes for serious projects.",
+      gradient: "from-[#30281c] via-[#483c28] to-[#1c1810]",
+    },
+    {
+      title: "Art & music studios",
+      body: "Daylight, acoustics, and quiet separation from the main house.",
+      gradient: "from-[#2a2430] via-[#3d3448] to-[#1a161f]",
+    },
+    {
+      title: "Carriage houses & loft storage",
+      body: "Upper-level storage or flex space over the garage when structure and code allow.",
+      gradient: "from-[#243028] via-[#384838] to-[#141c18]",
+    },
+    {
+      title: "Pool houses & estate outbuildings",
+      body: "Support buildings that complete the property story — changing rooms, bars, storage.",
+      gradient: "from-[#1f2a32] via-[#2f4450] to-[#141c22]",
+    },
+    {
+      title: "Architectural matching",
+      body: "Roof forms, materials, and proportions designed to look original to the estate.",
+      gradient: "from-[#2e2418] via-[#4a3820] to-[#1a1410]",
+    },
+  ],
+  trustHeading: "Accessory buildings done with main-house standards",
+  trustIntro:
+    "A garage or outbuilding should strengthen the property — not look like a afterthought. We plan foundation, structure, utilities, and exterior architecture as seriously as any living room.",
+  trustPillars: [
+    {
+      title: "Site & zoning first",
+      body: "Setbacks, coverage, and municipal rules checked before design investment so the building is buildable.",
+    },
+    {
+      title: "Structure & envelope",
+      body: "Foundations, framing, and weatherproofing sized for use — cars, shop equipment, or climate control.",
+    },
+    {
+      title: "Power & systems",
+      body: "Electrical capacity, lighting, and optional HVAC planned for how you’ll actually use the building.",
+    },
+    {
+      title: "Architectural continuity",
+      body: "Materials and massing that read as part of the estate language — not a kit shed next to a luxury home.",
+    },
+  ],
+  pricingHeading: "What custom garages typically cost",
+  pricingIntro:
+    "Size, finishes, climate control, and loft programs drive range. These bands are early planning guidance only.",
+  priceBands: [
+    {
+      scope: "Refined multi-bay garage",
+      includes: "Structure, doors, basic electrical, exterior matching",
+      range: "Often low– to mid–six figures",
+    },
+    {
+      scope: "Workshop / studio building",
+      includes: "Power, finishes, insulation, lighting package",
+      range: "Commonly mid–six figures depending on systems",
+    },
+    {
+      scope: "Carriage house / loft program",
+      includes: "Upper level, stairs, enhanced envelope",
+      range: "Project-specific — site evaluation required",
+    },
+  ],
+  pricingNote:
+    "Estimates only. Final pricing after site evaluation, zoning review, and Design & Discovery. Cross-link: new-construction accessory buildings also covered under Custom Homes.",
+  caseHeading: "From driveway overflow to estate architecture",
+  caseStory: {
+    problem:
+      "A luxury home with cars and hobbies overflowing the original garage — and no structure that matched the architecture.",
+    solution:
+      "A purpose-built multi-bay garage with workshop zone, proper power, and exterior detailing continuous with the main house.",
+    result:
+      "Order restored, property value reinforced, and a building the owners are proud to show.",
+  },
+  faqs: [
+    {
+      q: "Can you match my home’s exterior on a new garage?",
+      a: "Yes — roof forms, siding or masonry, trim, and proportions are designed for architectural continuity.",
+    },
+    {
+      q: "Do accessory buildings need permits in NJ?",
+      a: "Typically yes. Size, use, and utilities affect requirements. We manage municipal approvals.",
+    },
+    {
+      q: "Can a garage include a loft or studio above?",
+      a: "Often, when structure, access, and zoning allow. We’ll assess feasibility early.",
+    },
+    {
+      q: "Is this different from your custom-homes accessory buildings page?",
+      a: "Same craftsmanship. This page focuses on existing-property garages and outbuildings; new-construction packages are also covered under Custom Homes → Accessory Buildings.",
+    },
+  ],
+  closeHeading: "Give your collection — and your craft — a proper home",
+  closeBody:
+    "Schedule a complimentary consultation. We’ll review the site, zoning, and the building that belongs on your property.",
+};
+
 export const outdoorPage: TransformServiceContent = {
   path: "/transformations/outdoor-living",
   seoTitle: "Outdoor Living NJ | Decks, Porches, Kitchens & Sunrooms | Vantage",

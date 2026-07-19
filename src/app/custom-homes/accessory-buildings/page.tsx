@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
 import { createMetadata } from "@/lib/seo";
@@ -35,7 +36,16 @@ export default function AccessoryBuildingsPage() {
         eyebrow="Accessory buildings"
         title="Spaces for your passions"
         description="Create the ultimate space — from luxury car garages to expansive workshops to professional art studios — designed and built with the same craftsmanship as our custom homes."
-      />
+      >
+        <div className="flex flex-wrap gap-3">
+          <Link href="/start" className="btn btn-primary">
+            Schedule a consultation
+          </Link>
+          <Link href="/transformations/garages" className="btn btn-secondary">
+            Garages on existing properties
+          </Link>
+        </div>
+      </PageHero>
       <section className="section pt-0">
         <div className="container-wide grid gap-6 md:grid-cols-2">
           {types.map((item) => (

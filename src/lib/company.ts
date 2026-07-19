@@ -94,12 +94,14 @@ export const nav = [
     label: "Transformations",
     href: "/transformations",
     children: [
-      { label: "Renovation Process", href: "/transformations/process" },
-      { label: "Additions", href: "/transformations/additions" },
-      { label: "Remodeling", href: "/transformations/remodeling" },
+      { label: "Overview", href: "/transformations" },
       { label: "Finished Basements", href: "/transformations/basements" },
-      { label: "Attic Conversions", href: "/transformations/attics" },
+      { label: "Kitchen Remodeling", href: "/transformations/kitchens" },
+      { label: "Home Additions", href: "/transformations/additions" },
+      { label: "Garages & Accessory Buildings", href: "/transformations/garages" },
       { label: "Outdoor Living", href: "/transformations/outdoor-living" },
+      { label: "Attic Conversions", href: "/transformations/attics" },
+      { label: "Renovation Process", href: "/transformations/process" },
     ],
   },
   {

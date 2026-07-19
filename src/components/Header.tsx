@@ -56,13 +56,17 @@ export function Header() {
                 {item.label}
               </Link>
               {"children" in item && item.children && activeMenu === item.label ? (
-                <div className="absolute left-0 top-full min-w-[240px] pt-3">
-                  <div className="card overflow-hidden p-2">
-                    {item.children.map((child) => (
+                <div className="absolute left-0 top-full min-w-[280px] pt-3">
+                  <div className="card overflow-hidden p-2 shadow-lg">
+                    {item.children.map((child, idx) => (
                       <Link
-                        key={child.href}
+                        key={`${child.href}-${child.label}`}
                         href={child.href}
-                        className="block rounded-lg px-3 py-2.5 text-sm text-text-muted transition hover:bg-bg-elevated hover:text-gold-deep"
+                        className={`block rounded-lg px-3 py-2.5 text-sm text-text-muted transition hover:bg-bg-elevated hover:text-gold-deep ${
+                          idx === 0 && item.label === "Transformations"
+                            ? "font-medium text-ivory"
+                            : ""
+                        }`}
                       >
                         {child.label}
                       </Link>

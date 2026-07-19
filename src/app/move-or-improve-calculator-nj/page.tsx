@@ -48,10 +48,10 @@ export default function MoveOrImprovePage() {
           </div>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link href="/transformations/additions" className="btn btn-secondary">
-              Additions
+              Home additions
             </Link>
-            <Link href="/custom-homes/rebuilds" className="btn btn-secondary">
-              Knockdowns
+            <Link href="/transformations" className="btn btn-secondary">
+              All transformations
             </Link>
             <Link href="/start" className="btn btn-primary">
               Schedule consultation
