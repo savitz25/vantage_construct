@@ -119,6 +119,7 @@ export const nav = [
       { label: "For Investors", href: "/partners/investors" },
     ],
   },
+  { label: "Design Studio", href: "/design-studio" },
   { label: "Portfolio", href: "/portfolio" },
   {
     label: "About",

@@ -29,6 +29,16 @@ const nextConfig: NextConfig = {
       { source: "/faq/", destination: "/insights/faq", permanent: true },
       { source: "/contact", destination: "/start", permanent: true },
       { source: "/contact/", destination: "/start", permanent: true },
+      {
+        source: "/design-your-vantage-vision",
+        destination: "/design-studio",
+        permanent: true,
+      },
+      {
+        source: "/design-your-vantage-vision/",
+        destination: "/design-studio",
+        permanent: true,
+      },
     ];
   },
 };

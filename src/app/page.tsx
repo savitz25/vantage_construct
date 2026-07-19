@@ -38,11 +38,14 @@ export default function HomePage() {
                 {company.founded}.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/start" className="btn btn-primary">
-                  Schedule complimentary consultation
+                <Link href="/design-studio" className="btn btn-primary">
+                  Design Your Vantage Vision
                 </Link>
                 <Link href="/available-homes" className="btn btn-secondary">
                   Explore available designs
+                </Link>
+                <Link href="/start" className="btn btn-secondary">
+                  Schedule consultation
                 </Link>
               </div>
               <dl className="mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8">
@@ -87,6 +90,33 @@ export default function HomePage() {
           <p className="text-center text-sm uppercase tracking-[0.2em] text-text-dim">
             Proudly serving {company.focusTowns.join(" · ")} · {company.counties.join(", ")} Counties
           </p>
+        </div>
+      </section>
+
+      <section className="section-sm">
+        <div className="container-wide">
+          <Link
+            href="/design-studio"
+            className="card card-hover relative block overflow-hidden p-8 sm:p-10"
+          >
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(201,160,78,0.16),transparent_50%)]" />
+            <div className="relative grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
+              <div>
+                <p className="eyebrow">Flagship experience</p>
+                <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
+                  Design Your Vantage Vision
+                </h2>
+                <p className="mt-4 max-w-2xl text-text-muted">
+                  An interactive luxury design studio — size, style, exterior character, finishes,
+                  and lifestyle — with transparent conceptual ranges and a Vision Summary that
+                  prepares your no-surprises consultation.
+                </p>
+              </div>
+              <div className="flex lg:justify-end">
+                <span className="btn btn-primary">Open Design Studio →</span>
+              </div>
+            </div>
+          </Link>
         </div>
       </section>
 

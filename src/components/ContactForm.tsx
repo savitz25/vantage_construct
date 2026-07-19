@@ -10,10 +10,23 @@ const intents = [
   "Realtor partnership",
   "Investor partnership",
   "Commercial project",
+  "Design Studio follow-up",
   "Other",
 ] as const;
 
-export function ContactForm() {
+export function ContactForm({
+  defaultName = "",
+  defaultEmail = "",
+  defaultPhone = "",
+  defaultIntent = intents[0],
+  defaultMessage = "",
+}: {
+  defaultName?: string;
+  defaultEmail?: string;
+  defaultPhone?: string;
+  defaultIntent?: string;
+  defaultMessage?: string;
+}) {
   const [submitted, setSubmitted] = useState(false);
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -37,6 +50,10 @@ export function ContactForm() {
     );
   }
 
+  const intentValue = intents.includes(defaultIntent as (typeof intents)[number])
+    ? defaultIntent
+    : "Design Studio follow-up";
+
   return (
     <form onSubmit={onSubmit} className="card grid gap-5 p-6 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
@@ -44,7 +61,14 @@ export function ContactForm() {
           <label className="label" htmlFor="name">
             Full name
           </label>
-          <input id="name" name="name" required className="input" autoComplete="name" />
+          <input
+            id="name"
+            name="name"
+            required
+            className="input"
+            autoComplete="name"
+            defaultValue={defaultName}
+          />
         </div>
         <div>
           <label className="label" htmlFor="email">
@@ -57,6 +81,7 @@ export function ContactForm() {
             required
             className="input"
             autoComplete="email"
+            defaultValue={defaultEmail}
           />
         </div>
       </div>
@@ -65,13 +90,20 @@ export function ContactForm() {
           <label className="label" htmlFor="phone">
             Phone
           </label>
-          <input id="phone" name="phone" type="tel" className="input" autoComplete="tel" />
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            className="input"
+            autoComplete="tel"
+            defaultValue={defaultPhone}
+          />
         </div>
         <div>
           <label className="label" htmlFor="intent">
             I&apos;m interested in
           </label>
-          <select id="intent" name="intent" className="select" defaultValue={intents[0]}>
+          <select id="intent" name="intent" className="select" defaultValue={intentValue}>
             {intents.map((intent) => (
               <option key={intent} value={intent}>
                 {intent}
@@ -95,6 +127,7 @@ export function ContactForm() {
           name="message"
           className="textarea"
           placeholder="Timeline, budget range, property status, or anything helpful..."
+          defaultValue={defaultMessage}
         />
       </div>
       <button type="submit" className="btn btn-primary w-full sm:w-auto">

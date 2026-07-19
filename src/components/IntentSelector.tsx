@@ -2,6 +2,11 @@ import Link from "next/link";
 
 const intents = [
   {
+    title: "Design Studio",
+    body: "Shape your vision interactively and unlock a personalized Vision Summary.",
+    href: "/design-studio",
+  },
+  {
     title: "New Custom Home",
     body: "Design and build a luxury residence tailored to your life.",
     href: "/custom-homes",

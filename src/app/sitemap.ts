@@ -12,6 +12,7 @@ const staticRoutes = [
   "/custom-homes/adus",
   "/custom-homes/accessory-buildings",
   "/available-homes",
+  "/design-studio",
   "/transformations",
   "/transformations/process",
   "/transformations/additions",

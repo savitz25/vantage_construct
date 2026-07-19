@@ -10,7 +10,28 @@ export const metadata = createMetadata({
   path: "/start",
 });
 
-export default function StartPage() {
+export default async function StartPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const pick = (key: string) => {
+    const value = params[key];
+    return typeof value === "string" ? value : "";
+  };
+
+  const source = pick("source");
+  const config = pick("config");
+  const name = pick("name");
+  const email = pick("email");
+  const phone = pick("phone");
+
+  const defaultMessage =
+    source === "design-studio" && config
+      ? `I'm following up from Design Studio. Configuration ID: ${config}. Please review my Vision Summary preferences for our complimentary consultation.`
+      : "";
+
   return (
     <>
       <PageHero
@@ -46,10 +67,30 @@ export default function StartPage() {
                 <li>Ballpark considerations and process overview</li>
                 <li>Whether Design & Discovery is the right next step</li>
                 <li>Questions about plans, land, renovations, or partnerships</li>
+                {config ? (
+                  <li>
+                    Design Studio config: <strong className="text-ivory">{config}</strong>
+                  </li>
+                ) : null}
               </ul>
             </div>
+            <div className="card p-7">
+              <h2 className="font-display text-2xl text-ivory">Prefer to design first?</h2>
+              <p className="mt-3 text-sm text-text-muted">
+                Shape size, style, finishes, and lifestyle in our interactive studio before we talk.
+              </p>
+              <a href="/design-studio" className="btn btn-secondary mt-5">
+                Open Design Studio
+              </a>
+            </div>
           </div>
-          <ContactForm />
+          <ContactForm
+            defaultName={name}
+            defaultEmail={email}
+            defaultPhone={phone}
+            defaultIntent={source === "design-studio" ? "Design Studio follow-up" : "New custom home"}
+            defaultMessage={defaultMessage}
+          />
         </div>
       </section>
     </>

@@ -48,12 +48,25 @@ Content is centralized in:
 
 Do not invent new prices, projects, or claims — update these files from client-approved data only.
 
+## Design Studio
+
+Interactive lead engine at `/design-studio` (alias: `/design-your-vantage-vision`).
+
+- Client state persists in `localStorage`
+- Lead capture posts to `/api/design-studio/lead`
+- Optional CRM webhook via env vars below
+- GA4-friendly events fire through `gtag` / `dataLayer`
+
 ## Environment
 
 Optional:
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://vantageconstruct.com
+DESIGN_STUDIO_WEBHOOK_URL=https://hooks.example.com/vantage-leads
+DESIGN_STUDIO_WEBHOOK_SECRET=optional-bearer-token
+# or
+CRM_WEBHOOK_URL=https://hooks.example.com/vantage-leads
 ```
 
 ## Deploy
