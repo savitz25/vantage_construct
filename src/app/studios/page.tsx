@@ -56,6 +56,14 @@ const studios = [
     serviceLabel: "Learn how we build outdoor living",
   },
   {
+    href: "/primary-suite-cost-nj",
+    eyebrow: "Transformations",
+    title: "Primary Suite Studio",
+    body: "Private retreats — bedroom, spa bath, walk-in closet — zone design + live planning estimate.",
+    serviceHref: "/transformations/primary-suite",
+    serviceLabel: "Learn how we build primary suites",
+  },
+  {
     href: "/finished-basement-cost-nj",
     eyebrow: "Transformations",
     title: "Basement Builder",

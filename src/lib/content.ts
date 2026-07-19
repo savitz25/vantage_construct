@@ -152,6 +152,11 @@ export const transformationServices = [
     body: "The heart of the home reimagined — islands, light, storage, and entertaining flow.",
   },
   {
+    title: "Primary Suite",
+    href: "/transformations/primary-suite",
+    body: "Bedroom, spa bath, and dressing room designed as one calm, luxurious sanctuary.",
+  },
+  {
     title: "Home Additions",
     href: "/transformations/additions",
     body: "Expand living space with a seamless addition that matches your home’s style and enhances value.",

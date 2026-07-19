@@ -877,3 +877,138 @@ export const outdoorPage: TransformServiceContent = {
   closeBody:
     "Open the Outdoor Living Studio to shape your vision and planning range, or schedule a complimentary consultation — site, utilities, and architecture honesty included.",
 };
+
+export const primarySuitePage: TransformServiceContent = {
+  path: "/transformations/primary-suite",
+  seoTitle: "Primary Suite Remodel NJ | Luxury Owner’s Suite | Vantage",
+  seoDescription:
+    "Luxury primary suite remodels and additions in Central & Northern New Jersey — spa baths, walk-in closets, private retreats. Design yours in the Primary Suite Studio.",
+  eyebrow: "Primary suite · Private retreat",
+  headline: "Your private sanctuary, every day",
+  subhead:
+    "Bedroom, spa bath, and dressing room designed as one calm, luxurious retreat — remodel or addition. Serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding towns since 1990.",
+  primaryCta: {
+    label: "Open the Primary Suite Studio",
+    href: "/primary-suite-cost-nj#tool",
+  },
+  secondaryCta: { label: "Schedule a consultation", href: "/start" },
+  toolCard: {
+    badge: "Interactive tool · Primary Suite Studio",
+    title: "Design your owner’s suite in minutes",
+    body: "Choose spa, modern minimal, classic elegant, or resort-style — then configure bedroom, bath, and closet with a live North Jersey planning estimate.",
+    cta: "Open the Primary Suite Studio",
+    href: "/primary-suite-cost-nj#tool",
+  },
+  spaceHeading: "The three zones of a true suite",
+  spaces: [
+    {
+      title: "Spa bathroom",
+      body: "Freestanding tub, steam, curbless shower, double vanities — the emotional centerpiece.",
+      gradient: "from-[#2a241c] via-[#3d3428] to-[#1a1612]",
+      image: "/media/primary-suite/spa-retreat.jpg",
+    },
+    {
+      title: "Bedroom sanctuary",
+      body: "Feature walls, ceilings, fireplaces, and private outdoor access for rest.",
+      gradient: "from-[#1c2433] via-[#2a384c] to-[#121820]",
+      image: "/media/primary-suite/light-resort.jpg",
+    },
+    {
+      title: "Walk-in / dressing",
+      body: "Standard walk-ins to his-and-hers with fully custom millwork and islands.",
+      gradient: "from-[#2e2418] via-[#4a3820] to-[#1a1410]",
+      image: "/media/primary-suite/traditional-luxury.jpg",
+    },
+    {
+      title: "Modern minimal",
+      body: "Clean lines, large shower, floating vanities — luxury through restraint.",
+      gradient: "from-[#1f2a32] via-[#2f4450] to-[#141c22]",
+      image: "/media/primary-suite/modern-minimal.jpg",
+    },
+    {
+      title: "Classic elegant",
+      body: "Paneled walls, furniture vanity, timeless proportions.",
+      gradient: "from-[#2a2430] via-[#3d3448] to-[#1a161f]",
+      image: "/media/primary-suite/classic-elegant.jpg",
+    },
+    {
+      title: "Dramatic & moody",
+      body: "Deep tones, fireplace, evening glamour.",
+      gradient: "from-[#1a1c2e] via-[#2a2e48] to-[#10121c]",
+      image: "/media/primary-suite/dramatic-moody.jpg",
+    },
+  ],
+  trustHeading: "Wet zones, millwork & privacy — done right",
+  trustIntro:
+    "Primary suites fail when bathrooms leak, closets feel like afterthoughts, or the addition doesn’t match the house. We plan water, structure, and craftsmanship as seriously as aesthetics.",
+  trustPillars: [
+    {
+      title: "Bathroom waterproofing & systems",
+      body: "Steam, curbless showers, freestanding tubs — detailed for performance, not just photos.",
+    },
+    {
+      title: "Custom closet millwork",
+      body: "From premium organizers to fully custom dressing rooms with islands and lighting.",
+    },
+    {
+      title: "Addition vs remodel honesty",
+      body: "When the suite needs more footprint, we plan structure and living-in-place clearly.",
+    },
+    {
+      title: "Quiet luxury continuity",
+      body: "Materials and proportions that feel original to the home — serene, not showy for its own sake.",
+    },
+  ],
+  pricingHeading: "What primary suites typically cost",
+  pricingIntro:
+    "Transparent planning bands for North Jersey. Bathroom complexity, closet millwork, and outdoor access drive range — use the Primary Suite Studio for a personalized estimate.",
+  priceBands: [
+    {
+      scope: "Bath-focused remodel",
+      includes: "Spa bath, vanities, finishes",
+      range: "Typically ~$85k–$160k+",
+    },
+    {
+      scope: "Full suite remodel",
+      includes: "Bedroom + bath + closet refresh",
+      range: "Commonly ~$150k–$280k+",
+    },
+    {
+      scope: "Suite addition / wing",
+      includes: "New footprint, full suite program",
+      range: "Often $250k–$450k+ · site evaluation required",
+    },
+  ],
+  pricingNote:
+    "Conceptual estimates only. Final pricing after site evaluation and Design & Discovery. Open the Primary Suite Studio for a live planning range.",
+  caseHeading: "From tired master to private retreat",
+  caseStory: {
+    problem:
+      "A dated primary bedroom and cramped bath that never felt like a retreat — the homeowners wanted spa-level mornings without moving.",
+    solution:
+      "Replanned wet zones for freestanding tub and large shower, added heated floors, and built a dressing room with custom millwork — finishes matched the rest of the home.",
+    result:
+      "A calm, private suite they use every day — the room they leave last in the morning and return to first at night.",
+  },
+  faqs: [
+    {
+      q: "How much does a primary suite remodel cost in NJ?",
+      a: "Many luxury projects land from the high five figures into the mid–six figures. Bathroom complexity and custom closets drive upper ranges. Open the Primary Suite Studio for a live planning estimate.",
+    },
+    {
+      q: "Can you add a primary suite as an addition?",
+      a: "Yes. Suite wings are a common addition type. We evaluate structure, roof, and living-in-place before design investment.",
+    },
+    {
+      q: "Do you build steam showers?",
+      a: "Yes — steam packages, curbless showers, and radiant floors are common luxury requests.",
+    },
+    {
+      q: "Can you do fully custom closets?",
+      a: "Yes — from premium organizer systems to fully custom millwork with islands and dressing tables.",
+    },
+  ],
+  closeHeading: "Design the suite you deserve",
+  closeBody:
+    "Open the Primary Suite Studio to shape your vision and planning range, or schedule a complimentary consultation — calm, private luxury starts with a clear plan.",
+};
