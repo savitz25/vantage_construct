@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="Luxury custom home exterior placeholder">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dfe8f0"/>
+      <stop offset="55%" stop-color="#f4efe6"/>
+      <stop offset="100%" stop-color="#e7dcc8"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f1e7"/>
+      <stop offset="100%" stop-color="#d8c7ad"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5c4a3a"/>
+      <stop offset="100%" stop-color="#3f3228"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <ellipse cx="1260" cy="180" rx="90" ry="90" fill="#f3e7c8" opacity="0.75"/>
+  <rect x="0" y="760" width="1600" height="240" fill="#c9b79a"/>
+  <rect x="0" y="760" width="1600" height="40" fill="#b6a181"/>
+  <!-- main mass -->
+  <polygon points="280,430 800,210 1320,430 1320,760 280,760" fill="url(#body)" stroke="#b89a72" stroke-width="4"/>
+  <polygon points="260,440 800,200 1340,440 1280,430 800,250 320,430" fill="url(#roof)"/>
+  <!-- porch -->
+  <rect x="420" y="620" width="760" height="30" fill="#e8dcc8"/>
+  <rect x="450" y="650" width="28" height="110" fill="#cbb592"/>
+  <rect x="720" y="650" width="28" height="110" fill="#cbb592"/>
+  <rect x="990" y="650" width="28" height="110" fill="#cbb592"/>
+  <rect x="1120" y="650" width="28" height="110" fill="#cbb592"/>
+  <!-- windows -->
+  <rect x="500" y="470" width="120" height="110" rx="6" fill="#9db8c8" stroke="#8a7154" stroke-width="6"/>
+  <rect x="740" y="470" width="120" height="110" rx="6" fill="#9db8c8" stroke="#8a7154" stroke-width="6"/>
+  <rect x="980" y="470" width="120" height="110" rx="6" fill="#9db8c8" stroke="#8a7154" stroke-width="6"/>
+  <!-- door -->
+  <rect x="760" y="600" width="80" height="160" rx="4" fill="#6d533a"/>
+  <circle cx="825" cy="680" r="5" fill="#d4af78"/>
+  <!-- garage -->
+  <rect x="1180" y="520" width="280" height="240" fill="#e8d9c1" stroke="#b89a72" stroke-width="4"/>
+  <rect x="1210" y="560" width="220" height="180" rx="8" fill="#8d7660"/>
+  <text x="800" y="920" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#6b5a45" opacity="0.75">Vantage Construction</text>
+  <text x="800" y="960" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#8a7a66" opacity="0.8">Luxury custom home design</text>
+</svg>

@@ -468,7 +468,7 @@ export function DesignStudio() {
                 Design & Discovery.
               </p>
               <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {styleOptions.map((opt) => {
+                {styleOptions.map((opt, index) => {
                   const media = styleMedia[opt.id];
                   return (
                     <VisualChoiceCard
@@ -478,6 +478,7 @@ export function DesignStudio() {
                       description={opt.lifestyle}
                       imageSrc={media?.image}
                       imageAlt={media?.alt || opt.label}
+                      priority={index < 3}
                       onClick={() =>
                         patchSelections({ style: opt.id }, { category: "style", value: opt.id })
                       }

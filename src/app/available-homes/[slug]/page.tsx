@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { SmartImage } from "@/components/SmartImage";
 import { formatPrice, getPlanBySlug, plans, pricingDisclaimer } from "@/lib/plans";
 import { getPlanMedia, planImageAlt } from "@/lib/plan-media";
 import { createMetadata, productOfferJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -64,7 +64,7 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ slu
         <section className="section-sm pt-0">
           <div className="container-wide">
             <div className="relative aspect-[21/9] min-h-[260px] overflow-hidden rounded-2xl border border-border bg-bg-elevated">
-              <Image
+              <SmartImage
                 src={gallery[0]}
                 alt={planImageAlt(plan.name, plan.sqft, plan.style, "Front elevation")}
                 fill
@@ -80,7 +80,7 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ slu
                     key={src + i}
                     className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-bg-elevated"
                   >
-                    <Image
+                    <SmartImage
                       src={src}
                       alt={planImageAlt(plan.name, plan.sqft, plan.style, `Design view ${i + 2}`)}
                       fill
@@ -97,12 +97,13 @@ export default async function PlanDetailPage({ params }: { params: Promise<{ slu
                   Floor plan
                 </div>
                 <div className="relative aspect-[16/10] bg-white">
-                  <Image
+                  <SmartImage
                     src={media.floorPlan}
                     alt={planImageAlt(plan.name, plan.sqft, plan.style, "Floor plan")}
                     fill
                     sizes="100vw"
                     className="object-contain p-4"
+                    style={{ objectFit: "contain" }}
                   />
                 </div>
               </div>

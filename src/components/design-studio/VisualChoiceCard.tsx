@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SmartImage } from "@/components/SmartImage";
 
 type Props = {
   selected?: boolean;
@@ -11,6 +11,7 @@ type Props = {
   imageSrc?: string;
   imageAlt?: string;
   multi?: boolean;
+  priority?: boolean;
   children?: React.ReactNode;
 };
 
@@ -23,6 +24,7 @@ export function VisualChoiceCard({
   imageSrc,
   imageAlt,
   multi,
+  priority,
   children,
 }: Props) {
   return (
@@ -34,18 +36,21 @@ export function VisualChoiceCard({
         selected ? "border-gold ring-1 ring-gold/40" : ""
       }`}
     >
-      {imageSrc ? (
+      {imageSrc || children ? (
         <div className="relative aspect-[16/10] overflow-hidden bg-bg-elevated">
-          <Image
-            src={imageSrc}
-            alt={imageAlt || title}
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
-          />
+          {imageSrc ? (
+            <SmartImage
+              src={imageSrc}
+              alt={imageAlt || title}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              priority={priority}
+              className="object-cover transition duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+            />
+          ) : (
+            children
+          )}
         </div>
-      ) : children ? (
-        children
       ) : null}
       <div className="p-5">
         <div className="flex items-start justify-between gap-3">

@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import { SmartImage } from "@/components/SmartImage";
 import type { HomePlan } from "@/lib/plans";
 import { formatPrice } from "@/lib/plans";
 import { getPlanMedia, planImageAlt } from "@/lib/plan-media";
@@ -59,7 +59,7 @@ export function SelectedPlanPreview({
         </div>
       </div>
       <div className="relative aspect-[21/9] min-h-[220px] bg-bg-elevated">
-        <Image
+        <SmartImage
           src={src}
           alt={planImageAlt(
             plan.name,
@@ -70,6 +70,7 @@ export function SelectedPlanPreview({
           fill
           sizes="100vw"
           className={showFloor ? "object-contain bg-white p-4" : "object-cover"}
+          style={showFloor ? { objectFit: "contain" } : { objectFit: "cover" }}
           priority
         />
       </div>

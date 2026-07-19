@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SmartImage } from "@/components/SmartImage";
 import type { HomePlan } from "@/lib/plans";
 import { formatPrice } from "@/lib/plans";
 import { getPlanMedia, planImageAlt } from "@/lib/plan-media";
@@ -11,17 +11,13 @@ export function PlanCard({ plan }: { plan: HomePlan }) {
   return (
     <article className="card card-hover flex h-full flex-col overflow-hidden">
       <div className="relative aspect-[16/10] bg-bg-elevated">
-        {hero ? (
-          <Image
-            src={hero}
-            alt={planImageAlt(plan.name, plan.sqft, plan.style, "Front elevation")}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover"
-          />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#f0e6d4] via-[#e8dcc6] to-[#d9c7a8]" />
-        )}
+        <SmartImage
+          src={hero}
+          alt={planImageAlt(plan.name, plan.sqft, plan.style, "Front elevation")}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover"
+        />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-5 pt-16">
           <span className="badge !border-white/30 !bg-white/15 !text-white">{plan.style}</span>
           <p className="mt-2 font-display text-3xl text-white">

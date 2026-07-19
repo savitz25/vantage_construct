@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useId, useState } from "react";
+import { SmartImage } from "@/components/SmartImage";
 import type { HomePlan } from "@/lib/plans";
 import { formatPrice } from "@/lib/plans";
 import { getPlanMedia, planImageAlt } from "@/lib/plan-media";
@@ -87,16 +87,15 @@ export function PlanDetailModal({ plan, open, onClose, onSelect }: Props) {
         <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.35fr_0.85fr]">
           <div>
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-bg-elevated">
-              {displaySrc ? (
-                <Image
-                  src={displaySrc}
-                  alt={displayAlt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className={`object-contain bg-white ${showFloor ? "p-2" : "object-cover p-0"}`}
-                  priority
-                />
-              ) : null}
+              <SmartImage
+                src={displaySrc || undefined}
+                alt={displayAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className={`${showFloor ? "object-contain bg-white p-2" : "object-cover"}`}
+                priority
+                style={showFloor ? { objectFit: "contain" } : { objectFit: "cover" }}
+              />
             </div>
 
             <div className="mt-3 flex flex-wrap gap-2">
@@ -151,7 +150,7 @@ export function PlanDetailModal({ plan, open, onClose, onSelect }: Props) {
                     }`}
                     aria-label={`View image ${i + 1}`}
                   >
-                    <Image src={src} alt="" fill sizes="120px" className="object-cover" />
+                    <SmartImage src={src} alt="" fill sizes="120px" className="object-cover" />
                   </button>
                 ))}
               </div>

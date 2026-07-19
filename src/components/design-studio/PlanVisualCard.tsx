@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SmartImage } from "@/components/SmartImage";
 import type { HomePlan } from "@/lib/plans";
 import { formatPrice } from "@/lib/plans";
 import { getPlanMedia, planImageAlt } from "@/lib/plan-media";
@@ -38,31 +38,25 @@ export function PlanVisualCard({
         className="relative block w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
       >
         <div className="relative aspect-[16/10] overflow-hidden bg-bg-elevated">
-          {hero ? (
-            <>
-              <Image
-                src={hero}
-                alt={alt}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className={`object-cover transition duration-500 motion-reduce:transition-none ${
-                  hover ? "group-hover:opacity-0" : "group-hover:scale-[1.03]"
-                }`}
-                priority={priority}
-              />
-              {hover ? (
-                <Image
-                  src={hover}
-                  alt={planImageAlt(plan.name, plan.sqft, plan.style, "Alternate elevation")}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover opacity-0 transition duration-500 group-hover:opacity-100 motion-reduce:transition-none"
-                />
-              ) : null}
-            </>
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-[#f0e6d4] to-[#d2bf9a]" />
-          )}
+          <SmartImage
+            src={hero}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={`object-cover transition duration-500 motion-reduce:transition-none ${
+              hover ? "group-hover:opacity-0" : "group-hover:scale-[1.03]"
+            }`}
+            priority={priority}
+          />
+          {hover ? (
+            <SmartImage
+              src={hover}
+              alt={planImageAlt(plan.name, plan.sqft, plan.style, "Alternate elevation")}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover opacity-0 transition duration-500 group-hover:opacity-100 motion-reduce:transition-none"
+            />
+          ) : null}
 
           <div className="absolute left-3 top-3 flex flex-wrap gap-2">
             <span className="rounded-full bg-white/90 px-2.5 py-1 text-[0.7rem] font-medium text-gold-deep shadow-sm backdrop-blur">
