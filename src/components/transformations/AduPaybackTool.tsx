@@ -40,7 +40,7 @@ export function AduPaybackTool() {
   const zoning = townAduStatus[town];
 
   return (
-    <div id="tool" className="section pt-8">
+    <div id="tool" className="section scroll-mt-28 pt-6 sm:pt-8">
       <div className="container-wide grid gap-8 lg:grid-cols-[1fr_1fr]">
         <div className="space-y-6">
           <div>
@@ -206,8 +206,11 @@ export function AduPaybackTool() {
               *{estimateDisclaimer} {rentDisclaimer}
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link href="/custom-homes/adus" className="btn btn-primary">
-                ADU services
+              <Link href="/start" className="btn btn-primary">
+                Schedule a consultation
+              </Link>
+              <Link href="/custom-homes/adus" className="btn btn-secondary">
+                Learn how we build ADUs
               </Link>
               {result.planSlug ? (
                 <Link href={`/available-homes/${result.planSlug}`} className="btn btn-secondary">

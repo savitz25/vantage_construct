@@ -333,6 +333,13 @@ export const atticsPage: TransformServiceContent = {
     "Offices, studios, and suite-level retreats carved from volume you already own — finished with the same craftsmanship as the floors below. Serving North and Central Jersey since 1990.",
   primaryCta: { label: "Schedule a feasibility review", href: "/start" },
   secondaryCta: { label: "See transformation process", href: "/transformations/process" },
+  toolCard: {
+    badge: "Related planning",
+    title: "Need more space than the attic allows?",
+    body: "If the real fix is a full addition or primary suite wing, open the Move or Improve calculator to compare expanding versus relocating in North Jersey.",
+    cta: "Open the Move or Improve calculator",
+    href: "/move-or-improve-calculator-nj#tool",
+  },
   spaceHeading: "What could your attic become?",
   spaces: [
     {
@@ -428,6 +435,18 @@ export const atticsPage: TransformServiceContent = {
     {
       q: "Will it be too hot in summer?",
       a: "Not if the envelope and mechanicals are planned correctly. Comfort engineering is part of the scope — not an upgrade afterthought.",
+    },
+    {
+      q: "How much does an attic conversion cost in NJ?",
+      a: "Planning ranges often start in the mid–five figures for simple lofts and climb into the six figures for suites with baths or dormers. Final pricing after structural review.",
+    },
+    {
+      q: "Do I need permits for an attic remodel?",
+      a: "Yes — framing, electrical, plumbing, stairs, and egress typically require municipal permits. We manage the process.",
+    },
+    {
+      q: "Can you add a bathroom in the attic?",
+      a: "Often yes when plumbing routes and structure allow. We evaluate early so wet rooms don’t become late surprises.",
     },
   ],
   closeHeading: "Claim the top of the house",
@@ -705,6 +724,13 @@ export const outdoorPage: TransformServiceContent = {
     "Decks, porches, sunrooms, outdoor kitchens, and fireplaces designed as true living rooms without walls — for Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding communities.",
   primaryCta: { label: "Schedule a consultation", href: "/start" },
   secondaryCta: { label: "View process", href: "/transformations/process" },
+  toolCard: {
+    badge: "Complementary space",
+    title: "Pair outdoor living with a finished lower level",
+    body: "Walk-out basements and indoor entertaining often complete the outdoor estate. Open the Basement Builder to plan cinema, bar, and guest zones that flow to the patio.",
+    cta: "Open the Basement Builder",
+    href: "/finished-basement-cost-nj#tool",
+  },
   spaceHeading: "Curate your outdoor estate",
   spaces: [
     {
@@ -800,6 +826,18 @@ export const outdoorPage: TransformServiceContent = {
     {
       q: "What about permits?",
       a: "Many outdoor structures and utility runs require municipal review. We manage the process.",
+    },
+    {
+      q: "How much does outdoor living cost in NJ?",
+      a: "Premium decks often start mid–five figures; covered porches and outdoor kitchens commonly land in the low- to mid–six figures depending on utilities and finishes.",
+    },
+    {
+      q: "Can you build a four-season sunroom?",
+      a: "Yes — when structure, foundation, and envelope are designed for year-round comfort, not just a screened porch.",
+    },
+    {
+      q: "Do outdoor projects require HOA approval?",
+      a: "Sometimes. We help prepare packages and coordinate timing when covenants apply.",
     },
   ],
   closeHeading: "Bring the resort home",

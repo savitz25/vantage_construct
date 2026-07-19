@@ -184,4 +184,16 @@ export const moveImproveFaqs = [
     q: "Does the improve estimate include permits and site work?",
     a: "The improve figure is a conceptual construction budget for scope planning. Final pricing after site evaluation may include structure-specific, permit, and site factors.",
   },
+  {
+    q: "What kinds of improvements does Vantage build?",
+    a: "Home additions, primary suites, kitchen expansions, lower levels, outdoor living, and more — see our Transformations pages. The calculator helps frame cost versus relocating.",
+  },
+  {
+    q: "Should I always improve instead of moving?",
+    a: "Not always. Sometimes the lot, structure, or lifestyle gap makes a move smarter. The tool surfaces financial friction so you can decide with clearer eyes.",
+  },
+  {
+    q: "Is this tax or legal advice?",
+    a: "No. Transfer fee math is educational and illustrative. Confirm current rates and your situation with licensed professionals before any transaction.",
+  },
 ] as const;

@@ -120,6 +120,48 @@ export function faqJsonLd(
   };
 }
 
+/** Service schema for transformation / construction service pages */
+export function serviceJsonLd({
+  name,
+  description,
+  path,
+  serviceType,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  serviceType?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    serviceType: serviceType ?? name,
+    url: absoluteUrl(path),
+    provider: {
+      "@type": "HomeAndConstructionBusiness",
+      name: company.name,
+      telephone: company.phone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: company.address.street,
+        addressLocality: company.address.city,
+        addressRegion: company.address.state,
+        postalCode: company.address.zip,
+        addressCountry: "US",
+      },
+    },
+    areaServed: [
+      ...company.focusTowns.map((t) => ({ "@type": "City", name: `${t}, NJ` })),
+      ...company.counties.map((c) => ({
+        "@type": "AdministrativeArea",
+        name: `${c} County, NJ`,
+      })),
+    ],
+  };
+}
+
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",

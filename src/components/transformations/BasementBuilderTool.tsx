@@ -33,7 +33,7 @@ export function BasementBuilderTool() {
   }
 
   return (
-    <div id="tool" className="section pt-6 sm:pt-8">
+    <div id="tool" className="section scroll-mt-28 pt-6 sm:pt-8">
       <div className="container-wide grid gap-8 lg:grid-cols-[1fr_1fr]">
         <div className="space-y-6">
           <div className="card space-y-5 p-6">

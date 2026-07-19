@@ -118,3 +118,36 @@ export const transformServicePaths = [
   "/move-or-improve-calculator-nj",
   "/adu-cost-calculator-nj",
 ] as const;
+
+/**
+ * Canonical service ↔ tool pairs for interlinking and SEO.
+ * Anchor text convention:
+ * - Service → tool: "Open the {Tool Name}"
+ * - Tool → service: "Learn how we build them" / "Learn how we build {noun}"
+ */
+export const serviceToolPairs = [
+  {
+    servicePath: "/transformations/basements",
+    serviceLabel: "Finished Basements",
+    toolPath: "/finished-basement-cost-nj",
+    toolLabel: "Basement Builder",
+    openCta: "Open the Basement Builder",
+    learnCta: "Learn how we build them",
+  },
+  {
+    servicePath: "/transformations/additions",
+    serviceLabel: "Home Additions",
+    toolPath: "/move-or-improve-calculator-nj",
+    toolLabel: "Move or Improve",
+    openCta: "Open the Move or Improve calculator",
+    learnCta: "Learn how we build additions",
+  },
+  {
+    servicePath: "/custom-homes/adus",
+    serviceLabel: "ADUs",
+    toolPath: "/adu-cost-calculator-nj",
+    toolLabel: "ADU Payback",
+    openCta: "Open the ADU Payback calculator",
+    learnCta: "Learn how we build ADUs",
+  },
+] as const;

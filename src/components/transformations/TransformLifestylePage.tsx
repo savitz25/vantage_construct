@@ -4,8 +4,9 @@ import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { TrackedLink } from "@/components/TrackedLink";
+import { RelatedServices } from "@/components/transformations/RelatedServices";
 import type { TransformServiceContent } from "@/lib/transformations/service-pages";
-import { faqJsonLd } from "@/lib/seo";
+import { faqJsonLd, serviceJsonLd } from "@/lib/seo";
 
 export function TransformLifestylePage({ content }: { content: TransformServiceContent }) {
   const c = content;
@@ -33,6 +34,14 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
   return (
     <>
       <JsonLd data={faqJsonLd(c.faqs)} />
+      <JsonLd
+        data={serviceJsonLd({
+          name: c.seoTitle.split("|")[0]?.trim() || crumbLabel,
+          description: c.seoDescription,
+          path: c.path,
+          serviceType: crumbLabel,
+        })}
+      />
       <Breadcrumbs items={crumbs} />
 
       <PageHero eyebrow={c.eyebrow} title={c.headline} description={c.subhead}>
@@ -228,6 +237,7 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
         </div>
       </section>
 
+      <RelatedServices currentPath={c.path} />
       <CtaBanner />
     </>
   );

@@ -1,9 +1,12 @@
+import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
+import { transformServices, transformTools } from "@/lib/transformations/ia";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Existing Home Transformation Process",
+  title: "Existing Home Transformation Process | Vantage",
   description:
     "How Vantage Construction renovates and customizes existing homes in New Jersey — clear phases, communication, and no surprises.",
   path: "/transformations/process",
@@ -35,26 +38,65 @@ const steps = [
 export default function ExistingProcessPage() {
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Transformations", href: "/transformations" },
+          { label: "Renovation Process" },
+        ]}
+      />
       <PageHero
         eyebrow="Existing homes"
         title="A clear path to transforming your home"
-        description="Whether you need an addition, full renovation, finished basement, attic conversion, or outdoor living upgrade — our process keeps communication open and surprises rare."
-      />
-      <section className="section pt-0">
-        <div className="container-v space-y-4">
-          {steps.map((step, i) => (
-            <div key={step.title} className="card flex gap-5 p-6">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border-strong font-display text-xl text-gold">
-                {i + 1}
-              </span>
-              <div>
-                <h2 className="font-display text-2xl text-ivory">{step.title}</h2>
-                <p className="mt-2 text-text-muted">{step.body}</p>
-              </div>
-            </div>
-          ))}
+        description="Whether you’re finishing a lower level, adding a suite, or reimagining a kitchen — the same no-surprises process applies: discovery, design clarity, permits, build, and a polished handoff."
+      >
+        <div className="flex flex-wrap gap-3">
+          <Link href="/start" className="btn btn-primary">
+            Schedule a consultation
+          </Link>
+          <Link href="/transformations" className="btn btn-secondary">
+            All transformations
+          </Link>
+        </div>
+      </PageHero>
+
+      <section className="section">
+        <div className="container-v">
+          <ol className="space-y-5">
+            {steps.map((step, i) => (
+              <li key={step.title} className="card flex gap-5 p-6 sm:p-8">
+                <span className="font-display text-3xl text-gold-deep">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h2 className="font-display text-2xl text-ivory">{step.title}</h2>
+                  <p className="mt-2 text-text-muted">{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
+
+      <section className="section bg-bg-elevated">
+        <div className="container-wide">
+          <h2 className="font-display text-3xl text-ivory">Start with a service or a tool</h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {transformServices.slice(0, 3).map((s) => (
+              <Link key={s.href} href={s.href} className="card card-hover p-6">
+                <h3 className="font-display text-xl text-ivory">{s.label}</h3>
+                <p className="mt-2 text-sm text-text-muted line-clamp-2">{s.body}</p>
+              </Link>
+            ))}
+            {transformTools.map((t) => (
+              <Link key={t.href} href={t.href} className="card card-hover p-6">
+                <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">Tool</p>
+                <h3 className="mt-1 font-display text-xl text-ivory">{t.label}</h3>
+                <p className="mt-2 text-sm text-text-muted line-clamp-2">{t.body}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <CtaBanner />
     </>
   );

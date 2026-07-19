@@ -150,14 +150,30 @@ export const townAduStatus: Record<
 export const aduFaqs = [
   {
     q: "How much does an ADU cost in New Jersey?",
-    a: "Detached cottage-class ADUs can start in the mid–high $200ks depending on size and finishes (e.g., plans like the Cozy Craftsman). Conversions are often lower. Always site-specific.",
+    a: "Detached cottage-class ADUs can start in the mid–high $200ks depending on size and finishes (e.g., plans like the Cozy Craftsman). Garage or basement conversions are often lower. Always site-specific — use the calculator for a planning range.",
   },
   {
     q: "Can I build an ADU in my town?",
-    a: "Rules vary by municipality. Use the town lookup as a starting point, then confirm with local code officials. Vantage Land Evaluation can help assess feasibility.",
+    a: "Rules vary by municipality. Use the town lookup as a starting point, then confirm with local code officials. Vantage Land Evaluation can help assess feasibility before design investment.",
   },
   {
     q: "How long until an ADU pays for itself?",
-    a: "If rented at market rates, simple break-even often falls in a multi-year range depending on build cost and rent. The calculator shows an illustrative timeline — not a guarantee.",
+    a: "If rented at market rates, simple break-even often falls in a multi-year range depending on build cost and rent. The calculator shows an illustrative timeline — not a guarantee of returns.",
+  },
+  {
+    q: "What types of ADUs do you build?",
+    a: "Detached cottages, garage conversions, basement suites, and above-garage units — subject to zoning, structure, and access on your property.",
+  },
+  {
+    q: "Do ADUs need separate utilities and permits?",
+    a: "Most require building permits; utility and zoning requirements vary. We coordinate approvals and systems as part of the project.",
+  },
+  {
+    q: "Is the ADU calculator a formal quote?",
+    a: "No — it’s an educational payback and cost planning tool. Final pricing follows site evaluation, zoning review, and Design & Discovery.",
+  },
+  {
+    q: "Can an ADU work for multi-generational living instead of rental?",
+    a: "Yes. Many clients prioritize privacy for parents or adult children. The calculator can model guest/multi-gen use without rental income assumptions.",
   },
 ] as const;

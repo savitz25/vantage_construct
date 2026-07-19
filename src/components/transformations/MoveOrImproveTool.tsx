@@ -51,7 +51,7 @@ export function MoveOrImproveTool() {
   }
 
   return (
-    <div id="tool" className="section pt-8">
+    <div id="tool" className="section scroll-mt-28 pt-6 sm:pt-8">
       <div className="container-wide grid gap-8 lg:grid-cols-[1fr_1fr]">
         <div className="space-y-6">
           <div className="card space-y-6 p-6 sm:p-8">
@@ -163,8 +163,11 @@ export function MoveOrImproveTool() {
               you.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link href="/transformations/additions" className="btn btn-primary">
-                Explore additions
+              <Link href="/start" className="btn btn-primary">
+                Schedule a consultation
+              </Link>
+              <Link href="/transformations/additions" className="btn btn-secondary">
+                Learn how we build additions
               </Link>
               <Link href="/custom-homes/rebuilds" className="btn btn-secondary">
                 Or knockdown & rebuild

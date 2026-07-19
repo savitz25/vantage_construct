@@ -1,12 +1,9 @@
-import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { JsonLd } from "@/components/JsonLd";
-import { TrackToolLanderView } from "@/components/TrackPageEvent";
+import { ToolLanderShell } from "@/components/transformations/ToolLanderShell";
 import { MoveOrImproveTool } from "@/components/transformations/MoveOrImproveTool";
 import { company } from "@/lib/company";
 import { taxDisclaimer } from "@/lib/transformations/disclaimers";
 import { moveImproveFaqs } from "@/lib/transformations/move-or-improve";
-import { createMetadata, faqJsonLd, localBusinessJsonLd } from "@/lib/seo";
+import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: "Move or Improve Calculator NJ | Cost of Selling vs Renovating",
@@ -17,76 +14,52 @@ export const metadata = createMetadata({
 
 export default function MoveOrImprovePage() {
   return (
-    <>
-      <TrackToolLanderView tool="move-or-improve" path="/move-or-improve-calculator-nj" />
-      <JsonLd data={localBusinessJsonLd()} />
-      <JsonLd data={faqJsonLd(moveImproveFaqs)} />
-
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Transformations", href: "/transformations" },
-          { label: "Home Additions", href: "/transformations/additions" },
-          { label: "Move or Improve Calculator" },
-        ]}
-      />
-
-      <section className="hero-grid grain border-b border-border pt-28 pb-8 sm:pt-32 sm:pb-10">
-        <div className="container-wide relative">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <p className="eyebrow">Interactive tool · Move or improve</p>
-              <h1 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
-                Move or Improve calculator
-              </h1>
-              <p className="mt-3 text-lg text-text-muted">
-                Selling in {company.focusTowns.join(", ")} and nearby markets layers commissions and
-                NJ transfer costs. Compare that friction against the addition that solves the same
-                problem — then decide with clearer math.
-              </p>
-              <p className="mt-3 text-xs text-text-dim">*{taxDisclaimer}</p>
-            </div>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Link href="/transformations/additions" className="btn btn-secondary">
-                Learn how we build additions
-              </Link>
-              <Link href="/start" className="btn btn-primary">
-                Schedule a consultation
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
+    <ToolLanderShell
+      toolId="move-or-improve"
+      path="/move-or-improve-calculator-nj"
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Transformations", href: "/transformations" },
+        { label: "Home Additions", href: "/transformations/additions" },
+        { label: "Move or Improve Calculator" },
+      ]}
+      eyebrow="Interactive tool · Move or improve"
+      title="Move or Improve calculator"
+      description={`Selling in ${company.focusTowns.join(", ")} and nearby markets layers commissions and NJ transfer costs. Compare that friction against the addition that solves the same problem — then decide with clearer math.`}
+      disclaimer={taxDisclaimer}
+      serviceHref="/transformations/additions"
+      serviceCtaLabel="Learn how we build additions"
+      secondaryLinks={[
+        { href: "/transformations", label: "All home transformations" },
+        { href: "/custom-homes/rebuilds", label: "Knockdowns & rebuilds" },
+        { href: "/studios", label: "All Vantage Studios" },
+      ]}
+      educationHeading="When the math points to staying"
+      educationIntro="The calculator surfaces selling friction. Vantage turns “improve” into architecture — seamless additions, kitchens, and lifestyle expansions with living-in-place planning."
+      education={[
+        {
+          title: "True cost of selling",
+          body: "Commissions, NJ transfer fees (including graduated tiers on higher-value homes), moving, and buy-side costs stack quickly — often more than a targeted addition.",
+        },
+        {
+          title: "Keep the rate, keep the neighborhood",
+          body: "Improving preserves schools, friends, and financing you’ve already earned — when the lot and structure can support the vision.",
+        },
+        {
+          title: "Scope that solves the real problem",
+          body: "Primary suite, kitchen expansion, multi-room wing — we design the addition that actually closes the lifestyle gap.",
+        },
+        {
+          title: "Honest “move might be better” moments",
+          body: "Sometimes the lot, structure, or program says relocate. We’ll tell you — no sales theater.",
+        },
+      ]}
+      faqs={moveImproveFaqs}
+      faqHeading="Move or improve FAQs"
+      consultHeading="Ready to walk your home and lot?"
+      consultBody="Bring your calculator results to a complimentary consultation. We’ll discuss what’s buildable, what it might cost, and whether improving or moving fits your family."
+    >
       <MoveOrImproveTool />
-
-      <section className="section border-t border-border bg-bg-elevated">
-        <div className="container-v">
-          <h2 className="font-display text-4xl text-ivory">FAQs</h2>
-          <div className="mt-8 space-y-4">
-            {moveImproveFaqs.map((f) => (
-              <details key={f.q} className="card group p-6">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                  <h3 className="font-display text-2xl text-ivory">{f.q}</h3>
-                  <span className="text-gold-deep transition group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-4 text-text-muted">{f.a}</p>
-              </details>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Link href="/start" className="btn btn-primary">
-              Schedule a consultation
-            </Link>
-            <Link href="/transformations/additions" className="btn btn-secondary">
-              Learn how we build additions
-            </Link>
-            <Link href="/transformations" className="btn btn-secondary">
-              All home transformations
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
+    </ToolLanderShell>
   );
 }
