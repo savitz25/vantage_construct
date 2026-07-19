@@ -113,9 +113,6 @@ export default function DesignStudioPage() {
             ))}
           </ol>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/portfolio" className="btn btn-secondary">
-              View portfolio
-            </Link>
             <Link href="/start" className="btn btn-secondary">
               Schedule directly
             </Link>

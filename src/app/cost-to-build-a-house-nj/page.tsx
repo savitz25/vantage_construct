@@ -119,9 +119,6 @@ export default function CostToBuildNjPage() {
             <Link href="/start" className="btn btn-primary">
               Schedule consultation
             </Link>
-            <Link href="/portfolio" className="btn btn-secondary">
-              Portfolio
-            </Link>
           </div>
         </div>
       </section>

@@ -8,7 +8,6 @@ import { company } from "@/lib/company";
 import {
   customHomeServices,
   landDevelopments,
-  portfolioProjects,
   transformationServices,
 } from "@/lib/content";
 import { plans } from "@/lib/plans";
@@ -224,31 +223,6 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container-wide">
-          <div className="mb-10 max-w-2xl">
-            <p className="eyebrow">Portfolio</p>
-            <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
-              Distinctive work across New Jersey
-            </h2>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {portfolioProjects.map((project) => (
-              <div key={project.name} className="card p-5">
-                <p className="text-xs uppercase tracking-[0.16em] text-gold">{project.type}</p>
-                <h3 className="mt-2 font-display text-xl text-ivory">{project.name}</h3>
-                <p className="mt-1 text-sm text-text-dim">{project.location}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8">
-            <Link href="/portfolio" className="btn btn-secondary">
-              View full portfolio
-            </Link>
           </div>
         </div>
       </section>

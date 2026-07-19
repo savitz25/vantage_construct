@@ -28,7 +28,6 @@ const staticRoutes = [
   "/partners",
   "/partners/realtors",
   "/partners/investors",
-  "/portfolio",
   "/about",
   "/about/careers",
   "/commercial",

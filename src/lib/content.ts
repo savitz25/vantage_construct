@@ -106,19 +106,6 @@ export const processSteps = [
   },
 ] as const;
 
-export const portfolioProjects = [
-  { name: "Birchmont Lane", location: "Central New Jersey", type: "Custom Home" },
-  { name: "Watchung Residence", location: "Watchung, NJ", type: "Custom Home" },
-  { name: "Westfield Residence", location: "Westfield, NJ", type: "Custom Home" },
-  { name: "Minisink Way", location: "Central New Jersey", type: "Custom Home" },
-  { name: "High Oaks Drive", location: "Central New Jersey", type: "Custom Home" },
-  { name: "Knollwood Terrace", location: "Central New Jersey", type: "Custom Home" },
-  { name: "Pool House Warren", location: "Warren, NJ", type: "Accessory / Outdoor" },
-  { name: "Millburn Ave", location: "Millburn, NJ", type: "Custom Home" },
-  { name: "Highland Ave Short Hills", location: "Short Hills, NJ", type: "Custom Home" },
-  { name: "Arlington Court", location: "Central New Jersey", type: "Custom Home" },
-] as const;
-
 export const landDevelopments = [
   "Hidden Hollow Estates",
   "Prospect Hill Estates",
