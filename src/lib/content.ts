@@ -152,24 +152,19 @@ export const transformationServices = [
     body: "Transform outdated spaces into beautiful, functional rooms that reflect your style.",
   },
   {
-    title: "Finished Basements",
+    title: "Lower Level Living",
     href: "/transformations/basements",
-    body: "Convert unused basement space into theaters, game rooms, guest suites, and more.",
+    body: "Private cinemas, wellness suites, speakeasies, and guest quarters — the best square footage you already own.",
   },
   {
-    title: "Attic Conversions",
+    title: "Attic Sanctuaries",
     href: "/transformations/attics",
-    body: "Turn underutilized attic space into a private sanctuary within your home.",
+    body: "Upper-level suites, studios, and offices reclaimed from volume under the roof.",
   },
   {
-    title: "Porches & Sunrooms",
+    title: "Outdoor Living Estate",
     href: "/transformations/outdoor-living",
-    body: "Bright, comfortable spaces for year-round living and entertaining.",
-  },
-  {
-    title: "Decks & Outdoor Living",
-    href: "/transformations/outdoor-living",
-    body: "Custom decks, outdoor kitchens, fireplaces, and entertainment areas.",
+    body: "Porches, sunrooms, decks, outdoor kitchens, and fireplaces for resort-level evenings at home.",
   },
 ] as const;
 
