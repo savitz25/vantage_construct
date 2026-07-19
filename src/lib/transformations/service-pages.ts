@@ -324,21 +324,21 @@ export const additionsPage: TransformServiceContent = {
 
 export const atticsPage: TransformServiceContent = {
   path: "/transformations/attics",
-  seoTitle: "Attic Conversions NJ | Private Upper-Level Suites | Vantage",
+  seoTitle: "Attic Conversions NJ | Upper Level Sanctuaries | Vantage",
   seoDescription:
-    "Luxury attic conversions in Central & Northern New Jersey — offices, suites, and private retreats with structure, egress, and comfort engineered properly.",
+    "Luxury attic conversions in Central & Northern New Jersey — sky-level suites, offices, and lofts. Structure, egress, and comfort engineered properly. Design yours in the Attic Studio.",
   eyebrow: "Attic conversions · Upper-level sanctuaries",
   headline: "A private world under the roof",
   subhead:
-    "Offices, studios, and suite-level retreats carved from volume you already own — finished with the same craftsmanship as the floors below. Serving North and Central Jersey since 1990.",
-  primaryCta: { label: "Schedule a feasibility review", href: "/start" },
-  secondaryCta: { label: "See transformation process", href: "/transformations/process" },
+    "Sky-level retreats, guest suites, and creative lofts carved from volume you already own — finished with the same craftsmanship as the floors below. Serving North and Central Jersey since 1990.",
+  primaryCta: { label: "Open the Attic Studio", href: "/attic-conversion-cost-nj#tool" },
+  secondaryCta: { label: "Schedule a consultation", href: "/start" },
   toolCard: {
-    badge: "Related planning",
-    title: "Need more space than the attic allows?",
-    body: "If the real fix is a full addition or primary suite wing, open the Move or Improve calculator to compare expanding versus relocating in North Jersey.",
-    cta: "Open the Move or Improve calculator",
-    href: "/move-or-improve-calculator-nj#tool",
+    badge: "Interactive tool · Attic Studio",
+    title: "Design your upper level in minutes",
+    body: "Choose a vision — primary suite, guest quarters, office, teen retreat — then shape dormers, baths, skylights, and finishes with a live North Jersey planning estimate.",
+    cta: "Open the Attic Studio",
+    href: "/attic-conversion-cost-nj#tool",
   },
   spaceHeading: "What could your attic become?",
   spaces: [
@@ -451,7 +451,7 @@ export const atticsPage: TransformServiceContent = {
   ],
   closeHeading: "Claim the top of the house",
   closeBody:
-    "Schedule a complimentary consultation. We’ll evaluate structure, access, and what’s possible under your roof.",
+    "Open the Attic Studio to shape your vision and planning range, or schedule a complimentary consultation — structure, stairs, and light honesty included.",
 };
 
 export const kitchensPage: TransformServiceContent = {

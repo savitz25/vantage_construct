@@ -75,8 +75,14 @@ export const transformTools: TransformToolLink[] = [
     label: "Kitchen Studio",
     href: "/kitchen-remodel-cost-nj",
     body: "12 high-end styles with live swaps for counters, islands, backsplash, and hardware — plus a planning estimate.",
-    badge: "New",
+    badge: "Kitchens",
     featured: true,
+  },
+  {
+    label: "Attic Studio",
+    href: "/attic-conversion-cost-nj",
+    body: "Upper-level visions — suites, offices, lofts — with dormers, baths, skylights, and a live planning estimate.",
+    badge: "New",
   },
   {
     label: "Basement Builder",
@@ -121,6 +127,7 @@ export const transformServicePaths = [
   "/transformations/attics",
   "/transformations/remodeling",
   "/kitchen-remodel-cost-nj",
+  "/attic-conversion-cost-nj",
   "/finished-basement-cost-nj",
   "/move-or-improve-calculator-nj",
   "/adu-cost-calculator-nj",
@@ -140,6 +147,14 @@ export const serviceToolPairs = [
     toolLabel: "Kitchen Studio",
     openCta: "Open the Kitchen Studio",
     learnCta: "Learn how we build kitchens",
+  },
+  {
+    servicePath: "/transformations/attics",
+    serviceLabel: "Attic Conversions",
+    toolPath: "/attic-conversion-cost-nj",
+    toolLabel: "Attic Studio",
+    openCta: "Open the Attic Studio",
+    learnCta: "Learn how we build upper levels",
   },
   {
     servicePath: "/transformations/basements",

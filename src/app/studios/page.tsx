@@ -6,7 +6,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata = createMetadata({
   title: "Vantage Studios | Design, Cost & Transformation Tools",
   description:
-    "Interactive Vantage Studios: Design Studio, Cost Studio, Kitchen Studio, Basement Builder, Move or Improve, and ADU Payback for North Jersey homeowners.",
+    "Interactive Vantage Studios: Design Studio, Cost Studio, Kitchen Studio, Attic Studio, Basement Builder, Move or Improve, and ADU Payback for North Jersey homeowners.",
   path: "/studios",
 });
 
@@ -30,6 +30,14 @@ const studios = [
     body: "12 high-end styles with live counter, island, backsplash, and hardware swaps — plus planning cost.",
     serviceHref: "/transformations/kitchens",
     serviceLabel: "Learn how we build kitchens",
+  },
+  {
+    href: "/attic-conversion-cost-nj",
+    eyebrow: "Transformations",
+    title: "Attic Studio",
+    body: "Upper-level suites, offices, and lofts — dormers, baths, skylights, live structure preview + estimate.",
+    serviceHref: "/transformations/attics",
+    serviceLabel: "Learn how we build upper levels",
   },
   {
     href: "/finished-basement-cost-nj",
