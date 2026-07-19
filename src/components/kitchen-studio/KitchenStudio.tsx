@@ -3,6 +3,11 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { SmartImage } from "@/components/SmartImage";
+import {
+  StudioChip,
+  StudioControlGroup,
+  StudioWorkspace,
+} from "@/components/studios/StudioWorkspace";
 import { ToolLeadGate } from "@/components/transformations/ToolLeadGate";
 import { trackKitchenEvent } from "@/lib/kitchen-studio/analytics";
 import {
@@ -59,7 +64,6 @@ export function KitchenStudio() {
   function patch<K extends keyof KitchenSelections>(key: K, value: KitchenSelections[K]) {
     setSel((prev) => ({ ...prev, [key]: value }));
     trackKitchenEvent("feature_changed", { feature: key, value: String(value) });
-    // Material swaps shine on the live configurator
     if (key !== "styleId") setViewMode("configurator");
   }
 
@@ -68,6 +72,43 @@ export function KitchenStudio() {
     styleName: style.name,
     estimate,
   };
+
+  const estimateBlock = (
+    <>
+      <p className="studio-estimate-label">Planning investment</p>
+      <p className="studio-estimate-range">{formatRange(estimate.low, estimate.high)}</p>
+      <p className="studio-estimate-meta">
+        Mid ~{formatUsd(estimate.mid)} · ~{formatUsd(estimate.monthly)}/mo illustrative
+      </p>
+      <ul className="studio-estimate-breakdown space-y-1">
+        {estimate.breakdown.map((b) => (
+          <li key={b.label} className="flex justify-between gap-2">
+            <span className="truncate">{b.label}</span>
+            <span className="shrink-0 text-gold-deep">{formatUsd(b.amount)}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="studio-estimate-disclaimer">
+        *{estimateDisclaimer} {financingDisclaimer}
+      </p>
+    </>
+  );
+
+  const mobileBar = (
+    <div className="flex items-center justify-between gap-3">
+      <div>
+        <p className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-text-dim">
+          Planning investment
+        </p>
+        <p className="font-display text-xl text-ivory">
+          {formatRange(estimate.low, estimate.high)}
+        </p>
+      </div>
+      <a href="#kitchen-controls" className="text-xs font-semibold text-gold-deep">
+        Options ↓
+      </a>
+    </div>
+  );
 
   return (
     <div id="tool" className="section scroll-mt-28 !py-8 sm:!py-10">
@@ -143,278 +184,210 @@ export function KitchenStudio() {
             </div>
           </div>
         ) : (
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] lg:items-start">
-            <div className="space-y-4">
-              {/* Photo / configurator toggle */}
-              <div className="flex flex-wrap items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setViewMode("photo")}
-                  className={`rounded-full border px-3 py-1.5 text-xs ${
-                    viewMode === "photo"
-                      ? "border-gold bg-gold/10 text-gold-deep"
-                      : "border-border text-text-muted"
-                  }`}
-                >
-                  Style photography
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setViewMode("configurator")}
-                  className={`rounded-full border px-3 py-1.5 text-xs ${
-                    viewMode === "configurator"
-                      ? "border-gold bg-gold/10 text-gold-deep"
-                      : "border-border text-text-muted"
-                  }`}
-                >
-                  Live material preview
-                </button>
-              </div>
+          <StudioWorkspace
+            mobileEstimateBar={mobileBar}
+            model={
+              <div className="relative h-full w-full">
+                <div className="absolute left-3 top-3 z-10 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("photo")}
+                    className={`rounded-full border px-3 py-1 text-[0.65rem] font-medium backdrop-blur transition ${
+                      viewMode === "photo"
+                        ? "border-gold bg-white/95 text-gold-deep"
+                        : "border-white/40 bg-black/35 text-white"
+                    }`}
+                  >
+                    Style photo
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("configurator")}
+                    className={`rounded-full border px-3 py-1 text-[0.65rem] font-medium backdrop-blur transition ${
+                      viewMode === "configurator"
+                        ? "border-gold bg-white/95 text-gold-deep"
+                        : "border-white/40 bg-black/35 text-white"
+                    }`}
+                  >
+                    Live materials
+                  </button>
+                </div>
 
-              {viewMode === "photo" ? (
-                <div className="relative mx-auto h-[min(260px,36vh)] w-full max-w-xl overflow-hidden rounded-xl border border-border shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]">
-                  <div className="absolute inset-0">
+                {viewMode === "photo" ? (
+                  <>
                     <SmartImage
                       src={style.heroImage}
                       alt={`${style.name} luxury kitchen`}
                       fill
                       priority
-                      sizes="(max-width: 1024px) 100vw, 560px"
+                      sizes="(max-width: 1024px) 100vw, 70vw"
                     />
-                  </div>
-                  <div className="absolute bottom-2 left-2 right-2 flex flex-wrap items-center justify-between gap-2">
-                    <span className="rounded-full bg-white/92 px-2.5 py-1 text-xs font-medium text-ivory shadow-sm backdrop-blur">
-                      {style.name}
-                    </span>
-                    <span className="rounded-full bg-white/85 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
-                      Inspiration photo
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <div className="mx-auto w-full max-w-2xl">
-                  <KitchenScene selections={sel} compact />
-                </div>
-              )}
-
-              <p className="text-sm text-text-muted">
-                {style.description}{" "}
-                {viewMode === "photo" ? (
-                  <button
-                    type="button"
-                    className="text-gold-deep hover:underline"
-                    onClick={() => setViewMode("configurator")}
-                  >
-                    Switch to live material preview →
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="text-gold-deep hover:underline"
-                    onClick={() => setViewMode("photo")}
-                  >
-                    View style photography →
-                  </button>
-                )}
-              </p>
-
-              {/* Other style thumbs for quick switch */}
-              <div>
-                <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
-                  Explore other styles
-                </p>
-                <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
-                  {kitchenStyles.map((s) => (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => pickStyle(s.id)}
-                      className={`relative h-14 w-24 shrink-0 overflow-hidden rounded-lg border transition sm:h-16 sm:w-28 ${
-                        s.id === sel.styleId
-                          ? "border-gold ring-1 ring-gold"
-                          : "border-border opacity-90 hover:opacity-100"
-                      }`}
-                      title={s.name}
-                    >
-                      <SmartImage
-                        src={s.heroImage}
-                        alt={s.name}
-                        fill
-                        sizes="112px"
-                      />
-                      <span className="absolute inset-x-0 bottom-0 bg-black/55 px-1 py-0.5 text-[0.55rem] text-white">
-                        {s.name.split(" ")[0]}
+                    <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2">
+                      <span className="rounded-full bg-white/92 px-3 py-1 text-xs font-medium text-ivory shadow-sm backdrop-blur">
+                        {style.name}
                       </span>
+                      <span className="rounded-full bg-white/85 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
+                        Inspiration photo
+                      </span>
+                    </div>
+                  </>
+                ) : (
+                  <KitchenScene selections={sel} compact />
+                )}
+              </div>
+            }
+            modelFooter={
+              <>
+                <p className="text-sm text-text-muted">
+                  {style.description}{" "}
+                  {viewMode === "photo" ? (
+                    <button
+                      type="button"
+                      className="text-gold-deep hover:underline"
+                      onClick={() => setViewMode("configurator")}
+                    >
+                      Switch to live material preview →
                     </button>
-                  ))}
+                  ) : (
+                    <button
+                      type="button"
+                      className="text-gold-deep hover:underline"
+                      onClick={() => setViewMode("photo")}
+                    >
+                      View style photography →
+                    </button>
+                  )}
+                </p>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
+                    Explore other styles
+                  </p>
+                  <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+                    {kitchenStyles.map((s) => (
+                      <button
+                        key={s.id}
+                        type="button"
+                        onClick={() => pickStyle(s.id)}
+                        className={`relative h-14 w-24 shrink-0 overflow-hidden rounded-lg border transition sm:h-16 sm:w-28 ${
+                          s.id === sel.styleId
+                            ? "border-gold ring-1 ring-gold"
+                            : "border-border opacity-90 hover:opacity-100"
+                        }`}
+                        title={s.name}
+                      >
+                        <SmartImage src={s.heroImage} alt={s.name} fill sizes="112px" />
+                        <span className="absolute inset-x-0 bottom-0 bg-black/55 px-1 py-0.5 text-[0.55rem] text-white">
+                          {s.name.split(" ")[0]}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="space-y-5">
-              <div className="card p-6">
-                <p className="text-xs uppercase tracking-[0.14em] text-text-dim">
-                  Planning investment
-                </p>
-                <p className="mt-1 font-display text-3xl text-ivory sm:text-4xl">
-                  {formatRange(estimate.low, estimate.high)}
-                </p>
-                <p className="mt-2 text-sm text-text-muted">
-                  Mid ~{formatUsd(estimate.mid)} · ~{formatUsd(estimate.monthly)}/mo illustrative
-                </p>
-                <ul className="mt-4 max-h-36 space-y-1 overflow-y-auto text-xs text-text-muted">
-                  {estimate.breakdown.map((b) => (
-                    <li key={b.label} className="flex justify-between gap-3">
-                      <span>{b.label}</span>
-                      <span className="shrink-0 text-gold-deep">{formatUsd(b.amount)}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-3 text-[0.65rem] text-text-dim">
-                  *{estimateDisclaimer} {financingDisclaimer}
-                </p>
-              </div>
-
-              <div className="card p-5">
-                <div className="flex items-center justify-between gap-2">
+              </>
+            }
+            estimate={estimateBlock}
+            controls={
+              <div id="kitchen-controls" className="scroll-mt-36 space-y-2">
+                <div className="studio-control-group flex items-center justify-between gap-2">
                   <div>
-                    <p className="text-xs text-text-dim">Style</p>
-                    <p className="font-display text-xl text-ivory">{style.name}</p>
+                    <p className="text-[0.65rem] uppercase tracking-[0.12em] text-text-dim">Style</p>
+                    <p className="font-display text-lg text-ivory">{style.name}</p>
                   </div>
                   <button
                     type="button"
-                    className="text-sm text-gold-deep hover:underline"
+                    className="text-xs font-semibold text-gold-deep hover:underline"
                     onClick={() => setStep("style")}
                   >
                     Change
                   </button>
                 </div>
+
+                <StudioControlGroup label="Countertops">
+                  {countertops.map((c) => (
+                    <StudioChip
+                      key={c.id}
+                      active={sel.counter === c.id}
+                      onClick={() => patch("counter", c.id as CounterId)}
+                      swatch={c.swatch}
+                    >
+                      {c.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Backsplash">
+                  {backsplashes.map((b) => (
+                    <StudioChip
+                      key={b.id}
+                      active={sel.backsplash === b.id}
+                      onClick={() => patch("backsplash", b.id as BacksplashId)}
+                    >
+                      {b.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Island">
+                  {islands.map((i) => (
+                    <StudioChip
+                      key={i.id}
+                      active={sel.island === i.id}
+                      onClick={() => patch("island", i.id as IslandId)}
+                    >
+                      {i.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Hardware & fixtures">
+                  {hardwareFinishes.map((h) => (
+                    <StudioChip
+                      key={h.id}
+                      active={sel.hardware === h.id}
+                      onClick={() => patch("hardware", h.id as HardwareId)}
+                      swatch={h.metal}
+                    >
+                      {h.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Cabinet tone">
+                  {cabinetTones.map((c) => (
+                    <StudioChip
+                      key={c.id}
+                      active={sel.cabinetTone === c.id}
+                      onClick={() => patch("cabinetTone", c.id as CabinetToneId)}
+                      swatch={c.color ?? style.cabinet}
+                    >
+                      {c.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <ToolLeadGate
+                  tool="kitchen-studio"
+                  title="Unlock your Kitchen Vision Summary"
+                  description="Get a mood board of your selections, planning estimate range, and next-step checklist emailed to you."
+                  summaryPayload={summaryPayload}
+                />
+
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <Link href="/start" className="btn btn-primary !px-4 !py-2.5 text-xs">
+                    Schedule a consultation
+                  </Link>
+                  <Link
+                    href="/transformations/kitchens"
+                    className="btn btn-secondary !px-4 !py-2.5 text-xs"
+                  >
+                    How we build kitchens
+                  </Link>
+                </div>
               </div>
-
-              <FeatureGroup label="Countertops">
-                {countertops.map((c) => (
-                  <Chip
-                    key={c.id}
-                    active={sel.counter === c.id}
-                    onClick={() => patch("counter", c.id as CounterId)}
-                    swatch={c.swatch}
-                  >
-                    {c.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Backsplash">
-                {backsplashes.map((b) => (
-                  <Chip
-                    key={b.id}
-                    active={sel.backsplash === b.id}
-                    onClick={() => patch("backsplash", b.id as BacksplashId)}
-                  >
-                    {b.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Island">
-                {islands.map((i) => (
-                  <Chip
-                    key={i.id}
-                    active={sel.island === i.id}
-                    onClick={() => patch("island", i.id as IslandId)}
-                  >
-                    {i.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Hardware & fixtures">
-                {hardwareFinishes.map((h) => (
-                  <Chip
-                    key={h.id}
-                    active={sel.hardware === h.id}
-                    onClick={() => patch("hardware", h.id as HardwareId)}
-                    swatch={h.metal}
-                  >
-                    {h.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Cabinet tone">
-                {cabinetTones.map((c) => (
-                  <Chip
-                    key={c.id}
-                    active={sel.cabinetTone === c.id}
-                    onClick={() => patch("cabinetTone", c.id as CabinetToneId)}
-                    swatch={c.color ?? style.cabinet}
-                  >
-                    {c.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <ToolLeadGate
-                tool="kitchen-studio"
-                title="Unlock your Kitchen Vision Summary"
-                description="Get a mood board of your selections, planning estimate range, and next-step checklist emailed to you."
-                summaryPayload={summaryPayload}
-              />
-
-              <div className="flex flex-wrap gap-3">
-                <Link href="/start" className="btn btn-primary">
-                  Schedule a consultation
-                </Link>
-                <Link href="/transformations/kitchens" className="btn btn-secondary">
-                  Learn how we build kitchens
-                </Link>
-              </div>
-            </div>
-          </div>
+            }
+          />
         )}
       </div>
     </div>
-  );
-}
-
-function FeatureGroup({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="card p-5">
-      <p className="text-sm font-medium text-ivory">{label}</p>
-      <div className="mt-3 flex flex-wrap gap-2">{children}</div>
-    </div>
-  );
-}
-
-function Chip({
-  active,
-  onClick,
-  children,
-  swatch,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-  swatch?: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition ${
-        active
-          ? "border-gold bg-gold/10 text-gold-deep"
-          : "border-border text-text-muted hover:border-gold/40"
-      }`}
-    >
-      {swatch ? (
-        <span
-          className="h-3 w-3 shrink-0 rounded-full border border-black/10"
-          style={{ background: swatch }}
-          aria-hidden
-        />
-      ) : null}
-      {children}
-    </button>
   );
 }

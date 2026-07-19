@@ -47,10 +47,10 @@ export function OutdoorScene({
 
   return (
     <div
-      className={`relative overflow-hidden border border-border ${
+      className={`relative h-full w-full overflow-hidden ${
         compact
-          ? "mx-auto h-[min(260px,36vh)] w-full max-w-xl rounded-xl shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]"
-          : "rounded-2xl shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
+          ? "rounded-[inherit]"
+          : "rounded-2xl border border-border shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
       }`}
       style={{
         background: `linear-gradient(180deg, ${vision.sky} 0%, #f5e6d0 38%, ${flooring.color} 100%)`,
@@ -59,9 +59,9 @@ export function OutdoorScene({
     >
       <svg
         viewBox="0 0 800 420"
-        className={`w-full ${compact ? "h-full" : "h-auto"}`}
+        className="h-full w-full"
         role="img"
-        preserveAspectRatio={compact ? "xMidYMid slice" : "xMidYMid meet"}
+        preserveAspectRatio="xMidYMid slice"
       >
         {/* House facade hint */}
         <rect x="0" y="80" width="180" height="200" fill="#e8e0d4" opacity="0.7" />

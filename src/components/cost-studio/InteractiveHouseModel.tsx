@@ -28,20 +28,20 @@ export function InteractiveHouseModel({
         : "from-amber-900/15 via-transparent to-transparent";
 
   return (
-    <div className={`card overflow-hidden ${className}`}>
-      <div className="flex items-center justify-between border-b border-border px-4 py-3">
+    <div className={`card flex h-full flex-col overflow-hidden ${className}`}>
+      <div className="flex shrink-0 items-center justify-between border-b border-border px-4 py-2.5">
         <div>
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-deep">
             Live vision model
           </p>
-          <p className="text-sm text-text-muted">Add-ons appear on your home as you choose</p>
+          <p className="text-xs text-text-muted">Add-ons appear as you choose</p>
         </div>
         <span className="rounded-full border border-border px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.12em] text-text-dim">
           Interactive
         </span>
       </div>
 
-      <div className="relative aspect-[16/11] bg-gradient-to-b from-[#dfe8f0] via-[#f4efe6] to-[#c9b79a]">
+      <div className="relative h-full min-h-[280px] flex-1 aspect-auto bg-gradient-to-b from-[#dfe8f0] via-[#f4efe6] to-[#c9b79a]">
         {/* Soft sky + ground */}
         <div className="absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-[#9a8b72] to-[#c9b79a]" />
 

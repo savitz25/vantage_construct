@@ -3,6 +3,11 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { SmartImage } from "@/components/SmartImage";
+import {
+  StudioChip,
+  StudioControlGroup,
+  StudioWorkspace,
+} from "@/components/studios/StudioWorkspace";
 import { ToolLeadGate } from "@/components/transformations/ToolLeadGate";
 import { trackAtticEvent } from "@/lib/attic-studio/analytics";
 import {
@@ -153,271 +158,253 @@ export function AtticStudio() {
             </div>
           </div>
         ) : (
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] lg:items-start">
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setViewMode("photo")}
-                  className={`rounded-full border px-3 py-1.5 text-xs ${
-                    viewMode === "photo"
-                      ? "border-gold bg-gold/10 text-gold-deep"
-                      : "border-border text-text-muted"
-                  }`}
-                >
-                  Style photography
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setViewMode("configurator")}
-                  className={`rounded-full border px-3 py-1.5 text-xs ${
-                    viewMode === "configurator"
-                      ? "border-gold bg-gold/10 text-gold-deep"
-                      : "border-border text-text-muted"
-                  }`}
-                >
-                  Live structure preview
-                </button>
+          <StudioWorkspace
+            mobileEstimateBar={
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-text-dim">
+                    Planning investment
+                  </p>
+                  <p className="font-display text-xl text-ivory">
+                    {formatRange(estimate.low, estimate.high)}
+                  </p>
+                </div>
+                <a href="#attic-controls" className="text-xs font-semibold text-gold-deep">
+                  Options ↓
+                </a>
               </div>
-
-              {viewMode === "photo" ? (
-                <div className="relative mx-auto h-[min(260px,36vh)] w-full max-w-xl overflow-hidden rounded-xl border border-border shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]">
-                  <div className="absolute inset-0">
+            }
+            model={
+              <div className="relative h-full w-full">
+                <div className="absolute left-3 top-3 z-10 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("photo")}
+                    className={`rounded-full border px-3 py-1 text-[0.65rem] font-medium backdrop-blur transition ${
+                      viewMode === "photo"
+                        ? "border-gold bg-white/95 text-gold-deep"
+                        : "border-white/40 bg-black/35 text-white"
+                    }`}
+                  >
+                    Style photo
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("configurator")}
+                    className={`rounded-full border px-3 py-1 text-[0.65rem] font-medium backdrop-blur transition ${
+                      viewMode === "configurator"
+                        ? "border-gold bg-white/95 text-gold-deep"
+                        : "border-white/40 bg-black/35 text-white"
+                    }`}
+                  >
+                    Live structure
+                  </button>
+                </div>
+                {viewMode === "photo" ? (
+                  <>
                     <SmartImage
                       src={vision.heroImage}
                       alt={`${vision.name} luxury attic`}
                       fill
                       priority
-                      sizes="(max-width: 1024px) 100vw, 560px"
+                      sizes="(max-width: 1024px) 100vw, 70vw"
                     />
-                  </div>
-                  <div className="absolute bottom-2 left-2 right-2 flex flex-wrap items-center justify-between gap-2">
-                    <span className="rounded-full bg-white/92 px-2.5 py-1 text-xs font-medium text-ivory shadow-sm backdrop-blur">
-                      {vision.lifestyleName}
-                    </span>
-                    <span className="rounded-full bg-white/85 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
-                      Inspiration photo
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <div className="mx-auto w-full max-w-2xl">
-                  <AtticScene selections={sel} compact />
-                </div>
-              )}
-
-              <p className="text-sm text-text-muted">
-                {vision.description}{" "}
-                {viewMode === "photo" ? (
-                  <button
-                    type="button"
-                    className="text-gold-deep hover:underline"
-                    onClick={() => setViewMode("configurator")}
-                  >
-                    Switch to live structure preview →
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="text-gold-deep hover:underline"
-                    onClick={() => setViewMode("photo")}
-                  >
-                    View style photography →
-                  </button>
-                )}
-              </p>
-
-              <div>
-                <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
-                  Explore other visions
-                </p>
-                <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-                  {atticVisions.map((v) => (
-                    <button
-                      key={v.id}
-                      type="button"
-                      onClick={() => pickVision(v.id)}
-                      className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-lg border transition ${
-                        v.id === sel.visionId
-                          ? "border-gold ring-1 ring-gold"
-                          : "border-border opacity-90 hover:opacity-100"
-                      }`}
-                      title={v.name}
-                    >
-                      <SmartImage src={v.heroImage} alt={v.name} fill sizes="128px" />
-                      <span className="absolute inset-x-0 bottom-0 bg-black/55 px-1 py-0.5 text-[0.6rem] text-white">
-                        {v.name.split(" ")[0]}
+                    <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2">
+                      <span className="rounded-full bg-white/92 px-3 py-1 text-xs font-medium text-ivory shadow-sm backdrop-blur">
+                        {vision.lifestyleName}
                       </span>
-                    </button>
-                  ))}
-                </div>
+                      <span className="rounded-full bg-white/85 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.12em] text-text-dim shadow-sm backdrop-blur">
+                        Inspiration photo
+                      </span>
+                    </div>
+                  </>
+                ) : (
+                  <AtticScene selections={sel} compact />
+                )}
               </div>
-            </div>
-
-            <div className="space-y-5">
-              <div className="card p-6">
-                <p className="text-xs uppercase tracking-[0.14em] text-text-dim">
-                  Planning investment
+            }
+            modelFooter={
+              <>
+                <p className="text-sm text-text-muted">
+                  {vision.description}{" "}
+                  {viewMode === "photo" ? (
+                    <button
+                      type="button"
+                      className="text-gold-deep hover:underline"
+                      onClick={() => setViewMode("configurator")}
+                    >
+                      Switch to live structure preview →
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="text-gold-deep hover:underline"
+                      onClick={() => setViewMode("photo")}
+                    >
+                      View style photography →
+                    </button>
+                  )}
                 </p>
-                <p className="mt-1 font-display text-3xl text-ivory sm:text-4xl">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
+                    Explore other visions
+                  </p>
+                  <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+                    {atticVisions.map((v) => (
+                      <button
+                        key={v.id}
+                        type="button"
+                        onClick={() => pickVision(v.id)}
+                        className={`relative h-14 w-24 shrink-0 overflow-hidden rounded-lg border transition sm:h-16 sm:w-28 ${
+                          v.id === sel.visionId
+                            ? "border-gold ring-1 ring-gold"
+                            : "border-border opacity-90 hover:opacity-100"
+                        }`}
+                        title={v.name}
+                      >
+                        <SmartImage src={v.heroImage} alt={v.name} fill sizes="112px" />
+                        <span className="absolute inset-x-0 bottom-0 bg-black/55 px-1 py-0.5 text-[0.55rem] text-white">
+                          {v.name.split(" ")[0]}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </>
+            }
+            estimate={
+              <>
+                <p className="studio-estimate-label">Planning investment</p>
+                <p className="studio-estimate-range">
                   {formatRange(estimate.low, estimate.high)}
                 </p>
-                <p className="mt-2 text-sm text-text-muted">
+                <p className="studio-estimate-meta">
                   Mid ~{formatUsd(estimate.mid)} · ~{formatUsd(estimate.monthly)}/mo illustrative
                 </p>
-                <ul className="mt-4 max-h-36 space-y-1 overflow-y-auto text-xs text-text-muted">
+                <ul className="studio-estimate-breakdown space-y-1">
                   {estimate.breakdown.map((b) => (
-                    <li key={b.label} className="flex justify-between gap-3">
-                      <span>{b.label}</span>
+                    <li key={b.label} className="flex justify-between gap-2">
+                      <span className="truncate">{b.label}</span>
                       <span className="shrink-0 text-gold-deep">{formatUsd(b.amount)}</span>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-3 text-[0.65rem] text-text-dim">
+                <p className="studio-estimate-disclaimer">
                   *{estimateDisclaimer} {financingDisclaimer}
                 </p>
-              </div>
-
-              <div className="card p-5">
-                <div className="flex items-center justify-between gap-2">
+              </>
+            }
+            controls={
+              <div id="attic-controls" className="scroll-mt-36 space-y-2">
+                <div className="studio-control-group flex items-center justify-between gap-2">
                   <div>
-                    <p className="text-xs text-text-dim">Vision</p>
-                    <p className="font-display text-xl text-ivory">{vision.name}</p>
+                    <p className="text-[0.65rem] uppercase tracking-[0.12em] text-text-dim">Vision</p>
+                    <p className="font-display text-lg text-ivory">{vision.name}</p>
                   </div>
                   <button
                     type="button"
-                    className="text-sm text-gold-deep hover:underline"
+                    className="text-xs font-semibold text-gold-deep hover:underline"
                     onClick={() => setStep("vision")}
                   >
                     Change
                   </button>
                 </div>
+
+                <StudioControlGroup label="Dormers & roof light">
+                  {dormerOptions.map((d) => (
+                    <StudioChip
+                      key={d.id}
+                      active={sel.dormer === d.id}
+                      onClick={() => patch("dormer", d.id as DormerOption)}
+                    >
+                      {d.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Bathroom">
+                  {bathOptions.map((b) => (
+                    <StudioChip
+                      key={b.id}
+                      active={sel.bath === b.id}
+                      onClick={() => patch("bath", b.id as BathOption)}
+                    >
+                      {b.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Storage & built-ins">
+                  {storageOptions.map((s) => (
+                    <StudioChip
+                      key={s.id}
+                      active={sel.storage === s.id}
+                      onClick={() => patch("storage", s.id as StorageOption)}
+                    >
+                      {s.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Skylights">
+                  {skylightOptions.map((s) => (
+                    <StudioChip
+                      key={s.id}
+                      active={sel.skylights === s.id}
+                      onClick={() => patch("skylights", s.id as SkylightOption)}
+                    >
+                      {s.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Ceiling treatment">
+                  {ceilingOptions.map((c) => (
+                    <StudioChip
+                      key={c.id}
+                      active={sel.ceiling === c.id}
+                      onClick={() => patch("ceiling", c.id as CeilingOption)}
+                    >
+                      {c.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <StudioControlGroup label="Finish level">
+                  {finishTiers.map((f) => (
+                    <StudioChip
+                      key={f.id}
+                      active={sel.finish === f.id}
+                      onClick={() => patch("finish", f.id as FinishTier)}
+                    >
+                      {f.label}
+                    </StudioChip>
+                  ))}
+                </StudioControlGroup>
+
+                <ToolLeadGate
+                  tool="attic-studio"
+                  title="Unlock your Attic Vision Summary"
+                  description="Selections, planning range, and a feasibility checklist for structure, stairs, and egress — emailed to you."
+                  summaryPayload={summaryPayload}
+                />
+
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <Link href="/start" className="btn btn-primary !px-4 !py-2.5 text-xs">
+                    Schedule a consultation
+                  </Link>
+                  <Link
+                    href="/transformations/attics"
+                    className="btn btn-secondary !px-4 !py-2.5 text-xs"
+                  >
+                    How we build upper levels
+                  </Link>
+                </div>
               </div>
-
-              <FeatureGroup label="Dormers & roof light">
-                {dormerOptions.map((d) => (
-                  <Chip
-                    key={d.id}
-                    active={sel.dormer === d.id}
-                    onClick={() => patch("dormer", d.id as DormerOption)}
-                  >
-                    {d.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Bathroom">
-                {bathOptions.map((b) => (
-                  <Chip
-                    key={b.id}
-                    active={sel.bath === b.id}
-                    onClick={() => patch("bath", b.id as BathOption)}
-                  >
-                    {b.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Storage & built-ins">
-                {storageOptions.map((s) => (
-                  <Chip
-                    key={s.id}
-                    active={sel.storage === s.id}
-                    onClick={() => patch("storage", s.id as StorageOption)}
-                  >
-                    {s.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Skylights">
-                {skylightOptions.map((s) => (
-                  <Chip
-                    key={s.id}
-                    active={sel.skylights === s.id}
-                    onClick={() => patch("skylights", s.id as SkylightOption)}
-                  >
-                    {s.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Ceiling treatment">
-                {ceilingOptions.map((c) => (
-                  <Chip
-                    key={c.id}
-                    active={sel.ceiling === c.id}
-                    onClick={() => patch("ceiling", c.id as CeilingOption)}
-                  >
-                    {c.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Finish level">
-                {finishTiers.map((f) => (
-                  <Chip
-                    key={f.id}
-                    active={sel.finish === f.id}
-                    onClick={() => patch("finish", f.id as FinishTier)}
-                  >
-                    {f.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <ToolLeadGate
-                tool="attic-studio"
-                title="Unlock your Attic Vision Summary"
-                description="Selections, planning range, and a feasibility checklist for structure, stairs, and egress — emailed to you."
-                summaryPayload={summaryPayload}
-              />
-
-              <div className="flex flex-wrap gap-3">
-                <Link href="/start" className="btn btn-primary">
-                  Schedule a consultation
-                </Link>
-                <Link href="/transformations/attics" className="btn btn-secondary">
-                  Learn how we build upper levels
-                </Link>
-              </div>
-            </div>
-          </div>
+            }
+          />
         )}
       </div>
     </div>
-  );
-}
-
-function FeatureGroup({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="card p-5">
-      <p className="text-sm font-medium text-ivory">{label}</p>
-      <div className="mt-3 flex flex-wrap gap-2">{children}</div>
-    </div>
-  );
-}
-
-function Chip({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition ${
-        active
-          ? "border-gold bg-gold/10 text-gold-deep"
-          : "border-border text-text-muted hover:border-gold/40"
-      }`}
-    >
-      {children}
-    </button>
   );
 }

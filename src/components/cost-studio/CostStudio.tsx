@@ -199,9 +199,9 @@ export function CostStudio() {
       {state.step !== "lot" ? <EstimatePill estimate={estimate} /> : null}
 
       <div className="section pt-8">
-        <div className="container-wide grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          {/* Left: decisions */}
-          <div className="min-w-0">
+        <div className="container-wide grid gap-6 lg:grid-cols-[minmax(260px,0.9fr)_minmax(0,1.25fr)] lg:items-start">
+          {/* Decisions scroll; model column is wider so the visual stays dominant */}
+          <div className="min-w-0 order-2 lg:order-1 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1">
             {state.step === "lot" && (
               <StepShell
                 title="How will you build?"
@@ -522,16 +522,18 @@ export function CostStudio() {
             )}
           </div>
 
-          {/* Right: living model */}
-          <div className="lg:sticky lg:top-36 lg:self-start">
-            <InteractiveHouseModel selections={s} />
+          {/* Living model — visual hero; sticky + larger column */}
+          <div className="order-1 lg:order-2 lg:sticky lg:top-28 lg:self-start">
+            <div className="studio-model-stage !aspect-auto !min-h-[min(48vh,380px)] !max-h-[min(70vh,620px)] h-[min(58vh,540px)]">
+              <InteractiveHouseModel selections={s} className="!border-0 !shadow-none h-full !rounded-none" />
+            </div>
             {state.step !== "lot" && state.step !== "summary" ? (
-              <div className="card mt-4 p-5">
-                <p className="text-xs uppercase tracking-[0.14em] text-text-dim">Instant range</p>
-                <p className="mt-1 font-display text-3xl text-ivory">
+              <div className="studio-estimate-card mt-3">
+                <p className="studio-estimate-label">Instant range</p>
+                <p className="studio-estimate-range">
                   {formatRange(estimate.low, estimate.high)}
                 </p>
-                <p className="mt-2 text-xs text-text-dim">Construction only · No surprises</p>
+                <p className="studio-estimate-meta">Construction only · No surprises</p>
               </div>
             ) : null}
           </div>

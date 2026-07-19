@@ -3,6 +3,11 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { SmartImage } from "@/components/SmartImage";
+import {
+  StudioChip,
+  StudioControlGroup,
+  StudioWorkspace,
+} from "@/components/studios/StudioWorkspace";
 import { ToolLeadGate } from "@/components/transformations/ToolLeadGate";
 import { trackSuiteEvent } from "@/lib/primary-suite/analytics";
 import {
@@ -291,8 +296,9 @@ export function PrimarySuiteStudio() {
             </div>
           </div>
         ) : (
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start">
-            <div className="space-y-4">
+          <div className="studio-workspace-grid">
+            <div className="studio-model-column">
+              <div className="studio-model-sticky space-y-3">
               <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
@@ -319,7 +325,7 @@ export function PrimarySuiteStudio() {
               </div>
 
               {viewMode === "photo" ? (
-                <div className="relative mx-auto h-[min(260px,36vh)] w-full max-w-xl overflow-hidden rounded-xl border border-border shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]">
+                <div className="studio-model-stage relative">
                   <div className="absolute inset-0">
                     <SmartImage
                       src={vision.heroImage}
@@ -339,7 +345,7 @@ export function PrimarySuiteStudio() {
                   </div>
                 </div>
               ) : (
-                <div className="mx-auto w-full max-w-xl">
+                <div className="studio-model-stage">
                   <SuiteScene selections={sel} compact zone={zone === "bath" ? "bath" : zone === "closet" ? "closet" : "all"} />
                 </div>
               )}
@@ -371,12 +377,14 @@ export function PrimarySuiteStudio() {
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="card p-5">
-                <p className="text-xs uppercase tracking-[0.14em] text-text-dim">
+            </div>
+            <aside className="studio-sidebar" aria-label="Planning estimate and options">
+            <div className="studio-sidebar-scroll space-y-2">
+              <div className="studio-estimate-card">
+                <p className="studio-estimate-label">
                   Planning investment
                 </p>
-                <p className="mt-1 font-display text-3xl text-ivory">
+                <p className="studio-estimate-range">
                   {formatRange(estimate.low, estimate.high)}
                 </p>
                 <p className="mt-2 text-sm text-text-muted">
@@ -648,6 +656,7 @@ export function PrimarySuiteStudio() {
                 </Link>
               </div>
             </div>
+            </aside>
           </div>
         )}
       </div>
@@ -657,9 +666,9 @@ export function PrimarySuiteStudio() {
 
 function FeatureGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="card p-4">
-      <p className="text-sm font-medium text-ivory">{label}</p>
-      <div className="mt-2.5 flex flex-wrap gap-2">{children}</div>
+    <div className="studio-control-group">
+      <p className="studio-control-label">{label}</p>
+      <div className="studio-control-chips">{children}</div>
     </div>
   );
 }
@@ -679,11 +688,7 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition ${
-        active
-          ? "border-gold bg-gold/10 text-gold-deep"
-          : "border-border text-text-muted hover:border-gold/40"
-      }`}
+      className={`studio-chip ${active ? "studio-chip-active" : ""}`}
     >
       {swatch ? (
         <span

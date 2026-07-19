@@ -55,10 +55,10 @@ export function GarageScene({
 
   return (
     <div
-      className={`relative overflow-hidden border border-border ${
+      className={`relative h-full w-full overflow-hidden ${
         compact
-          ? "mx-auto h-[min(260px,36vh)] w-full max-w-xl rounded-xl shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]"
-          : "rounded-2xl shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
+          ? "rounded-[inherit]"
+          : "rounded-2xl border border-border shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
       }`}
       style={{
         background: `linear-gradient(180deg, #dce8f0 0%, ${purpose.wall} 42%, #c4b8a4 100%)`,
@@ -67,9 +67,9 @@ export function GarageScene({
     >
       <svg
         viewBox="0 0 800 420"
-        className={`w-full ${compact ? "h-full" : "h-auto"}`}
+        className="h-full w-full"
         role="img"
-        preserveAspectRatio={compact ? "xMidYMid slice" : "xMidYMid meet"}
+        preserveAspectRatio="xMidYMid slice"
       >
         <rect x="0" y="320" width="800" height="100" fill="#9a9080" opacity="0.35" />
         <ellipse cx="400" cy={deep ? 370 : 360} rx={deep ? 320 : 280} ry="28" fill="#8a8070" opacity="0.25" />
