@@ -8,24 +8,52 @@ export type GaragePurposeId =
   | "pool-pavilion"
   | "mixed-use";
 
-export type BaySizeId = "two-car" | "three-car" | "four-car" | "oversized";
-export type DoorStyleId = "carriage" | "modern-glass" | "full-view" | "wood-clad";
-export type ExteriorId = "match-main" | "stone-accent" | "board-batten" | "modern-stucco";
-export type RoofStyleId = "gable" | "hip" | "shed-modern";
-export type LivingAboveId = "none" | "loft-storage" | "full-suite";
+/** Size & footprint configuration */
+export type BaySizeId =
+  | "two-car"
+  | "three-car"
+  | "four-oversized"
+  | "single-workshop"
+  | "deep-rv";
+
+export type DoorStyleId =
+  | "carriage"
+  | "full-view"
+  | "solid-modern"
+  | "wood-clad"
+  | "mixed-glass-solid";
+
+export type ExteriorId =
+  | "match-main"
+  | "modern-farmhouse"
+  | "contemporary"
+  | "craftsman"
+  | "stone-accent"
+  | "full-stone";
+
+export type LivingAboveId = "none" | "storage-loft" | "full-living" | "large-suite";
+
 export type BathId = "none" | "half" | "full";
-export type WorkshopId = "none" | "bay-workshop" | "detailing-bay";
+
 export type FinishTier = "premium" | "luxury" | "estate";
+
+/** Secondary amenity flags */
+export type AmenityId =
+  | "workshop"
+  | "storage-cabinets"
+  | "climate-control"
+  | "ev-ready"
+  | "exterior-lighting"
+  | "covered-entry";
 
 export type GarageSelections = {
   purposeId: GaragePurposeId;
   bays: BaySizeId;
   door: DoorStyleId;
   exterior: ExteriorId;
-  roof: RoofStyleId;
   livingAbove: LivingAboveId;
   bath: BathId;
-  workshop: WorkshopId;
+  amenities: AmenityId[];
   finish: FinishTier;
 };
 

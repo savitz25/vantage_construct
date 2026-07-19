@@ -1,6 +1,6 @@
 "use client";
 
-import { getDoor, getExterior } from "@/lib/garage-studio/options";
+import { getBay, getDoor, getExterior } from "@/lib/garage-studio/options";
 import { getPurpose } from "@/lib/garage-studio/purposes";
 import type { GarageSelections } from "@/lib/garage-studio/types";
 
@@ -14,19 +14,44 @@ export function GarageScene({
   const purpose = getPurpose(selections.purposeId);
   const exterior = getExterior(selections.exterior);
   const door = getDoor(selections.door);
-  const body = exterior.body || purpose.body;
+  const bay = getBay(selections.bays);
+
+  const body = exterior.fullStone ? exterior.body : exterior.body || purpose.body;
+  const trim = exterior.trim;
   const roofColor = purpose.roof;
   const doorColor = door.color;
-  const hasUpper = selections.livingAbove !== "none";
-  const fullSuite = selections.livingAbove === "full-suite";
-  const bays =
-    selections.bays === "two-car" ? 2 : selections.bays === "four-car" || selections.bays === "oversized" ? 4 : 3;
-  const wide = selections.bays === "four-car" || selections.bays === "oversized";
-  const shed = selections.roof === "shed-modern";
-  const hip = selections.roof === "hip";
 
-  const buildingW = wide ? 520 : 400;
-  const buildingX = (800 - buildingW) / 2;
+  const living = selections.livingAbove;
+  const hasUpper = living !== "none";
+  const loftOnly = living === "storage-loft";
+  const fullLiving = living === "full-living" || living === "large-suite";
+  const largeSuite = living === "large-suite";
+
+  const doorCount = bay.doorCount;
+  const wide = bay.wide;
+  const deep = bay.deep;
+  const asymmetric = bay.asymmetric;
+
+  let buildingW = wide ? 540 : deep ? 380 : 420;
+  if (asymmetric) buildingW = 460;
+  if (doorCount === 3 && !wide) buildingW = 460;
+  if (doorCount === 4) buildingW = 540;
+
+  const buildingX = (800 - buildingW) / 2 - (deep ? 20 : 0);
+  const groundY = 320;
+  const bodyTop = hasUpper ? (largeSuite ? 120 : loftOnly ? 155 : 135) : 185;
+  const bodyH = groundY - bodyTop;
+
+  const hasWorkshop = selections.amenities.includes("workshop") || asymmetric;
+  const hasCovered = selections.amenities.includes("covered-entry");
+  const hasLighting = selections.amenities.includes("exterior-lighting");
+  const hasEv = selections.amenities.includes("ev-ready");
+  const hasBath = selections.bath !== "none";
+  const fullBath = selections.bath === "full";
+  const residential =
+    selections.purposeId === "guest-adu" ||
+    selections.purposeId === "carriage-house" ||
+    fullLiving;
 
   return (
     <div
@@ -35,7 +60,9 @@ export function GarageScene({
           ? "mx-auto h-[min(260px,36vh)] w-full max-w-xl rounded-xl shadow-[0_12px_40px_rgba(40,30,15,0.1)] sm:h-[min(300px,38vh)]"
           : "rounded-2xl shadow-[0_20px_60px_rgba(40,30,15,0.12)]"
       }`}
-      style={{ background: `linear-gradient(180deg, #dce8f0 0%, ${purpose.wall} 45%, #c4b8a4 100%)` }}
+      style={{
+        background: `linear-gradient(180deg, #dce8f0 0%, ${purpose.wall} 42%, #c4b8a4 100%)`,
+      }}
       aria-label={`${purpose.name} building preview`}
     >
       <svg
@@ -44,107 +71,211 @@ export function GarageScene({
         role="img"
         preserveAspectRatio={compact ? "xMidYMid slice" : "xMidYMid meet"}
       >
-        {/* Ground */}
         <rect x="0" y="320" width="800" height="100" fill="#9a9080" opacity="0.35" />
-        <ellipse cx="400" cy="360" rx="280" ry="28" fill="#8a8070" opacity="0.25" />
+        <ellipse cx="400" cy={deep ? 370 : 360} rx={deep ? 320 : 280} ry="28" fill="#8a8070" opacity="0.25" />
 
-        {/* Main house hint far left */}
-        <rect x="40" y="200" width="90" height="120" fill="#d8d0c4" opacity="0.5" />
-        <path d="M35 200 L85 155 L135 200" fill="#5c5348" opacity="0.45" />
+        {/* Main house hint */}
+        <rect x="30" y="210" width="80" height="110" fill="#d8d0c4" opacity="0.45" />
+        <path d="M25 210 L70 165 L115 210" fill="#5c5348" opacity="0.4" />
+
+        {/* Covered entry */}
+        {hasCovered ? (
+          <g>
+            <rect
+              x={buildingX - 36}
+              y={bodyTop + bodyH * 0.35}
+              width="40"
+              height={bodyH * 0.55}
+              fill={shade(body, -5)}
+              stroke={trim}
+            />
+            <path
+              d={`M${buildingX - 42} ${bodyTop + bodyH * 0.35} L${buildingX - 16} ${bodyTop + bodyH * 0.22} L${buildingX + 8} ${bodyTop + bodyH * 0.35} Z`}
+              fill={roofColor}
+            />
+          </g>
+        ) : null}
 
         {/* Building body */}
         <rect
           x={buildingX}
-          y={hasUpper ? 140 : 180}
-          width={buildingW}
-          height={hasUpper ? 180 : 140}
+          y={bodyTop}
+          width={buildingW + (deep ? 60 : 0)}
+          height={bodyH}
           fill={body}
-          stroke={shade(body, -20)}
-          strokeWidth="1"
+          stroke={exterior.fullStone ? shade(body, -15) : trim}
+          strokeWidth={exterior.craftsman ? 3 : 1.5}
         />
 
-        {/* Upper floor windows */}
+        {/* Board & batten verticals for farmhouse */}
+        {selections.exterior === "modern-farmhouse"
+          ? Array.from({ length: 12 }).map((_, i) => (
+              <line
+                key={i}
+                x1={buildingX + 18 + i * ((buildingW + (deep ? 60 : 0)) / 12)}
+                y1={bodyTop + 4}
+                x2={buildingX + 18 + i * ((buildingW + (deep ? 60 : 0)) / 12)}
+                y2={groundY - 4}
+                stroke={trim}
+                strokeWidth="1.2"
+                opacity="0.35"
+              />
+            ))
+          : null}
+
+        {/* Craftsman brackets */}
+        {exterior.craftsman ? (
+          <>
+            <path
+              d={`M${buildingX + 20} ${bodyTop + 8} L${buildingX + 40} ${bodyTop - 12} L${buildingX + 60} ${bodyTop + 8}`}
+              fill="none"
+              stroke={trim}
+              strokeWidth="3"
+            />
+            <path
+              d={`M${buildingX + buildingW - 60} ${bodyTop + 8} L${buildingX + buildingW - 40} ${bodyTop - 12} L${buildingX + buildingW - 20} ${bodyTop + 8}`}
+              fill="none"
+              stroke={trim}
+              strokeWidth="3"
+            />
+          </>
+        ) : null}
+
+        {/* Upper level */}
         {hasUpper ? (
           <>
-            {[0, 1, 2].map((i) => (
+            {loftOnly ? (
+              <>
+                <rect
+                  x={buildingX + 50}
+                  y={bodyTop + 18}
+                  width="36"
+                  height="22"
+                  rx="2"
+                  fill="#c5d8e8"
+                  stroke="#a8b8c4"
+                />
+                <rect
+                  x={buildingX + buildingW - 90}
+                  y={bodyTop + 18}
+                  width="36"
+                  height="22"
+                  rx="2"
+                  fill="#c5d8e8"
+                  stroke="#a8b8c4"
+                />
+              </>
+            ) : (
+              Array.from({ length: largeSuite ? 4 : 3 }).map((_, i) => (
+                <rect
+                  key={i}
+                  x={buildingX + 30 + i * ((buildingW - 40) / (largeSuite ? 4 : 3))}
+                  y={bodyTop + 18}
+                  width={residential ? 44 : 36}
+                  height={largeSuite ? 48 : 40}
+                  rx="2"
+                  fill="#c5d8e8"
+                  stroke="#a8b8c4"
+                />
+              ))
+            )}
+            {fullLiving ? (
               <rect
-                key={i}
-                x={buildingX + 40 + i * (buildingW / 3.2)}
-                y="155"
-                width={fullSuite ? 48 : 36}
-                height={fullSuite ? 42 : 28}
+                x={buildingX + buildingW - 55}
+                y={bodyTop + bodyH * 0.28}
+                width="20"
+                height={42}
                 rx="2"
-                fill="#c5d8e8"
-                stroke="#a8b8c4"
-              />
-            ))}
-            {fullSuite ? (
-              <rect
-                x={buildingX + buildingW - 70}
-                y="200"
-                width="22"
-                height="50"
-                rx="2"
-                fill={shade(body, -15)}
+                fill={shade(body, -18)}
+                stroke={trim}
               />
             ) : null}
           </>
         ) : null}
 
         {/* Roof */}
-        {shed ? (
-          <path
-            d={`M${buildingX - 10} ${hasUpper ? 150 : 190} L${buildingX + buildingW + 10} ${hasUpper ? 120 : 160} L${buildingX + buildingW + 10} ${hasUpper ? 145 : 185} L${buildingX - 10} ${hasUpper ? 175 : 215} Z`}
-            fill={roofColor}
+        <path
+          d={
+            largeSuite
+              ? `M${buildingX - 14} ${bodyTop + 8} L${buildingX + buildingW / 2} ${bodyTop - 48} L${buildingX + buildingW + 14 + (deep ? 60 : 0)} ${bodyTop + 8} Z`
+              : loftOnly
+                ? `M${buildingX - 10} ${bodyTop + 12} L${buildingX + buildingW / 2} ${bodyTop - 28} L${buildingX + buildingW + 10 + (deep ? 60 : 0)} ${bodyTop + 12} Z`
+                : `M${buildingX - 12} ${bodyTop + 6} L${buildingX + buildingW / 2} ${bodyTop - 40} L${buildingX + buildingW + 12 + (deep ? 60 : 0)} ${bodyTop + 6} Z`
+          }
+          fill={roofColor}
+        />
+
+        {/* Stone base */}
+        {exterior.stoneBase || exterior.fullStone ? (
+          <rect
+            x={buildingX}
+            y={groundY - 22}
+            width={buildingW + (deep ? 60 : 0)}
+            height="22"
+            fill={exterior.fullStone ? shade(body, -10) : "#7a7268"}
+            opacity="0.9"
           />
-        ) : hip ? (
-          <path
-            d={`M${buildingX - 8} ${hasUpper ? 148 : 188} L${buildingX + buildingW / 2} ${hasUpper ? 95 : 135} L${buildingX + buildingW + 8} ${hasUpper ? 148 : 188} L${buildingX + buildingW - 20} ${hasUpper ? 160 : 200} L${buildingX + 20} ${hasUpper ? 160 : 200} Z`}
-            fill={roofColor}
-          />
-        ) : (
-          <path
-            d={`M${buildingX - 12} ${hasUpper ? 150 : 190} L${buildingX + buildingW / 2} ${hasUpper ? 90 : 130} L${buildingX + buildingW + 12} ${hasUpper ? 150 : 190} Z`}
-            fill={roofColor}
-          />
-        )}
+        ) : null}
 
         {/* Garage doors */}
-        {Array.from({ length: Math.min(bays, 4) }).map((_, i) => {
-          const gap = 12;
-          const doorW = (buildingW - gap * (bays + 1)) / bays;
+        {Array.from({ length: doorCount }).map((_, i) => {
+          const totalW = buildingW + (deep ? 60 : 0);
+          const gap = 10;
+          const doorW = (totalW - gap * (doorCount + 1)) / doorCount;
           const x = buildingX + gap + i * (doorW + gap);
-          const y = hasUpper ? 230 : 210;
-          const h = hasUpper ? 85 : 100;
+          const y = groundY - (deep ? 115 : 100);
+          const h = deep ? 115 : 95;
+          const isGlass =
+            selections.door === "full-view" ||
+            (selections.door === "mixed-glass-solid" && i % 2 === 0);
           return (
             <g key={i}>
-              <rect x={x} y={y} width={doorW} height={h} rx="3" fill={doorColor} stroke={shade(doorColor, -25)} />
+              <rect
+                x={x}
+                y={y}
+                width={doorW}
+                height={h}
+                rx="3"
+                fill={isGlass ? "#9ab0c4" : doorColor}
+                stroke={shade(doorColor, -30)}
+              />
               {selections.door === "carriage" || selections.door === "wood-clad" ? (
                 <>
-                  <line x1={x + doorW / 2} y1={y} x2={x + doorW / 2} y2={y + h} stroke={shade(doorColor, -40)} />
-                  <line x1={x} y1={y + h * 0.45} x2={x + doorW} y2={y + h * 0.45} stroke={shade(doorColor, -30)} />
+                  <line
+                    x1={x + doorW / 2}
+                    y1={y}
+                    x2={x + doorW / 2}
+                    y2={y + h}
+                    stroke={shade(doorColor, -40)}
+                  />
+                  <line
+                    x1={x}
+                    y1={y + h * 0.42}
+                    x2={x + doorW}
+                    y2={y + h * 0.42}
+                    stroke={shade(doorColor, -30)}
+                  />
                 </>
-              ) : (
-                <>
-                  {[0.25, 0.5, 0.75].map((t) => (
+              ) : null}
+              {selections.door === "solid-modern"
+                ? [0.33, 0.66].map((t) => (
                     <line
                       key={t}
                       x1={x + 6}
                       y1={y + h * t}
                       x2={x + doorW - 6}
                       y2={y + h * t}
-                      stroke="rgba(255,255,255,0.25)"
+                      stroke="rgba(255,255,255,0.12)"
                     />
-                  ))}
-                </>
-              )}
-              {selections.door === "full-view" || selections.door === "modern-glass" ? (
+                  ))
+                : null}
+              {isGlass ? (
                 <rect
-                  x={x + 8}
-                  y={y + 8}
-                  width={doorW - 16}
-                  height={h - 16}
-                  fill="#a8c0d4"
+                  x={x + 6}
+                  y={y + 6}
+                  width={doorW - 12}
+                  height={h - 12}
+                  fill="#b8d0e4"
                   opacity="0.55"
                 />
               ) : null}
@@ -152,28 +283,80 @@ export function GarageScene({
           );
         })}
 
-        {/* Stone base accent */}
-        {selections.exterior === "stone-accent" ? (
+        {/* Workshop wing */}
+        {hasWorkshop ? (
+          <g>
+            <rect
+              x={buildingX + buildingW + (deep ? 60 : 0)}
+              y={bodyTop + (hasUpper ? 40 : 20)}
+              width="75"
+              height={groundY - (bodyTop + (hasUpper ? 40 : 20))}
+              fill={shade(body, -8)}
+              stroke={trim}
+            />
+            <rect
+              x={buildingX + buildingW + (deep ? 60 : 0) + 18}
+              y={bodyTop + (hasUpper ? 55 : 40)}
+              width="40"
+              height="32"
+              rx="2"
+              fill="#c5d8e8"
+            />
+            <rect
+              x={buildingX + buildingW + (deep ? 60 : 0) + 28}
+              y={groundY - 55}
+              width="18"
+              height="50"
+              rx="2"
+              fill={shade(body, -20)}
+            />
+          </g>
+        ) : null}
+
+        {/* Bath residential windows */}
+        {hasBath ? (
           <rect
-            x={buildingX}
-            y={hasUpper ? 300 : 290}
-            width={buildingW}
-            height={20}
-            fill="#7a7268"
-            opacity="0.85"
+            x={buildingX + 12}
+            y={hasUpper ? bodyTop + bodyH * 0.45 : bodyTop + 30}
+            width={fullBath ? 28 : 18}
+            height={fullBath ? 36 : 24}
+            rx="2"
+            fill="#c5d8e8"
+            stroke="#a8b8c4"
           />
         ) : null}
 
-        {/* Side workshop wing hint */}
-        {selections.workshop !== "none" ? (
-          <rect
-            x={buildingX + buildingW}
-            y={hasUpper ? 200 : 220}
-            width="70"
-            height={hasUpper ? 120 : 100}
-            fill={shade(body, -8)}
-            stroke={shade(body, -25)}
-          />
+        {/* EV charger */}
+        {hasEv ? (
+          <g>
+            <rect
+              x={buildingX + buildingW + (deep ? 50 : -8) - (hasWorkshop ? -10 : 0)}
+              y={groundY - 48}
+              width="10"
+              height="28"
+              rx="2"
+              fill="#2a2a2a"
+            />
+            <circle
+              cx={buildingX + buildingW + (deep ? 55 : -3) - (hasWorkshop ? -10 : 0)}
+              cy={groundY - 42}
+              r="3"
+              fill="#5f8a58"
+            />
+          </g>
+        ) : null}
+
+        {/* Exterior sconces */}
+        {hasLighting ? (
+          <>
+            <circle cx={buildingX + 16} cy={bodyTop + bodyH * 0.4} r="4" fill="#f5e6c8" />
+            <circle
+              cx={buildingX + buildingW + (deep ? 60 : 0) - 16}
+              cy={bodyTop + bodyH * 0.4}
+              r="4"
+              fill="#f5e6c8"
+            />
+          </>
         ) : null}
       </svg>
 

@@ -1,63 +1,314 @@
 import type {
+  AmenityId,
   BaySizeId,
   BathId,
   DoorStyleId,
   ExteriorId,
   FinishTier,
   LivingAboveId,
-  RoofStyleId,
-  WorkshopId,
 } from "./types";
 
-export const baySizes: { id: BaySizeId; label: string; blurb: string; cost: number }[] = [
-  { id: "two-car", label: "2-car", blurb: "Classic dual bay", cost: 0 },
-  { id: "three-car", label: "3-car", blurb: "Family + guest capacity", cost: 35000 },
-  { id: "four-car", label: "4-car", blurb: "Expanded estate garage", cost: 70000 },
-  { id: "oversized", label: "Oversized bays", blurb: "Collector depth & height", cost: 95000 },
+/** Priority 2 — Size & configuration */
+export const baySizes: {
+  id: BaySizeId;
+  label: string;
+  blurb: string;
+  cost: number;
+  /** Visual door count */
+  doorCount: number;
+  wide: boolean;
+  deep: boolean;
+  asymmetric: boolean;
+}[] = [
+  {
+    id: "two-car",
+    label: "2-car",
+    blurb: "Standard double-wide",
+    cost: 0,
+    doorCount: 2,
+    wide: false,
+    deep: false,
+    asymmetric: false,
+  },
+  {
+    id: "three-car",
+    label: "3-car",
+    blurb: "Noticeably wider building",
+    cost: 35000,
+    doorCount: 3,
+    wide: false,
+    deep: false,
+    asymmetric: false,
+  },
+  {
+    id: "four-oversized",
+    label: "4-car / oversized",
+    blurb: "Much wider, more imposing",
+    cost: 85000,
+    doorCount: 4,
+    wide: true,
+    deep: false,
+    asymmetric: false,
+  },
+  {
+    id: "single-workshop",
+    label: "Single bay + workshop",
+    blurb: "Asymmetric work + park composition",
+    cost: 28000,
+    doorCount: 1,
+    wide: false,
+    deep: false,
+    asymmetric: true,
+  },
+  {
+    id: "deep-rv",
+    label: "Deep bay / RV-capable",
+    blurb: "Longer footprint for boat or RV",
+    cost: 72000,
+    doorCount: 2,
+    wide: false,
+    deep: true,
+    asymmetric: false,
+  },
 ];
 
-export const doorStyles: { id: DoorStyleId; label: string; blurb: string; cost: number; color: string }[] = [
-  { id: "carriage", label: "Carriage doors", blurb: "Classic estate look", cost: 0, color: "#6b5344" },
-  { id: "modern-glass", label: "Modern glass", blurb: "Contemporary panels", cost: 12000, color: "#8a9aaa" },
-  { id: "full-view", label: "Full-view aluminum", blurb: "Show the collection", cost: 18000, color: "#c0c8d0" },
-  { id: "wood-clad", label: "Wood-clad", blurb: "Warm architectural face", cost: 14000, color: "#8b6914" },
+/** Priority 3 — Garage door style (high visual impact) */
+export const doorStyles: {
+  id: DoorStyleId;
+  label: string;
+  blurb: string;
+  cost: number;
+  color: string;
+}[] = [
+  {
+    id: "carriage",
+    label: "Traditional carriage",
+    blurb: "Classic divided doors, warmer look",
+    cost: 8000,
+    color: "#6b5344",
+  },
+  {
+    id: "full-view",
+    label: "Modern full-view / glass",
+    blurb: "Contemporary, transparent presence",
+    cost: 18000,
+    color: "#a8b8c8",
+  },
+  {
+    id: "solid-modern",
+    label: "Solid modern panel",
+    blurb: "Clean, minimal luxury",
+    cost: 10000,
+    color: "#3a3a3a",
+  },
+  {
+    id: "wood-clad",
+    label: "Wood / wood-look",
+    blurb: "Rich traditional or modern farmhouse",
+    cost: 14000,
+    color: "#8b6914",
+  },
+  {
+    id: "mixed-glass-solid",
+    label: "Mixed glass + solid",
+    blurb: "Balanced, interesting composition",
+    cost: 15000,
+    color: "#5c6570",
+  },
 ];
 
-export const exteriors: { id: ExteriorId; label: string; blurb: string; cost: number; body: string }[] = [
-  { id: "match-main", label: "Match main house", blurb: "Seamless architecture", cost: 0, body: "#d4cfc7" },
-  { id: "stone-accent", label: "Stone accents", blurb: "Masonry base or veneers", cost: 22000, body: "#9a9088" },
-  { id: "board-batten", label: "Board & batten", blurb: "Farmhouse / modern rustic", cost: 4000, body: "#c9b898" },
-  { id: "modern-stucco", label: "Modern stucco", blurb: "Clean contemporary massing", cost: 6000, body: "#e8e4de" },
+/** Priority 4 — Exterior style & materials */
+export const exteriors: {
+  id: ExteriorId;
+  label: string;
+  blurb: string;
+  cost: number;
+  body: string;
+  trim: string;
+  stoneBase: boolean;
+  fullStone: boolean;
+  craftsman: boolean;
+}[] = [
+  {
+    id: "match-main",
+    label: "Match main house",
+    blurb: "Same siding, trim, and color language",
+    cost: 0,
+    body: "#d4cfc7",
+    trim: "#f5f0e8",
+    stoneBase: false,
+    fullStone: false,
+    craftsman: false,
+  },
+  {
+    id: "modern-farmhouse",
+    label: "Modern farmhouse",
+    blurb: "Board & batten, contrasting trim",
+    cost: 6000,
+    body: "#e8e2d6",
+    trim: "#2a2a2a",
+    stoneBase: false,
+    fullStone: false,
+    craftsman: false,
+  },
+  {
+    id: "contemporary",
+    label: "Contemporary",
+    blurb: "Clean lines, darker or mixed materials",
+    cost: 10000,
+    body: "#4a4a4a",
+    trim: "#1a1a1a",
+    stoneBase: false,
+    fullStone: false,
+    craftsman: false,
+  },
+  {
+    id: "craftsman",
+    label: "Craftsman / traditional",
+    blurb: "Heavier trim, brackets, warmer details",
+    cost: 12000,
+    body: "#c9b898",
+    trim: "#f0ebe4",
+    stoneBase: false,
+    fullStone: false,
+    craftsman: true,
+  },
+  {
+    id: "stone-accent",
+    label: "Stone or brick accents",
+    blurb: "Texture and weight on base or corners",
+    cost: 22000,
+    body: "#d8d0c4",
+    trim: "#f5f0e8",
+    stoneBase: true,
+    fullStone: false,
+    craftsman: false,
+  },
+  {
+    id: "full-stone",
+    label: "Full stone / premium cladding",
+    blurb: "Substantial, high-end presence",
+    cost: 48000,
+    body: "#8a8278",
+    trim: "#e8e2d8",
+    stoneBase: true,
+    fullStone: true,
+    craftsman: false,
+  },
 ];
 
-export const roofStyles: { id: RoofStyleId; label: string; blurb: string; cost: number }[] = [
-  { id: "gable", label: "Gable", blurb: "Timeless roof form", cost: 0 },
-  { id: "hip", label: "Hip", blurb: "Refined four-sided pitch", cost: 8000 },
-  { id: "shed-modern", label: "Modern shed", blurb: "Single-slope contemporary", cost: 5000 },
+/** Priority 5 — Living space above (major driver) */
+export const livingAbove: {
+  id: LivingAboveId;
+  label: string;
+  blurb: string;
+  cost: number;
+}[] = [
+  {
+    id: "none",
+    label: "None (single story)",
+    blurb: "Standard garage proportions",
+    cost: 0,
+  },
+  {
+    id: "storage-loft",
+    label: "Storage loft only",
+    blurb: "Higher roof, minimal upper windows",
+    cost: 28000,
+  },
+  {
+    id: "full-living",
+    label: "Full living / ADU",
+    blurb: "Clear second story, residential windows",
+    cost: 95000,
+  },
+  {
+    id: "large-suite",
+    label: "Large living suite",
+    blurb: "Substantial second floor, residential character",
+    cost: 145000,
+  },
 ];
 
-export const livingAbove: { id: LivingAboveId; label: string; blurb: string; cost: number }[] = [
-  { id: "none", label: "Single story", blurb: "Garage / studio only", cost: 0 },
-  { id: "loft-storage", label: "Loft / storage", blurb: "Upper storage or flex", cost: 28000 },
-  { id: "full-suite", label: "Full living above", blurb: "Carriage suite / ADU program", cost: 95000 },
-];
-
+/** Priority 6 — Bathrooms */
 export const baths: { id: BathId; label: string; blurb: string; cost: number }[] = [
   { id: "none", label: "No bath", blurb: "Dry building", cost: 0 },
-  { id: "half", label: "Half bath", blurb: "Powder for guests & shop", cost: 14000 },
-  { id: "full", label: "Full bath", blurb: "Shower for suite / pool house", cost: 32000 },
+  { id: "half", label: "Half bath / powder", blurb: "Smaller residential cue", cost: 14000 },
+  { id: "full", label: "Full bathroom", blurb: "Residential window + plumbing", cost: 32000 },
 ];
 
-export const workshops: { id: WorkshopId; label: string; blurb: string; cost: number }[] = [
-  { id: "none", label: "No workshop", blurb: "Parking / living focus", cost: 0 },
-  { id: "bay-workshop", label: "Workshop bay", blurb: "Power + work zone", cost: 18000 },
-  { id: "detailing-bay", label: "Detailing bay", blurb: "Collector prep space", cost: 24000 },
+/** Priority 6 — Key amenities (multi-select) */
+export const amenities: {
+  id: AmenityId;
+  label: string;
+  blurb: string;
+  cost: number;
+  group: "function" | "systems" | "exterior";
+}[] = [
+  {
+    id: "workshop",
+    label: "Workshop area",
+    blurb: "Work windows + side door",
+    cost: 18000,
+    group: "function",
+  },
+  {
+    id: "storage-cabinets",
+    label: "Built-in storage",
+    blurb: "Cabinetry package cue",
+    cost: 8500,
+    group: "function",
+  },
+  {
+    id: "climate-control",
+    label: "Climate control package",
+    blurb: "Insulation + conditioned space",
+    cost: 16000,
+    group: "systems",
+  },
+  {
+    id: "ev-ready",
+    label: "EV charging ready",
+    blurb: "Wall unit / electrical prep",
+    cost: 3500,
+    group: "systems",
+  },
+  {
+    id: "exterior-lighting",
+    label: "Exterior lighting package",
+    blurb: "Sconces & architectural light",
+    cost: 4500,
+    group: "exterior",
+  },
+  {
+    id: "covered-entry",
+    label: "Covered entry / porch",
+    blurb: "Roofed entry presence",
+    cost: 12000,
+    group: "exterior",
+  },
 ];
 
-export const finishTiers: { id: FinishTier; label: string; blurb: string; mult: number }[] = [
-  { id: "premium", label: "Premium", blurb: "Refined everyday finishes", mult: 1 },
-  { id: "luxury", label: "Luxury", blurb: "Elevated materials & doors", mult: 1.2 },
-  { id: "estate", label: "Estate", blurb: "Top-tier architecture package", mult: 1.42 },
+/** Priority 7 — Finish level (global multiplier) */
+export const finishTiers: {
+  id: FinishTier;
+  label: string;
+  blurb: string;
+  mult: number;
+}[] = [
+  { id: "premium", label: "Premium", blurb: "Good quality materials · base", mult: 1 },
+  {
+    id: "luxury",
+    label: "Luxury",
+    blurb: "Richer materials & detailing · +15–25%",
+    mult: 1.2,
+  },
+  {
+    id: "estate",
+    label: "Estate",
+    blurb: "Highest-end materials & presence · +30–50%+",
+    mult: 1.4,
+  },
 ];
 
 export function getBay(id: BaySizeId) {
@@ -69,17 +320,14 @@ export function getDoor(id: DoorStyleId) {
 export function getExterior(id: ExteriorId) {
   return exteriors.find((e) => e.id === id) ?? exteriors[0];
 }
-export function getRoof(id: RoofStyleId) {
-  return roofStyles.find((r) => r.id === id) ?? roofStyles[0];
-}
 export function getLiving(id: LivingAboveId) {
   return livingAbove.find((l) => l.id === id) ?? livingAbove[0];
 }
 export function getBath(id: BathId) {
   return baths.find((b) => b.id === id) ?? baths[0];
 }
-export function getWorkshop(id: WorkshopId) {
-  return workshops.find((w) => w.id === id) ?? workshops[0];
+export function getAmenity(id: AmenityId) {
+  return amenities.find((a) => a.id === id)!;
 }
 export function getFinish(id: FinishTier) {
   return finishTiers.find((f) => f.id === id) ?? finishTiers[0];

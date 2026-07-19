@@ -1,4 +1,5 @@
 import type {
+  AmenityId,
   BaySizeId,
   BathId,
   DoorStyleId,
@@ -6,8 +7,6 @@ import type {
   FinishTier,
   GaragePurposeId,
   LivingAboveId,
-  RoofStyleId,
-  WorkshopId,
 } from "./types";
 
 export type GaragePurpose = {
@@ -25,10 +24,9 @@ export type GaragePurpose = {
     bays: BaySizeId;
     door: DoorStyleId;
     exterior: ExteriorId;
-    roof: RoofStyleId;
     livingAbove: LivingAboveId;
     bath: BathId;
-    workshop: WorkshopId;
+    amenities: AmenityId[];
     finish: FinishTier;
   };
 };
@@ -38,7 +36,7 @@ export const garagePurposes: GaragePurpose[] = [
     id: "luxury-garage",
     name: "Luxury Garage",
     lifestyleName: "Private Garage",
-    tagline: "Refined storage that belongs on the estate",
+    tagline: "Clean multi-bay garage, refined exterior",
     description:
       "A purpose-built multi-bay garage with architectural detailing, lighting, and finishes worthy of the main house.",
     heroImage: "/media/garages/luxury-garage.jpg",
@@ -50,18 +48,17 @@ export const garagePurposes: GaragePurpose[] = [
       bays: "three-car",
       door: "carriage",
       exterior: "match-main",
-      roof: "gable",
       livingAbove: "none",
       bath: "none",
-      workshop: "none",
+      amenities: ["exterior-lighting"],
       finish: "luxury",
     },
   },
   {
     id: "collectors-garage",
-    name: "Collector’s Garage",
+    name: "Collector’s / Oversized",
     lifestyleName: "Collector’s Pavilion",
-    tagline: "Oversized bays for the cars that matter",
+    tagline: "Wider, taller presence for the cars that matter",
     description:
       "Climate-aware volume, full-view doors, and detailing space for a serious collection — still elegant from the curb.",
     heroImage: "/media/garages/collectors-garage.jpg",
@@ -70,13 +67,12 @@ export const garagePurposes: GaragePurpose[] = [
     roof: "#2a2a2a",
     baseBias: 22000,
     defaults: {
-      bays: "oversized",
+      bays: "four-oversized",
       door: "full-view",
-      exterior: "modern-stucco",
-      roof: "hip",
+      exterior: "contemporary",
       livingAbove: "none",
       bath: "half",
-      workshop: "detailing-bay",
+      amenities: ["workshop", "climate-control", "ev-ready"],
       finish: "estate",
     },
   },
@@ -84,7 +80,7 @@ export const garagePurposes: GaragePurpose[] = [
     id: "workshop-garage",
     name: "Workshop + Garage",
     lifestyleName: "Maker’s Garage",
-    tagline: "Power, storage, and a proper work bay",
+    tagline: "Workbench energy, functional bay layout",
     description:
       "Cars plus craft — durable floors, serious electrical, and a workshop zone that doesn’t look like a shed.",
     heroImage: "/media/garages/workshop-garage.jpg",
@@ -93,13 +89,12 @@ export const garagePurposes: GaragePurpose[] = [
     roof: "#5c5348",
     baseBias: 8000,
     defaults: {
-      bays: "three-car",
-      door: "carriage",
-      exterior: "board-batten",
-      roof: "gable",
-      livingAbove: "loft-storage",
+      bays: "single-workshop",
+      door: "solid-modern",
+      exterior: "modern-farmhouse",
+      livingAbove: "storage-loft",
       bath: "half",
-      workshop: "bay-workshop",
+      amenities: ["workshop", "storage-cabinets"],
       finish: "premium",
     },
   },
@@ -107,7 +102,7 @@ export const garagePurposes: GaragePurpose[] = [
     id: "creative-studio",
     name: "Studio / Creative Space",
     lifestyleName: "Creative Outbuilding",
-    tagline: "Daylight, quiet, and room to make",
+    tagline: "More glass, cleaner modern character",
     description:
       "Art, music, or craft — an intentional studio building with light, insulation, and architecture that elevates the property.",
     heroImage: "/media/garages/creative-studio.jpg",
@@ -117,12 +112,11 @@ export const garagePurposes: GaragePurpose[] = [
     baseBias: 5000,
     defaults: {
       bays: "two-car",
-      door: "modern-glass",
-      exterior: "board-batten",
-      roof: "shed-modern",
+      door: "mixed-glass-solid",
+      exterior: "modern-farmhouse",
       livingAbove: "none",
       bath: "half",
-      workshop: "none",
+      amenities: ["climate-control", "covered-entry"],
       finish: "luxury",
     },
   },
@@ -130,7 +124,7 @@ export const garagePurposes: GaragePurpose[] = [
     id: "carriage-house",
     name: "Carriage House",
     lifestyleName: "Carriage House",
-    tagline: "Garage below, living above — estate classic",
+    tagline: "Two-story massing — living clearly above",
     description:
       "The ultimate accessory structure: refined vehicle storage with a full upper living program when zoning allows.",
     heroImage: "/media/garages/carriage-house.jpg",
@@ -142,10 +136,9 @@ export const garagePurposes: GaragePurpose[] = [
       bays: "two-car",
       door: "carriage",
       exterior: "stone-accent",
-      roof: "gable",
-      livingAbove: "full-suite",
+      livingAbove: "full-living",
       bath: "full",
-      workshop: "none",
+      amenities: ["exterior-lighting", "covered-entry"],
       finish: "luxury",
     },
   },
@@ -153,7 +146,7 @@ export const garagePurposes: GaragePurpose[] = [
     id: "guest-adu",
     name: "Guest Suite / ADU",
     lifestyleName: "Accessory Living",
-    tagline: "Independent living with estate manners",
+    tagline: "Residential windows, warmer house-like look",
     description:
       "A freestanding guest suite or accessory dwelling — multi-gen, rental potential, or private hospitality.",
     heroImage: "/media/garages/guest-adu.jpg",
@@ -164,19 +157,18 @@ export const garagePurposes: GaragePurpose[] = [
     defaults: {
       bays: "two-car",
       door: "wood-clad",
-      exterior: "match-main",
-      roof: "gable",
-      livingAbove: "full-suite",
+      exterior: "craftsman",
+      livingAbove: "large-suite",
       bath: "full",
-      workshop: "none",
+      amenities: ["climate-control", "covered-entry", "exterior-lighting"],
       finish: "luxury",
     },
   },
   {
     id: "pool-pavilion",
-    name: "Pool House / Pavilion",
+    name: "Pool House / Entertainment",
     lifestyleName: "Entertainment Pavilion",
-    tagline: "Resort energy steps from the water",
+    tagline: "More glass, indoor-outdoor lifestyle focus",
     description:
       "Changing rooms, wet bar potential, outdoor entertaining support — architecture that completes the outdoor estate.",
     heroImage: "/media/garages/pool-pavilion.jpg",
@@ -186,12 +178,11 @@ export const garagePurposes: GaragePurpose[] = [
     baseBias: 15000,
     defaults: {
       bays: "two-car",
-      door: "modern-glass",
+      door: "full-view",
       exterior: "stone-accent",
-      roof: "hip",
       livingAbove: "none",
       bath: "full",
-      workshop: "none",
+      amenities: ["covered-entry", "exterior-lighting", "climate-control"],
       finish: "estate",
     },
   },
@@ -211,10 +202,9 @@ export const garagePurposes: GaragePurpose[] = [
       bays: "three-car",
       door: "carriage",
       exterior: "match-main",
-      roof: "gable",
-      livingAbove: "loft-storage",
+      livingAbove: "storage-loft",
       bath: "half",
-      workshop: "bay-workshop",
+      amenities: ["workshop", "storage-cabinets", "ev-ready"],
       finish: "luxury",
     },
   },

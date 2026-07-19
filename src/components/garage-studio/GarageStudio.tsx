@@ -6,18 +6,18 @@ import { SmartImage } from "@/components/SmartImage";
 import { ToolLeadGate } from "@/components/transformations/ToolLeadGate";
 import { trackGarageEvent } from "@/lib/garage-studio/analytics";
 import {
+  amenities,
   baySizes,
   baths,
   doorStyles,
   exteriors,
   finishTiers,
   livingAbove,
-  roofStyles,
-  workshops,
 } from "@/lib/garage-studio/options";
 import { calculateGarageEstimate, formatRange, formatUsd } from "@/lib/garage-studio/pricing";
 import { garagePurposes, getPurpose } from "@/lib/garage-studio/purposes";
 import type {
+  AmenityId,
   BaySizeId,
   BathId,
   DoorStyleId,
@@ -26,8 +26,6 @@ import type {
   GaragePurposeId,
   GarageSelections,
   LivingAboveId,
-  RoofStyleId,
-  WorkshopId,
 } from "@/lib/garage-studio/types";
 import { estimateDisclaimer, financingDisclaimer } from "@/lib/transformations/disclaimers";
 import { GarageScene } from "./GarageScene";
@@ -42,6 +40,7 @@ export function GarageStudio() {
   const [step, setStep] = useState<"purpose" | "customize">("purpose");
   const [sel, setSel] = useState<GarageSelections>(initial);
   const [viewMode, setViewMode] = useState<"photo" | "configurator">("photo");
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     trackGarageEvent("tool_started");
@@ -71,6 +70,29 @@ export function GarageStudio() {
       return next;
     });
     if (key !== "purposeId") setViewMode("configurator");
+  }
+
+  function toggleAmenity(id: AmenityId) {
+    setSel((prev) => {
+      const on = prev.amenities.includes(id);
+      const amenitiesNext = on
+        ? prev.amenities.filter((a) => a !== id)
+        : [...prev.amenities, id];
+      const next = { ...prev, amenities: amenitiesNext };
+      const nextEst = calculateGarageEstimate(next);
+      trackGarageEvent("feature_changed", {
+        feature: "amenity",
+        value: id,
+        enabled: !on,
+      });
+      trackGarageEvent("estimate_updated", {
+        mid: nextEst.mid,
+        low: nextEst.low,
+        high: nextEst.high,
+      });
+      return next;
+    });
+    setViewMode("configurator");
   }
 
   const summaryPayload = {
@@ -117,8 +139,8 @@ export function GarageStudio() {
               What do you want to create?
             </h2>
             <p className="mt-2 max-w-2xl text-text-muted">
-              Eight high-end accessory structures — from private garages to carriage houses and ADUs.
-              Pick a vision, then configure bays, doors, living space, and finishes.
+              Start with purpose — the highest-impact choice. Then refine size, living space above,
+              doors, and exterior with live visuals and a planning estimate.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {garagePurposes.map((p) => (
@@ -157,7 +179,7 @@ export function GarageStudio() {
             </div>
           </div>
         ) : (
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] lg:items-start">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start">
             <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-2">
                 <button
@@ -258,21 +280,21 @@ export function GarageStudio() {
               </div>
             </div>
 
-            <div className="space-y-5">
-              <div className="card p-6">
+            <div className="space-y-4">
+              <div className="card p-5">
                 <p className="text-xs uppercase tracking-[0.14em] text-text-dim">
                   Planning investment
                 </p>
-                <p className="mt-1 font-display text-3xl text-ivory sm:text-4xl">
+                <p className="mt-1 font-display text-3xl text-ivory">
                   {formatRange(estimate.low, estimate.high)}
                 </p>
                 <p className="mt-2 text-sm text-text-muted">
                   Mid ~{formatUsd(estimate.mid)} · ~{formatUsd(estimate.monthly)}/mo illustrative
                 </p>
-                <ul className="mt-4 max-h-36 space-y-1 overflow-y-auto text-xs text-text-muted">
+                <ul className="mt-3 max-h-32 space-y-1 overflow-y-auto text-xs text-text-muted">
                   {estimate.breakdown.map((b) => (
                     <li key={b.label} className="flex justify-between gap-3">
-                      <span>{b.label}</span>
+                      <span className="line-clamp-1">{b.label}</span>
                       <span className="shrink-0 text-gold-deep">{formatUsd(b.amount)}</span>
                     </li>
                   ))}
@@ -282,11 +304,11 @@ export function GarageStudio() {
                 </p>
               </div>
 
-              <div className="card p-5">
+              <div className="card p-4">
                 <div className="flex items-center justify-between gap-2">
                   <div>
-                    <p className="text-xs text-text-dim">Building type</p>
-                    <p className="font-display text-xl text-ivory">{purpose.name}</p>
+                    <p className="text-xs text-text-dim">Primary purpose</p>
+                    <p className="font-display text-lg text-ivory">{purpose.name}</p>
                   </div>
                   <button
                     type="button"
@@ -298,7 +320,12 @@ export function GarageStudio() {
                 </div>
               </div>
 
-              <FeatureGroup label="Size / bays">
+              {/* Highest-impact toggles first */}
+              <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
+                Highest impact
+              </p>
+
+              <FeatureGroup label="Size / number of bays">
                 {baySizes.map((b) => (
                   <Chip
                     key={b.id}
@@ -306,44 +333,6 @@ export function GarageStudio() {
                     onClick={() => patch("bays", b.id as BaySizeId)}
                   >
                     {b.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Door style">
-                {doorStyles.map((d) => (
-                  <Chip
-                    key={d.id}
-                    active={sel.door === d.id}
-                    onClick={() => patch("door", d.id as DoorStyleId)}
-                    swatch={d.color}
-                  >
-                    {d.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Exterior">
-                {exteriors.map((e) => (
-                  <Chip
-                    key={e.id}
-                    active={sel.exterior === e.id}
-                    onClick={() => patch("exterior", e.id as ExteriorId)}
-                    swatch={e.body}
-                  >
-                    {e.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
-
-              <FeatureGroup label="Roof">
-                {roofStyles.map((r) => (
-                  <Chip
-                    key={r.id}
-                    active={sel.roof === r.id}
-                    onClick={() => patch("roof", r.id as RoofStyleId)}
-                  >
-                    {r.label}
                   </Chip>
                 ))}
               </FeatureGroup>
@@ -360,46 +349,88 @@ export function GarageStudio() {
                 ))}
               </FeatureGroup>
 
-              <FeatureGroup label="Bathroom">
-                {baths.map((b) => (
+              <FeatureGroup label="Garage door style">
+                {doorStyles.map((d) => (
                   <Chip
-                    key={b.id}
-                    active={sel.bath === b.id}
-                    onClick={() => patch("bath", b.id as BathId)}
+                    key={d.id}
+                    active={sel.door === d.id}
+                    onClick={() => patch("door", d.id as DoorStyleId)}
+                    swatch={d.color}
                   >
-                    {b.label}
+                    {d.label}
                   </Chip>
                 ))}
               </FeatureGroup>
 
-              <FeatureGroup label="Workshop / detailing">
-                {workshops.map((w) => (
+              <FeatureGroup label="Exterior style">
+                {exteriors.map((e) => (
                   <Chip
-                    key={w.id}
-                    active={sel.workshop === w.id}
-                    onClick={() => patch("workshop", w.id as WorkshopId)}
+                    key={e.id}
+                    active={sel.exterior === e.id}
+                    onClick={() => patch("exterior", e.id as ExteriorId)}
+                    swatch={e.body}
                   >
-                    {w.label}
+                    {e.label}
                   </Chip>
                 ))}
               </FeatureGroup>
 
-              <FeatureGroup label="Finish level">
-                {finishTiers.map((f) => (
-                  <Chip
-                    key={f.id}
-                    active={sel.finish === f.id}
-                    onClick={() => patch("finish", f.id as FinishTier)}
-                  >
-                    {f.label}
-                  </Chip>
-                ))}
-              </FeatureGroup>
+              <button
+                type="button"
+                className="text-sm text-gold-deep hover:underline"
+                onClick={() => setShowMore((v) => !v)}
+              >
+                {showMore ? "Hide secondary options ↑" : "Show bathroom, amenities & finish →"}
+              </button>
+
+              {showMore ? (
+                <>
+                  <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">
+                    Secondary options
+                  </p>
+
+                  <FeatureGroup label="Bathroom">
+                    {baths.map((b) => (
+                      <Chip
+                        key={b.id}
+                        active={sel.bath === b.id}
+                        onClick={() => patch("bath", b.id as BathId)}
+                      >
+                        {b.label}
+                      </Chip>
+                    ))}
+                  </FeatureGroup>
+
+                  <FeatureGroup label="Amenities (toggle any)">
+                    {amenities.map((a) => (
+                      <Chip
+                        key={a.id}
+                        active={sel.amenities.includes(a.id)}
+                        onClick={() => toggleAmenity(a.id as AmenityId)}
+                      >
+                        {a.label}
+                      </Chip>
+                    ))}
+                  </FeatureGroup>
+
+                  <FeatureGroup label="Finish level">
+                    {finishTiers.map((f) => (
+                      <Chip
+                        key={f.id}
+                        active={sel.finish === f.id}
+                        onClick={() => patch("finish", f.id as FinishTier)}
+                      >
+                        {f.label}
+                      </Chip>
+                    ))}
+                  </FeatureGroup>
+                </>
+              ) : null}
 
               <ToolLeadGate
                 tool="garage-studio"
                 title="Unlock your Garage Vision Summary"
-                description="Building type, selections, planning range, and next-step checklist — emailed to you."
+                description="Building type, all toggles, planning range, and next-step checklist — emailed to you."
                 summaryPayload={summaryPayload}
               />
 
@@ -421,9 +452,9 @@ export function GarageStudio() {
 
 function FeatureGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="card p-5">
+    <div className="card p-4">
       <p className="text-sm font-medium text-ivory">{label}</p>
-      <div className="mt-3 flex flex-wrap gap-2">{children}</div>
+      <div className="mt-2.5 flex flex-wrap gap-2">{children}</div>
     </div>
   );
 }
