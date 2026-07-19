@@ -41,6 +41,9 @@ export default function AccessoryBuildingsPage() {
           <Link href="/start" className="btn btn-primary">
             Schedule a consultation
           </Link>
+          <Link href="/accessory-building-cost-nj#tool" className="btn btn-secondary">
+            Open the Garage Studio
+          </Link>
           <Link href="/transformations/garages" className="btn btn-secondary">
             Garages on existing properties
           </Link>

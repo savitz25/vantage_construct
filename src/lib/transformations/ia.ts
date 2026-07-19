@@ -82,6 +82,12 @@ export const transformTools: TransformToolLink[] = [
     label: "Attic Studio",
     href: "/attic-conversion-cost-nj",
     body: "Upper-level visions — suites, offices, lofts — with dormers, baths, skylights, and a live planning estimate.",
+    badge: "Attics",
+  },
+  {
+    label: "Garage Studio",
+    href: "/accessory-building-cost-nj",
+    body: "Custom garages, carriage houses, workshops, and ADU outbuildings — configure bays, doors, and living space above.",
     badge: "New",
   },
   {
@@ -128,6 +134,7 @@ export const transformServicePaths = [
   "/transformations/remodeling",
   "/kitchen-remodel-cost-nj",
   "/attic-conversion-cost-nj",
+  "/accessory-building-cost-nj",
   "/finished-basement-cost-nj",
   "/move-or-improve-calculator-nj",
   "/adu-cost-calculator-nj",
@@ -155,6 +162,14 @@ export const serviceToolPairs = [
     toolLabel: "Attic Studio",
     openCta: "Open the Attic Studio",
     learnCta: "Learn how we build upper levels",
+  },
+  {
+    servicePath: "/transformations/garages",
+    serviceLabel: "Garages & Accessory Buildings",
+    toolPath: "/accessory-building-cost-nj",
+    toolLabel: "Garage Studio",
+    openCta: "Open the Garage Studio",
+    learnCta: "Learn how we build them",
   },
   {
     servicePath: "/transformations/basements",

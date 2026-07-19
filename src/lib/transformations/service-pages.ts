@@ -600,101 +600,107 @@ export const kitchensPage: TransformServiceContent = {
 
 export const garagesPage: TransformServiceContent = {
   path: "/transformations/garages",
-  seoTitle: "Custom Garages NJ | Accessory Buildings & Workshops | Vantage",
+  seoTitle: "Custom Garages NJ | Carriage Houses & Accessory Buildings | Vantage",
   seoDescription:
-    "Luxury custom garages and accessory buildings in Central & Northern New Jersey — collector bays, workshops, studios, and carriage houses matched to your architecture.",
-  eyebrow: "Garages & accessory buildings · Purpose-built craft",
+    "Luxury custom garages, carriage houses, workshops, and accessory buildings in Central & Northern New Jersey. Design yours in the Garage Studio.",
+  eyebrow: "Garages & accessory buildings · Estate architecture",
   headline: "Buildings that earn their place on the property",
   subhead:
-    "Collector garages, workshops, art studios, and carriage-style structures designed with the same architectural intention as the main residence. Serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding communities since 1990.",
-  primaryCta: { label: "Schedule a consultation", href: "/start" },
-  secondaryCta: {
-    label: "New-build accessory buildings",
-    href: "/custom-homes/accessory-buildings",
+    "Private garages, collector pavilions, carriage houses, and creative outbuildings designed with the same intention as the main residence. Serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding communities since 1990.",
+  primaryCta: {
+    label: "Open the Garage Studio",
+    href: "/accessory-building-cost-nj#tool",
   },
+  secondaryCta: { label: "Schedule a consultation", href: "/start" },
   toolCard: {
-    badge: "Related studio",
-    title: "Planning a full property vision?",
-    body: "For new homes and ADUs, explore Design Studio and the ADU Payback calculator. For garage additions on an existing estate, start with a site consultation.",
-    cta: "Open the ADU Payback calculator",
-    href: "/adu-cost-calculator-nj#tool",
+    badge: "Interactive tool · Garage Studio",
+    title: "Design your garage or accessory building in minutes",
+    body: "Choose luxury garage, carriage house, workshop, studio, ADU, or pavilion — then configure bays, doors, living space above, and finishes with a live North Jersey planning estimate.",
+    cta: "Open the Garage Studio",
+    href: "/accessory-building-cost-nj#tool",
   },
-  spaceHeading: "What are you housing?",
+  spaceHeading: "What are you creating?",
   spaces: [
     {
-      title: "Collector & multi-bay garages",
-      body: "Climate-aware bays, lighting, and detailing worthy of the cars (or collections) inside.",
+      title: "Luxury garage",
+      body: "Refined multi-bay storage with architectural detailing worthy of the main house.",
       gradient: "from-[#1c2433] via-[#2a384c] to-[#121820]",
+      image: "/media/garages/luxury-garage.jpg",
     },
     {
-      title: "Workshops & maker spaces",
-      body: "Power, storage, ventilation, and durable finishes for serious projects.",
-      gradient: "from-[#30281c] via-[#483c28] to-[#1c1810]",
-    },
-    {
-      title: "Art & music studios",
-      body: "Daylight, acoustics, and quiet separation from the main house.",
+      title: "Collector’s garage",
+      body: "Oversized bays, full-view doors, and detailing space for the cars that matter.",
       gradient: "from-[#2a2430] via-[#3d3448] to-[#1a161f]",
+      image: "/media/garages/collectors-garage.jpg",
     },
     {
-      title: "Carriage houses & loft storage",
-      body: "Upper-level storage or flex space over the garage when structure and code allow.",
+      title: "Workshop + garage",
+      body: "Power, storage, and a proper work bay — still elegant from the curb.",
+      gradient: "from-[#30281c] via-[#483c28] to-[#1c1810]",
+      image: "/media/garages/workshop-garage.jpg",
+    },
+    {
+      title: "Creative studio",
+      body: "Daylight, quiet, and room to make — an intentional outbuilding for craft or music.",
+      gradient: "from-[#2a2430] via-[#3d3448] to-[#1a161f]",
+      image: "/media/garages/creative-studio.jpg",
+    },
+    {
+      title: "Carriage house",
+      body: "Garage below, living above — the estate classic when zoning allows.",
       gradient: "from-[#243028] via-[#384838] to-[#141c18]",
+      image: "/media/garages/carriage-house.jpg",
     },
     {
-      title: "Pool houses & estate outbuildings",
-      body: "Support buildings that complete the property story — changing rooms, bars, storage.",
+      title: "Guest suite / ADU",
+      body: "Independent living with estate manners — multi-gen, guests, or rental potential.",
       gradient: "from-[#1f2a32] via-[#2f4450] to-[#141c22]",
-    },
-    {
-      title: "Architectural matching",
-      body: "Roof forms, materials, and proportions designed to look original to the estate.",
-      gradient: "from-[#2e2418] via-[#4a3820] to-[#1a1410]",
+      image: "/media/garages/guest-adu.jpg",
     },
   ],
-  trustHeading: "Accessory buildings done with main-house standards",
+  trustHeading: "Foundation, structure & continuity — done right",
   trustIntro:
-    "A garage or outbuilding should strengthen the property — not look like a afterthought. We plan foundation, structure, utilities, and exterior architecture as seriously as any living room.",
+    "A garage or outbuilding should strengthen the property — not look like an afterthought. We plan foundation, structure, utilities, and exterior architecture as seriously as any living room.",
   trustPillars: [
     {
       title: "Site & zoning first",
       body: "Setbacks, coverage, and municipal rules checked before design investment so the building is buildable.",
     },
     {
-      title: "Structure & envelope",
-      body: "Foundations, framing, and weatherproofing sized for use — cars, shop equipment, or climate control.",
+      title: "Structure & foundation",
+      body: "Foundations, framing, and weatherproofing sized for cars, shop equipment, climate control, or living space above.",
     },
     {
-      title: "Power & systems",
-      body: "Electrical capacity, lighting, and optional HVAC planned for how you’ll actually use the building.",
+      title: "Utilities & systems",
+      body: "Electrical capacity, lighting, plumbing, and optional HVAC planned for how you’ll actually use the building.",
     },
     {
-      title: "Architectural continuity",
+      title: "Matching the main house",
       body: "Materials and massing that read as part of the estate language — not a kit shed next to a luxury home.",
     },
   ],
   pricingHeading: "What custom garages typically cost",
   pricingIntro:
-    "Size, finishes, climate control, and loft programs drive range. These bands are early planning guidance only.",
+    "Transparent planning bands for North Jersey. Size, living space above, doors, and finish level drive range — use the Garage Studio for a personalized conceptual estimate.",
   priceBands: [
     {
       scope: "Refined multi-bay garage",
-      includes: "Structure, doors, basic electrical, exterior matching",
-      range: "Often low– to mid–six figures",
+      includes: "Structure, doors, electrical, exterior matching",
+      range: "Typically ~$85k–$180k+",
     },
     {
       scope: "Workshop / studio building",
       includes: "Power, finishes, insulation, lighting package",
-      range: "Commonly mid–six figures depending on systems",
+      range: "Commonly ~$120k–$250k+",
     },
     {
-      scope: "Carriage house / loft program",
-      includes: "Upper level, stairs, enhanced envelope",
-      range: "Project-specific — site evaluation required",
+      scope: "Carriage house / living above",
+      includes: "Upper level, stairs, bath, enhanced envelope",
+      range: "Often $200k–$400k+ · site evaluation required",
     },
   ],
   pricingNote:
-    "Estimates only. Final pricing after site evaluation, zoning review, and Design & Discovery. Cross-link: new-construction accessory buildings also covered under Custom Homes.",
+    "Conceptual estimates only. Final pricing after design consultation, site evaluation, zoning review, and structural design. Also see Custom Homes → Accessory Buildings for new-construction packages.",
   caseHeading: "From driveway overflow to estate architecture",
   caseStory: {
     problem:
@@ -706,6 +712,10 @@ export const garagesPage: TransformServiceContent = {
   },
   faqs: [
     {
+      q: "How much does a custom garage cost in NJ?",
+      a: "Many luxury multi-bay garages land from the high five figures into the mid–six figures. Carriage houses and ADU programs climb higher. Open the Garage Studio for a live planning range.",
+    },
+    {
       q: "Can you match my home’s exterior on a new garage?",
       a: "Yes — roof forms, siding or masonry, trim, and proportions are designed for architectural continuity.",
     },
@@ -714,7 +724,7 @@ export const garagesPage: TransformServiceContent = {
       a: "Typically yes. Size, use, and utilities affect requirements. We manage municipal approvals.",
     },
     {
-      q: "Can a garage include a loft or studio above?",
+      q: "Can a garage include a loft or living suite above?",
       a: "Often, when structure, access, and zoning allow. We’ll assess feasibility early.",
     },
     {
@@ -724,7 +734,7 @@ export const garagesPage: TransformServiceContent = {
   ],
   closeHeading: "Give your collection — and your craft — a proper home",
   closeBody:
-    "Schedule a complimentary consultation. We’ll review the site, zoning, and the building that belongs on your property.",
+    "Open the Garage Studio to shape your vision and planning range, or schedule a complimentary consultation — site, zoning, and architecture honesty included.",
 };
 
 export const outdoorPage: TransformServiceContent = {
