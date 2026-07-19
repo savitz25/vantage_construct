@@ -1,11 +1,12 @@
 import type {
-  AppliancePackageId,
   CounterMaterialId,
   CoverStructureId,
   FinishTier,
   FireFeatureId,
   FlooringId,
-  KitchenConfigId,
+  GrillTypeId,
+  KitchenLevelId,
+  KitchenUpgradeId,
   LightingId,
   OutdoorAmenityId,
   OutdoorVisionId,
@@ -24,8 +25,9 @@ export type OutdoorVision = {
   accent: string;
   baseBias: number;
   defaults: {
-    kitchen: KitchenConfigId;
-    appliances: AppliancePackageId;
+    kitchenLevel: KitchenLevelId;
+    grillType: GrillTypeId;
+    kitchenUpgrades: KitchenUpgradeId[];
     counter: CounterMaterialId;
     cover: CoverStructureId;
     fire: FireFeatureId;
@@ -51,8 +53,9 @@ export const outdoorVisions: OutdoorVision[] = [
     accent: "#b8893d",
     baseBias: 12000,
     defaults: {
-      kitchen: "full-linear",
-      appliances: "entertainer",
+      kitchenLevel: "full-kitchen",
+      grillType: "premium-36-42",
+      kitchenUpgrades: ["side-burners", "sink"],
       counter: "granite",
       cover: "pergola",
       fire: "none",
@@ -76,8 +79,9 @@ export const outdoorVisions: OutdoorVision[] = [
     accent: "#6b5344",
     baseBias: 8000,
     defaults: {
-      kitchen: "compact",
-      appliances: "essential-grill",
+      kitchenLevel: "essential-grill",
+      grillType: "premium-36-42",
+      kitchenUpgrades: [],
       counter: "quartz",
       cover: "pavilion",
       fire: "linear-modern",
@@ -101,8 +105,9 @@ export const outdoorVisions: OutdoorVision[] = [
     accent: "#c45c4a",
     baseBias: 0,
     defaults: {
-      kitchen: "none",
-      appliances: "essential-grill",
+      kitchenLevel: "none",
+      grillType: "premium-36-42",
+      kitchenUpgrades: [],
       counter: "concrete",
       cover: "open-patio",
       fire: "fire-seating",
@@ -126,8 +131,9 @@ export const outdoorVisions: OutdoorVision[] = [
     accent: "#b8893d",
     baseBias: 35000,
     defaults: {
-      kitchen: "l-shape",
-      appliances: "chef-suite",
+      kitchenLevel: "chef-resort",
+      grillType: "large-48",
+      kitchenUpgrades: ["pizza-oven", "beverage-center", "ice-maker"],
       counter: "porcelain",
       cover: "pavilion",
       fire: "traditional-fireplace",
@@ -151,8 +157,9 @@ export const outdoorVisions: OutdoorVision[] = [
     accent: "#3d7a9a",
     baseBias: 10000,
     defaults: {
-      kitchen: "compact",
-      appliances: "entertainer",
+      kitchenLevel: "entertainer",
+      grillType: "premium-36-42",
+      kitchenUpgrades: ["ice-maker"],
       counter: "porcelain",
       cover: "pergola",
       fire: "fire-pit",
@@ -176,8 +183,9 @@ export const outdoorVisions: OutdoorVision[] = [
     accent: "#8f6a28",
     baseBias: -2000,
     defaults: {
-      kitchen: "compact",
-      appliances: "essential-grill",
+      kitchenLevel: "essential-grill",
+      grillType: "premium-36-42",
+      kitchenUpgrades: ["side-burners"],
       counter: "granite",
       cover: "pergola",
       fire: "none",
@@ -201,8 +209,9 @@ export const outdoorVisions: OutdoorVision[] = [
     accent: "#b8893d",
     baseBias: 18000,
     defaults: {
-      kitchen: "island",
-      appliances: "chef-suite",
+      kitchenLevel: "chef-resort",
+      grillType: "dual-grill",
+      kitchenUpgrades: ["pizza-oven", "beverage-center", "kegerator"],
       counter: "quartz",
       cover: "pavilion",
       fire: "linear-modern",

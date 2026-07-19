@@ -1,6 +1,13 @@
 "use client";
 
-import { getCounter, getCover, getFire, getFlooring } from "@/lib/outdoor-studio/options";
+import {
+  getCounter,
+  getCover,
+  getFire,
+  getFlooring,
+  getGrillType,
+  getKitchenLevel,
+} from "@/lib/outdoor-studio/options";
 import { getVision } from "@/lib/outdoor-studio/visions";
 import type { OutdoorSelections } from "@/lib/outdoor-studio/types";
 
@@ -16,10 +23,14 @@ export function OutdoorScene({
   const counter = getCounter(selections.counter);
   const cover = getCover(selections.cover);
   const fire = getFire(selections.fire);
+  const level = getKitchenLevel(selections.kitchenLevel);
+  const grill = getGrillType(selections.grillType);
 
-  const hasKitchen = selections.kitchen !== "none";
+  const hasKitchen = selections.kitchenLevel !== "none";
+  const layout = level.layout;
   const kitchenWide =
-    selections.kitchen === "l-shape" || selections.kitchen === "island" ? 220 : selections.kitchen === "full-linear" ? 200 : 140;
+    layout === "l-shape" || layout === "island" ? 220 : layout === "linear" ? 200 : 140;
+  const upgrades = new Set(selections.kitchenUpgrades);
   const covered = cover.id !== "open-patio";
   const pavilion = cover.id === "pavilion" || cover.id === "screened";
   const pergola = cover.id === "pergola";
@@ -140,10 +151,49 @@ export function OutdoorScene({
               rx="2"
               fill={counter.color}
             />
-            {/* Grill glow */}
-            <rect x="220" y="208" width="40" height="28" rx="2" fill="#2a2a2a" />
-            <rect x="225" y="212" width="30" height="8" fill="#c45c4a" opacity="0.7" />
-            {selections.kitchen === "l-shape" || selections.kitchen === "island" ? (
+            {/* Primary grill */}
+            <rect
+              x="220"
+              y="208"
+              width={grill.visual === "large" || grill.visual === "dual" ? 56 : 40}
+              height="28"
+              rx="2"
+              fill="#2a2a2a"
+            />
+            <rect
+              x="225"
+              y="212"
+              width={grill.visual === "large" || grill.visual === "dual" ? 46 : 30}
+              height="8"
+              fill={grill.visual === "infrared" ? "#e07040" : "#c45c4a"}
+              opacity="0.75"
+            />
+            {grill.visual === "dual" ? (
+              <rect x="285" y="208" width="40" height="28" rx="2" fill="#2a2a2a" />
+            ) : null}
+            {grill.visual === "flattop" || upgrades.has("griddle") ? (
+              <rect x="270" y="210" width="36" height="22" rx="2" fill="#3a3a3a" />
+            ) : null}
+            {grill.visual === "kamado" ? (
+              <ellipse cx="300" cy="222" rx="16" ry="14" fill="#3d2a22" />
+            ) : null}
+            {/* Side / power burners */}
+            {upgrades.has("side-burners") || upgrades.has("power-burner") ? (
+              <rect x="320" y="212" width="22" height="18" rx="2" fill="#333" />
+            ) : null}
+            {/* Pizza oven dome */}
+            {upgrades.has("pizza-oven") ? (
+              <path d="M360 230 Q375 200 390 230 Z" fill="#6b5344" />
+            ) : null}
+            {/* Fridge / beverage tall unit */}
+            {upgrades.has("refrigerator") || upgrades.has("beverage-center") ? (
+              <rect x="200" y="210" width="16" height="40" rx="2" fill="#5a6570" />
+            ) : null}
+            {/* Sink */}
+            {upgrades.has("sink") || upgrades.has("prep-sink") ? (
+              <ellipse cx={200 + kitchenWide - 30} cy="218" rx="12" ry="6" fill="#8a9aaa" />
+            ) : null}
+            {layout === "l-shape" || layout === "island" ? (
               <rect
                 x={200 + kitchenWide - 70}
                 y="250"
@@ -153,7 +203,7 @@ export function OutdoorScene({
                 fill="#4a4540"
               />
             ) : null}
-            {selections.kitchen === "island" ? (
+            {layout === "island" ? (
               <rect x="340" y="255" width="90" height="45" rx="4" fill="#5c5348" />
             ) : null}
             {bar ? (

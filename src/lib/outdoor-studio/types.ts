@@ -7,11 +7,47 @@ export type OutdoorVisionId =
   | "courtyard-dining"
   | "entertainment-pavilion";
 
-export type KitchenConfigId = "none" | "compact" | "full-linear" | "l-shape" | "island";
-export type AppliancePackageId = "essential-grill" | "entertainer" | "chef-suite";
+/** Primary kitchen level / package */
+export type KitchenLevelId =
+  | "none"
+  | "essential-grill"
+  | "full-kitchen"
+  | "entertainer"
+  | "chef-resort";
+
+/** Grill size / type upgrade */
+export type GrillTypeId =
+  | "premium-36-42"
+  | "large-48"
+  | "dual-grill"
+  | "flattop"
+  | "kamado"
+  | "infrared-hybrid";
+
+/** Individual appliance & station upgrades (multi-select) */
+export type KitchenUpgradeId =
+  | "pizza-oven"
+  | "refrigerator"
+  | "beverage-center"
+  | "freezer-drawer"
+  | "ice-maker"
+  | "kegerator"
+  | "sink"
+  | "prep-sink"
+  | "side-burners"
+  | "power-burner"
+  | "griddle"
+  | "warming-drawer"
+  | "coffee-station";
+
 export type CounterMaterialId = "granite" | "quartz" | "concrete" | "porcelain";
 export type CoverStructureId = "open-patio" | "pergola" | "pavilion" | "screened";
-export type FireFeatureId = "none" | "linear-modern" | "traditional-fireplace" | "fire-pit" | "fire-seating";
+export type FireFeatureId =
+  | "none"
+  | "linear-modern"
+  | "traditional-fireplace"
+  | "fire-pit"
+  | "fire-seating";
 export type StyleId =
   | "modern-farmhouse"
   | "contemporary"
@@ -34,8 +70,9 @@ export type OutdoorAmenityId =
 
 export type OutdoorSelections = {
   visionId: OutdoorVisionId;
-  kitchen: KitchenConfigId;
-  appliances: AppliancePackageId;
+  kitchenLevel: KitchenLevelId;
+  grillType: GrillTypeId;
+  kitchenUpgrades: KitchenUpgradeId[];
   counter: CounterMaterialId;
   cover: CoverStructureId;
   fire: FireFeatureId;

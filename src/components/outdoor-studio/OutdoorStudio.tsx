@@ -6,28 +6,31 @@ import { SmartImage } from "@/components/SmartImage";
 import { ToolLeadGate } from "@/components/transformations/ToolLeadGate";
 import { trackOutdoorEvent } from "@/lib/outdoor-studio/analytics";
 import {
-  appliancePackages,
   counters,
   covers,
   finishTiers,
   fireFeatures,
   floorings,
-  kitchenConfigs,
+  grillTypes,
+  kitchenLevels,
+  kitchenUpgrades,
   lighting,
   outdoorAmenities,
+  packageImpliedUpgrades,
   styles,
 } from "@/lib/outdoor-studio/options";
 import { calculateOutdoorEstimate, formatRange, formatUsd } from "@/lib/outdoor-studio/pricing";
 import { outdoorPresets, presetRangeLabel, type OutdoorPreset } from "@/lib/outdoor-studio/presets";
 import { outdoorVisions, getVision } from "@/lib/outdoor-studio/visions";
 import type {
-  AppliancePackageId,
   CounterMaterialId,
   CoverStructureId,
   FinishTier,
   FireFeatureId,
   FlooringId,
-  KitchenConfigId,
+  GrillTypeId,
+  KitchenLevelId,
+  KitchenUpgradeId,
   LightingId,
   OutdoorAmenityId,
   OutdoorSelections,
@@ -47,8 +50,8 @@ function matchPreset(sel: OutdoorSelections, preset: OutdoorPreset): boolean {
   const p = preset.selections;
   if (
     sel.visionId !== p.visionId ||
-    sel.kitchen !== p.kitchen ||
-    sel.appliances !== p.appliances ||
+    sel.kitchenLevel !== p.kitchenLevel ||
+    sel.grillType !== p.grillType ||
     sel.counter !== p.counter ||
     sel.cover !== p.cover ||
     sel.fire !== p.fire ||
@@ -59,6 +62,8 @@ function matchPreset(sel: OutdoorSelections, preset: OutdoorPreset): boolean {
   ) {
     return false;
   }
+  if (sel.kitchenUpgrades.length !== p.kitchenUpgrades.length) return false;
+  if (!p.kitchenUpgrades.every((a) => sel.kitchenUpgrades.includes(a))) return false;
   if (sel.amenities.length !== p.amenities.length) return false;
   return p.amenities.every((a) => sel.amenities.includes(a));
 }
@@ -68,6 +73,7 @@ export function OutdoorStudio() {
   const [sel, setSel] = useState<OutdoorSelections>(initial);
   const [viewMode, setViewMode] = useState<"photo" | "configurator">("photo");
   const [showMore, setShowMore] = useState(false);
+  const [showKitchenDetail, setShowKitchenDetail] = useState(true);
   const [activePresetId, setActivePresetId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -76,10 +82,15 @@ export function OutdoorStudio() {
 
   const estimate = useMemo(() => calculateOutdoorEstimate(sel), [sel]);
   const vision = getVision(sel.visionId);
-  const hasKitchen = sel.kitchen !== "none";
+  const hasKitchen = sel.kitchenLevel !== "none";
+  const impliedUpgrades = new Set(packageImpliedUpgrades[sel.kitchenLevel] ?? []);
 
   function applyPreset(preset: OutdoorPreset) {
-    setSel({ ...preset.selections, amenities: [...preset.selections.amenities] });
+    setSel({
+      ...preset.selections,
+      amenities: [...preset.selections.amenities],
+      kitchenUpgrades: [...preset.selections.kitchenUpgrades],
+    });
     setActivePresetId(preset.id);
     trackOutdoorEvent("preset_selected", { preset: preset.id });
     setViewMode("photo");
@@ -101,10 +112,11 @@ export function OutdoorStudio() {
       const next = { ...prev, [key]: value };
       const nextEst = calculateOutdoorEstimate(next);
       trackOutdoorEvent("feature_changed", { feature: key, value: String(value) });
-      if (key === "kitchen" || key === "appliances") {
+      if (key === "kitchenLevel" || key === "grillType" || key === "kitchenUpgrades") {
         trackOutdoorEvent("kitchen_configuration", {
-          kitchen: String(next.kitchen),
-          appliances: String(next.appliances),
+          kitchenLevel: String(next.kitchenLevel),
+          grillType: String(next.grillType),
+          upgrades: next.kitchenUpgrades.join(","),
         });
       }
       trackOutdoorEvent("estimate_updated", {
@@ -115,6 +127,34 @@ export function OutdoorStudio() {
       return next;
     });
     if (key !== "visionId") setViewMode("configurator");
+  }
+
+  function toggleKitchenUpgrade(id: KitchenUpgradeId) {
+    setActivePresetId(null);
+    setSel((prev) => {
+      const on = prev.kitchenUpgrades.includes(id);
+      const kitchenUpgradesNext = on
+        ? prev.kitchenUpgrades.filter((a) => a !== id)
+        : [...prev.kitchenUpgrades, id];
+      const next = { ...prev, kitchenUpgrades: kitchenUpgradesNext };
+      const nextEst = calculateOutdoorEstimate(next);
+      trackOutdoorEvent("feature_changed", {
+        feature: "kitchen_upgrade",
+        value: id,
+        enabled: !on,
+      });
+      trackOutdoorEvent("kitchen_configuration", {
+        kitchenLevel: next.kitchenLevel,
+        upgrades: kitchenUpgradesNext.join(","),
+      });
+      trackOutdoorEvent("estimate_updated", {
+        mid: nextEst.mid,
+        low: nextEst.low,
+        high: nextEst.high,
+      });
+      return next;
+    });
+    setViewMode("configurator");
   }
 
   function toggleAmenity(id: OutdoorAmenityId) {
@@ -439,12 +479,15 @@ export function OutdoorStudio() {
 
               <p className="text-xs uppercase tracking-[0.14em] text-gold-deep">Highest impact</p>
 
-              <FeatureGroup label="Outdoor kitchen">
-                {kitchenConfigs.map((k) => (
+              <FeatureGroup label="Kitchen level / package">
+                {kitchenLevels.map((k) => (
                   <Chip
                     key={k.id}
-                    active={sel.kitchen === k.id}
-                    onClick={() => patch("kitchen", k.id as KitchenConfigId)}
+                    active={sel.kitchenLevel === k.id}
+                    onClick={() => {
+                      patch("kitchenLevel", k.id as KitchenLevelId);
+                      setShowKitchenDetail(k.id !== "none");
+                    }}
                   >
                     {k.label}
                   </Chip>
@@ -453,29 +496,111 @@ export function OutdoorStudio() {
 
               {hasKitchen ? (
                 <>
-                  <FeatureGroup label="Appliance package">
-                    {appliancePackages.map((a) => (
-                      <Chip
-                        key={a.id}
-                        active={sel.appliances === a.id}
-                        onClick={() => patch("appliances", a.id as AppliancePackageId)}
-                      >
-                        {a.label}
-                      </Chip>
-                    ))}
-                  </FeatureGroup>
-                  <FeatureGroup label="Countertop">
-                    {counters.map((c) => (
-                      <Chip
-                        key={c.id}
-                        active={sel.counter === c.id}
-                        onClick={() => patch("counter", c.id as CounterMaterialId)}
-                        swatch={c.color}
-                      >
-                        {c.label}
-                      </Chip>
-                    ))}
-                  </FeatureGroup>
+                  {kitchenLevels.find((k) => k.id === sel.kitchenLevel)?.includes.length ? (
+                    <p className="text-xs text-text-dim">
+                      Package includes:{" "}
+                      {kitchenLevels.find((k) => k.id === sel.kitchenLevel)!.includes.join(" · ")}
+                    </p>
+                  ) : null}
+
+                  <button
+                    type="button"
+                    className="text-sm text-gold-deep hover:underline"
+                    onClick={() => setShowKitchenDetail((v) => !v)}
+                  >
+                    {showKitchenDetail
+                      ? "Hide grill & appliance upgrades ↑"
+                      : "Customize grill & appliances →"}
+                  </button>
+
+                  {showKitchenDetail ? (
+                    <>
+                      <FeatureGroup label="Grill size / type">
+                        {grillTypes.map((g) => (
+                          <Chip
+                            key={g.id}
+                            active={sel.grillType === g.id}
+                            onClick={() => patch("grillType", g.id as GrillTypeId)}
+                          >
+                            {g.label}
+                          </Chip>
+                        ))}
+                      </FeatureGroup>
+
+                      <FeatureGroup label="Cooking add-ons">
+                        {kitchenUpgrades
+                          .filter((u) => u.category === "cooking")
+                          .map((u) => (
+                            <Chip
+                              key={u.id}
+                              active={
+                                sel.kitchenUpgrades.includes(u.id) || impliedUpgrades.has(u.id)
+                              }
+                              onClick={() => {
+                                if (impliedUpgrades.has(u.id)) return;
+                                toggleKitchenUpgrade(u.id as KitchenUpgradeId);
+                              }}
+                            >
+                              {u.label}
+                              {impliedUpgrades.has(u.id) ? " ✓" : ""}
+                            </Chip>
+                          ))}
+                      </FeatureGroup>
+
+                      <FeatureGroup label="Cold storage">
+                        {kitchenUpgrades
+                          .filter((u) => u.category === "cold")
+                          .map((u) => (
+                            <Chip
+                              key={u.id}
+                              active={
+                                sel.kitchenUpgrades.includes(u.id) || impliedUpgrades.has(u.id)
+                              }
+                              onClick={() => {
+                                if (impliedUpgrades.has(u.id)) return;
+                                toggleKitchenUpgrade(u.id as KitchenUpgradeId);
+                              }}
+                            >
+                              {u.label}
+                              {impliedUpgrades.has(u.id) ? " ✓" : ""}
+                            </Chip>
+                          ))}
+                      </FeatureGroup>
+
+                      <FeatureGroup label="Prep & specialty">
+                        {kitchenUpgrades
+                          .filter((u) => u.category === "prep" || u.category === "specialty")
+                          .map((u) => (
+                            <Chip
+                              key={u.id}
+                              active={
+                                sel.kitchenUpgrades.includes(u.id) || impliedUpgrades.has(u.id)
+                              }
+                              onClick={() => {
+                                if (impliedUpgrades.has(u.id)) return;
+                                toggleKitchenUpgrade(u.id as KitchenUpgradeId);
+                              }}
+                            >
+                              {u.label}
+                              {impliedUpgrades.has(u.id) ? " ✓" : ""}
+                            </Chip>
+                          ))}
+                      </FeatureGroup>
+
+                      <FeatureGroup label="Countertop (cabinetry finishes via Estate/Luxury)">
+                        {counters.map((c) => (
+                          <Chip
+                            key={c.id}
+                            active={sel.counter === c.id}
+                            onClick={() => patch("counter", c.id as CounterMaterialId)}
+                            swatch={c.color}
+                          >
+                            {c.label}
+                          </Chip>
+                        ))}
+                      </FeatureGroup>
+                    </>
+                  ) : null}
                 </>
               ) : null}
 
