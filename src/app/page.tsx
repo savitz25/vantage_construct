@@ -128,6 +128,24 @@ export default function HomePage() {
               <span className="btn btn-primary mt-6">Open cost calculator →</span>
             </div>
           </Link>
+          <Link
+            href="/move-or-improve-calculator-nj"
+            className="card card-hover relative block overflow-hidden p-8 sm:p-10 lg:col-span-2"
+          >
+            <div className="relative md:flex md:items-center md:justify-between md:gap-8">
+              <div>
+                <p className="eyebrow">Transformations</p>
+                <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
+                  Move or improve?
+                </h2>
+                <p className="mt-4 max-w-2xl text-text-muted">
+                  Compare true NJ selling costs vs the addition that solves the same problem — plus
+                  ADU payback and basement dream-space tools in Vantage Studios.
+                </p>
+              </div>
+              <span className="btn btn-primary mt-6 md:mt-0">Open calculators →</span>
+            </div>
+          </Link>
         </div>
       </section>
 

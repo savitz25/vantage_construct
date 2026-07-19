@@ -119,8 +119,18 @@ export const nav = [
       { label: "For Investors", href: "/partners/investors" },
     ],
   },
-  { label: "Design Studio", href: "/design-studio" },
-  { label: "Cost Studio", href: "/cost-to-build-a-house-nj" },
+  {
+    label: "Studios",
+    href: "/studios",
+    children: [
+      { label: "All Studios", href: "/studios" },
+      { label: "Design Studio", href: "/design-studio" },
+      { label: "Cost Studio", href: "/cost-to-build-a-house-nj" },
+      { label: "Move or Improve?", href: "/move-or-improve-calculator-nj" },
+      { label: "ADU Payback", href: "/adu-cost-calculator-nj" },
+      { label: "Basement Builder", href: "/finished-basement-cost-nj" },
+    ],
+  },
   {
     label: "About",
     href: "/about",
