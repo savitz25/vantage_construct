@@ -1,6 +1,5 @@
 /**
- * Full editorial Insights articles — magazine-quality longform.
- * Body blocks support prose, lists, pull quotes, and CTAs.
+ * Full editorial Insights articles — official Vantage longform copy.
  */
 
 export type PostBlock =
@@ -15,6 +14,8 @@ export type PostBlock =
 
 export type InsightPost = {
   slug: string;
+  /** Previous slugs for redirects / aliases */
+  aliases?: string[];
   title: string;
   metaDescription: string;
   excerpt: string;
@@ -27,7 +28,6 @@ export type InsightPost = {
   imageAlt: string;
   includesTool?: boolean;
   toolLabel?: string;
-  relatedHrefs?: string[];
   body: PostBlock[];
   closingCta: { label: string; href: string; body: string };
 };
@@ -93,49 +93,42 @@ export const insightPosts: InsightPost[] = [
         items: [
           "Site conditions — Rock, slope, drainage, long driveways, and retaining walls can add significant cost before the foundation is even poured.",
           "Architectural complexity — Multiple roof lines, heavy exterior detailing, and large spans increase both material and labor.",
-          "Finish level — Stone, millwork, tile, lighting, and appliances are where luxury compounds. “Same square footage” can mean very different homes.",
-          "Systems — HVAC design, insulation strategy, smart-home infrastructure, and generators are quiet line items that show up late if you ignore them early.",
-          "Timeline and decisions — Indecision and midstream changes are expensive. Clear process protects the budget as much as material choices do.",
+          "Finish level — Cabinetry, stone, millwork, windows, and mechanical systems create the biggest swings in the budget.",
+          "Lower levels and outdoor living — Finished basements, covered outdoor kitchens, and accessory structures add real value but also real cost.",
         ],
       },
-      { type: "h2", text: "What most online calculators miss" },
+      { type: "h2", text: "The honest way to budget" },
       {
         type: "p",
-        text: "Generic tools often underweight North Jersey site prep, municipal requirements, and the finish expectations of this market. They also rarely separate hard construction cost from soft costs — design, engineering, permits, temporary living, and furniture.",
+        text: "The most useful approach is not to chase a single magic number. It is to work in ranges and decision stages:",
+      },
+      {
+        type: "ol",
+        items: [
+          "Establish a realistic all-in budget (including land and site work if applicable).",
+          "Determine the size and quality level that budget can support.",
+          "Design to that target instead of designing first and pricing later.",
+        ],
       },
       {
         type: "callout",
-        title: "A better way to plan",
-        text: "Use a local planning range first, then refine with your actual program and lot. Vantage’s Cost Studio is built for that conversation — illustrative ranges that update as you change size, style, and finishes.",
+        title: "Clarity early — not surprises later",
+        text: "This is the philosophy behind our Cost Studio and the way we run Design & Discovery. The goal is clarity early — not surprises later.",
       },
       {
         type: "cta",
         label: "Open the Cost Studio",
         href: "/cost-to-build-a-house-nj",
-        body: "Model a North Jersey construction range in minutes — then talk through the real drivers on your project.",
+        body: "Model a North Jersey construction range as size, style, and finish change — then talk through the real drivers on your project.",
       },
-      { type: "h2", text: "How Vantage approaches pricing" },
+      { type: "h2", text: "Final thought" },
       {
         type: "p",
-        text: "Our philosophy is No Surprises — not “the lowest number on day one.” We would rather frame an honest band early, flag site and program risks, and walk you through tradeoffs than win a conversation with a figure that won’t survive first contact with the ground.",
-      },
-      {
-        type: "p",
-        text: "That means pairing conceptual tools with professional evaluation: lot feasibility when land is involved, Design & Discovery when the program is real, and clear milestones once construction begins.",
-      },
-      { type: "h2", text: "A practical next step" },
-      {
-        type: "ol",
-        items: [
-          "Establish a directional range with Cost Studio or a consultation.",
-          "If you already have land, evaluate setbacks and site risk before falling in love with a floor plan.",
-          "Align architecture and finish intent with budget early — not after drawings are emotionally “done.”",
-          "Move into a structured process only when the path is clear enough to protect both quality and timeline.",
-        ],
+        text: "A custom home in North Jersey is one of the largest investments most families will ever make. The builders who serve this market best are the ones willing to talk about cost with precision and honesty from the beginning.",
       },
       {
         type: "p",
-        text: "Custom building in North Jersey is a significant investment. Clarity is the most valuable early deliverable we can offer.",
+        text: "If you’d like a clearer sense of where your project might land, the best next step is a conversation grounded in your actual lot, goals, and priorities — not a generic online average.",
       },
     ],
     closingCta: {
@@ -145,102 +138,121 @@ export const insightPosts: InsightPost[] = [
     },
   },
   {
-    slug: "renovate-or-rebuild-north-jersey-homeowners-2026",
+    slug: "renovate-or-rebuild-north-jersey-2026",
+    aliases: ["renovate-or-rebuild-north-jersey-homeowners-2026"],
     title: "Renovate or Rebuild? How North Jersey Homeowners Are Deciding in 2026",
     metaDescription:
-      "How North Jersey homeowners are choosing between major renovation and knockdown rebuild in 2026 — with a practical framework and interactive assessment.",
+      "A practical look at when a major renovation still makes sense — and when a knockdown rebuild is the smarter long-term decision in North Jersey.",
     excerpt:
-      "When the street is right but the house is wrong, the decision isn’t emotional alone. Here’s how serious homeowners are weighing renovate vs rebuild this year.",
+      "One of the most important conversations in Warren, Watchung, and Basking Ridge right now isn’t about style. It’s renovate what you have — or start over.",
     topic: "renovation",
     topicLabel: "Renovation",
     readTime: "8 min",
     author: "Victor Lobozzo",
     datePublished: "2026-04-02",
     image: "/media/rebuilds/before-ranch-nj.jpg",
-    imageAlt: "North Jersey ranch home before rebuild consideration",
+    imageAlt: "North Jersey home before renovate-or-rebuild decision",
     includesTool: true,
     toolLabel: "Includes assessment",
     body: [
       {
         type: "p",
-        text: "In 2026, more North Jersey families are facing a familiar tension: they love their town, schools, and street — but the house no longer fits the life they want.",
+        text: "One of the most important conversations happening in towns like Warren, Watchung, and Basking Ridge right now is not about style or square footage. It’s about the fundamental decision:",
       },
       {
         type: "p",
-        text: "The default advice used to be “just renovate.” That still wins often. But when ceilings are low, systems are at end of life, and the layout fights every modern request, a knockdown rebuild on the same lot can be the clearer long-term path.",
+        text: "Should we renovate what we have, or start over?",
       },
       {
-        type: "pull",
-        text: "The smartest decision isn’t the one that preserves the most drywall. It’s the one that delivers the home you actually want — at a cost and timeline you can stand behind.",
+        type: "p",
+        text: "There is no universal answer. But there is a clearer way to think about it.",
       },
       { type: "h2", text: "When renovation still wins" },
       {
+        type: "p",
+        text: "A major renovation is often the better path when:",
+      },
+      {
         type: "ul",
         items: [
-          "The bones are sound and room heights already work.",
-          "Your goals are localized — kitchen, primary suite, lower level — not a whole-house reinvention.",
-          "You want to stay in place with less disruption than a full rebuild.",
-          "Zoning and coverage make a larger new footprint difficult or impossible.",
+          "The existing structure is sound and well-positioned on the lot",
+          "The current layout can be improved without fighting the original house",
+          "The homeowner loves the neighborhood and the basic footprint",
+          "The cost of fixing the house remains meaningfully lower than replacement",
         ],
       },
       {
         type: "p",
-        text: "Major renovation can still be luxury-grade. It simply needs honesty about what you can and cannot fix without starting over.",
+        text: "In these cases, a thoughtful renovation can deliver an excellent result with less disruption.",
       },
-      { type: "h2", text: "When rebuild becomes the rational path" },
+      { type: "h2", text: "When rebuild becomes the smarter move" },
+      {
+        type: "p",
+        text: "Rebuild starts to make more sense when several of these are true:",
+      },
       {
         type: "ul",
         items: [
-          "You’re fighting the structure on every wall — layout, light, and ceiling height all lose.",
-          "Mechanical, roof, windows, and insulation would all need replacement in a “renovation.”",
-          "The addition you want creates a patchwork of old and new that never quite feels whole.",
-          "Long-term ownership favors a new envelope, systems, and plan over compounding compromise.",
+          "The existing home has low ceilings, poor flow, or outdated systems throughout",
+          "The layout fights modern living no matter how much money is spent",
+          "Structural or moisture issues keep appearing",
+          "The homeowner wants a meaningfully larger or completely different home",
+          "Renovation quotes start approaching 50–60% (or more) of rebuild cost",
+        ],
+      },
+      {
+        type: "pull",
+        text: "At a certain point, you are no longer “saving the house.” You are paying a premium to keep its limitations.",
+      },
+      { type: "h2", text: "The hidden cost of partial measures" },
+      {
+        type: "p",
+        text: "One of the most common frustrations we see is the homeowner who spends heavily on a first-floor renovation, only to realize a few years later that the second floor, systems, and overall structure still feel compromised. The result is a house that has absorbed a great deal of money without ever becoming what the family actually wanted.",
+      },
+      {
+        type: "p",
+        text: "A full rebuild, while more expensive up front, often delivers a cleaner outcome: modern systems, better light, better proportions, and a home designed for how the family actually lives.",
+      },
+      { type: "h2", text: "A better decision framework" },
+      {
+        type: "p",
+        text: "Instead of starting with emotion or a single contractor’s opinion, evaluate:",
+      },
+      {
+        type: "ol",
+        items: [
+          "What is truly wrong with the current house?",
+          "How much of the existing structure can honestly be reused?",
+          "What would a comprehensive renovation cost versus a new home on the same lot?",
+          "How long does the family intend to stay?",
         ],
       },
       {
         type: "callout",
-        title: "Taxes, timeline, and temporary living",
-        text: "Rebuilds carry real-life costs beyond construction: temporary housing, municipal process, and tax reassessment conversations. We surface those early — not as scare tactics, but as part of an adult decision framework.",
-      },
-      { type: "h2", text: "A simple decision framework" },
-      {
-        type: "ol",
-        items: [
-          "Define the non-negotiables (light, flow, outdoor living, multi-gen, storage).",
-          "Price a serious renovation that actually hits those goals — not a cosmetic refresh.",
-          "Compare against a rebuild massing that fits the lot honestly.",
-          "Choose the path with the better life outcome per dollar of risk — not the smaller brochure number.",
-        ],
+        title: "Think five and ten years out",
+        text: "The right answer is the one that still feels smart five and ten years from now — not only on the day the bid arrives.",
       },
       {
         type: "cta",
         label: "Take the renovate vs rebuild assessment",
         href: "/custom-homes/rebuilds#assessment",
-        body: "A guided interactive tool for North Jersey homeowners weighing stay-and-renovate against rebuild.",
-      },
-      { type: "h2", text: "How we help without forcing the answer" },
-      {
-        type: "p",
-        text: "Vantage builds both paths. That matters. When a renovation is smarter, we say so. When a rebuild unlocks the home the family is describing, we show why — with process, timeline, and budget framed in No Surprises language.",
-      },
-      {
-        type: "p",
-        text: "If you’re on a street you refuse to leave, start with assessment, not a demolition dumpster.",
+        body: "A guided tool for North Jersey homeowners weighing stay-and-renovate against rebuild on the same lot.",
       },
     ],
     closingCta: {
       label: "Explore knockdowns & rebuilds",
       href: "/custom-homes/rebuilds",
-      body: "See the framework, assessment, and next steps for renovate vs rebuild on your lot.",
+      body: "See the framework, interactive assessment, and next steps for renovate vs rebuild.",
     },
   },
   {
-    slug: "what-makes-a-lot-buildable-warren-watchung-basking-ridge",
+    slug: "what-makes-a-lot-buildable-north-jersey",
+    aliases: ["what-makes-a-lot-buildable-warren-watchung-basking-ridge"],
     title: "What Actually Makes a Lot Buildable in Warren, Watchung & Basking Ridge",
     metaDescription:
-      "What makes a residential lot truly buildable in Warren, Watchung, and Basking Ridge — setbacks, site costs, utilities, and when to walk away.",
+      "The real factors that determine whether a lot in North Jersey can support the home you want — beyond just acreage and price.",
     excerpt:
-      "Pretty land is not the same as buildable land. Here’s what sophisticated buyers evaluate before they commit in our core towns.",
+      "Not every beautiful lot is a good building lot. Here’s what actually decides buildability in our core towns.",
     topic: "land",
     topicLabel: "Land & lots",
     readTime: "8 min",
@@ -253,50 +265,70 @@ export const insightPosts: InsightPost[] = [
     body: [
       {
         type: "p",
-        text: "A listing photo of trees and a wide lawn can hide the real story. In Warren, Watchung, and Basking Ridge, “buildable” means the program you want can fit the ordinance, the topography, and the budget — not merely that a house once stood nearby.",
+        text: "Not every beautiful lot is a good building lot. And not every challenging lot is a bad one.",
+      },
+      {
+        type: "p",
+        text: "In North Jersey, the difference often comes down to a handful of practical realities that are easy to miss when you’re standing on the property for the first time.",
+      },
+      { type: "h2", text: "The factors that matter most" },
+      { type: "h3", text: "1. Zoning and setbacks" },
+      {
+        type: "p",
+        text: "Every town has rules about how close you can build to property lines, how much of the lot you can cover, and what height is allowed. These rules quietly determine the real size and shape of the home you can create.",
+      },
+      { type: "h3", text: "2. Topography" },
+      {
+        type: "p",
+        text: "Slope is not automatically a problem. In many cases, it becomes an opportunity for a walk-out lower level. But steep grades, poor drainage, or the need for extensive retaining walls can change the budget quickly.",
+      },
+      { type: "h3", text: "3. Soil and rock" },
+      {
+        type: "p",
+        text: "Rock close to the surface, poor-bearing soils, or high water tables can add significant cost before the foundation is even complete.",
+      },
+      { type: "h3", text: "4. Utilities" },
+      {
+        type: "p",
+        text: "Public sewer versus septic, public water versus well, and the distance to connect services all influence both feasibility and cost.",
+      },
+      { type: "h3", text: "5. Environmental constraints" },
+      {
+        type: "p",
+        text: "Wetlands, buffers, flood zones, and conservation easements can dramatically reduce the usable area of a property — or stop a project entirely.",
       },
       {
         type: "pull",
         text: "The most expensive lot is the one that forces you into a house you never wanted — or a variance fight you never budgeted.",
       },
-      { type: "h2", text: "The seven things that decide buildability" },
-      {
-        type: "ol",
-        items: [
-          "Zoning envelope — Setbacks, height, coverage, and floor area rules that silently shrink the dream plan.",
-          "Topography & drainage — Slope can enable walk-outs or destroy access and stormwater plans.",
-          "Soil & rock — Ledge and poor soils move foundation and prep cost faster than finishes ever will.",
-          "Utilities — Sewer vs septic, water, electric, gas — and how far they have to run.",
-          "Environmental constraints — Wetlands buffers, flood zones, and tree ordinances.",
-          "Access & easements — Driveway geometry, shared roads, and rights that limit siting.",
-          "Neighborhood fit — What the street expects architecturally and practically.",
-        ],
-      },
-      { type: "h2", text: "Town flavor (always verify)" },
+      { type: "h2", text: "The most expensive mistake" },
       {
         type: "p",
-        text: "Warren often mixes mature lots with tree and grading sensitivity. Watchung rewards careful hillside thinking — views and walk-outs, but also retaining and drainage. Basking Ridge frequently pairs strong stay-and-improve energy with renovate-vs-rebuild decisions when the street is right and the house is not.",
+        text: "The most costly error we see is falling in love with a property before understanding what can actually be built on it. By the time the limitations surface, the buyer is often already under contract or emotionally committed.",
       },
       {
         type: "callout",
-        title: "Orientation, not a permit",
-        text: "Every parcel is unique. Municipal rules change. Treat local notes as orientation — then confirm with official sources and professional review.",
-      },
-      { type: "h2", text: "See the envelope before you fall in love" },
-      {
-        type: "p",
-        text: "A simple interactive setback visualizer won’t replace a survey — but it instantly teaches why professional land evaluation matters. Move the yards. Watch the buildable area change. Then flag site-cost conditions that show up again and again in North Jersey.",
+        title: "Land evaluation is not a formality",
+        text: "A proper land evaluation protects the rest of the investment. It is the step that keeps design, budget, and lot in the same conversation.",
       },
       {
         type: "cta",
         label: "Open the lot feasibility tool",
         href: "/land/evaluation#feasibility-tool",
-        body: "Interactive setbacks and hidden site-cost flags — then request a Pre-Purchase Lot Audit.",
+        body: "See how setbacks shrink the buildable envelope — then request a Pre-Purchase Lot Audit for your address.",
       },
-      { type: "h2", text: "When walking away is the win" },
+      { type: "h2", text: "The right sequence" },
+      {
+        type: "ol",
+        items: [
+          "Identify a property that seems promising.",
+          "Evaluate it honestly before making a final commitment.",
+          "Design the home to the realities of that specific lot.",
+        ],
+      },
       {
         type: "p",
-        text: "Sometimes the smartest land evaluation ends with “don’t buy this.” Wetlands, access constraints, or a program that will never fit the envelope can save years of frustration. We would rather lose a project conversation than help a family overpay for unbuildable hope.",
+        text: "When those steps happen in the right order, the project starts on solid ground — literally and figuratively.",
       },
     ],
     closingCta: {
@@ -306,65 +338,91 @@ export const insightPosts: InsightPost[] = [
     },
   },
   {
-    slug: "finished-lower-level-smartest-luxury-upgrade",
+    slug: "finished-lower-level-luxury-upgrade-north-jersey",
+    aliases: ["finished-lower-level-smartest-luxury-upgrade"],
     title: "Why a Finished Lower Level Is One of the Smartest Luxury Upgrades",
     metaDescription:
-      "Why a finished lower level is one of the highest-ROI luxury upgrades for North Jersey homes — use cases, cost drivers, and how to design it well.",
+      "Why more luxury homeowners in North Jersey are treating the lower level as valuable living space — and how to do it well.",
     excerpt:
-      "You already own the square footage. Done well, a lower level becomes the most-used rooms in the house — without giving up the neighborhood.",
+      "For years the basement was an afterthought. Today it is often one of the most used — and most appreciated — levels of the house.",
     topic: "renovation",
     topicLabel: "Renovation",
     readTime: "7 min",
     author: "Victor Lobozzo",
     datePublished: "2026-05-06",
     image: "/media/basements/home-theater.jpg",
-    imageAlt: "Luxury finished basement home theater",
+    imageAlt: "Luxury finished basement home theater in North Jersey",
     includesTool: true,
     toolLabel: "Includes Basement Builder",
     body: [
       {
         type: "p",
-        text: "In luxury markets, the smartest upgrades often aren’t the ones that shout from the curb. They’re the ones that change daily life. A finished lower level — theater, suite, gym, bar, play — does exactly that.",
+        text: "For years, the basement was an afterthought. Today, in many of the homes we build and renovate, it has become one of the most used and most appreciated levels of the house.",
       },
+      { type: "h2", text: "Why the shift?" },
       {
-        type: "pull",
-        text: "You’re not “finishing a basement.” You’re claiming square footage you already own and making it feel like the rest of the house.",
+        type: "p",
+        text: "Several things have changed:",
       },
-      { type: "h2", text: "Why it wins on lifestyle and value" },
       {
         type: "ul",
         items: [
-          "More living space without leaving the street or school district.",
-          "Program flexibility — guests, teens, wellness, work, entertainment.",
-          "Often stronger dollars-per-delight than adding a new wing when the lot is tight.",
-          "When done with real ceilings, light, and finishes, it reads as architecture — not afterthought.",
+          "Families want more specialized spaces (theater, gym, guest suite, office, bar)",
+          "People are staying in their homes longer",
+          "The cost of adding above-grade square footage continues to rise",
+          "When done properly, a lower level can feel as finished and comfortable as the main floor",
         ],
       },
-      { type: "h2", text: "What separates luxury from “done cheap”" },
+      {
+        type: "pull",
+        text: "A well-executed lower level is not “extra storage.” It is an extension of the home’s living experience.",
+      },
+      { type: "h2", text: "What separates a great lower level from a mediocre one" },
       {
         type: "p",
-        text: "Moisture management, ceiling height strategy, lighting, flooring transitions, and HVAC are the quiet details. A lower level that smells like a basement will never feel like a primary living space — no matter how nice the sofa is.",
+        text: "The difference is almost never the furniture. It is the fundamentals:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Moisture management done correctly from the start",
+          "Proper ceiling height and lighting design",
+          "Thoughtful HVAC and dehumidification",
+          "Code-compliant egress where required",
+          "Finishes that match the quality of the rest of the house",
+        ],
+      },
+      {
+        type: "p",
+        text: "When these elements are handled well, the space feels intentional. When they are not, it still feels like a basement.",
+      },
+      { type: "h2", text: "Common high-value uses" },
+      {
+        type: "ul",
+        items: [
+          "Private guest suite",
+          "Home theater or media room",
+          "Gym and wellness space",
+          "Bar and entertaining area",
+          "Home office or learning space",
+          "Playroom that can evolve over time",
+        ],
       },
       {
         type: "callout",
-        title: "Design the zones, not just the square footage",
-        text: "The best lower levels are programmed: media, hospitality, recovery, sleep. Our Basement Builder lets you place those zones visually and see a planning range update live.",
+        title: "Design around real life",
+        text: "The best lower levels are designed around how the family actually lives, not around a generic recreation-room template. Our Basement Builder lets you compose zones visually and see a planning range update live.",
       },
       {
         type: "cta",
         label: "Open the Basement Builder",
         href: "/finished-basement-cost-nj",
-        body: "Compose theaters, suites, gyms, and bars — with a conceptual investment range for North Jersey.",
+        body: "Place theaters, suites, gyms, and bars — with a conceptual investment range for North Jersey.",
       },
-      { type: "h2", text: "Cost reality (directional)" },
+      { type: "h2", text: "Final thought" },
       {
         type: "p",
-        text: "Finished luxury lower levels vary widely with wet bars, full baths, kitchens, egress, and structural work. Treat online averages as a starting conversation — then model your actual program. Site conditions and ceiling height constraints matter as much as tile selection.",
-      },
-      { type: "h2", text: "When a lower level is the wrong move" },
-      {
-        type: "p",
-        text: "Chronic water issues, insufficient height that can’t be solved, or a family that truly needs main-level expansion may point elsewhere — addition, attic, or rebuild. Honest sequencing protects the investment.",
+        text: "In a market where every square foot carries significant cost, the lower level is often the most efficient place to add highly usable space. The key is treating it with the same seriousness as the rest of the home.",
       },
     ],
     closingCta: {
@@ -374,12 +432,13 @@ export const insightPosts: InsightPost[] = [
     },
   },
   {
-    slug: "rise-of-luxury-accessory-building-what-it-costs",
+    slug: "luxury-accessory-buildings-north-jersey",
+    aliases: ["rise-of-luxury-accessory-building-what-it-costs"],
     title: "The Rise of the Luxury Accessory Building (and What It Really Costs)",
     metaDescription:
-      "Why luxury accessory buildings are rising in North Jersey — pool houses, collector garages, guest suites — and what they really cost beyond a shed.",
+      "Why pool houses, collector garages, guest suites, and workshops are becoming some of the most popular projects in North Jersey — and what drives their cost.",
     excerpt:
-      "Pool houses, collector garages, and guest pavilions are becoming the most exciting rooms on the property. They’re also real construction — with real numbers.",
+      "Often the most exciting space on a property is no longer inside the main house. Here’s why — and what these buildings really cost.",
     topic: "costs",
     topicLabel: "Costs & budgets",
     readTime: "8 min",
@@ -392,40 +451,52 @@ export const insightPosts: InsightPost[] = [
     body: [
       {
         type: "p",
-        text: "Homeowners don’t wake up wanting an “accessory building.” They want a pool house that completes summer, a garage worthy of a collection, a guest suite for parents, or a quiet studio steps from the main house.",
+        text: "One of the most interesting shifts in the luxury market is how often the most exciting space on a property is no longer inside the main house.",
       },
       {
         type: "p",
-        text: "That demand is rising — and so is the sophistication of the architecture. These structures are no longer kit sheds beside luxury homes. They’re estate buildings with foundations, systems, and finishes that must match the residence.",
+        text: "Pool houses, collector garages, guest suites, workshops, and entertainment pavilions have moved from occasional add-ons to central parts of the property vision.",
+      },
+      { type: "h2", text: "Why demand is rising" },
+      {
+        type: "ul",
+        items: [
+          "Homeowners want specialized spaces that don’t compete with daily living areas",
+          "Multi-generational needs are increasing",
+          "Car collectors and hobbyists want environments worthy of what they own",
+          "Outdoor living has become a year-round expectation, not a seasonal luxury",
+        ],
+      },
+      {
+        type: "p",
+        text: "In short, people are designing properties, not just houses.",
+      },
+      { type: "h2", text: "The cost reality" },
+      {
+        type: "p",
+        text: "This is where many homeowners are surprised.",
+      },
+      {
+        type: "p",
+        text: "A finished accessory building is not a shed. It typically requires:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Its own foundation",
+          "Proper structure",
+          "Electrical, and often plumbing and HVAC",
+          "Exterior materials that match or complement the main home",
+          "Thoughtful connection to the landscape",
+        ],
       },
       {
         type: "pull",
-        text: "A finished pool house or carriage house is not an inexpensive outbuilding. It is a small custom project — and it should be planned like one.",
-      },
-      { type: "h2", text: "What’s driving the trend" },
-      {
-        type: "ul",
-        items: [
-          "Work-from-home and multi-gen living that needs separation without leaving the property.",
-          "Collector culture and serious vehicle storage.",
-          "Outdoor entertaining that wants real plumbing, power, and shelter — not just a patio set.",
-          "A desire to expand lifestyle without always expanding the main house footprint.",
-        ],
-      },
-      { type: "h2", text: "Cost reality (directional bands)" },
-      {
-        type: "ul",
-        items: [
-          "Finished pool house / pavilion: often mid–high six figures depending on glass, wet rooms, and site work",
-          "Luxury multi-bay garage: high five figures into mid–six figures for refined architecture",
-          "Collector / oversized programs: climb with height, climate, and detailing space",
-          "Carriage house / guest suite: frequently among the highest bands once living systems and finishes arrive",
-        ],
+        text: "Quality pool houses, carriage houses, and guest suites frequently land in the mid-six figures and beyond, depending on size and finish level.",
       },
       {
-        type: "callout",
-        title: "What drives the number",
-        text: "Size and structure, plumbing, HVAC, finish level, site work, and whether the program crosses into ADU territory. Zoning — setbacks, coverage, height — decides feasibility as much as budget.",
+        type: "p",
+        text: "The homeowners who are happiest with these projects are usually the ones who understand that reality early.",
       },
       {
         type: "cta",
@@ -433,24 +504,28 @@ export const insightPosts: InsightPost[] = [
         href: "/custom-homes/accessory-buildings#configurator",
         body: "Purpose, scale, and finish with a live conceptual range — then go deeper in Garage Studio.",
       },
-      { type: "h2", text: "Accessory building vs ADU" },
+      { type: "h2", text: "The projects that work best" },
       {
         type: "p",
-        text: "A garage, workshop, or pool house may stay an accessory structure. Full kitchens and permanent dwelling use can reclassify the project as an ADU — with different rules, parking, and reviews. We clarify that line early so drawings don’t race ahead of ordinance.",
+        text: "The strongest accessory buildings share a few traits:",
       },
-      { type: "h2", text: "How to start well" },
       {
-        type: "ol",
+        type: "ul",
         items: [
-          "Define the lifestyle job: entertain, store, host, work, train.",
-          "Check the lot honestly — setbacks, coverage, utilities.",
-          "Set a planning range before you fall in love with a Pinterest plan.",
-          "Match architecture to the main house so the estate reads as one composition.",
+          "They have a clear primary purpose",
+          "They are designed in architectural harmony with the main house",
+          "The site work and utilities are planned carefully",
+          "The finish level is intentional rather than compromised",
         ],
       },
       {
+        type: "callout",
+        title: "Zoning matters",
+        text: "Setbacks, lot coverage, height, and whether a program becomes an ADU can decide feasibility. Pair design ambition with an honest site read — Land Evaluation when the lot itself is the question.",
+      },
+      {
         type: "p",
-        text: "Done right, the accessory building becomes the most delightful place on the property. Done casually, it becomes an expensive compromise. The difference is process.",
+        text: "When those pieces come together, the structure feels like a natural extension of the estate rather than an afterthought.",
       },
     ],
     closingCta: {
@@ -462,21 +537,30 @@ export const insightPosts: InsightPost[] = [
 ];
 
 export function getPostBySlug(slug: string) {
-  return insightPosts.find((p) => p.slug === slug);
+  return (
+    insightPosts.find((p) => p.slug === slug) ||
+    insightPosts.find((p) => p.aliases?.includes(slug))
+  );
 }
 
 export function getRelatedPosts(slug: string, limit = 3) {
   const current = getPostBySlug(slug);
   if (!current) return insightPosts.slice(0, limit);
   const sameTopic = insightPosts.filter(
-    (p) => p.slug !== slug && p.topic === current.topic,
+    (p) => p.slug !== current.slug && p.topic === current.topic,
   );
   const others = insightPosts.filter(
-    (p) => p.slug !== slug && p.topic !== current.topic,
+    (p) => p.slug !== current.slug && p.topic !== current.topic,
   );
   return [...sameTopic, ...others].slice(0, limit);
 }
 
 export function getAllPostSlugs() {
   return insightPosts.map((p) => p.slug);
+}
+
+/** Canonical slug if request used an alias */
+export function resolveCanonicalSlug(slug: string): string | null {
+  const post = getPostBySlug(slug);
+  return post?.slug ?? null;
 }

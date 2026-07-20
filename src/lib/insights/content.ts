@@ -58,7 +58,7 @@ export const insightArticles: InsightArticle[] = [
     title: "Renovate or Rebuild? How North Jersey Homeowners Are Deciding in 2026",
     excerpt:
       "When the street is right but the house is wrong — a practical framework for 2026 decisions.",
-    href: "/insights/renovate-or-rebuild-north-jersey-homeowners-2026",
+    href: "/insights/renovate-or-rebuild-north-jersey-2026",
     topic: "renovation",
     topicLabel: "Renovation",
     readTime: "8 min",
@@ -74,7 +74,7 @@ export const insightArticles: InsightArticle[] = [
     title: "What Actually Makes a Lot Buildable in Warren, Watchung & Basking Ridge",
     excerpt:
       "Pretty land isn’t always buildable land. Setbacks, site costs, and when to walk away.",
-    href: "/insights/what-makes-a-lot-buildable-warren-watchung-basking-ridge",
+    href: "/insights/what-makes-a-lot-buildable-north-jersey",
     topic: "land",
     topicLabel: "Land & lots",
     readTime: "8 min",
@@ -90,7 +90,7 @@ export const insightArticles: InsightArticle[] = [
     title: "Why a Finished Lower Level Is One of the Smartest Luxury Upgrades",
     excerpt:
       "Claim square footage you already own — theaters, suites, gyms — designed like the main house.",
-    href: "/insights/finished-lower-level-smartest-luxury-upgrade",
+    href: "/insights/finished-lower-level-luxury-upgrade-north-jersey",
     topic: "renovation",
     topicLabel: "Renovation",
     readTime: "7 min",
@@ -105,7 +105,7 @@ export const insightArticles: InsightArticle[] = [
     title: "The Rise of the Luxury Accessory Building (and What It Really Costs)",
     excerpt:
       "Pool houses, collector garages, guest suites — real construction with real numbers.",
-    href: "/insights/rise-of-luxury-accessory-building-what-it-costs",
+    href: "/insights/luxury-accessory-buildings-north-jersey",
     topic: "costs",
     topicLabel: "Costs & budgets",
     readTime: "8 min",

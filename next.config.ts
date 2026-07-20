@@ -85,6 +85,27 @@ const nextConfig: NextConfig = {
       { source: "/multi-lot-use/", destination: "/land/multi-lot", permanent: true },
       { source: "/spec-home-building", destination: "/land/spec-homes", permanent: true },
       { source: "/spec-home-building/", destination: "/land/spec-homes", permanent: true },
+      // Insights article slug aliases
+      {
+        source: "/insights/renovate-or-rebuild-north-jersey-homeowners-2026",
+        destination: "/insights/renovate-or-rebuild-north-jersey-2026",
+        permanent: true,
+      },
+      {
+        source: "/insights/what-makes-a-lot-buildable-warren-watchung-basking-ridge",
+        destination: "/insights/what-makes-a-lot-buildable-north-jersey",
+        permanent: true,
+      },
+      {
+        source: "/insights/finished-lower-level-smartest-luxury-upgrade",
+        destination: "/insights/finished-lower-level-luxury-upgrade-north-jersey",
+        permanent: true,
+      },
+      {
+        source: "/insights/rise-of-luxury-accessory-building-what-it-costs",
+        destination: "/insights/luxury-accessory-buildings-north-jersey",
+        permanent: true,
+      },
     ];
   },
 };

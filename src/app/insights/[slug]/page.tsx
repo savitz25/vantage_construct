@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ArticleBody } from "@/components/insights/ArticleBody";
 import { RelatedInsights } from "@/components/insights/RelatedInsights";
 import { JsonLd } from "@/components/JsonLd";
@@ -29,6 +29,10 @@ export default async function InsightArticlePage({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
+  // Prefer canonical slug when an alias was requested
+  if (slug !== post.slug) {
+    redirect(`/insights/${post.slug}`);
+  }
 
   const path = `/insights/${post.slug}`;
 
