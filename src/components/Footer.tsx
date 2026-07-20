@@ -34,7 +34,7 @@ export function Footer() {
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {nav.slice(0, 6).map((item) => (
+            {nav.slice(0, 7).map((item) => (
               <div key={item.href}>
                 <Link href={item.href} className="text-sm font-semibold tracking-wide text-ivory">
                   {item.label}

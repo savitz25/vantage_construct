@@ -16,6 +16,7 @@ const staticRoutes: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/design-studio", priority: 0.85, changeFrequency: "weekly" },
   { path: "/cost-to-build-a-house-nj", priority: 0.95, changeFrequency: "weekly" },
   { path: "/studios", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/calculators", priority: 0.9, changeFrequency: "weekly" },
   { path: "/move-or-improve-calculator-nj", priority: 0.9, changeFrequency: "weekly" },
   { path: "/adu-cost-calculator-nj", priority: 0.85, changeFrequency: "weekly" },
   { path: "/finished-basement-cost-nj", priority: 0.9, changeFrequency: "weekly" },

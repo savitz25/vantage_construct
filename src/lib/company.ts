@@ -129,15 +129,25 @@ export const nav = [
     children: [
       { label: "All Studios", href: "/studios" },
       { label: "Design Studio", href: "/design-studio" },
-      { label: "Cost Studio", href: "/cost-to-build-a-house-nj" },
       { label: "Kitchen Studio", href: "/kitchen-remodel-cost-nj" },
       { label: "Attic Studio", href: "/attic-conversion-cost-nj" },
       { label: "Garage Studio", href: "/accessory-building-cost-nj" },
       { label: "Outdoor Living Studio", href: "/outdoor-kitchen-cost-nj" },
       { label: "Primary Suite Studio", href: "/primary-suite-cost-nj" },
       { label: "Basement Builder", href: "/finished-basement-cost-nj" },
+    ],
+  },
+  {
+    label: "Calculators",
+    href: "/calculators",
+    children: [
+      { label: "All Calculators", href: "/calculators" },
+      { label: "Cost Studio", href: "/cost-to-build-a-house-nj" },
       { label: "Move or Improve?", href: "/move-or-improve-calculator-nj" },
       { label: "ADU Payback", href: "/adu-cost-calculator-nj" },
+      { label: "Lot Feasibility", href: "/land/evaluation" },
+      { label: "Multi-Lot HBU", href: "/land/multi-lot" },
+      { label: "Renovate vs Rebuild", href: "/custom-homes/rebuilds" },
     ],
   },
   {
