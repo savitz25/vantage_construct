@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
@@ -30,7 +29,7 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
   const crumbs = [
     { label: "Home", href: "/" },
     { label: "Transformations", href: "/transformations" },
-    { label: crumbLabel },
+    { label: crumbLabel, path: c.path },
   ];
   const serviceKey = c.path.replace("/transformations/", "") || "overview";
 
@@ -45,9 +44,13 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           serviceType: crumbLabel,
         })}
       />
-      <Breadcrumbs items={crumbs} />
 
-      <PageHero eyebrow={c.eyebrow} title={c.headline} description={c.subhead}>
+      <PageHero
+        crumbs={crumbs}
+        eyebrow={c.eyebrow}
+        title={c.headline}
+        description={c.subhead}
+      >
         <div className="flex flex-wrap gap-3">
           {c.toolCard ? (
             <TrackedLink

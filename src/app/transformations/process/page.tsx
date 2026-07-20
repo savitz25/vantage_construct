@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
 import { transformServices, transformTools } from "@/lib/transformations/ia";
@@ -38,14 +37,12 @@ const steps = [
 export default function ExistingProcessPage() {
   return (
     <>
-      <Breadcrumbs
-        items={[
+      <PageHero
+        crumbs={[
           { label: "Home", href: "/" },
           { label: "Transformations", href: "/transformations" },
-          { label: "Renovation Process" },
+          { label: "Renovation Process", path: "/transformations/process" },
         ]}
-      />
-      <PageHero
         eyebrow="Existing homes"
         title="A clear path to transforming your home"
         description="Whether you’re finishing a lower level, adding a suite, or reimagining a kitchen — the same no-surprises process applies: discovery, design clarity, permits, build, and a polished handoff."

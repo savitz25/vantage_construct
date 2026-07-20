@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PageHero } from "@/components/PageHero";
 import { createMetadata } from "@/lib/seo";
 
@@ -92,13 +91,11 @@ const studios = [
 export default function StudiosHubPage() {
   return (
     <>
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Studios" },
-        ]}
-      />
       <PageHero
+        crumbs={[
+          { label: "Home", href: "/" },
+          { label: "Studios", path: "/studios" },
+        ]}
         eyebrow="Vantage Studios"
         title="Interactive tools for designing and deciding"
         description="A unified suite — premium visuals, live math, honest disclaimers, and clear next steps into consultation. Built for Central & Northern New Jersey."

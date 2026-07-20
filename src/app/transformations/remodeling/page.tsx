@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
 import { RelatedServices } from "@/components/transformations/RelatedServices";
@@ -48,14 +47,12 @@ const focusAreas = [
 export default function RemodelingPage() {
   return (
     <>
-      <Breadcrumbs
-        items={[
+      <PageHero
+        crumbs={[
           { label: "Home", href: "/" },
           { label: "Transformations", href: "/transformations" },
-          { label: "Whole-home remodeling" },
+          { label: "Whole-home remodeling", path: "/transformations/remodeling" },
         ]}
-      />
-      <PageHero
         eyebrow="Whole-home remodeling"
         title="Transform outdated spaces into rooms you’ll use every day"
         description="From kitchen and bath renovations to multi-room and whole-home remodels, we elevate how your home looks and lives — with the same standards as our custom homes across Warren, Watchung, Basking Ridge, and Millburn–Short Hills."

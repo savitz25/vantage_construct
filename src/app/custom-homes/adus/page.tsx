@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
 import { PlanCard } from "@/components/PlanCard";
@@ -19,14 +18,12 @@ export default function AdusPage() {
 
   return (
     <>
-      <Breadcrumbs
-        items={[
+      <PageHero
+        crumbs={[
           { label: "Home", href: "/" },
           { label: "Custom Homes", href: "/custom-homes" },
-          { label: "ADUs" },
+          { label: "ADUs", path: "/custom-homes/adus" },
         ]}
-      />
-      <PageHero
         eyebrow="ADUs · Accessory dwelling units"
         title="Accessory dwelling units that add value"
         description="Maximize your property’s potential with a custom ADU — perfect for rental income, multi-generational living, or creating a private guest space while adding lasting value across Warren, Watchung, Basking Ridge, and surrounding towns."

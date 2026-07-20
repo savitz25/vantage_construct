@@ -59,11 +59,19 @@ export function ToolLanderShell({
       <TrackToolLanderView tool={toolId} path={path} />
       <JsonLd data={localBusinessJsonLd()} />
       <JsonLd data={faqJsonLd([...faqs])} />
-      <Breadcrumbs items={breadcrumbs} />
 
-      <section className="hero-grid grain border-b border-border pt-28 pb-8 sm:pt-32 sm:pb-10">
+      <section className="hero-grid grain border-b border-border pt-[5.25rem] pb-8 sm:pt-24 sm:pb-10">
         <div className="container-wide relative">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <Breadcrumbs
+            items={breadcrumbs.map((b, i) =>
+              i === breadcrumbs.length - 1 && !b.href
+                ? { ...b, path: path }
+                : b,
+            )}
+            variant="inline"
+            className="mb-5"
+          />
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="eyebrow">{eyebrow}</p>
               <h1 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">{title}</h1>

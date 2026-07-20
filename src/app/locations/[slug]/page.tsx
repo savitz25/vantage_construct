@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
@@ -32,14 +31,12 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     <>
       <JsonLd data={localBusinessJsonLd()} />
       <JsonLd data={faqJsonLd(loc.faqs)} />
-      <Breadcrumbs
-        items={[
+      <PageHero
+        crumbs={[
           { label: "Home", href: "/" },
           { label: "Locations", href: "/locations" },
-          { label: loc.name },
+          { label: loc.name, path: `/locations/${loc.slug}` },
         ]}
-      />
-      <PageHero
         eyebrow={`${loc.county} County, New Jersey`}
         title={loc.headline}
         description={loc.blurb}

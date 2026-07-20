@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
 import {
@@ -22,13 +21,11 @@ export default function TransformationsPage() {
 
   return (
     <>
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Transformations" },
-        ]}
-      />
       <PageHero
+        crumbs={[
+          { label: "Home", href: "/" },
+          { label: "Transformations", path: "/transformations" },
+        ]}
         eyebrow="Transformations · Existing homes"
         title="Elevate the home you already love"
         description="Lower levels, kitchens, additions, garages, outdoor rooms, and attic sanctuaries — built with the same craftsmanship as our custom homes. Clear process. No surprises. Serving Warren, Watchung, Basking Ridge, Millburn–Short Hills, and surrounding North Jersey towns."

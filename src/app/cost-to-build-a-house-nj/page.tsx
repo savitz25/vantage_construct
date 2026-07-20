@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CostStudio } from "@/components/cost-studio/CostStudio";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
@@ -77,15 +76,12 @@ export default function CostToBuildNjPage() {
         })}
       />
 
-      <Breadcrumbs
-        items={[
+      <PageHero
+        crumbs={[
           { label: "Home", href: "/" },
           { label: "Studios", href: "/studios" },
-          { label: "Cost to Build NJ" },
+          { label: "Cost to Build NJ", path: "/cost-to-build-a-house-nj" },
         ]}
-      />
-
-      <PageHero
         eyebrow="Vantage Vision Cost Studio"
         title="Cost to build a custom house in New Jersey"
         description={`What does it cost to build a house in NJ? This interactive Cost Studio is calibrated to real Vantage plan anchors for ${company.focusTowns.join(", ")} and surrounding Somerset, Morris, Union, and Essex communities — not generic national averages.`}

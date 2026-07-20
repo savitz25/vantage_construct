@@ -198,6 +198,70 @@ a {
     linear-gradient(180deg, #fffdf9 0%, #f7f2ea 55%, #f3efe8 100%);
 }
 
+/* ─── Breadcrumbs (secondary, refined) ─── */
+.breadcrumb-nav {
+  width: 100%;
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.breadcrumb-sep {
+  margin: 0 0.45rem;
+  font-size: 0.7rem;
+  color: rgba(133, 124, 112, 0.75);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.breadcrumb-link,
+.breadcrumb-current {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.breadcrumb-link {
+  color: var(--text-dim);
+  transition: color 0.15s ease;
+}
+
+.breadcrumb-link:hover {
+  color: var(--gold-deep);
+}
+
+.breadcrumb-current {
+  color: rgba(143, 106, 40, 0.92);
+  font-weight: 600;
+}
+
+.breadcrumb-standalone-wrap {
+  /* Clears fixed header when breadcrumbs appear alone */
+  padding-top: 5.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.breadcrumb-standalone-wrap .breadcrumb-nav {
+  width: min(1360px, calc(100% - 2rem));
+  margin-inline: auto;
+  padding-block: 0.75rem 0.25rem;
+}
+
 .divider-gold {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);

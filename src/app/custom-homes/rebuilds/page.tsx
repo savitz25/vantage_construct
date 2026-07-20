@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { BeforeAfterCompare } from "@/components/rebuilds/BeforeAfterSlider";
@@ -38,15 +37,12 @@ export default function RebuildsPage() {
         })}
       />
 
-      <Breadcrumbs
-        items={[
+      <PageHero
+        crumbs={[
           { label: "Home", href: "/" },
           { label: "Custom Homes", href: "/custom-homes" },
-          { label: "Knockdowns & Rebuilds" },
+          { label: "Knockdowns & Rebuilds", path: "/custom-homes/rebuilds" },
         ]}
-      />
-
-      <PageHero
         eyebrow="Knockdowns & rebuilds · North Jersey"
         title="Build your dream home on the street you already love"
         description="Tearing down a house feels destructive — until the math, the lot, and the life you want make it the clearest path forward. Vantage replaces anxiety with feasibility, timeline clarity, and a No Surprises rebuild process."
