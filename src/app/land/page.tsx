@@ -36,8 +36,8 @@ export default function LandPage() {
             </p>
             <h2 className="mt-2 font-display text-3xl text-ivory">Multi-lot development</h2>
             <p className="mt-3 text-text-muted">
-              What could your acreage be worth as multiple luxury lots? Confidential assessment,
-              three clear paths, and track record including {landDevelopments.join(", ")}.
+              What could your acreage be worth as multiple luxury lots? Interactive potential tool,
+              sell / entitle / partner paths, and proof including {landDevelopments.join(", ")}.
             </p>
           </Link>
           <Link href="/land/spec-homes" className="card card-hover p-8">

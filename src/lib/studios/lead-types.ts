@@ -14,7 +14,7 @@ export const STUDIO_LEAD_LABELS: Record<string, string> = {
   "rebuild-feasibility": "Rebuild Feasibility Lead",
   "land-evaluation": "Land Evaluation / Pre-Purchase Lot Audit Lead",
   "spec-early-access": "Signature Builds Early Access Lead",
-  "multi-lot-assessment": "Multi-Lot / Confidential Land Assessment Lead",
+  "multi-lot-assessment": "Landowner / Multi-Lot Lead — Confidential Land Assessment",
 };
 
 export function studioLeadLabel(tool: string): string {

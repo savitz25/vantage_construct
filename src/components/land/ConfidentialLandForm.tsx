@@ -6,9 +6,10 @@ import { trackEvent } from "@/lib/analytics";
 import { company } from "@/lib/company";
 
 const goals = [
-  "Understand multi-lot potential",
-  "Explore partnership to develop",
-  "Prepare for a strategic sale",
+  "Exploring options",
+  "Considering sale",
+  "Interested in partnership",
+  "Entitle then sell",
   "Compare sell as-is vs develop",
   "Other / not sure yet",
 ] as const;
@@ -63,8 +64,9 @@ export function ConfidentialLandForm() {
             goal: form.goal,
             ownership: form.ownership,
             notes: form.notes,
-            leadIntent: "Confidential Multi-Lot Land Assessment",
+            leadIntent: "Landowner / Multi-Lot — Confidential Land Assessment",
             confidential: true,
+            audience: "landowner",
           },
           source: "land/multi-lot",
           submittedAt: new Date().toISOString(),
@@ -113,11 +115,12 @@ export function ConfidentialLandForm() {
       <div>
         <p className="eyebrow">Confidential</p>
         <h2 className="mt-2 font-display text-3xl text-ivory sm:text-4xl">
-          Request a confidential land assessment
+          Confidential land assessment
         </h2>
         <p className="mt-3 max-w-2xl text-text-muted">
-          Private discussion for landowners exploring multi-lot potential, partnership, or an
-          informed sale. Share what you can — we treat inquiries with discretion.
+          Also called a private property review — a discreet conversation for landowners exploring
+          multi-lot potential, sale, or partnership. Share what you can; we treat inquiries with
+          confidentiality.
         </p>
       </div>
 
@@ -226,7 +229,7 @@ export function ConfidentialLandForm() {
         {submitting ? "Sending…" : "Request confidential assessment"}
       </button>
       <p className="text-xs text-text-dim">
-        Tagged as Multi-Lot / Confidential Land Assessment. Not a public listing inquiry.
+        Tagged as Landowner / Multi-Lot lead. Confidential — not a public listing inquiry.
       </p>
     </form>
   );
