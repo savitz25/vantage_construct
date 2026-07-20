@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { locationHubs } from "@/lib/content";
 import { plans } from "@/lib/plans";
+import { signatureBuilds } from "@/lib/spec-homes/inventory";
 import { SITE_URL } from "@/lib/site";
 
 /** All indexable routes — only canonical paths on the production domain */
@@ -35,7 +36,7 @@ const staticRoutes: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/transformations/process", priority: 0.7, changeFrequency: "monthly" },
   { path: "/land", priority: 0.75, changeFrequency: "monthly" },
   { path: "/land/evaluation", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/land/spec-homes", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/land/spec-homes", priority: 0.85, changeFrequency: "weekly" },
   { path: "/land/multi-lot", priority: 0.65, changeFrequency: "monthly" },
   { path: "/partners", priority: 0.7, changeFrequency: "monthly" },
   { path: "/partners/realtors", priority: 0.75, changeFrequency: "monthly" },
@@ -76,5 +77,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticEntries, ...planEntries, ...locationEntries];
+  const specHomeEntries = signatureBuilds.map((h) => ({
+    url: `${SITE_URL}/land/spec-homes/${h.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...planEntries, ...locationEntries, ...specHomeEntries];
 }

@@ -13,6 +13,7 @@ export const STUDIO_LEAD_LABELS: Record<string, string> = {
   "adu-payback": "ADU Calculator Lead",
   "rebuild-feasibility": "Rebuild Feasibility Lead",
   "land-evaluation": "Land Evaluation / Pre-Purchase Lot Audit Lead",
+  "spec-early-access": "Signature Builds Early Access Lead",
 };
 
 export function studioLeadLabel(tool: string): string {

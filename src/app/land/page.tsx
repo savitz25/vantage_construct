@@ -38,10 +38,13 @@ export default function LandPage() {
             </p>
           </Link>
           <Link href="/land/spec-homes" className="card card-hover p-8">
-            <h2 className="font-display text-3xl text-ivory">Spec home program</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">
+              Signature Builds
+            </p>
+            <h2 className="mt-2 font-display text-3xl text-ivory">Signature Builds</h2>
             <p className="mt-3 text-text-muted">
-              Distinctive luxury homes in the $850k–$2M+ range with high-end finishes and premium
-              locations.
+              Luxury homes under construction with a phase-based customization window — plus Early
+              Access to inventory before public release.
             </p>
           </Link>
         </div>
