@@ -216,40 +216,8 @@ export const investorStructures = [
   },
 ] as const;
 
-export const faqs = [
-  {
-    q: "What areas do you serve?",
-    a: "We specialize in Central & Northern New Jersey with a strong focus on Warren, Watchung, Basking Ridge, and Millburn-Short Hills, serving Somerset, Morris, Union, and Essex counties.",
-  },
-  {
-    q: "What does “No Surprises” mean?",
-    a: "We discuss everything upfront, anticipate challenges, keep you informed every step of the way, and provide clear communication so you always know where the project stands.",
-  },
-  {
-    q: "What is the Design & Discovery investment?",
-    a: "Typical investment is $500–$2,500 based on project scope and complexity. This phase covers feasibility, preliminary design, and thorough cost analysis before construction commitment.",
-  },
-  {
-    q: "What deposit is required for construction?",
-    a: "Deposits typically range from $5,000 to $30,000 depending on project scope, covering construction drawings, permitting fees, and site plan work when needed.",
-  },
-  {
-    q: "Can you customize plans I found online?",
-    a: "Yes. Already have plans or found inspiration elsewhere? We’ll adapt any design to create your ideal home while maintaining your vision.",
-  },
-  {
-    q: "Do you offer job-site cameras?",
-    a: "Yes — optional job-site camera for 24/7 remote viewing is available at approximately $50/month, ideal for out-of-state clients.",
-  },
-  {
-    q: "Are plan prices all-inclusive?",
-    a: "Base plan pricing excludes land, sitework, permits, and utility connections. Selections and finishes also affect final pricing. We provide tailored estimates for your location.",
-  },
-  {
-    q: "Do you work with realtors and investors?",
-    a: "Yes. We partner with realtors on land-to-home packages and buyer referrals, and with investors on loan, equity, and hybrid structures across Central and Northern New Jersey.",
-  },
-] as const;
+/** @deprecated Prefer faqItems from @/lib/insights/faq-content — kept for any legacy imports */
+export { faqsForJsonLd as faqs } from "./insights/faq-content";
 
 /** Location cards / sitemap — full copy lives in src/lib/locations/towns.ts */
 export { townHubs as locationHubs } from "./locations/towns";
