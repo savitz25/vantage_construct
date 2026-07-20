@@ -23,11 +23,13 @@ export default function LandPage() {
       <section className="section pt-0">
         <div className="container-wide grid gap-6 lg:grid-cols-3">
           <Link href="/land/evaluation" className="card card-hover p-8">
-            <h2 className="font-display text-3xl text-ivory">Single-lot opportunities</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">
+              Interactive feasibility
+            </p>
+            <h2 className="mt-2 font-display text-3xl text-ivory">Land evaluation</h2>
             <p className="mt-3 text-text-muted">
-              Find or evaluate the perfect lot for your dream home. We maximize potential through
-              proven land analysis and deep zoning knowledge in Warren, Watchung, Basking Ridge, and
-              Millburn-Short Hills.
+              Can you build what you want on this lot? Setback visualizer, hidden site-cost flags,
+              and Pre-Purchase Lot Audits — before you spend another dollar.
             </p>
           </Link>
           <Link href="/land/multi-lot" className="card card-hover p-8">

@@ -74,6 +74,17 @@ const nextConfig: NextConfig = {
         destination: "/cost-to-build-a-house-nj",
         permanent: true,
       },
+      // WordPress land paths → Next land IA (when hit on primary domain)
+      { source: "/land-evaluation", destination: "/land/evaluation", permanent: true },
+      { source: "/land-evaluation/", destination: "/land/evaluation", permanent: true },
+      { source: "/land-development", destination: "/land", permanent: true },
+      { source: "/land-development/", destination: "/land", permanent: true },
+      { source: "/sell-land", destination: "/land/evaluation", permanent: true },
+      { source: "/sell-land/", destination: "/land/evaluation", permanent: true },
+      { source: "/multi-lot-use", destination: "/land/multi-lot", permanent: true },
+      { source: "/multi-lot-use/", destination: "/land/multi-lot", permanent: true },
+      { source: "/spec-home-building", destination: "/land/spec-homes", permanent: true },
+      { source: "/spec-home-building/", destination: "/land/spec-homes", permanent: true },
     ];
   },
 };
