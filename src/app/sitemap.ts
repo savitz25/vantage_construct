@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { locationHubs } from "@/lib/content";
+import { getAllPostSlugs } from "@/lib/insights/posts";
 import { plans } from "@/lib/plans";
 import { signatureBuilds } from "@/lib/spec-homes/inventory";
 import { SITE_URL } from "@/lib/site";
@@ -78,6 +79,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const insightPostEntries = getAllPostSlugs().map((slug) => ({
+    url: `${SITE_URL}/insights/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
   const specHomeEntries = signatureBuilds.map((h) => ({
     url: `${SITE_URL}/land/spec-homes/${h.slug}`,
     lastModified: now,
@@ -85,5 +93,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticEntries, ...planEntries, ...locationEntries, ...specHomeEntries];
+  return [
+    ...staticEntries,
+    ...insightPostEntries,
+    ...planEntries,
+    ...locationEntries,
+    ...specHomeEntries,
+  ];
 }

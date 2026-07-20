@@ -643,3 +643,117 @@ a {
     max-height: min(54vh, 420px);
   }
 }
+
+/* ─── Insights article editorial ─── */
+.article-prose {
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.article-p {
+  margin: 0 0 1.25rem;
+  max-width: 42rem;
+}
+
+.article-h2 {
+  margin: 2.75rem 0 1rem;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.75rem, 3vw, 2.15rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ivory);
+}
+
+.article-h3 {
+  margin: 2rem 0 0.75rem;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--ivory);
+}
+
+.article-ul,
+.article-ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.25rem;
+  max-width: 42rem;
+}
+
+.article-ul li,
+.article-ol li {
+  margin-bottom: 0.55rem;
+  padding-left: 0.35rem;
+}
+
+.article-ul {
+  list-style: disc;
+}
+
+.article-ol {
+  list-style: decimal;
+}
+
+.article-pull {
+  margin: 2.25rem 0;
+  padding: 1.5rem 0 1.5rem 1.35rem;
+  border-left: 3px solid var(--gold);
+  max-width: 38rem;
+}
+
+.article-pull p {
+  margin: 0;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  line-height: 1.35;
+  color: var(--ivory);
+  font-weight: 500;
+}
+
+.article-callout {
+  margin: 2rem 0;
+  padding: 1.25rem 1.35rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(11, 31, 74, 0.1);
+  background: linear-gradient(165deg, #fffdf9 0%, #f4f0e9 100%);
+  max-width: 42rem;
+}
+
+.article-callout-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+.article-callout p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.article-inline-cta {
+  margin: 2rem 0;
+  padding: 1.25rem 1.35rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(196, 160, 53, 0.28);
+  background: rgba(196, 160, 53, 0.06);
+  max-width: 42rem;
+}
+
+.article-inline-link {
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(196, 160, 53, 0.55);
+  text-underline-offset: 3px;
+}
+
+.article-inline-link:hover {
+  color: var(--gold-deep);
+  text-decoration-color: var(--gold);
+}
