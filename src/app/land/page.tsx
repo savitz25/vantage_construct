@@ -31,10 +31,13 @@ export default function LandPage() {
             </p>
           </Link>
           <Link href="/land/multi-lot" className="card card-hover p-8">
-            <h2 className="font-display text-3xl text-ivory">Multi-lot development</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">
+              Highest & best use
+            </p>
+            <h2 className="mt-2 font-display text-3xl text-ivory">Multi-lot development</h2>
             <p className="mt-3 text-text-muted">
-              From small subdivisions to entitlements and strategic partnerships — including{" "}
-              {landDevelopments.join(", ")}.
+              What could your acreage be worth as multiple luxury lots? Confidential assessment,
+              three clear paths, and track record including {landDevelopments.join(", ")}.
             </p>
           </Link>
           <Link href="/land/spec-homes" className="card card-hover p-8">

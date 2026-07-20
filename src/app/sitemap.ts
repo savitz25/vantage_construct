@@ -37,7 +37,7 @@ const staticRoutes: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/land", priority: 0.75, changeFrequency: "monthly" },
   { path: "/land/evaluation", priority: 0.7, changeFrequency: "monthly" },
   { path: "/land/spec-homes", priority: 0.85, changeFrequency: "weekly" },
-  { path: "/land/multi-lot", priority: 0.65, changeFrequency: "monthly" },
+  { path: "/land/multi-lot", priority: 0.8, changeFrequency: "monthly" },
   { path: "/partners", priority: 0.7, changeFrequency: "monthly" },
   { path: "/partners/realtors", priority: 0.75, changeFrequency: "monthly" },
   { path: "/partners/investors", priority: 0.75, changeFrequency: "monthly" },
