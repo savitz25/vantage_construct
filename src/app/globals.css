@@ -365,11 +365,140 @@ a {
   letter-spacing: 0.04em;
 }
 
+/* Legacy single-button sticky (unused); replaced by mobile action bar */
 .sticky-cta {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
   z-index: 50;
+}
+
+/* ─── Premium mobile action bar ─── */
+.mobile-action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 55;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  align-items: stretch;
+  gap: 0.35rem;
+  padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(255, 253, 248, 0.96);
+  border-top: 1px solid rgba(11, 31, 74, 0.1);
+  box-shadow: 0 -8px 28px rgba(7, 21, 52, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.mobile-action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  min-height: 3.25rem;
+  border-radius: 0.75rem;
+  color: var(--navy);
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.mobile-action-item:active {
+  background: rgba(11, 31, 74, 0.06);
+}
+
+.mobile-action-icon {
+  display: flex;
+  color: var(--gold-deep);
+}
+
+.mobile-action-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+.mobile-action-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  border-radius: 999px;
+  padding: 0 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fffdf8;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+  box-shadow: var(--shadow-gold);
+  white-space: nowrap;
+}
+
+.mobile-action-primary:active {
+  transform: scale(0.98);
+}
+
+/* Clear space so fixed bar never covers content */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  footer {
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* ─── Intent path cards (homepage) ─── */
+.intent-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .intent-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .intent-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.intent-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-height: 5.5rem;
+  padding: 1.1rem 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .intent-card {
+    min-height: 8.5rem;
+    padding: 1.35rem 1.4rem;
+  }
+}
+
+.intent-card-primary {
+  border-color: rgba(196, 160, 53, 0.35);
+  background: linear-gradient(165deg, #fffdf9 0%, #f8f2e6 100%);
+}
+
+.intent-cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  min-height: 1.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--gold-deep);
+  letter-spacing: 0.02em;
 }
 
 /* ─── Studio workspace: model-first layout ─── */
@@ -559,6 +688,10 @@ a {
   color: var(--text-muted);
 }
 
+.studio-control-label::-webkit-details-marker {
+  display: none;
+}
+
 .studio-control-chips {
   margin-top: 0.5rem;
   display: flex;
@@ -573,10 +706,20 @@ a {
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--surface);
-  padding: 0.35rem 0.65rem;
-  font-size: 0.7rem;
+  /* Thumb-friendly on mobile; stays compact on desktop */
+  min-height: 2.75rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+@media (min-width: 1024px) {
+  .studio-chip {
+    min-height: 2rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.7rem;
+  }
 }
 
 .studio-chip:hover {
@@ -607,8 +750,34 @@ a {
   border: 1px solid rgba(196, 160, 53, 0.3);
   background: rgba(255, 253, 248, 0.94);
   backdrop-filter: blur(10px);
-  padding: 0.65rem 0.9rem;
+  padding: 0.75rem 1rem;
   box-shadow: 0 8px 24px rgba(7, 21, 52, 0.08);
+}
+
+/* On phone: model first, taller stage, controls clearly below */
+@media (max-width: 1023px) {
+  .studio-model-stage {
+    min-height: min(42vh, 340px);
+    max-height: min(52vh, 420px);
+    aspect-ratio: 4 / 3;
+  }
+
+  .studio-control-group {
+    padding: 0.85rem 0.95rem;
+  }
+
+  .studio-control-chips {
+    gap: 0.45rem;
+  }
+
+  .studio-sidebar {
+    /* Keep controls under the visual on mobile */
+    order: 2;
+  }
+
+  .studio-model-column {
+    order: 1;
+  }
 }
 
 /* Vision Summary / lead capture card (sidebar) */

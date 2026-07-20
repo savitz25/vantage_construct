@@ -122,7 +122,10 @@ export function KitchenStudio() {
           {formatRange(estimate.low, estimate.high)}
         </p>
       </div>
-      <a href="#kitchen-controls" className="text-xs font-semibold text-gold-deep">
+      <a
+        href="#kitchen-controls"
+        className="min-h-10 shrink-0 rounded-full border border-border bg-surface px-3 py-2 text-xs font-semibold text-gold-deep"
+      >
         Options ↓
       </a>
     </div>

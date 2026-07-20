@@ -613,7 +613,7 @@ function Choice({
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`card w-full p-5 text-left transition ${
+      className={`card min-h-[4.25rem] w-full p-4 text-left transition sm:min-h-0 sm:p-5 ${
         selected ? "border-gold ring-2 ring-gold/30" : ""
       }`}
     >

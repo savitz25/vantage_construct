@@ -2,52 +2,86 @@ import Link from "next/link";
 
 const intents = [
   {
-    title: "Design Studio",
-    body: "Shape your vision interactively and unlock a personalized Vision Summary.",
+    title: "Design my home",
+    body: "Interactive Design Studio — shape size, style, and finishes with a Vision Summary.",
     href: "/design-studio",
+    cta: "Open Design Studio",
+    primary: true,
   },
   {
-    title: "New Custom Home",
-    body: "Design and build a luxury residence tailored to your life.",
+    title: "See what it costs",
+    body: "Live North Jersey construction ranges with an interactive house model.",
+    href: "/cost-to-build-a-house-nj",
+    cta: "Open Cost Studio",
+    primary: true,
+  },
+  {
+    title: "Build a custom home",
+    body: "New construction on your lot — process, craft, and no-surprises planning.",
     href: "/custom-homes",
+    cta: "Start custom path",
   },
   {
-    title: "Home Transformation",
-    body: "Additions, renovations, basements, attics, and outdoor living.",
+    title: "Transform my home",
+    body: "Kitchens, basements, additions, outdoor living — explore Studios first.",
     href: "/transformations",
+    cta: "Browse renovations",
   },
   {
-    title: "Land & Spec",
-    body: "Evaluate land, multi-lot development, or explore spec homes.",
-    href: "/land",
+    title: "Evaluate my lot",
+    body: "Buildability, setbacks, multi-lot potential, and land development paths.",
+    href: "/land/evaluation",
+    cta: "Evaluate my lot",
   },
   {
-    title: "ADU / Accessory",
-    body: "Maximize your property with an ADU, garage, workshop, or studio.",
-    href: "/custom-homes/adus",
+    title: "See available homes",
+    body: "Fully customizable plan library with transparent base pricing.",
+    href: "/available-homes",
+    cta: "Browse designs",
   },
   {
-    title: "Realtor Partner",
-    body: "Turn land listings into home packages and grow commissions.",
+    title: "ADU or accessory building",
+    body: "Guest suites, pool houses, collector garages — feasibility and cost reality.",
+    href: "/custom-homes/accessory-buildings",
+    cta: "Explore accessories",
+  },
+  {
+    title: "I’m a realtor",
+    body: "Land-to-home packages, knockdowns, and client-ready builder support.",
     href: "/partners/realtors",
+    cta: "Partner with us",
   },
   {
-    title: "Investor Partner",
+    title: "I’m an investor",
     body: "Loan, equity, and hybrid structures with a proven local builder.",
     href: "/partners/investors",
+    cta: "Investor overview",
   },
 ] as const;
 
 export function IntentSelector() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="intent-grid">
       {intents.map((item) => (
-        <Link key={item.href} href={item.href} className="card card-hover group p-6">
-          <h3 className="font-display text-2xl text-ivory transition group-hover:text-gold-deep">
-            {item.title}
-          </h3>
-          <p className="mt-2 text-sm text-text-muted">{item.body}</p>
-          <span className="mt-5 inline-flex text-sm text-gold">Explore →</span>
+        <Link
+          key={item.href + item.title}
+          href={item.href}
+          className={`intent-card card card-hover group ${
+            "primary" in item && item.primary ? "intent-card-primary" : ""
+          }`}
+        >
+          <div className="min-w-0 flex-1">
+            <h3 className="font-display text-xl text-ivory transition group-hover:text-navy-soft sm:text-2xl">
+              {item.title}
+            </h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-text-muted">{item.body}</p>
+          </div>
+          <span className="intent-cta">
+            {item.cta}
+            <span aria-hidden className="ml-1">
+              →
+            </span>
+          </span>
         </Link>
       ))}
     </div>

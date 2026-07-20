@@ -24,49 +24,61 @@ export default function HomePage() {
     <>
       <JsonLd data={howToJsonLd()} />
 
-      <section className="hero-grid grain relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-28">
+      {/* Condensed mobile hero — path selector is the real first decision */}
+      <section className="hero-grid grain relative overflow-hidden pt-[4.75rem] pb-8 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-24">
         <div className="container-wide relative">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
             <div>
               <p className="eyebrow">Luxury custom homes · Central & Northern NJ</p>
-              <h1 className="mt-5 font-display text-5xl text-ivory sm:text-6xl lg:text-7xl">
+              <h1 className="mt-3 font-display text-[2.15rem] leading-[1.12] text-ivory sm:mt-5 sm:text-6xl lg:text-7xl">
                 Bringing your dream home to life — with no surprises
               </h1>
-              <p className="mt-6 max-w-xl text-lg text-text-muted">
+              <p className="mt-3 max-w-xl text-base text-text-muted sm:mt-6 sm:text-lg">
                 {company.description} Led hands-on by Master Builder {company.founder} since{" "}
                 {company.founded}.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/design-studio" className="btn btn-primary">
-                  Design Your Vantage Vision
+
+              {/* Mobile: three primary actions only; desktop keeps full set */}
+              <div className="mt-5 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-3">
+                <Link href="/cost-to-build-a-house-nj" className="btn btn-primary min-h-12 w-full sm:w-auto">
+                  Open Cost Studio
                 </Link>
-                <Link href="/cost-to-build-a-house-nj" className="btn btn-secondary">
-                  Cost calculator
+                <Link href="/design-studio" className="btn btn-secondary min-h-12 w-full sm:w-auto">
+                  Design my home
                 </Link>
-                <Link href="/available-homes" className="btn btn-secondary">
-                  Explore available designs
+                <Link
+                  href="/available-homes"
+                  className="btn btn-secondary min-h-12 w-full sm:w-auto"
+                >
+                  See available homes
                 </Link>
               </div>
-              <dl className="mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8">
+
+              <dl className="mt-6 grid max-w-xl grid-cols-3 gap-3 border-t border-border pt-5 sm:mt-10 sm:gap-4 sm:pt-8">
                 {[
                   { label: "Years of craft", value: "35+" },
                   { label: "Founded", value: "1990" },
                   { label: "Focus towns", value: "4+" },
                 ].map((stat) => (
                   <div key={stat.label}>
-                    <dt className="text-xs uppercase tracking-[0.16em] text-text-dim">
+                    <dt className="text-[0.65rem] uppercase tracking-[0.14em] text-text-dim sm:text-xs sm:tracking-[0.16em]">
                       {stat.label}
                     </dt>
-                    <dd className="mt-1 font-display text-3xl text-gold">{stat.value}</dd>
+                    <dd className="mt-0.5 font-display text-2xl text-gold sm:mt-1 sm:text-3xl">
+                      {stat.value}
+                    </dd>
                   </div>
                 ))}
               </dl>
             </div>
 
-            <div className="card relative overflow-hidden p-8">
+            {/* Desktop-only brand card — frees first screen on mobile */}
+            <div className="card relative hidden overflow-hidden p-8 lg:block">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(201,160,78,0.16),transparent_50%)]" />
               <div className="relative">
-                <p className="text-sm uppercase tracking-[0.2em] text-gold-deep">The Vantage Difference</p>
+                <p className="text-sm uppercase tracking-[0.2em] text-gold-deep">
+                  The Vantage Difference
+                </p>
                 <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
                   Homes that still delight clients 15+ years later
                 </h2>
@@ -84,105 +96,111 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-sm border-y border-border bg-bg-elevated">
+      {/* Path selector — first decision surface; elevated on mobile */}
+      <section
+        id="start-here"
+        className="border-y border-border bg-bg-elevated py-8 sm:section-sm sm:py-14"
+      >
         <div className="container-wide">
-          <p className="text-center text-sm uppercase tracking-[0.2em] text-text-dim">
-            Proudly serving {company.focusTowns.join(" · ")} · {company.counties.join(", ")} Counties
-          </p>
-        </div>
-      </section>
-
-      <section className="section-sm">
-        <div className="container-wide grid gap-4 lg:grid-cols-2">
-          <Link
-            href="/design-studio"
-            className="card card-hover relative block overflow-hidden p-8 sm:p-10"
-          >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(201,160,78,0.16),transparent_50%)]" />
-            <div className="relative">
-              <p className="eyebrow">Flagship experience</p>
-              <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
-                Design Your Vantage Vision
-              </h2>
-              <p className="mt-4 text-text-muted">
-                Interactive design studio — size, style, finishes, lifestyle — ending in a Vision
-                Summary for a no-surprises consultation.
-              </p>
-              <span className="btn btn-primary mt-6">Open Design Studio →</span>
-            </div>
-          </Link>
-          <Link
-            href="/cost-to-build-a-house-nj#calculator"
-            className="card card-hover relative block overflow-hidden p-8 sm:p-10"
-          >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(107,143,154,0.18),transparent_50%)]" />
-            <div className="relative">
-              <p className="eyebrow">Cost on steroids</p>
-              <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
-                Vision Cost Studio
-              </h2>
-              <p className="mt-4 text-text-muted">
-                Live North Jersey construction ranges with an interactive house model — free instant
-                estimate, detailed breakdown when you&apos;re ready.
-              </p>
-              <span className="btn btn-primary mt-6">Open cost calculator →</span>
-            </div>
-          </Link>
-          <Link
-            href="/move-or-improve-calculator-nj"
-            className="card card-hover relative block overflow-hidden p-8 sm:p-10 lg:col-span-2"
-          >
-            <div className="relative md:flex md:items-center md:justify-between md:gap-8">
-              <div>
-                <p className="eyebrow">Transformations</p>
-                <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
-                  Move or improve?
-                </h2>
-                <p className="mt-4 max-w-2xl text-text-muted">
-                  Compare true NJ selling costs vs the addition that solves the same problem — plus
-                  ADU payback and basement dream-space tools in Vantage Studios.
-                </p>
-              </div>
-              <span className="btn btn-primary mt-6 md:mt-0">Open calculators →</span>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container-wide">
-          <div className="mb-10 max-w-2xl">
+          <div className="mb-5 max-w-2xl sm:mb-10">
             <p className="eyebrow">Start here</p>
-            <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
+            <h2 className="mt-2 font-display text-3xl text-ivory sm:mt-3 sm:text-4xl lg:text-5xl">
               What brings you to Vantage?
             </h2>
-            <p className="mt-4 text-text-muted">
-              Choose your path — we&apos;ll guide you with clear process, transparent pricing
-              conversations, and hands-on leadership from Victor.
+            <p className="mt-2 text-sm text-text-muted sm:mt-4 sm:text-base">
+              Tap a path — we&apos;ll guide you with clear process, transparent ranges, and
+              hands-on leadership from Victor.
             </p>
           </div>
           <IntentSelector />
         </div>
       </section>
 
+      <section className="section-sm border-b border-border">
+        <div className="container-wide">
+          <p className="text-center text-xs uppercase tracking-[0.16em] text-text-dim sm:text-sm sm:tracking-[0.2em]">
+            Proudly serving {company.focusTowns.join(" · ")} · {company.counties.join(", ")}{" "}
+            Counties
+          </p>
+        </div>
+      </section>
+
+      {/* Flagship tools — outcome-focused CTAs */}
+      <section className="section-sm">
+        <div className="container-wide grid gap-4 lg:grid-cols-2">
+          <Link
+            href="/design-studio"
+            className="card card-hover relative block overflow-hidden p-6 sm:p-10"
+          >
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(201,160,78,0.16),transparent_50%)]" />
+            <div className="relative">
+              <p className="eyebrow">Flagship experience</p>
+              <h2 className="mt-2 font-display text-2xl text-ivory sm:mt-3 sm:text-4xl">
+                Design Your Vantage Vision
+              </h2>
+              <p className="mt-3 text-sm text-text-muted sm:mt-4 sm:text-base">
+                Interactive design studio — size, style, finishes, lifestyle — ending in a Vision
+                Summary for a no-surprises consultation.
+              </p>
+              <span className="btn btn-primary mt-5 min-h-12 sm:mt-6">Open Design Studio →</span>
+            </div>
+          </Link>
+          <Link
+            href="/cost-to-build-a-house-nj#calculator"
+            className="card card-hover relative block overflow-hidden p-6 sm:p-10"
+          >
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(107,143,154,0.18),transparent_50%)]" />
+            <div className="relative">
+              <p className="eyebrow">Cost clarity</p>
+              <h2 className="mt-2 font-display text-2xl text-ivory sm:mt-3 sm:text-4xl">
+                Vision Cost Studio
+              </h2>
+              <p className="mt-3 text-sm text-text-muted sm:mt-4 sm:text-base">
+                Live North Jersey construction ranges with an interactive house model — free
+                instant estimate, detailed breakdown when you&apos;re ready.
+              </p>
+              <span className="btn btn-primary mt-5 min-h-12 sm:mt-6">Open Cost Studio →</span>
+            </div>
+          </Link>
+          <Link
+            href="/move-or-improve-calculator-nj"
+            className="card card-hover relative block overflow-hidden p-6 sm:p-10 lg:col-span-2"
+          >
+            <div className="relative md:flex md:items-center md:justify-between md:gap-8">
+              <div>
+                <p className="eyebrow">Transformations</p>
+                <h2 className="mt-2 font-display text-2xl text-ivory sm:mt-3 sm:text-4xl">
+                  Move or improve?
+                </h2>
+                <p className="mt-3 max-w-2xl text-sm text-text-muted sm:mt-4 sm:text-base">
+                  Compare true NJ selling costs vs the addition that solves the same problem —
+                  plus ADU payback and basement tools in Vantage Studios.
+                </p>
+              </div>
+              <span className="btn btn-primary mt-5 min-h-12 md:mt-0">Compare my options →</span>
+            </div>
+          </Link>
+        </div>
+      </section>
+
       <section className="section bg-bg-elevated">
         <div className="container-wide">
-          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="mb-6 flex flex-col gap-4 sm:mb-10 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <p className="eyebrow">Available designs</p>
-              <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
+              <h2 className="mt-2 font-display text-3xl text-ivory sm:mt-3 sm:text-4xl lg:text-5xl">
                 Interactive plan explorer
               </h2>
-              <p className="mt-4 text-text-muted">
-                Fully customizable plans with transparent base pricing. Land, sitework, permits, and
-                utilities are separate — we&apos;ll estimate for your lot.
+              <p className="mt-3 text-sm text-text-muted sm:mt-4 sm:text-base">
+                Fully customizable plans with transparent base pricing. Land, sitework, permits,
+                and utilities are separate — we&apos;ll estimate for your lot.
               </p>
             </div>
-            <Link href="/available-homes" className="btn btn-secondary">
-              View all {plans.length} plans
+            <Link href="/available-homes" className="btn btn-secondary min-h-12 w-full sm:w-auto">
+              See all {plans.length} designs
             </Link>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {featuredPlans.map((plan) => (
               <PlanCard key={plan.slug} plan={plan} />
             ))}
@@ -191,25 +209,26 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <div className="container-wide grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="container-wide grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
           <div>
             <p className="eyebrow">Proven process</p>
-            <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
+            <h2 className="mt-2 font-display text-3xl text-ivory sm:mt-3 sm:text-4xl lg:text-5xl">
               Your 7-step expert-guided journey
             </h2>
-            <p className="mt-4 text-text-muted">
-              Clear guidance from first meeting to collaborative celebration — designed so building
-              feels exciting, organized, and free of surprises.
+            <p className="mt-3 text-sm text-text-muted sm:mt-4 sm:text-base">
+              Clear guidance from first meeting to collaborative celebration — designed so
+              building feels exciting, organized, and free of surprises.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/custom-homes/process" className="btn btn-primary">
+            <div className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-3">
+              <Link href="/custom-homes/process" className="btn btn-primary min-h-12">
                 New home process
               </Link>
-              <Link href="/transformations/process" className="btn btn-secondary">
+              <Link href="/transformations/process" className="btn btn-secondary min-h-12">
                 Existing home process
               </Link>
             </div>
           </div>
+          {/* compact = closed by default → scannable on mobile */}
           <ProcessTimeline compact />
         </div>
       </section>
@@ -219,24 +238,32 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-2">
             <div>
               <p className="eyebrow">New construction</p>
-              <h2 className="mt-3 font-display text-4xl text-ivory">Custom home possibilities</h2>
-              <div className="mt-6 grid gap-4">
+              <h2 className="mt-2 font-display text-3xl text-ivory sm:mt-3 sm:text-4xl">
+                Custom home possibilities
+              </h2>
+              <div className="mt-5 grid gap-3 sm:mt-6 sm:gap-4">
                 {customHomeServices.map((s) => (
-                  <Link key={s.href} href={s.href} className="card card-hover p-5">
-                    <h3 className="font-display text-2xl text-ivory">{s.title}</h3>
-                    <p className="mt-2 text-sm text-text-muted">{s.body}</p>
+                  <Link key={s.href} href={s.href} className="card card-hover p-5 min-h-[4.5rem]">
+                    <h3 className="font-display text-xl text-ivory sm:text-2xl">{s.title}</h3>
+                    <p className="mt-1.5 text-sm text-text-muted">{s.body}</p>
                   </Link>
                 ))}
               </div>
             </div>
             <div>
               <p className="eyebrow">Existing homes</p>
-              <h2 className="mt-3 font-display text-4xl text-ivory">Transformations</h2>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <h2 className="mt-2 font-display text-3xl text-ivory sm:mt-3 sm:text-4xl">
+                Transformations
+              </h2>
+              <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2 sm:gap-4">
                 {transformationServices.map((s) => (
-                  <Link key={s.href + s.title} href={s.href} className="card card-hover p-5">
+                  <Link
+                    key={s.href + s.title}
+                    href={s.href}
+                    className="card card-hover p-5 min-h-[4.5rem]"
+                  >
                     <h3 className="font-display text-xl text-ivory">{s.title}</h3>
-                    <p className="mt-2 text-sm text-text-muted">{s.body}</p>
+                    <p className="mt-1.5 text-sm text-text-muted">{s.body}</p>
                   </Link>
                 ))}
               </div>
@@ -245,40 +272,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section bg-bg-elevated">
-        <div className="container-wide grid gap-10 lg:grid-cols-3">
-          <div className="card p-8 lg:col-span-1">
+      <section className="section bg-bg-elevated !pt-0 sm:!pt-0">
+        <div className="container-wide grid gap-4 sm:gap-6 lg:grid-cols-3">
+          <div className="card p-6 sm:p-8 lg:col-span-1">
             <p className="eyebrow">Master builder</p>
-            <h2 className="mt-3 font-display text-3xl text-ivory">Meet Victor Lobozzo</h2>
-            <p className="mt-4 text-sm text-text-muted line-clamp-6">{company.founderBio}</p>
-            <Link href="/about" className="btn btn-ghost mt-6 px-0">
+            <h2 className="mt-2 font-display text-2xl text-ivory sm:mt-3 sm:text-3xl">
+              Meet Victor Lobozzo
+            </h2>
+            <p className="mt-3 line-clamp-5 text-sm text-text-muted sm:mt-4 sm:line-clamp-6">
+              {company.founderBio}
+            </p>
+            <Link href="/about" className="btn btn-ghost mt-5 min-h-11 px-0 sm:mt-6">
               Our story →
             </Link>
           </div>
-          <div className="card p-8">
+          <div className="card p-6 sm:p-8">
             <p className="eyebrow">Land & development</p>
-            <h2 className="mt-3 font-display text-3xl text-ivory">Unlock your land&apos;s potential</h2>
-            <p className="mt-4 text-sm text-text-muted">
+            <h2 className="mt-2 font-display text-2xl text-ivory sm:mt-3 sm:text-3xl">
+              Unlock your land&apos;s potential
+            </h2>
+            <p className="mt-3 text-sm text-text-muted sm:mt-4">
               Single-lot maximization, multi-lot subdivisions, and best-use analysis — including
               projects like {landDevelopments.join(", ")}.
             </p>
-            <Link href="/land" className="btn btn-secondary mt-6">
-              Explore land services
+            <Link href="/land" className="btn btn-secondary mt-5 min-h-12 sm:mt-6">
+              Evaluate land services
             </Link>
           </div>
-          <div className="card p-8">
+          <div className="card p-6 sm:p-8">
             <p className="eyebrow">Partners</p>
-            <h2 className="mt-3 font-display text-3xl text-ivory">Realtors & investors</h2>
-            <p className="mt-4 text-sm text-text-muted">
+            <h2 className="mt-2 font-display text-2xl text-ivory sm:mt-3 sm:text-3xl">
+              Realtors & investors
+            </h2>
+            <p className="mt-3 text-sm text-text-muted sm:mt-4">
               Triple commission potential on land-to-home packages. Investor structures spanning
               loan, equity, and hybrid models.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/partners/realtors" className="btn btn-secondary">
-                Realtors
+            <div className="mt-5 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-3">
+              <Link href="/partners/realtors" className="btn btn-secondary min-h-12">
+                For realtors
               </Link>
-              <Link href="/partners/investors" className="btn btn-secondary">
-                Investors
+              <Link href="/partners/investors" className="btn btn-secondary min-h-12">
+                For investors
               </Link>
             </div>
           </div>

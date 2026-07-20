@@ -19,11 +19,11 @@ export function CtaBanner({
               {title}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-text-muted">{body}</p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href="/start" className="btn btn-primary">
-                Schedule Your Consultation
+            <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:items-center sm:gap-3">
+              <Link href="/start" className="btn btn-primary min-h-12">
+                Start my project
               </Link>
-              <a href={`tel:${company.phoneTel}`} className="btn btn-secondary">
+              <a href={`tel:${company.phoneTel}`} className="btn btn-secondary min-h-12">
                 Call {company.phone}
               </a>
             </div>

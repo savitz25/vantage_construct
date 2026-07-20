@@ -60,7 +60,7 @@ export function ToolLanderShell({
       <JsonLd data={localBusinessJsonLd()} />
       <JsonLd data={faqJsonLd([...faqs])} />
 
-      <section className="hero-grid grain border-b border-border pt-[5.25rem] pb-8 sm:pt-24 sm:pb-10">
+      <section className="hero-grid grain border-b border-border pt-[4.75rem] pb-6 sm:pt-24 sm:pb-10">
         <div className="container-wide relative">
           <Breadcrumbs
             items={breadcrumbs.map((b, i) =>
@@ -69,23 +69,25 @@ export function ToolLanderShell({
                 : b,
             )}
             variant="inline"
-            className="mb-5"
+            className="mb-4 sm:mb-5"
           />
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-5">
             <div className="max-w-2xl">
               <p className="eyebrow">{eyebrow}</p>
-              <h1 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">{title}</h1>
-              <p className="mt-3 text-lg text-text-muted">{description}</p>
+              <h1 className="mt-2 font-display text-[1.85rem] leading-tight text-ivory sm:mt-3 sm:text-5xl">
+                {title}
+              </h1>
+              <p className="mt-2 text-base text-text-muted sm:mt-3 sm:text-lg">{description}</p>
               {disclaimer ? (
-                <p className="mt-3 text-xs text-text-dim">*{disclaimer}</p>
+                <p className="mt-2 text-xs text-text-dim sm:mt-3">*{disclaimer}</p>
               ) : null}
             </div>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Link href={serviceHref} className="btn btn-secondary">
+            <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap lg:justify-end">
+              <a href="#tool" className="btn btn-primary min-h-12 w-full sm:w-auto">
+                Start calculator
+              </a>
+              <Link href={serviceHref} className="btn btn-secondary min-h-12 w-full sm:w-auto">
                 {serviceCtaLabel}
-              </Link>
-              <Link href="/start" className="btn btn-primary">
-                Schedule a consultation
               </Link>
             </div>
           </div>
@@ -143,11 +145,11 @@ export function ToolLanderShell({
         <div className="container-v text-center">
           <h2 className="font-display text-4xl text-ivory">{consultHeading}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-text-muted">{consultBody}</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/start" className="btn btn-primary">
-              Schedule a consultation
+          <div className="mt-8 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+            <Link href="/start" className="btn btn-primary min-h-12">
+              Start my project
             </Link>
-            <Link href={serviceHref} className="btn btn-secondary">
+            <Link href={serviceHref} className="btn btn-secondary min-h-12">
               {serviceCtaLabel}
             </Link>
           </div>

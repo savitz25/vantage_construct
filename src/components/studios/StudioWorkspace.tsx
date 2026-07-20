@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
 /**
  * Shared Studio layout: interactive model is the hero; estimate + controls
@@ -52,19 +52,32 @@ export function StudioWorkspace({
   );
 }
 
-/** Compact chip row group for the light sidebar */
+/** Compact chip row group for the light sidebar — collapsible on mobile */
 export function StudioControlGroup({
   label,
   children,
+  defaultOpen = true,
 }: {
   label: string;
   children: ReactNode;
+  /** On mobile, groups can collapse to reduce overwhelm */
+  defaultOpen?: boolean;
 }) {
+  const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="studio-control-group">
-      <p className="studio-control-label">{label}</p>
+    <details
+      className="studio-control-group group/ctrl"
+      open={open}
+      onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}
+    >
+      <summary className="studio-control-label flex min-h-11 cursor-pointer list-none items-center justify-between gap-2 lg:min-h-0">
+        <span>{label}</span>
+        <span className="text-gold-deep transition group-open/ctrl:rotate-45 lg:hidden" aria-hidden>
+          +
+        </span>
+      </summary>
       <div className="studio-control-chips">{children}</div>
-    </div>
+    </details>
   );
 }
 
