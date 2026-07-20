@@ -163,9 +163,9 @@ export const nav = [
     label: "Insights",
     href: "/insights",
     children: [
-      { label: "Guides & Resources", href: "/insights" },
+      { label: "Resource Center", href: "/insights" },
       { label: "FAQs", href: "/insights/faq" },
-      { label: "Blog", href: "/insights/blog" },
+      { label: "Blog notes", href: "/insights/blog" },
     ],
   },
 ] as const;

@@ -32,10 +32,19 @@ export default function BlogPage() {
   return (
     <>
       <PageHero
-        eyebrow="Blog"
+        crumbs={[
+          { label: "Home", href: "/" },
+          { label: "Insights", href: "/insights" },
+          { label: "Blog", path: "/insights/blog" },
+        ]}
+        eyebrow="Blog notes"
         title="Ideas for homeowners and partners"
-        description="Editorial foundation for ongoing SEO content. Expand each topic into full articles as your content program grows."
-      />
+        description="Short notes expanding the Resource Center. For the full magazine-style library of guides and tools, visit Insights."
+      >
+        <Link href="/insights" className="btn btn-secondary">
+          Back to Resource Center
+        </Link>
+      </PageHero>
       <section className="section pt-0">
         <div className="container-v space-y-5">
           {posts.map((post) => (

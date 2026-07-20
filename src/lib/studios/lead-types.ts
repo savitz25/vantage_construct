@@ -17,6 +17,8 @@ export const STUDIO_LEAD_LABELS: Record<string, string> = {
   "multi-lot-assessment": "Landowner / Multi-Lot Lead — Confidential Land Assessment",
   "accessory-building-concept":
     "Accessory Building / Pool House / Garage — Concept Review Lead",
+  "insights-gated-guide": "Insights — 7 Steps Guide Download Lead",
+  "insights-newsletter": "Insights — Master Builder Newsletter Lead",
 };
 
 export function studioLeadLabel(tool: string): string {
