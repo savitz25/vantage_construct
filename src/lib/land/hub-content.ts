@@ -39,6 +39,8 @@ export const landPathways = [
   },
 ] as const;
 
+export type LandPathwayId = (typeof landPathways)[number]["id"];
+
 export const landCredibility = [
   {
     label: "Local tenure",
@@ -62,32 +64,25 @@ export const landCredibility = [
   },
 ] as const;
 
-/** Light path-finder — maps self-ID to the right sub-page */
-export const landPathFinderOptions = [
+/**
+ * Simple routing question — exact audience language from master prompt.
+ * Smooths path into the three cards.
+ */
+export const landDescribeOptions = [
   {
     id: "have-lot",
-    label: "I have a lot (or I’m under contract)",
-    detail: "Need to know if the dream home fits — and what site costs to expect.",
-    pathId: "evaluation" as const,
+    label: "I have (or am considering) a specific lot",
+    pathId: "evaluation" as LandPathwayId,
   },
   {
-    id: "buying-home",
-    label: "I want a new home without a full custom start",
-    detail: "Looking for inventory under construction with room to personalize.",
-    pathId: "spec-homes" as const,
+    id: "looking-home",
+    label: "I’m looking for a new luxury home",
+    pathId: "spec-homes" as LandPathwayId,
   },
   {
-    id: "own-acreage",
-    label: "I own larger acreage or family land",
-    detail: "Curious about multi-lot value, partnership, or an informed sale.",
-    pathId: "multi-lot" as const,
-  },
-  {
-    id: "not-sure",
-    label: "I’m not sure yet",
-    detail: "Start with a short confidential conversation — we’ll route you.",
-    pathId: null,
-    href: "/start",
+    id: "own-land",
+    label: "I own land and want to understand its potential",
+    pathId: "multi-lot" as LandPathwayId,
   },
 ] as const;
 

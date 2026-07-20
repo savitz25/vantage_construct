@@ -1,16 +1,11 @@
 import Link from "next/link";
-import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
-import { LandPathFinder } from "@/components/land/LandPathFinder";
+import { LandHubRouter } from "@/components/land/LandHubRouter";
 import { PageHero } from "@/components/PageHero";
 import { SmartImage } from "@/components/SmartImage";
 import { landDevelopments } from "@/lib/content";
 import { company } from "@/lib/company";
-import {
-  landCredibility,
-  landHubRelated,
-  landPathways,
-} from "@/lib/land/hub-content";
+import { landCredibility, landHubRelated } from "@/lib/land/hub-content";
 import { createMetadata, localBusinessJsonLd, serviceJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -41,20 +36,20 @@ export default function LandPage() {
         ]}
         eyebrow="Land opportunity hub"
         title="What is your land actually capable of?"
-        description="From a single homesite to a private enclave — clarity first. Choose the path that matches your situation; each leads to a deeper, purpose-built experience."
+        description="From a single homesite to a private enclave — clarity first. Tell us what best describes you, then open the pathway built for your situation."
       >
         <div className="flex flex-wrap gap-3">
-          <a href="#pathways" className="btn btn-primary">
+          <a href="#explore-path" className="btn btn-primary">
             Explore your path
           </a>
-          <a href="#explore-path" className="btn btn-secondary">
-            Not sure? Start here
+          <a href="#pathways" className="btn btn-secondary">
+            View all three opportunities
           </a>
         </div>
       </PageHero>
 
       {/* Aerial hero band */}
-      <section className="border-b border-border bg-bg-elevated">
+      <section className="border-b border-border bg-bg-elevated" aria-label="Land photography">
         <div className="container-wide py-6 sm:py-8">
           <div className="relative aspect-[21/9] min-h-[200px] overflow-hidden rounded-2xl border border-border sm:min-h-[260px]">
             <SmartImage
@@ -78,50 +73,10 @@ export default function LandPage() {
         </div>
       </section>
 
-      {/* Three pathways — core of the hub */}
-      <section id="pathways" className="section scroll-mt-28">
+      {/* Routing question + three pathways */}
+      <section className="section" aria-label="Land opportunity pathways">
         <div className="container-wide">
-          <div className="mx-auto mb-10 max-w-2xl text-center">
-            <p className="eyebrow justify-center">Three opportunities</p>
-            <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
-              Choose the door that matches your goal
-            </h2>
-            <p className="mt-3 text-text-muted">
-              This hub introduces — it does not replace — the deeper pages. Pick your audience, then
-              go deeper.
-            </p>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-3">
-            {landPathways.map((path) => (
-              <article
-                key={path.id}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-elevated shadow-[var(--shadow)] transition hover:border-gold/35"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <SmartImage
-                    src={path.image}
-                    alt={path.imageAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="transition duration-700 group-hover:scale-[1.04]"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                  <span className="absolute bottom-3 left-3 rounded-full border border-white/25 bg-black/40 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
-                    {path.audience}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <h3 className="font-display text-2xl text-ivory sm:text-3xl">{path.title}</h3>
-                  <p className="mt-1 text-sm font-semibold text-gold-deep">{path.tagline}</p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-text-muted">{path.body}</p>
-                  <Link href={path.href} className="btn btn-primary mt-6 self-start">
-                    {path.cta} →
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
+          <LandHubRouter />
         </div>
       </section>
 
@@ -153,14 +108,40 @@ export default function LandPage() {
         </div>
       </section>
 
-      {/* Light engagement */}
-      <section className="section">
-        <div className="container-wide">
-          <LandPathFinder />
+      {/* Final CTA — calm land consultation */}
+      <section className="section" aria-labelledby="land-consult-heading">
+        <div className="container-v">
+          <div className="card relative overflow-hidden px-8 py-12 text-center sm:px-12 sm:py-14">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,160,78,0.18),transparent_55%)]" />
+            <div className="relative">
+              <p className="eyebrow justify-center">Complimentary consultation</p>
+              <h2
+                id="land-consult-heading"
+                className="mx-auto mt-4 max-w-3xl font-display text-3xl text-ivory sm:text-4xl lg:text-5xl"
+              >
+                Ready for a calm conversation about your land?
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-text-muted">
+                Whether you have a specific lot, larger acreage, or are exploring Signature Builds —
+                schedule a complimentary land-related consultation. No pressure. Clear next steps.
+              </p>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Link href="/start" className="btn btn-primary">
+                  Schedule your consultation
+                </Link>
+                <a href={`tel:${company.phoneTel}`} className="btn btn-secondary">
+                  Call {company.phone}
+                </a>
+              </div>
+              <p className="mt-5 text-xs text-text-dim">
+                Serving {company.focusTowns.join(", ")} and surrounding {company.serviceAreaLabel}.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Soft related + CTA */}
+      {/* Related */}
       <section className="section-sm border-t border-border bg-bg-elevated">
         <div className="container-wide">
           <h2 className="font-display text-3xl text-ivory">Continue exploring</h2>
@@ -174,11 +155,6 @@ export default function LandPage() {
           </div>
         </div>
       </section>
-
-      <CtaBanner
-        title="Discuss your land opportunity"
-        body="A calm, confidential conversation — whether you have a lot, acreage, or are exploring Signature Builds. We’ll point you to the right next step."
-      />
     </>
   );
 }
