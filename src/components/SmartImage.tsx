@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export const IMAGE_FALLBACK = "/media/plans/fallback-luxury-home.svg";
@@ -20,11 +21,8 @@ type Props = {
 };
 
 /**
- * Reliable card/image renderer for Design Studio & plan catalogs.
- *
- * Uses native <img> (not next/image optimizer) so local public assets always
- * render, with graceful SVG fallback if a source fails. Never leaves a broken
- * icon — fallback image always paints into the reserved aspect-ratio box.
+ * Brand image renderer with next/image optimization (WebP/AVIF when possible),
+ * lazy loading below the fold, and graceful SVG fallback on error.
  */
 export function SmartImage({
   src,
@@ -32,7 +30,7 @@ export function SmartImage({
   fallbackSrc = IMAGE_FALLBACK,
   className = "",
   fill = false,
-  sizes,
+  sizes = "(max-width: 768px) 100vw, 50vw",
   priority = false,
   width,
   height,
@@ -55,27 +53,28 @@ export function SmartImage({
     }
   };
 
-  const fitClass =
-    objectFit === "contain" ? "object-contain" : "object-cover";
+  const fitClass = objectFit === "contain" ? "object-contain" : "object-cover";
+  // SVGs and data URLs skip optimizer; local media go through next/image
+  const isSvg =
+    current.endsWith(".svg") || current.startsWith("data:") || current === fallbackSrc;
 
   if (fill) {
     return (
       <>
-        {/* Soft base layer so the box is never empty beige while loading */}
         <span
           aria-hidden
           className="absolute inset-0 bg-gradient-to-br from-[#f3ebe0] via-[#e8dcc8] to-[#d4c2a6]"
         />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={current}
           alt={alt}
-          loading={priority ? "eager" : "lazy"}
-          decoding="async"
-          fetchPriority={priority ? "high" : "auto"}
+          fill
           sizes={sizes}
+          priority={priority}
+          quality={priority ? 80 : 72}
+          unoptimized={isSvg}
           onError={handleError}
-          className={`absolute inset-0 h-full w-full ${fitClass} ${className}`}
+          className={`${fitClass} ${className}`}
           style={style}
           data-image-fallback={errored ? "true" : "false"}
         />
@@ -83,17 +82,19 @@ export function SmartImage({
     );
   }
 
+  const w = typeof width === "number" ? width : Number(width) || 1200;
+  const h = typeof height === "number" ? height : Number(height) || 800;
+
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src={current}
       alt={alt}
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
-      fetchPriority={priority ? "high" : "auto"}
-      width={typeof width === "number" ? width : undefined}
-      height={typeof height === "number" ? height : undefined}
+      width={w}
+      height={h}
       sizes={sizes}
+      priority={priority}
+      quality={priority ? 80 : 72}
+      unoptimized={isSvg}
       onError={handleError}
       className={`${fitClass} ${className}`}
       style={{ width: "100%", height: "auto", ...style }}

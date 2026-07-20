@@ -227,7 +227,7 @@ export const suiteVisions: SuiteVision[] = [
     tagline: "Furniture vanity, paneled detail, enduring craft",
     description:
       "Old-world craftsmanship — furniture-style vanity, separate wet zones, and fully custom dressing.",
-    heroImage: "/media/primary-suite/traditional-luxury.jpg",
+    heroImage: "/media/primary-suite/traditional-luxury.webp",
     wall: "#f2ebe0",
     floor: "#8b6914",
     accent: "#b8893d",

@@ -24,7 +24,7 @@ export const garagePresets: GaragePreset[] = [
     badge: "Most popular",
     tagline: "Refined 3-car garage that matches the main house",
     highlights: ["3-car", "Carriage doors", "Match main house", "Luxury finish"],
-    heroImage: "/media/garages/luxury-garage.jpg",
+    heroImage: "/media/garages/luxury-garage.webp",
     selections: {
       purposeId: "luxury-garage",
       bays: "three-car",
@@ -60,7 +60,7 @@ export const garagePresets: GaragePreset[] = [
     badge: "Living above",
     tagline: "Garage below, full living suite above — estate classic",
     highlights: ["2-car", "Full living above", "Full bath", "Stone accents"],
-    heroImage: "/media/garages/carriage-house.jpg",
+    heroImage: "/media/garages/carriage-house.webp",
     selections: {
       purposeId: "carriage-house",
       bays: "two-car",
@@ -78,7 +78,7 @@ export const garagePresets: GaragePreset[] = [
     badge: "Maker",
     tagline: "Park + work bay with loft storage and power",
     highlights: ["Single bay + workshop", "Storage loft", "Half bath", "Board & batten"],
-    heroImage: "/media/garages/workshop-garage.jpg",
+    heroImage: "/media/garages/workshop-garage.webp",
     selections: {
       purposeId: "workshop-garage",
       bays: "single-workshop",
@@ -96,7 +96,7 @@ export const garagePresets: GaragePreset[] = [
     badge: "Multi-gen",
     tagline: "Residential accessory living with estate manners",
     highlights: ["Large suite", "Full bath", "Craftsman exterior", "Covered entry"],
-    heroImage: "/media/garages/guest-adu.jpg",
+    heroImage: "/media/garages/guest-adu.webp",
     selections: {
       purposeId: "guest-adu",
       bays: "two-car",

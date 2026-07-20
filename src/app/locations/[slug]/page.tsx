@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { PlanningPathways } from "@/components/PlanningPathways";
 import { company } from "@/lib/company";
 import { getTownBySlug, townHubs } from "@/lib/locations/towns";
 import { createMetadata, faqJsonLd, localBusinessJsonLd } from "@/lib/seo";
@@ -46,7 +47,10 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             Schedule a consultation
           </Link>
           <Link href="/cost-to-build-a-house-nj" className="btn btn-secondary">
-            Cost to build calculator
+            Open Cost Studio
+          </Link>
+          <Link href="/land/evaluation" className="btn btn-secondary">
+            Evaluate a lot
           </Link>
         </div>
       </PageHero>
@@ -131,10 +135,62 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             ))}
           </div>
           <p className="mt-8 text-sm text-text-dim">
-            Nearby communities we also serve: {loc.nearby.join(", ")}.
+            Nearby communities we also serve: {loc.nearby.join(", ")}. See all{" "}
+            <Link href="/locations" className="font-semibold text-navy underline-offset-2 hover:underline">
+              town guides
+            </Link>
+            .
           </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/custom-homes" className="btn btn-secondary min-h-11">
+              Custom homes in {loc.name}
+            </Link>
+            <Link href="/transformations" className="btn btn-secondary min-h-11">
+              Renovations in {loc.name}
+            </Link>
+            <Link href="/insights/faq" className="btn btn-secondary min-h-11">
+              Planning FAQ
+            </Link>
+          </div>
         </div>
       </section>
+
+      <PlanningPathways
+        title={`Plan a ${loc.name} project`}
+        body={`Cost ranges, lot feasibility, rebuild decisions, and Studios — then a conversation grounded in ${loc.name} and ${loc.county} County.`}
+        pathways={[
+          {
+            href: "/cost-to-build-a-house-nj",
+            label: "Open Cost Studio",
+            note: `Directional ranges for ${loc.name} builds`,
+          },
+          {
+            href: "/land/evaluation",
+            label: "Evaluate my lot",
+            note: "Buildability before you buy or design",
+          },
+          {
+            href: "/custom-homes/rebuilds",
+            label: "Renovate vs rebuild",
+            note: "When the street is right but the house is not",
+          },
+          {
+            href: "/kitchen-remodel-cost-nj",
+            label: "Kitchen Studio",
+            note: "Visual kitchen design with live ranges",
+          },
+          {
+            href: "/finished-basement-cost-nj",
+            label: "Basement Builder",
+            note: "Lower-level living plans & estimates",
+          },
+          {
+            href: "/start",
+            label: `Talk about ${loc.name}`,
+            note: "Complimentary consultation",
+          },
+        ]}
+      />
 
       <CtaBanner title={`Start a ${loc.name} project conversation`} />
     </>

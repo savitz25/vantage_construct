@@ -23,12 +23,12 @@ export const studioToolVisuals: Record<string, StudioVisual> = {
   },
   "/accessory-building-cost-nj": {
     href: "/accessory-building-cost-nj",
-    image: "/media/garages/luxury-garage.jpg",
+    image: "/media/garages/luxury-garage.webp",
     alt: "Luxury custom garage — Vantage Garage Studio",
   },
   "/outdoor-kitchen-cost-nj": {
     href: "/outdoor-kitchen-cost-nj",
-    image: "/media/outdoor/outdoor-kitchen.jpg",
+    image: "/media/outdoor/outdoor-kitchen.webp",
     alt: "Luxury outdoor kitchen — Vantage Outdoor Living Studio",
   },
   "/primary-suite-cost-nj": {
@@ -48,7 +48,7 @@ export const studioToolVisuals: Record<string, StudioVisual> = {
   },
   "/adu-cost-calculator-nj": {
     href: "/adu-cost-calculator-nj",
-    image: "/media/garages/guest-adu.jpg",
+    image: "/media/garages/guest-adu.webp",
     alt: "Accessory dwelling guest suite — ADU Payback calculator",
   },
   "/design-studio": {
@@ -82,7 +82,7 @@ export const transformServiceVisuals: Record<string, StudioVisual> = {
   },
   "/transformations/additions": {
     href: "/transformations/additions",
-    image: "/media/additions/great-room.jpg",
+    image: "/media/additions/great-room.webp",
     alt: "Luxury home addition great room by Vantage Construction",
   },
   "/transformations/garages": {
@@ -92,7 +92,7 @@ export const transformServiceVisuals: Record<string, StudioVisual> = {
   },
   "/transformations/outdoor-living": {
     href: "/transformations/outdoor-living",
-    image: "/media/outdoor/full-resort.jpg",
+    image: "/media/outdoor/full-resort.webp",
     alt: "Luxury outdoor living estate by Vantage Construction",
   },
   "/transformations/attics": {

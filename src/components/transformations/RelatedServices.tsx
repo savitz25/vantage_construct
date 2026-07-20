@@ -165,7 +165,7 @@ export function RelatedServices({
                 {pageByHref[s.href]?.image ? (
                   <SmartImage
                     src={pageByHref[s.href].image}
-                    alt=""
+                    alt={`${s.label} transformation in North Jersey`}
                     fill
                     sizes="80px"
                     className="object-cover transition duration-500 group-hover:scale-105"
@@ -185,7 +185,7 @@ export function RelatedServices({
 
         <div className="mt-12 rounded-2xl border border-border bg-bg-elevated/80 p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-text-dim">
-            Interactive Studios
+            Interactive Studios & calculators
           </p>
           <p className="mt-2 max-w-xl text-sm text-text-muted">
             Design and estimate in minutes — then bring results to a consultation.
@@ -206,6 +206,18 @@ export function RelatedServices({
             >
               All Studios →
             </Link>
+            <Link
+              href="/cost-to-build-a-house-nj"
+              className="rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold text-navy transition hover:border-gold/40"
+            >
+              Cost Studio →
+            </Link>
+            <Link
+              href="/move-or-improve-calculator-nj"
+              className="rounded-full border border-border bg-surface px-4 py-2 text-sm text-text-muted transition hover:border-gold/40 hover:text-gold-deep"
+            >
+              Move or improve →
+            </Link>
           </div>
         </div>
 
@@ -215,6 +227,15 @@ export function RelatedServices({
               {l.label}
             </Link>
           ))}
+          <Link href="/custom-homes/rebuilds" className="hover:text-gold-deep">
+            Knockdowns & rebuilds
+          </Link>
+          <Link href="/land/evaluation" className="hover:text-gold-deep">
+            Lot evaluation
+          </Link>
+          <Link href="/locations" className="hover:text-gold-deep">
+            Town guides
+          </Link>
         </div>
       </div>
     </section>

@@ -39,7 +39,7 @@ export const garagePurposes: GaragePurpose[] = [
     tagline: "Clean multi-bay garage, refined exterior",
     description:
       "A purpose-built multi-bay garage with architectural detailing, lighting, and finishes worthy of the main house.",
-    heroImage: "/media/garages/luxury-garage.jpg",
+    heroImage: "/media/garages/luxury-garage.webp",
     wall: "#e8e2d8",
     body: "#d4cfc7",
     roof: "#4a4540",
@@ -83,7 +83,7 @@ export const garagePurposes: GaragePurpose[] = [
     tagline: "Workbench energy, functional bay layout",
     description:
       "Cars plus craft — durable floors, serious electrical, and a workshop zone that doesn’t look like a shed.",
-    heroImage: "/media/garages/workshop-garage.jpg",
+    heroImage: "/media/garages/workshop-garage.webp",
     wall: "#ebe5db",
     body: "#8b7355",
     roof: "#5c5348",
@@ -105,7 +105,7 @@ export const garagePurposes: GaragePurpose[] = [
     tagline: "More glass, cleaner modern character",
     description:
       "Art, music, or craft — an intentional studio building with light, insulation, and architecture that elevates the property.",
-    heroImage: "/media/garages/creative-studio.jpg",
+    heroImage: "/media/garages/creative-studio.webp",
     wall: "#f0ebe3",
     body: "#c9b898",
     roof: "#6b5344",
@@ -127,7 +127,7 @@ export const garagePurposes: GaragePurpose[] = [
     tagline: "Two-story massing — living clearly above",
     description:
       "The ultimate accessory structure: refined vehicle storage with a full upper living program when zoning allows.",
-    heroImage: "/media/garages/carriage-house.jpg",
+    heroImage: "/media/garages/carriage-house.webp",
     wall: "#e8e2d8",
     body: "#d8cfc4",
     roof: "#4a4540",
@@ -149,7 +149,7 @@ export const garagePurposes: GaragePurpose[] = [
     tagline: "Residential windows, warmer house-like look",
     description:
       "A freestanding guest suite or accessory dwelling — multi-gen, rental potential, or private hospitality.",
-    heroImage: "/media/garages/guest-adu.jpg",
+    heroImage: "/media/garages/guest-adu.webp",
     wall: "#f2ebe0",
     body: "#e8dfd0",
     roof: "#5c5348",

@@ -27,6 +27,29 @@ export function CtaBanner({
                 Call {company.phone}
               </a>
             </div>
+            <p className="mt-6 text-sm text-text-dim">
+              Or plan first:{" "}
+              <Link
+                href="/cost-to-build-a-house-nj"
+                className="font-semibold text-gold-deep underline-offset-2 hover:underline"
+              >
+                Cost Studio
+              </Link>
+              {" · "}
+              <Link
+                href="/calculators"
+                className="font-semibold text-gold-deep underline-offset-2 hover:underline"
+              >
+                Calculators
+              </Link>
+              {" · "}
+              <Link
+                href="/studios"
+                className="font-semibold text-gold-deep underline-offset-2 hover:underline"
+              >
+                Studios
+              </Link>
+            </p>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { PlanningPathways } from "@/components/PlanningPathways";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { createMetadata, howToJsonLd } from "@/lib/seo";
 
@@ -38,17 +39,25 @@ export default function ProcessPage() {
               investment, deposits, permits, build communication (including optional job-site
               camera), certificate of occupancy, and housewarming celebration.
             </p>
-            <a
-              href="https://vantageconstruct.com/wp-content/uploads/2024/12/7-Steps-To-Your-Successful-Build_web-1.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-primary mt-6"
-            >
-              Download the 7 Steps PDF
-            </a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/insights#featured" className="btn btn-primary">
+                Get the guide
+              </Link>
+              <Link href="/cost-to-build-a-house-nj" className="btn btn-secondary">
+                Open Cost Studio
+              </Link>
+              <Link href="/design-studio" className="btn btn-secondary">
+                Design Studio
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+
+      <PlanningPathways
+        title="After you understand the process"
+        body="Model a range, test a lot, explore a rebuild, or open a Studio — then schedule a conversation when you are ready."
+      />
 
       <CtaBanner />
     </>

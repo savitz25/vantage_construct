@@ -118,7 +118,7 @@ export const suitePresets: SuitePreset[] = [
     badge: "Traditional",
     tagline: "Paneled walls, furniture vanity, fully custom dressing",
     highlights: ["Paneled bed wall", "Furniture vanity", "Coffered ceiling", "Custom closet"],
-    heroImage: "/media/primary-suite/traditional-luxury.jpg",
+    heroImage: "/media/primary-suite/traditional-luxury.webp",
     selections: {
       visionId: "traditional-luxury",
       bedWall: "paneled",

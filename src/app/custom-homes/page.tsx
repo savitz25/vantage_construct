@@ -20,7 +20,7 @@ const pathwayImages: Record<string, { src: string; alt: string }> = {
     alt: "Luxury custom home exterior design option in North Jersey",
   },
   "/custom-homes/rebuilds": {
-    src: "/media/rebuilds/before-ranch-nj.jpg",
+    src: "/media/rebuilds/before-ranch-nj.webp",
     alt: "North Jersey home ready for knockdown rebuild evaluation",
   },
   "/custom-homes/adus": {

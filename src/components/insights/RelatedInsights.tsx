@@ -40,15 +40,59 @@ export function RelatedInsights({ slug }: { slug: string }) {
             </article>
           ))}
         </div>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Link href="/insights" className="text-sm font-semibold text-navy underline-offset-2 hover:underline">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              href: "/cost-to-build-a-house-nj",
+              label: "Open Cost Studio",
+              note: "North Jersey construction ranges",
+            },
+            {
+              href: "/land/evaluation",
+              label: "Evaluate a lot",
+              note: "Buildability & feasibility",
+            },
+            {
+              href: "/custom-homes/rebuilds",
+              label: "Renovate vs rebuild",
+              note: "Decision framework & assessment",
+            },
+            {
+              href: "/studios",
+              label: "Browse Studios",
+              note: "Visual design tools",
+            },
+          ].map((l) => (
+            <Link key={l.href} href={l.href} className="card card-hover p-5">
+              <span className="font-display text-lg text-ivory sm:text-xl">{l.label}</span>
+              <p className="mt-1 text-xs text-text-dim">{l.note}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-6 flex flex-wrap gap-4">
+          <Link
+            href="/insights"
+            className="text-sm font-semibold text-navy underline-offset-2 hover:underline"
+          >
             Resource Center →
           </Link>
-          <Link href="/calculators" className="text-sm font-semibold text-gold-deep underline-offset-2 hover:underline">
-            Calculators →
+          <Link
+            href="/calculators"
+            className="text-sm font-semibold text-gold-deep underline-offset-2 hover:underline"
+          >
+            All calculators →
           </Link>
-          <Link href="/studios" className="text-sm font-semibold text-gold-deep underline-offset-2 hover:underline">
-            Studios →
+          <Link
+            href="/insights/faq"
+            className="text-sm font-semibold text-gold-deep underline-offset-2 hover:underline"
+          >
+            FAQ hub →
+          </Link>
+          <Link
+            href="/locations"
+            className="text-sm font-semibold text-gold-deep underline-offset-2 hover:underline"
+          >
+            Town guides →
           </Link>
         </div>
       </div>

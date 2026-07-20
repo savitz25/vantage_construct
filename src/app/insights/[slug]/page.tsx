@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { ArticleBody } from "@/components/insights/ArticleBody";
 import { RelatedInsights } from "@/components/insights/RelatedInsights";
 import { JsonLd } from "@/components/JsonLd";
+import { PlanningPathways } from "@/components/PlanningPathways";
 import { SmartImage } from "@/components/SmartImage";
 import { company } from "@/lib/company";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/insights/posts";
@@ -155,6 +156,11 @@ export default async function InsightArticlePage({ params }: Props) {
           </div>
         </div>
       </article>
+
+      <PlanningPathways
+        title="From reading to planning"
+        body="Articles educate — tools and conversations decide. Jump to the pathway that matches your next question."
+      />
 
       <RelatedInsights slug={post.slug} />
     </>

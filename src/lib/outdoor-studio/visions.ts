@@ -47,7 +47,7 @@ export const outdoorVisions: OutdoorVision[] = [
     tagline: "Grill, prep, and host without leaving the backyard",
     description:
       "A serious outdoor kitchen as the hero — with seating, cover options, and finishes that feel like a true extension of the home.",
-    heroImage: "/media/outdoor/outdoor-kitchen.jpg",
+    heroImage: "/media/outdoor/outdoor-kitchen.webp",
     sky: "#f0c9a0",
     ground: "#8b7355",
     accent: "#b8893d",
@@ -73,7 +73,7 @@ export const outdoorVisions: OutdoorVision[] = [
     tagline: "Shade, soft seating, and evenings that last longer",
     description:
       "A covered outdoor living room with lounge furniture energy, ceiling fans, and light that makes the space feel intentional after dark.",
-    heroImage: "/media/outdoor/covered-lounge.jpg",
+    heroImage: "/media/outdoor/covered-lounge.webp",
     sky: "#e8d4b8",
     ground: "#9a8570",
     accent: "#6b5344",
@@ -99,7 +99,7 @@ export const outdoorVisions: OutdoorVision[] = [
     tagline: "The magnet that holds every gathering after dark",
     description:
       "Fire as the centerpiece — pit or fireplace — with conversation seating and soft landscape lighting.",
-    heroImage: "/media/outdoor/fire-conversation.jpg",
+    heroImage: "/media/outdoor/fire-conversation.webp",
     sky: "#c4a88a",
     ground: "#6b5344",
     accent: "#c45c4a",
@@ -125,7 +125,7 @@ export const outdoorVisions: OutdoorVision[] = [
     tagline: "Kitchen, cover, fire, and lounge — the complete outdoor estate",
     description:
       "The full program: outdoor kitchen, covered living, fire, and layered lighting for true resort evenings at home.",
-    heroImage: "/media/outdoor/full-resort.jpg",
+    heroImage: "/media/outdoor/full-resort.webp",
     sky: "#f2c9a0",
     ground: "#8b7355",
     accent: "#b8893d",
@@ -177,7 +177,7 @@ export const outdoorVisions: OutdoorVision[] = [
     tagline: "Dinner under the stars — or under a soft pergola",
     description:
       "A dining-first outdoor room with intimate scale, privacy, and just enough kitchen support for real meals outdoors.",
-    heroImage: "/media/outdoor/courtyard-dining.jpg",
+    heroImage: "/media/outdoor/courtyard-dining.webp",
     sky: "#e8c8a8",
     ground: "#9a8068",
     accent: "#8f6a28",

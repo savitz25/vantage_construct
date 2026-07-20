@@ -18,7 +18,7 @@ export const outdoorPresets: OutdoorPreset[] = [
     badge: "Simple",
     tagline: "Premium built-in grill under a pergola — clean and focused",
     highlights: ["Essential package", "36–42\" grill", "Pergola", "Dining zone"],
-    heroImage: "/media/outdoor/outdoor-kitchen.jpg",
+    heroImage: "/media/outdoor/outdoor-kitchen.webp",
     selections: {
       visionId: "outdoor-kitchen",
       kitchenLevel: "essential-grill",
@@ -40,7 +40,7 @@ export const outdoorPresets: OutdoorPreset[] = [
     badge: "Most popular",
     tagline: "Full kitchen with fridge, sink, and bar seating",
     highlights: ["Entertainer package", "Refrigerator", "Sink", "Bar seating"],
-    heroImage: "/media/outdoor/outdoor-kitchen.jpg",
+    heroImage: "/media/outdoor/outdoor-kitchen.webp",
     selections: {
       visionId: "outdoor-kitchen",
       kitchenLevel: "entertainer",
@@ -84,7 +84,7 @@ export const outdoorPresets: OutdoorPreset[] = [
     badge: "Evenings",
     tagline: "Fire + seating as the magnet for after-dark gatherings",
     highlights: ["Fire + seating", "Lounge zone", "Subtle lighting", "Privacy"],
-    heroImage: "/media/outdoor/fire-conversation.jpg",
+    heroImage: "/media/outdoor/fire-conversation.webp",
     selections: {
       visionId: "fire-conversation",
       kitchenLevel: "none",
@@ -106,7 +106,7 @@ export const outdoorPresets: OutdoorPreset[] = [
     badge: "Estate",
     tagline: "Chef kitchen, pavilion, fireplace, dramatic light",
     highlights: ["Chef’s kitchen", "Dual grill", "Pavilion", "Fireplace"],
-    heroImage: "/media/outdoor/full-resort.jpg",
+    heroImage: "/media/outdoor/full-resort.webp",
     selections: {
       visionId: "full-resort",
       kitchenLevel: "chef-resort",

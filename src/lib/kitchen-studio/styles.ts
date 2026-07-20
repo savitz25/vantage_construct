@@ -178,7 +178,7 @@ export const kitchenStyles: KitchenStyle[] = [
   },
   {
     id: "industrial-loft",
-    heroImage: "/media/kitchens/industrial-loft.jpg",
+    heroImage: "/media/kitchens/industrial-loft.webp",
     name: "Industrial Loft",
     tagline: "Raw materials, dark metals, urban edge",
     description: "Concrete energy, black metal, and open loft proportions.",

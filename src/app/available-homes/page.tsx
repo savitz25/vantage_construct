@@ -1,5 +1,6 @@
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
+import { PlanningPathways } from "@/components/PlanningPathways";
 import { PlanCard } from "@/components/PlanCard";
 import { plans, plansByBand, pricingDisclaimer } from "@/lib/plans";
 import { createMetadata } from "@/lib/seo";
@@ -59,6 +60,43 @@ export default function AvailableHomesPage() {
           </p>
         </div>
       </section>
+
+      <PlanningPathways
+        title="From plan browsing to a real path"
+        body="Model cost, check your lot, open Design Studio, or talk with the team about adapting a plan."
+        pathways={[
+          {
+            href: "/cost-to-build-a-house-nj",
+            label: "Open Cost Studio",
+            note: "See how size and finish move the range",
+          },
+          {
+            href: "/design-studio",
+            label: "Open Design Studio",
+            note: "Shape a Vantage Vision interactively",
+          },
+          {
+            href: "/land/evaluation",
+            label: "Evaluate my lot",
+            note: "Confirm the plan fits the land",
+          },
+          {
+            href: "/custom-homes/process",
+            label: "7-step process",
+            note: "How building with Vantage works",
+          },
+          {
+            href: "/locations",
+            label: "Town guides",
+            note: "Local notes for North Jersey towns",
+          },
+          {
+            href: "/start",
+            label: "Start a conversation",
+            note: "Bring a plan or start from scratch",
+          },
+        ]}
+      />
 
       <CtaBanner title="Find the right plan — or bring your own" />
     </>

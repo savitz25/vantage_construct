@@ -150,7 +150,7 @@ export const insightPosts: InsightPost[] = [
     readTime: "8 min",
     author: "Victor Lobozzo",
     datePublished: "2026-04-02",
-    image: "/media/rebuilds/before-ranch-nj.jpg",
+    image: "/media/rebuilds/before-ranch-nj.webp",
     imageAlt: "North Jersey home before renovate-or-rebuild decision",
     includesTool: true,
     toolLabel: "Includes assessment",
