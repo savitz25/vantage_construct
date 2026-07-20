@@ -510,6 +510,28 @@ a {
   box-shadow: 0 8px 24px rgba(40, 30, 15, 0.08);
 }
 
+/* Vision Summary / lead capture card (sidebar) */
+.studio-lead-card {
+  border-radius: 0.85rem;
+  border: 1px solid rgba(184, 137, 61, 0.28);
+  background: linear-gradient(165deg, #fffdf9 0%, #f8f1e4 100%);
+  padding: 0.9rem 1rem;
+  box-shadow: 0 10px 28px rgba(40, 30, 15, 0.06);
+}
+
+.studio-lead-success {
+  border-color: rgba(95, 138, 88, 0.35);
+  background: linear-gradient(165deg, #f8fbf6 0%, #eef5ea 100%);
+}
+
+/* Slightly larger hero stage for conversion focus */
+@media (min-width: 1024px) {
+  .studio-model-stage {
+    min-height: min(60vh, 540px);
+    max-height: min(74vh, 700px);
+  }
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 3.75rem 0;

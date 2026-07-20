@@ -398,28 +398,44 @@ export function CostStudio() {
 
             {state.step === "summary" && (
               <div className="space-y-6">
-                <div className="card p-6 sm:p-8">
+                <div className="studio-estimate-card !p-6 sm:!p-8">
                   <p className="eyebrow">Your free instant range</p>
-                  <h2 className="mt-2 font-display text-4xl text-ivory">
+                  <h2 className="mt-2 font-display text-4xl text-ivory sm:text-5xl">
                     {formatRange(estimate.low, estimate.high)}
                   </h2>
                   <p className="mt-2 text-text-muted">
-                    {s.sqft.toLocaleString()} sq ft · {s.style?.replace("-", " ")} · {s.finish}{" "}
+                    {s.sqft.toLocaleString()} sq ft · {s.style?.replace(/-/g, " ")} · {s.finish}{" "}
                     finishes · {s.addons.length} lifestyle add-on
                     {s.addons.length === 1 ? "" : "s"}
+                    {s.lotPath === "knockdown" ? " · knockdown path" : ""}
                   </p>
-                  <p className="mt-4 text-xs text-text-dim">*{costDisclaimer}</p>
+                  <p className="mt-3 text-xs text-text-dim">*{costDisclaimer}</p>
                 </div>
 
                 {!state.unlocked ? (
-                  <div className="card p-6 sm:p-8">
-                    <h3 className="font-display text-3xl text-ivory">
+                  <div className="studio-lead-card !p-6 sm:!p-8">
+                    <p className="studio-estimate-label">Cost Vision Summary</p>
+                    <h3 className="mt-1 font-display text-3xl text-ivory">
                       Unlock your itemized breakdown
                     </h3>
                     <p className="mt-2 text-text-muted">
-                      Free range above stays open. Enter your details to reveal the full
-                      line-item visualization, save your design, and get a summary for consultation.
+                      The free range above stays visible. Share your details to reveal line items,
+                      save this configuration, and receive a consultation-ready summary — tagged as
+                      a <strong className="text-ivory">Cost Studio Lead</strong>.
                     </p>
+                    <ul className="mt-4 space-y-1.5 text-sm text-text-muted">
+                      {[
+                        "Full construction line-item breakdown",
+                        "Saved config ID for Design & Discovery",
+                        "Downloadable summary for your records",
+                        "Priority handoff to schedule a consult",
+                      ].map((b) => (
+                        <li key={b} className="flex gap-2">
+                          <span className="text-gold-deep">✓</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                     <form onSubmit={unlock} className="mt-6 grid gap-4">
                       <div className="grid gap-4 sm:grid-cols-2">
                         <Field
@@ -483,15 +499,20 @@ export function CostStudio() {
                   </div>
                 ) : (
                   <div className="space-y-6">
-                    <div className="card p-6 sm:p-8">
-                      <p className="text-sm text-gold-deep">
-                        Config ID: <strong>{state.configId}</strong>
+                    <div className="card border-gold/30 p-6 sm:p-8">
+                      <p className="studio-estimate-label">Unlocked · Cost Studio Lead</p>
+                      <p className="mt-1 text-sm text-gold-deep">
+                        Config ID: <strong className="text-ivory">{state.configId}</strong>
+                      </p>
+                      <p className="mt-2 text-sm text-text-muted">
+                        Your selections and range are saved for consultation. Review the breakdown,
+                        download a summary, or book time with the team.
                       </p>
                       <div className="mt-6">
                         <CostBreakdown estimate={estimate} />
                       </div>
                     </div>
-                    <div className="flex flex-col gap-3 sm:flex-row">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                       <Link
                         href={`/start?source=cost-studio&config=${encodeURIComponent(
                           state.configId ?? "",
@@ -514,6 +535,9 @@ export function CostStudio() {
                       </button>
                       <Link href="/design-studio" className="btn btn-secondary">
                         Open Design Studio
+                      </Link>
+                      <Link href="/custom-homes/rebuilds" className="btn btn-secondary">
+                        Exploring a rebuild?
                       </Link>
                     </div>
                   </div>

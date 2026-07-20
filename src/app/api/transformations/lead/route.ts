@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { studioLeadLabel } from "@/lib/studios/lead-types";
 
 type Body = {
   tool?: string;
@@ -27,6 +28,7 @@ export async function POST(request: Request) {
   const lastName = body.lastName?.trim() ?? "";
   const email = body.email?.trim() ?? "";
   const tool = body.tool?.trim() || "transformations";
+  const leadType = studioLeadLabel(tool);
 
   if (!firstName || !email || !isEmail(email)) {
     return NextResponse.json(
@@ -41,8 +43,8 @@ export async function POST(request: Request) {
     lastName,
     email,
     phone: body.phone?.trim() ?? "",
-    leadType: `Transformations Lead — ${tool}`,
-    pipeline: "transformations",
+    leadType,
+    pipeline: "studios",
     tool,
     receivedAt: new Date().toISOString(),
   };

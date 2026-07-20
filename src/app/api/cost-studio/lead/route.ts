@@ -44,6 +44,9 @@ export async function POST(request: Request) {
   const payload = {
     ...body,
     contact: { firstName, lastName, email, phone },
+    tool: "cost-studio",
+    leadType: "Cost Studio Lead",
+    pipeline: "studios",
     receivedAt: new Date().toISOString(),
   };
 

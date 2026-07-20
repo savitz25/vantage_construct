@@ -3,17 +3,22 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { SmartImage } from "@/components/SmartImage";
+import { StudioLeadCapture } from "@/components/studios/StudioLeadCapture";
 import {
   StudioChip,
   StudioControlGroup,
   StudioWorkspace,
 } from "@/components/studios/StudioWorkspace";
-import { ToolLeadGate } from "@/components/transformations/ToolLeadGate";
 import { trackKitchenEvent } from "@/lib/kitchen-studio/analytics";
 import {
   backsplashes,
   cabinetTones,
   countertops,
+  getBacksplash,
+  getCabinetTone,
+  getCounter,
+  getHardware,
+  getIsland,
   hardwareFinishes,
   islands,
 } from "@/lib/kitchen-studio/options";
@@ -50,6 +55,15 @@ export function KitchenStudio() {
   const estimate = useMemo(() => calculateKitchenEstimate(sel), [sel]);
   const style = getStyle(sel.styleId);
 
+  useEffect(() => {
+    if (step !== "customize") return;
+    trackKitchenEvent("estimate_updated", {
+      mid: estimate.mid,
+      low: estimate.low,
+      high: estimate.high,
+    });
+  }, [estimate.mid, estimate.low, estimate.high, step]);
+
   function pickStyle(id: KitchenStyleId) {
     const s = getStyle(id);
     setSel({
@@ -67,11 +81,15 @@ export function KitchenStudio() {
     if (key !== "styleId") setViewMode("configurator");
   }
 
-  const summaryPayload = {
-    ...sel,
-    styleName: style.name,
-    estimate,
-  };
+  const estimateLabel = formatRange(estimate.low, estimate.high);
+  const summaryLines = [
+    `Style: ${style.name}`,
+    `Counters: ${getCounter(sel.counter).label}`,
+    `Backsplash: ${getBacksplash(sel.backsplash).label}`,
+    `Island: ${getIsland(sel.island).label}`,
+    `Hardware: ${getHardware(sel.hardware).label}`,
+    `Cabinets: ${getCabinetTone(sel.cabinetTone).label}`,
+  ];
 
   const estimateBlock = (
     <>
@@ -365,11 +383,30 @@ export function KitchenStudio() {
                   ))}
                 </StudioControlGroup>
 
-                <ToolLeadGate
+                <StudioLeadCapture
                   tool="kitchen-studio"
-                  title="Unlock your Kitchen Vision Summary"
-                  description="Get a mood board of your selections, planning estimate range, and next-step checklist emailed to you."
-                  summaryPayload={summaryPayload}
+                  productName="Kitchen Vision Summary"
+                  estimateLabel={estimateLabel}
+                  summaryLines={summaryLines}
+                  selections={{
+                    ...sel,
+                    styleName: style.name,
+                    heroImage: style.heroImage,
+                  }}
+                  estimate={{
+                    low: estimate.low,
+                    mid: estimate.mid,
+                    high: estimate.high,
+                    label: estimateLabel,
+                  }}
+                  pagePath="/kitchen-remodel-cost-nj"
+                  benefits={[
+                    "Selections mood board + planning range",
+                    "Finish checklist for Design & Discovery",
+                    "Tagged Kitchen Studio lead for a tailored follow-up",
+                  ]}
+                  serviceHref="/transformations/kitchens"
+                  serviceLabel="How we build kitchens"
                 />
 
                 <div className="flex flex-wrap gap-2 pt-1">
