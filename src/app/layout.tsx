@@ -33,17 +33,17 @@ export const metadata: Metadata = {
   // Self-referencing base for all relative OG/canonical URLs
   metadataBase: new URL(SITE_URL),
   icons: {
-    // Multi-size set for crisp browser tabs + home-screen icons (cache-busted)
+    // Multi-size set from full-logo mark — cache-busted for logo refresh
     icon: [
-      { url: "/favicon.ico?v=4", sizes: "48x48" },
-      { url: "/brand/favicon-16.png?v=4", sizes: "16x16", type: "image/png" },
-      { url: "/brand/favicon-32.png?v=4", sizes: "32x32", type: "image/png" },
-      { url: "/brand/favicon-48.png?v=4", sizes: "48x48", type: "image/png" },
-      { url: "/brand/icon-192.png?v=4", sizes: "192x192", type: "image/png" },
-      { url: "/brand/icon-512.png?v=4", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico?v=5", sizes: "48x48" },
+      { url: "/brand/favicon-16.png?v=5", sizes: "16x16", type: "image/png" },
+      { url: "/brand/favicon-32.png?v=5", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-48.png?v=5", sizes: "48x48", type: "image/png" },
+      { url: "/brand/icon-192.png?v=5", sizes: "192x192", type: "image/png" },
+      { url: "/brand/icon-512.png?v=5", sizes: "512x512", type: "image/png" },
     ],
-    apple: [{ url: "/brand/apple-touch-icon.png?v=4", sizes: "180x180", type: "image/png" }],
-    shortcut: ["/brand/favicon-32.png?v=4"],
+    apple: [{ url: "/brand/apple-touch-icon.png?v=5", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/brand/favicon-32.png?v=5"],
   },
   // Do NOT set meta keywords — ignored by Google; only reveals keyword list to competitors
 };

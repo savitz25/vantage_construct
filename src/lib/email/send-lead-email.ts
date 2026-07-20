@@ -87,7 +87,7 @@ export function buildLeadEmailHtml(opts: {
   <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#fff;border:1px solid #e0d8cc;border-radius:12px;overflow:hidden;">
     <tr>
       <td style="padding:20px 24px;background:#fbf9f6;border-bottom:1px solid #e8e4dc;text-align:left;">
-        <img src="${escapeHtml(logoUrl)}" width="160" height="87" alt="Vantage Construction" style="display:block;width:160px;height:auto;border:0;outline:none;" />
+        <img src="${escapeHtml(logoUrl)}" width="180" alt="Vantage Construction" style="display:block;width:180px;max-width:100%;height:auto;border:0;outline:none;" />
       </td>
     </tr>
     <tr><td style="padding:18px 24px;background:#0b1f4a;color:#f7f4ef;">

@@ -67,7 +67,7 @@ export function buildConfirmationEmailHtml(opts: {
   <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e0d8cc;border-radius:12px;overflow:hidden;">
     <tr>
       <td style="padding:22px 28px;background:#fbf9f6;border-bottom:1px solid #e8e4dc;">
-        <img src="${escapeHtml(logoUrl)}" width="150" alt="Vantage Construction" style="display:block;width:150px;height:auto;border:0;" />
+        <img src="${escapeHtml(logoUrl)}" width="180" alt="Vantage Construction" style="display:block;width:180px;max-width:100%;height:auto;border:0;" />
       </td>
     </tr>
     <tr>

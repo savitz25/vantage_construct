@@ -4,7 +4,7 @@ import { brand } from "@/lib/brand";
 import { company } from "@/lib/company";
 
 type Props = {
-  /** header = compact nav mark+wordmark; footer = larger */
+  /** header = compact nav; footer = larger plate; mark = square icon only */
   variant?: "header" | "footer" | "mark";
   href?: string;
   className?: string;
@@ -13,8 +13,8 @@ type Props = {
 };
 
 /**
- * Official Vantage logo — transparent PNG, navy mark + wordmark.
- * Works on light cream site backgrounds.
+ * Official Vantage logo — transparent PNG with navy mark + full
+ * “VANTAGE CONSTRUCTION” wordmark (stacked).
  */
 export function BrandLogo({
   variant = "header",
@@ -23,21 +23,37 @@ export function BrandLogo({
   priority = false,
   onClick,
 }: Props) {
-  const sizes =
+  // Intrinsic ratio ≈ 851×518 (w/h ≈ 1.64) for full logo
+  const config =
     variant === "footer"
-      ? { width: 180, height: 120, className: "h-16 w-auto sm:h-[4.5rem]" }
+      ? {
+          src: brand.logo,
+          width: 200,
+          height: 122,
+          className: "h-[4.25rem] w-auto sm:h-[4.75rem]",
+        }
       : variant === "mark"
-        ? { width: 48, height: 48, className: "h-10 w-10" }
-        : { width: 140, height: 96, className: "h-11 w-auto sm:h-12" };
+        ? {
+            src: brand.mark,
+            width: 48,
+            height: 48,
+            className: "h-10 w-10",
+          }
+        : {
+            src: brand.logo,
+            width: 168,
+            height: 102,
+            className: "h-11 w-auto sm:h-[3.15rem]",
+          };
 
   const img = (
     <Image
-      src={brand.logo}
+      src={config.src}
       alt={`${company.name} logo`}
-      width={sizes.width}
-      height={sizes.height}
+      width={config.width}
+      height={config.height}
       priority={priority}
-      className={`${sizes.className} object-contain object-left`}
+      className={`${config.className} object-contain object-left`}
     />
   );
 
