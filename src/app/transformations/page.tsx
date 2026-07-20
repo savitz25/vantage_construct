@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
-import { TransformServiceNav } from "@/components/transformations/TransformServiceNav";
 import {
   transformSecondaryLinks,
   transformServices,
@@ -29,7 +28,6 @@ export default function TransformationsPage() {
           { label: "Transformations" },
         ]}
       />
-      <TransformServiceNav currentPath="/transformations" sticky />
       <PageHero
         eyebrow="Transformations · Existing homes"
         title="Elevate the home you already love"

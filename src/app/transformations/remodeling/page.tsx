@@ -3,7 +3,6 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
 import { RelatedServices } from "@/components/transformations/RelatedServices";
-import { TransformServiceNav } from "@/components/transformations/TransformServiceNav";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -56,7 +55,6 @@ export default function RemodelingPage() {
           { label: "Whole-home remodeling" },
         ]}
       />
-      <TransformServiceNav currentPath="/transformations/remodeling" sticky />
       <PageHero
         eyebrow="Whole-home remodeling"
         title="Transform outdated spaces into rooms you’ll use every day"

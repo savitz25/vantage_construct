@@ -6,7 +6,6 @@ import { PageHero } from "@/components/PageHero";
 import { SmartImage } from "@/components/SmartImage";
 import { TrackedLink } from "@/components/TrackedLink";
 import { RelatedServices } from "@/components/transformations/RelatedServices";
-import { TransformServiceNav } from "@/components/transformations/TransformServiceNav";
 import type { TransformServiceContent } from "@/lib/transformations/service-pages";
 import { faqJsonLd, serviceJsonLd } from "@/lib/seo";
 
@@ -47,7 +46,6 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
         })}
       />
       <Breadcrumbs items={crumbs} />
-      <TransformServiceNav currentPath={c.path} sticky />
 
       <PageHero eyebrow={c.eyebrow} title={c.headline} description={c.subhead}>
         <div className="flex flex-wrap gap-3">
@@ -66,9 +64,6 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           )}
           <Link href={c.secondaryCta.href} className="btn btn-secondary">
             {c.secondaryCta.label}
-          </Link>
-          <Link href="/transformations" className="btn btn-secondary">
-            All transformations
           </Link>
         </div>
       </PageHero>
