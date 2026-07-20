@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactFields, mailNotDelivered, notifyLeadEmail } from "@/lib/email/notify-lead";
+import { contactFields, mailNotDelivered, notifyLeadAndConfirm } from "@/lib/email/notify-lead";
 import { studioLeadLabel } from "@/lib/studios/lead-types";
 
 type Body = {
@@ -51,9 +51,11 @@ export async function POST(request: Request) {
     receivedAt: new Date().toISOString(),
   };
 
-  const mail = await notifyLeadEmail({
+  const { internal: mail, confirmation } = await notifyLeadAndConfirm({
     segment: "design",
     leadType,
+    submitterEmail: email,
+    submitterFirstName: firstName === "Newsletter" || firstName === "Friend" ? undefined : firstName,
     replyTo: email,
     subject: `[Design / General] ${leadType}`,
     fields: [
@@ -95,5 +97,6 @@ export async function POST(request: Request) {
     tool,
     emailRoutedTo: "design@vantagecustombuilds.com",
     email: mail,
+    confirmation,
   });
 }

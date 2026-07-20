@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackEvent } from "@/lib/analytics";
 import { company } from "@/lib/company";
 
@@ -84,22 +84,14 @@ export function AccessoryConceptForm() {
 
   if (done) {
     return (
-      <div className="card p-8 text-center sm:p-10">
-        <p className="studio-estimate-label">Request received</p>
-        <h3 className="mt-2 font-display text-3xl text-ivory">We&apos;ll review your concept</h3>
-        <p className="mx-auto mt-3 max-w-md text-text-muted">
-          A Vantage team member will follow up for a Site Feasibility / Concept Review — tagged as
-          an Accessory Building lead.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/start" className="btn btn-primary">
-            Prefer to schedule now?
-          </Link>
-          <Link href="/accessory-building-cost-nj#tool" className="btn btn-secondary">
-            Keep designing in Garage Studio
-          </Link>
-        </div>
-      </div>
+      <FormConfirmation
+        variant="design"
+        extraLinks={[
+          { href: "/start", label: "Schedule a consultation", primary: true },
+          { href: "/accessory-building-cost-nj#tool", label: "Garage Studio" },
+          { href: "/custom-homes/accessory-buildings", label: "Accessory buildings" },
+        ]}
+      />
     );
   }
 

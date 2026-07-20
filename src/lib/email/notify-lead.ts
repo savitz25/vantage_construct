@@ -1,3 +1,4 @@
+import { sendConfirmationEmail } from "@/lib/email/confirmation-email";
 import { sendLeadEmail, type LeadEmailField } from "@/lib/email/send-lead-email";
 import type { LeadSegment } from "@/lib/email/lead-routing";
 
@@ -27,6 +28,44 @@ export async function notifyLeadEmail(opts: {
       error: e instanceof Error ? e.message : "notify failed",
     };
   }
+}
+
+/** Internal notify + branded confirmation to submitter */
+export async function notifyLeadAndConfirm(opts: {
+  segment: LeadSegment;
+  leadType: string;
+  replyTo?: string;
+  submitterEmail: string;
+  submitterFirstName?: string;
+  fields: LeadEmailField[];
+  extraPayload?: unknown;
+  subject?: string;
+}): Promise<{ internal: LeadMailResult; confirmation: LeadMailResult }> {
+  const internal = await notifyLeadEmail({
+    segment: opts.segment,
+    leadType: opts.leadType,
+    replyTo: opts.replyTo || opts.submitterEmail,
+    fields: opts.fields,
+    extraPayload: opts.extraPayload,
+    subject: opts.subject,
+  });
+
+  let confirmation: LeadMailResult;
+  try {
+    confirmation = await sendConfirmationEmail({
+      segment: opts.segment,
+      to: opts.submitterEmail,
+      firstName: opts.submitterFirstName,
+    });
+  } catch (e) {
+    console.error("[notifyLeadAndConfirm] confirmation", e);
+    confirmation = {
+      ok: false,
+      error: e instanceof Error ? e.message : "confirmation failed",
+    };
+  }
+
+  return { internal, confirmation };
 }
 
 export function contactFields(c: {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackEvent } from "@/lib/analytics";
 import { company } from "@/lib/company";
 
@@ -94,22 +94,14 @@ export function EarlyAccessForm() {
 
   if (done) {
     return (
-      <div className="card p-8 text-center sm:p-10">
-        <p className="studio-estimate-label">You&apos;re on the list</p>
-        <h3 className="mt-2 font-display text-3xl text-ivory">Early Access confirmed</h3>
-        <p className="mx-auto mt-3 max-w-md text-text-muted">
-          We&apos;ll notify you when new Signature Builds and lots match your towns and budget —
-          often before public release.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/start" className="btn btn-primary">
-            Schedule a consultation
-          </Link>
-          <a href="#inventory" className="btn btn-secondary">
-            Browse current inventory
-          </a>
-        </div>
-      </div>
+      <FormConfirmation
+        variant="design"
+        extraLinks={[
+          { href: "/start", label: "Schedule a consultation", primary: true },
+          { href: "#inventory", label: "Browse current inventory" },
+          { href: "/land/spec-homes", label: "Signature Builds" },
+        ]}
+      />
     );
   }
 

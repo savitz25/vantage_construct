@@ -46,9 +46,13 @@ export function NewsletterForm() {
 
   if (done) {
     return (
-      <p className="rounded-xl border border-gold/30 bg-gold/10 px-5 py-4 text-sm text-ivory">
-        You&apos;re on the list. Expect honest notes from the field — not a sales drip.
-      </p>
+      <div className="rounded-xl border border-gold/40 bg-white/10 px-5 py-4 text-sm text-on-navy">
+        <p className="font-display text-xl text-on-navy">Thank you for reaching out</p>
+        <p className="mt-2 text-on-navy/75">
+          You&apos;re on the list. Expect honest notes from the field — not a sales drip. A
+          confirmation email is on its way.
+        </p>
+      </div>
     );
   }
 

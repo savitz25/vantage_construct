@@ -19,6 +19,7 @@ export const STUDIO_LEAD_LABELS: Record<string, string> = {
     "Accessory Building / Pool House / Garage — Concept Review Lead",
   "insights-gated-guide": "Insights — 7 Steps Guide Download Lead",
   "insights-newsletter": "Insights — Master Builder Newsletter Lead",
+  "contact-form": "General Contact / Start Consultation Lead",
 };
 
 export function studioLeadLabel(tool: string): string {

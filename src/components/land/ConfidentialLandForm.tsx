@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackEvent } from "@/lib/analytics";
 import { company } from "@/lib/company";
 
@@ -87,22 +87,14 @@ export function ConfidentialLandForm() {
 
   if (done) {
     return (
-      <div className="card p-8 text-center sm:p-10">
-        <p className="studio-estimate-label">Request received</p>
-        <h3 className="mt-2 font-display text-3xl text-ivory">Handled discreetly</h3>
-        <p className="mx-auto mt-3 max-w-md text-text-muted">
-          A Vantage principal or team member will follow up for a confidential conversation — tagged
-          as a Multi-Lot Land Assessment lead.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/start" className="btn btn-primary">
-            Prefer a scheduled consult?
-          </Link>
-          <Link href="/partners/investors" className="btn btn-secondary">
-            Investor structures
-          </Link>
-        </div>
-      </div>
+      <FormConfirmation
+        variant="design"
+        extraLinks={[
+          { href: "/start", label: "Schedule a consultation", primary: true },
+          { href: "/land/multi-lot", label: "Multi-lot resources" },
+          { href: "/partners/investors", label: "Investor structures" },
+        ]}
+      />
     );
   }
 

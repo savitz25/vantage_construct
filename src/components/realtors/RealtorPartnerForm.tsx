@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { company } from "@/lib/company";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackRealtorEvent } from "@/lib/realtors/analytics";
 import { realtorAreas } from "@/lib/realtors/content";
 
@@ -69,25 +68,7 @@ export function RealtorPartnerForm() {
   }
 
   if (submitted) {
-    return (
-      <div className="card p-8 text-center sm:p-10">
-        <p className="eyebrow justify-center">You’re in</p>
-        <h3 className="mt-3 font-display text-3xl text-ivory">Partner submission received</h3>
-        <p className="mt-3 text-text-muted">
-          Tagged as a <strong className="text-ivory">Realtor Lead</strong>. We’ll review the
-          opportunity and follow up quickly — often the same day.
-        </p>
-        <p className="mt-4 text-sm text-text-dim">
-          Prefer a call?{" "}
-          <a className="text-gold-deep" href={`tel:${company.phoneTel}`}>
-            {company.phone}
-          </a>
-        </p>
-        <Link href="/available-homes" className="btn btn-secondary mt-6">
-          Browse available designs
-        </Link>
-      </div>
-    );
+    return <FormConfirmation variant="realtor" />;
   }
 
   return (

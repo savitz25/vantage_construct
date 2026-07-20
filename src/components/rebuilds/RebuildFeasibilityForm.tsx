@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackEvent } from "@/lib/analytics";
 
 const reasons = [
@@ -88,21 +88,14 @@ export function RebuildFeasibilityForm() {
 
   if (done) {
     return (
-      <div className="card p-8 text-center">
-        <h3 className="font-display text-3xl text-ivory">Report request received</h3>
-        <p className="mx-auto mt-3 max-w-md text-text-muted">
-          We&apos;ll review your property notes and follow up with a rebuild feasibility conversation
-          — lot capacity, timeline, and honest next steps.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/start" className="btn btn-primary">
-            Prefer to schedule now?
-          </Link>
-          <Link href="/cost-to-build-a-house-nj" className="btn btn-secondary">
-            Explore Cost Studio
-          </Link>
-        </div>
-      </div>
+      <FormConfirmation
+        variant="design"
+        extraLinks={[
+          { href: "/start", label: "Schedule a consultation", primary: true },
+          { href: "/cost-to-build-a-house-nj", label: "Explore Cost Studio" },
+          { href: "/custom-homes/rebuilds", label: "Rebuilds resources" },
+        ]}
+      />
     );
   }
 

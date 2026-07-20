@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackEvent } from "@/lib/analytics";
 import { studioLeadLabel } from "@/lib/studios/lead-types";
 
@@ -110,30 +111,22 @@ export function StudioLeadCapture({
 
   if (done) {
     return (
-      <div className="studio-lead-card studio-lead-success">
-        <p className="studio-estimate-label">Vision summary requested</p>
-        <h3 className="mt-1 font-display text-2xl text-ivory">You&apos;re on the list</h3>
-        <p className="mt-2 text-sm text-text-muted">
-          We&apos;ll send your <strong className="text-ivory">{productName}</strong> with selections,
-          planning range, and next steps. A Vantage team member may follow up as a{" "}
-          <strong className="text-ivory">{leadType}</strong>.
-        </p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          <Link
-            href={`/start?source=${encodeURIComponent(tool)}&email=${encodeURIComponent(form.email)}&name=${encodeURIComponent(
+      <FormConfirmation
+        variant="design"
+        compact
+        extraLinks={[
+          {
+            href: `/start?source=${encodeURIComponent(tool)}&email=${encodeURIComponent(form.email)}&name=${encodeURIComponent(
               `${form.firstName} ${form.lastName}`.trim(),
-            )}`}
-            className="btn btn-primary !px-4 !py-2.5 text-xs"
-          >
-            Schedule a consultation
-          </Link>
-          {serviceHref ? (
-            <Link href={serviceHref} className="btn btn-secondary !px-4 !py-2.5 text-xs">
-              {serviceLabel ?? "Learn more"}
-            </Link>
-          ) : null}
-        </div>
-      </div>
+            )}`,
+            label: "Schedule a consultation",
+            primary: true,
+          },
+          ...(serviceHref
+            ? [{ href: serviceHref, label: serviceLabel ?? "Learn more" }]
+            : [{ href: "/calculators", label: "Explore calculators" }]),
+        ]}
+      />
     );
   }
 

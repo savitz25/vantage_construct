@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackEvent } from "@/lib/analytics";
 
 const goals = [
@@ -88,22 +88,14 @@ export function LotAuditForm() {
 
   if (done) {
     return (
-      <div className="card p-8 text-center sm:p-10">
-        <p className="studio-estimate-label">Request received</p>
-        <h3 className="mt-2 font-display text-3xl text-ivory">We&apos;ll review your lot</h3>
-        <p className="mx-auto mt-3 max-w-md text-text-muted">
-          A Vantage team member will follow up for a Rapid Feasibility conversation — tagged as a
-          Land Evaluation lead with your property notes.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/start" className="btn btn-primary">
-            Prefer to schedule now?
-          </Link>
-          <Link href="/cost-to-build-a-house-nj" className="btn btn-secondary">
-            Cost Studio
-          </Link>
-        </div>
-      </div>
+      <FormConfirmation
+        variant="design"
+        extraLinks={[
+          { href: "/start", label: "Schedule a consultation", primary: true },
+          { href: "/cost-to-build-a-house-nj", label: "Open Cost Studio" },
+          { href: "/land/evaluation", label: "Land evaluation tools" },
+        ]}
+      />
     );
   }
 

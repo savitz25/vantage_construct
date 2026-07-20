@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactFields, mailNotDelivered, notifyLeadEmail } from "@/lib/email/notify-lead";
+import { contactFields, mailNotDelivered, notifyLeadAndConfirm } from "@/lib/email/notify-lead";
 
 type LeadBody = {
   configId?: string;
@@ -54,9 +54,11 @@ export async function POST(request: Request) {
     receivedAt: new Date().toISOString(),
   };
 
-  const mail = await notifyLeadEmail({
+  const { internal: mail, confirmation } = await notifyLeadAndConfirm({
     segment: "design",
     leadType: "Design Studio Lead",
+    submitterEmail: email,
+    submitterFirstName: firstName,
     replyTo: email,
     subject: `[Design / General] Design Studio Lead — ${body.configId}`,
     fields: [
@@ -111,5 +113,6 @@ export async function POST(request: Request) {
     webhookConfigured: Boolean(webhookUrl),
     emailRoutedTo: "design@vantagecustombuilds.com",
     email: mail,
+    confirmation,
   });
 }

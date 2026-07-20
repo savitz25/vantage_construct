@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackInvestorEvent } from "@/lib/investors/analytics";
 import { investmentRanges } from "@/lib/investors/content";
-import { company } from "@/lib/company";
 
 const structures = ["Loan", "Equity", "Hybrid", "Exploring"] as const;
 
@@ -65,36 +64,19 @@ export function InvestorOverviewForm() {
 
   if (submitted) {
     return (
-      <div className="card p-8 text-center sm:p-10">
-        <p className="eyebrow justify-center">Thank you</p>
-        <h3 className="mt-3 font-display text-3xl text-ivory">Overview request received</h3>
-        <p className="mt-3 text-text-muted">
-          We’ve tagged this as an Investor Lead. Victor’s team will follow up with the Investor
-          Overview and next steps. For a direct conversation, call{" "}
-          <a className="text-gold-deep" href={`tel:${company.phoneTel}`}>
-            {company.phone}
-          </a>
-          .
-        </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link
-            href={`/start?source=investor&name=${encodeURIComponent(
+      <FormConfirmation
+        variant="investor"
+        extraLinks={[
+          {
+            href: `/start?source=investor&name=${encodeURIComponent(
               `${form.firstName} ${form.lastName}`.trim(),
-            )}&email=${encodeURIComponent(form.email)}&phone=${encodeURIComponent(form.phone)}`}
-            className="btn btn-primary"
-            onClick={() => trackInvestorEvent("investor_consultation_clicked")}
-          >
-            Schedule a conversation with Victor
-          </Link>
-          <a href="#deal-modeler" className="btn btn-secondary">
-            Back to deal modeler
-          </a>
-        </div>
-        <p className="mt-6 text-xs text-text-dim">
-          The Investor Overview PDF is delivered by the team after review (or attached via CRM
-          automation when configured). Nothing in the overview is an offer or guarantee.
-        </p>
-      </div>
+            )}&email=${encodeURIComponent(form.email)}&phone=${encodeURIComponent(form.phone)}`,
+            label: "Schedule a conversation",
+            primary: true,
+          },
+          { href: "#deal-modeler", label: "Back to deal modeler" },
+        ]}
+      />
     );
   }
 

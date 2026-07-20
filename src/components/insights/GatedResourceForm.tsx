@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FormConfirmation } from "@/components/forms/FormConfirmation";
 import { trackEvent } from "@/lib/analytics";
 import { gatedResource } from "@/lib/insights/content";
 
@@ -54,24 +55,18 @@ export function GatedResourceForm() {
 
   if (done) {
     return (
-      <div className="rounded-xl border border-gold/30 bg-gold/10 p-6 text-center sm:p-8">
-        <p className="studio-estimate-label">Guide unlocked</p>
-        <h3 className="mt-2 font-display text-2xl text-ivory sm:text-3xl">
-          Your download should open shortly
-        </h3>
-        <p className="mt-2 text-sm text-text-muted">
-          If it didn&apos;t,{" "}
-          <a
-            href={gatedResource.pdfUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="font-semibold text-gold-deep underline-offset-2 hover:underline"
-          >
-            open the PDF here
-          </a>
-          .
-        </p>
-      </div>
+      <FormConfirmation
+        variant="design"
+        compact
+        extraLinks={[
+          {
+            href: gatedResource.pdfUrl,
+            label: "Open the PDF",
+            primary: true,
+          },
+          { href: "/custom-homes/process", label: "View the 7-step process" },
+        ]}
+      />
     );
   }
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactFields, mailNotDelivered, notifyLeadEmail } from "@/lib/email/notify-lead";
+import { contactFields, mailNotDelivered, notifyLeadAndConfirm } from "@/lib/email/notify-lead";
 
 type Body = {
   name?: string;
@@ -52,9 +52,13 @@ export async function POST(request: Request) {
     receivedAt: new Date().toISOString(),
   };
 
-  const mail = await notifyLeadEmail({
+  const firstName = name.split(/\s+/)[0] || name;
+
+  const { internal: mail, confirmation } = await notifyLeadAndConfirm({
     segment: "realtor",
     leadType: "Realtor Lead",
+    submitterEmail: email,
+    submitterFirstName: firstName,
     replyTo: email,
     fields: [
       ...contactFields({ name, email, phone: payload.phone }),
@@ -103,5 +107,6 @@ export async function POST(request: Request) {
     leadType: "Realtor Lead",
     emailRoutedTo: "realtors@vantagecustombuilds.com",
     email: mail,
+    confirmation,
   });
 }
