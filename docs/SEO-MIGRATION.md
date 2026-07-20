@@ -1,53 +1,34 @@
 # SEO Migration & Ranking Playbook — Vantage Custom Builds
 
 **Primary domain (canonical):** `https://vantagecustombuilds.com`  
-**Old domain (must not compete):** `https://vantageconstruct.com`  
+**Secondary domain (redirect only):** `https://vantageconstruct.com`  
+**Full Priority 0 runbook:** [`docs/PRIORITY-0-DOMAIN.md`](./PRIORITY-0-DOMAIN.md)  
+**Redirect CSV:** [`docs/REDIRECT-MAP.csv`](./REDIRECT-MAP.csv)  
 **Audited:** July 2026  
 
 ---
 
 ## Priority 0 — Domain & indexing (THIS WEEK)
 
+### Decision (LOCKED)
+- **Primary Domain = `https://vantagecustombuilds.com`**
+- **Secondary Domain = `https://vantageconstruct.com`** (301 page-by-page; no independent site)
+
 ### What was wrong
-Every page’s canonical, Open Graph URL, and sitemap defaulted to `https://vantageconstruct.com` while production is live at `https://vantagecustombuilds.com`. Google treats the new site as a **duplicate** and may not index it.
+Canonicals/OG/sitemap defaulted to construct while production was custombuilds → Google treated the new site as a duplicate. Construct WP is **still fully live** (as of verification), which continues to split signals until 301s are live.
 
 ### What we fixed in code
-- Centralized production URL in `src/lib/site.ts` → `https://vantagecustombuilds.com`
-- Self-referencing canonicals, OG, JSON-LD, robots.txt, sitemap all use that domain
-- Removed useless `meta keywords` from root layout
-- Improved `HomeAndConstructionBusiness` + `WebSite` schema
-- Service page title pattern: `[Service] NJ | [Modifier] | Vantage Construction`
-- Expanded 301 map for common old paths (`/basements`, `/portfolio`, etc.)
+- ✅ `SITE_URL` + self-referencing canonicals, OG, JSON-LD, robots, sitemap → custombuilds  
+- ✅ Vercel `NEXT_PUBLIC_SITE_URL=https://vantagecustombuilds.com`  
+- ✅ Path 301s in `next.config.ts` for legacy slugs on the primary app  
+- ✅ Host migration map + middleware: `src/lib/domain-migration.ts`, `src/middleware.ts`  
 
-### What YOU must do outside the repo
+### What YOU must do outside the repo (blocks indexing recovery)
 
-1. **Vercel → Project → Settings → Environment Variables**  
-   Set for Production (and Preview if desired):
-   ```
-   NEXT_PUBLIC_SITE_URL=https://vantagecustombuilds.com
-   ```
-   Redeploy after saving.
-
-2. **Domain decision (confirm)**  
-   - **Option A (current code):** Keep **vantagecustombuilds.com** as winner.  
-   - **Option B (stronger long-term):** Point this Next app at **vantageconstruct.com** (age + email + backlinks) and 301 custombuilds → construct.  
-   If you choose B, change `SITE_URL` default in `src/lib/site.ts` and `company.siteUrl`, then redeploy.
-
-3. **Old WordPress site**  
-   - Either **301 every important URL** to the matching new path, or take WP offline after redirects are in place.  
-   - **Never** leave two full sites live with overlapping content.  
-   - Prefer **page-to-page** 301s, not everything → homepage.
-
-4. **Google Search Console**
-   - Verify **both** domains (Domain property or URL-prefix).
-   - Submit `https://vantagecustombuilds.com/sitemap.xml`.
-   - Use **Change of Address** if permanently moving construct → custombuilds (or reverse).
-   - Monitor Coverage / Page indexing for 4–8 weeks.
-
-5. **External pointers** (same NAP everywhere)
-   - Google Business Profile website URL  
-   - Houzz, Facebook, BBB, email signatures, directories  
-   - Must match chosen primary domain + phone `(908) 350-0989` + Warren address  
+1. **301 construct.com** — Point DNS at Vercel **or** install path map on WP host (see Priority 0 doc).  
+2. **GSC** — Verify both domains, submit `https://vantagecustombuilds.com/sitemap.xml`, Change of Address when 301s live.  
+3. **GBP + citations** — Website URL → custombuilds.  
+4. Confirm construct no longer serves a full competing site.
 
 ---
 
