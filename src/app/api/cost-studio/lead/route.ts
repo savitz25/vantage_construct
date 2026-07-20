@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { contactFields, mailNotDelivered, notifyLeadEmail } from "@/lib/email/notify-lead";
 
 type Body = {
   configId?: string;
@@ -47,8 +48,26 @@ export async function POST(request: Request) {
     tool: "cost-studio",
     leadType: "Cost Studio Lead",
     pipeline: "studios",
+    routeInbox: "design@vantagecustombuilds.com",
     receivedAt: new Date().toISOString(),
   };
+
+  const mail = await notifyLeadEmail({
+    segment: "design",
+    leadType: "Cost Studio Lead",
+    replyTo: email,
+    subject: `[Design / General] Cost Studio Lead — ${body.configId}`,
+    fields: [
+      ...contactFields({ firstName, lastName, email, phone }),
+      { label: "Config ID", value: body.configId },
+      { label: "Source", value: body.source },
+      { label: "Submitted at", value: body.submittedAt || payload.receivedAt },
+    ],
+    extraPayload: {
+      selections: body.selections,
+      estimate: body.estimate,
+    },
+  });
 
   const webhook =
     process.env.COST_STUDIO_WEBHOOK_URL ||
@@ -70,9 +89,14 @@ export async function POST(request: Request) {
     } catch (e) {
       console.error("cost-studio webhook error", e);
     }
-  } else {
+  } else if (mailNotDelivered(mail)) {
     console.info("[cost-studio-lead]", JSON.stringify(payload));
   }
 
-  return NextResponse.json({ ok: true, configId: body.configId });
+  return NextResponse.json({
+    ok: true,
+    configId: body.configId,
+    emailRoutedTo: "design@vantagecustombuilds.com",
+    email: mail,
+  });
 }

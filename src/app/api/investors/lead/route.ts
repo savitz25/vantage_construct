@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { contactFields, mailNotDelivered, notifyLeadEmail } from "@/lib/email/notify-lead";
 
 type Body = {
   firstName?: string;
@@ -44,8 +45,24 @@ export async function POST(request: Request) {
     phone: body.phone?.trim() ?? "",
     leadType: "Investor Lead",
     pipeline: "investors",
+    routeInbox: "investor@vantagecustombuilds.com",
     receivedAt: new Date().toISOString(),
   };
+
+  const mail = await notifyLeadEmail({
+    segment: "investor",
+    leadType: "Investor Lead",
+    replyTo: email,
+    fields: [
+      ...contactFields(payload),
+      { label: "Investment range", value: payload.investmentRange },
+      { label: "Preferred structure", value: payload.preferredStructure },
+      { label: "Notes", value: payload.notes },
+      { label: "Source", value: payload.source },
+      { label: "Submitted at", value: payload.submittedAt || payload.receivedAt },
+    ],
+    extraPayload: payload,
+  });
 
   const webhook =
     process.env.INVESTOR_WEBHOOK_URL ||
@@ -67,9 +84,14 @@ export async function POST(request: Request) {
     } catch (e) {
       console.error("investor webhook error", e);
     }
-  } else {
+  } else if (mailNotDelivered(mail)) {
     console.info("[investor-lead]", JSON.stringify(payload));
   }
 
-  return NextResponse.json({ ok: true, leadType: "Investor Lead" });
+  return NextResponse.json({
+    ok: true,
+    leadType: "Investor Lead",
+    emailRoutedTo: "investor@vantagecustombuilds.com",
+    email: mail,
+  });
 }

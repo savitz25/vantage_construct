@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { contactFields, mailNotDelivered, notifyLeadEmail } from "@/lib/email/notify-lead";
 
 type LeadBody = {
   configId?: string;
@@ -48,8 +49,36 @@ export async function POST(request: Request) {
   const payload = {
     ...body,
     contact: { firstName, lastName, email, phone },
+    leadType: "Design Studio Lead",
+    routeInbox: "design@vantagecustombuilds.com",
     receivedAt: new Date().toISOString(),
   };
+
+  const mail = await notifyLeadEmail({
+    segment: "design",
+    leadType: "Design Studio Lead",
+    replyTo: email,
+    subject: `[Design / General] Design Studio Lead — ${body.configId}`,
+    fields: [
+      ...contactFields({ firstName, lastName, email, phone }),
+      { label: "Config ID", value: body.configId },
+      {
+        label: "Estimate",
+        value: body.estimateLabel
+          ? body.estimateLabel
+          : body.estimate
+            ? `${body.estimate.low ?? "?"} – ${body.estimate.high ?? "?"}`
+            : undefined,
+      },
+      { label: "Source", value: body.source },
+      { label: "Submitted at", value: body.submittedAt || payload.receivedAt },
+    ],
+    extraPayload: {
+      selections: body.selections,
+      summary: body.summary,
+      estimate: body.estimate,
+    },
+  });
 
   const webhookUrl = process.env.DESIGN_STUDIO_WEBHOOK_URL || process.env.CRM_WEBHOOK_URL;
 
@@ -68,13 +97,11 @@ export async function POST(request: Request) {
 
       if (!webhookRes.ok) {
         console.error("Design studio webhook failed", webhookRes.status);
-        // Still accept the lead locally so UX is not blocked if CRM is misconfigured
       }
     } catch (error) {
       console.error("Design studio webhook error", error);
     }
-  } else {
-    // Local / demo mode — log structured payload for operators
+  } else if (mailNotDelivered(mail)) {
     console.info("[design-studio-lead]", JSON.stringify(payload));
   }
 
@@ -82,5 +109,7 @@ export async function POST(request: Request) {
     ok: true,
     configId: body.configId,
     webhookConfigured: Boolean(webhookUrl),
+    emailRoutedTo: "design@vantagecustombuilds.com",
+    email: mail,
   });
 }

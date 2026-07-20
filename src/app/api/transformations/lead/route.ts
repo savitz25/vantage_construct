@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { contactFields, mailNotDelivered, notifyLeadEmail } from "@/lib/email/notify-lead";
 import { studioLeadLabel } from "@/lib/studios/lead-types";
 
 type Body = {
@@ -46,8 +47,24 @@ export async function POST(request: Request) {
     leadType,
     pipeline: "studios",
     tool,
+    routeInbox: "design@vantagecustombuilds.com",
     receivedAt: new Date().toISOString(),
   };
+
+  const mail = await notifyLeadEmail({
+    segment: "design",
+    leadType,
+    replyTo: email,
+    subject: `[Design / General] ${leadType}`,
+    fields: [
+      ...contactFields(payload),
+      { label: "Tool / form", value: tool },
+      { label: "Lead type", value: leadType },
+      { label: "Source page", value: payload.source },
+      { label: "Submitted at", value: payload.submittedAt || payload.receivedAt },
+    ],
+    extraPayload: payload.payload ?? payload,
+  });
 
   const webhook =
     process.env.TRANSFORMATIONS_WEBHOOK_URL ||
@@ -69,9 +86,14 @@ export async function POST(request: Request) {
     } catch (e) {
       console.error("transformations webhook error", e);
     }
-  } else {
+  } else if (mailNotDelivered(mail)) {
     console.info("[transformations-lead]", JSON.stringify(payload));
   }
 
-  return NextResponse.json({ ok: true, tool });
+  return NextResponse.json({
+    ok: true,
+    tool,
+    emailRoutedTo: "design@vantagecustombuilds.com",
+    email: mail,
+  });
 }
