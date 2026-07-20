@@ -28,6 +28,7 @@ import {
   type CostStudioState,
 } from "@/lib/cost-studio/types";
 import { styleMedia } from "@/lib/plan-media";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { CostBreakdown } from "./CostBreakdown";
 import { EstimatePill } from "./EstimatePill";
 import { InteractiveHouseModel } from "./InteractiveHouseModel";
@@ -77,6 +78,19 @@ export function CostStudio() {
     trackCostEvent("estimate_updated");
     if (event) trackCostEvent("option_selected", { option: event });
   }, []);
+
+  const handleReset = () => {
+    const next = createInitialCostState();
+    setState(next);
+    setError(null);
+    setSubmitting(false);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+    trackCostEvent("tool_reset");
+  };
 
   const go = (step: CostStep) => {
     setState((prev) => ({ ...prev, step }));
@@ -181,11 +195,16 @@ export function CostStudio() {
       {/* Progress */}
       <div className="border-b border-border bg-surface">
         <div className="container-wide py-4">
-          <div className="mb-2 flex justify-between text-xs uppercase tracking-[0.14em]">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.14em]">
             <span className="text-text-dim">
               Vision Cost Studio · Step {stepIndex + 1} of {COST_STEPS.length}
             </span>
-            <span className="text-gold-deep">{COST_STEP_LABELS[state.step]}</span>
+            <div className="flex items-center gap-3 normal-case tracking-normal">
+              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">
+                {COST_STEP_LABELS[state.step]}
+              </span>
+              <ToolResetButton onReset={handleReset} />
+            </div>
           </div>
           <div className="h-1.5 overflow-hidden rounded-full bg-bg-elevated">
             <div

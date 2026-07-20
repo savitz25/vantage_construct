@@ -14,6 +14,7 @@ import {
   type CountyId,
 } from "@/lib/transformations/adu-payback";
 import { estimateDisclaimer, rentDisclaimer } from "@/lib/transformations/disclaimers";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { ToolLeadGate } from "./ToolLeadGate";
 
 export function AduPaybackTool() {
@@ -22,6 +23,15 @@ export function AduPaybackTool() {
   const [county, setCounty] = useState<CountyId>("somerset");
   const [rent, setRent] = useState(countyRents.somerset.rent);
   const [town, setTown] = useState("Warren");
+
+  function handleReset() {
+    setType("detached");
+    setUse("rental");
+    setCounty("somerset");
+    setRent(countyRents.somerset.rent);
+    setTown("Warren");
+    trackTransformEvent("adu-payback", "tool_reset");
+  }
 
   useEffect(() => {
     trackTransformEvent("adu-payback", "tool_started");
@@ -41,7 +51,11 @@ export function AduPaybackTool() {
 
   return (
     <div id="tool" className="section scroll-mt-28 pt-6 sm:pt-8">
-      <div className="container-wide grid gap-8 lg:grid-cols-[1fr_1fr]">
+      <div className="container-wide">
+        <div className="mb-4 flex justify-end">
+          <ToolResetButton onReset={handleReset} />
+        </div>
+        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
         <div className="space-y-6">
           <div>
             <p className="text-sm font-medium text-ivory">ADU type</p>
@@ -226,6 +240,7 @@ export function AduPaybackTool() {
             description="Payback assumptions, zoning next steps, and lot evaluation checklist."
             summaryPayload={{ type, use, county, rent, result }}
           />
+        </div>
         </div>
       </div>
     </div>

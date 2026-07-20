@@ -38,6 +38,7 @@ import type {
   LivingAboveId,
 } from "@/lib/garage-studio/types";
 import { estimateDisclaimer, financingDisclaimer } from "@/lib/transformations/disclaimers";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { GarageScene } from "./GarageScene";
 
 const defaultPurpose = garagePurposes[0];
@@ -76,6 +77,15 @@ export function GarageStudio() {
 
   const estimate = useMemo(() => calculateGarageEstimate(sel), [sel]);
   const purpose = getPurpose(sel.purposeId);
+
+  function handleReset() {
+    setSel({ ...initial, amenities: [...initial.amenities] });
+    setStep("purpose");
+    setViewMode("photo");
+    setShowMore(false);
+    setActivePresetId(null);
+    trackGarageEvent("tool_reset");
+  }
 
   function applyPreset(preset: GaragePreset) {
     setSel({ ...preset.selections, amenities: [...preset.selections.amenities] });
@@ -172,9 +182,12 @@ export function GarageStudio() {
           >
             2 · Configure building
           </button>
-          <span className="ml-auto text-xs text-text-dim">
-            {garagePurposes.length} building types · live estimate
-          </span>
+          <div className="ml-auto flex flex-wrap items-center gap-3">
+            <span className="text-xs text-text-dim">
+              {garagePurposes.length} building types · live estimate
+            </span>
+            <ToolResetButton onReset={handleReset} />
+          </div>
         </div>
 
         {step === "purpose" ? (

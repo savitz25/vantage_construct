@@ -14,16 +14,28 @@ import {
   needChips,
   type MissingNeed,
 } from "@/lib/transformations/move-or-improve";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { ToolLeadGate } from "./ToolLeadGate";
 
 type Step = 1 | 2 | 3;
+
+const DEFAULT_MISSING: MissingNeed[] = ["primary-suite"];
 
 export function MoveOrImproveTool() {
   const [step, setStep] = useState<Step>(1);
   const [currentValue, setCurrentValue] = useState(1200000);
   const [targetBuy, setTargetBuy] = useState(1600000);
-  const [missing, setMissing] = useState<MissingNeed[]>(["primary-suite"]);
+  const [missing, setMissing] = useState<MissingNeed[]>(DEFAULT_MISSING);
   const [additionBudget, setAdditionBudget] = useState<number | null>(null);
+
+  function handleReset() {
+    setStep(1);
+    setCurrentValue(1200000);
+    setTargetBuy(1600000);
+    setMissing([...DEFAULT_MISSING]);
+    setAdditionBudget(null);
+    trackTransformEvent("move-or-improve", "tool_reset");
+  }
 
   const result = useMemo(
     () =>
@@ -278,9 +290,14 @@ export function MoveOrImproveTool() {
 
   return (
     <div id="tool" className="section scroll-mt-28 !py-6 sm:!py-8">
-      <div className="container-wide grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-8">
-        <div className="space-y-4">{inputs}</div>
-        <div>{results}</div>
+      <div className="container-wide">
+        <div className="mb-4 flex justify-end">
+          <ToolResetButton onReset={handleReset} />
+        </div>
+        <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-8">
+          <div className="space-y-4">{inputs}</div>
+          <div>{results}</div>
+        </div>
       </div>
     </div>
   );

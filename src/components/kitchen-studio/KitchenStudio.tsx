@@ -34,6 +34,7 @@ import type {
   KitchenStyleId,
 } from "@/lib/kitchen-studio/types";
 import { estimateDisclaimer, financingDisclaimer } from "@/lib/transformations/disclaimers";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { KitchenScene } from "./KitchenScene";
 
 const defaultStyle = kitchenStyles[0];
@@ -79,6 +80,13 @@ export function KitchenStudio() {
     setSel((prev) => ({ ...prev, [key]: value }));
     trackKitchenEvent("feature_changed", { feature: key, value: String(value) });
     if (key !== "styleId") setViewMode("configurator");
+  }
+
+  function handleReset() {
+    setSel({ ...initial });
+    setStep("style");
+    setViewMode("photo");
+    trackKitchenEvent("tool_reset");
   }
 
   const estimateLabel = formatRange(estimate.low, estimate.high);
@@ -157,9 +165,12 @@ export function KitchenStudio() {
           >
             2 · Customize features
           </button>
-          <span className="ml-auto text-xs text-text-dim">
-            {kitchenStyles.length} luxury styles · live estimate
-          </span>
+          <div className="ml-auto flex flex-wrap items-center gap-3">
+            <span className="text-xs text-text-dim">
+              {kitchenStyles.length} luxury styles · live estimate
+            </span>
+            <ToolResetButton onReset={handleReset} />
+          </div>
         </div>
 
         {step === "style" ? (

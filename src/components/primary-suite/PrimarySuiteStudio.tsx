@@ -48,6 +48,7 @@ import type {
   VanityId,
 } from "@/lib/primary-suite/types";
 import { estimateDisclaimer, financingDisclaimer } from "@/lib/transformations/disclaimers";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { SuiteScene } from "./SuiteScene";
 
 const defaultVision = suiteVisions[0];
@@ -96,6 +97,15 @@ export function PrimarySuiteStudio() {
 
   const estimate = useMemo(() => calculateSuiteEstimate(sel), [sel]);
   const vision = getVision(sel.visionId);
+
+  function handleReset() {
+    setSel({ ...initial, amenities: [...initial.amenities] });
+    setStep("vision");
+    setViewMode("photo");
+    setZone("bath");
+    setActivePresetId(null);
+    trackSuiteEvent("tool_reset");
+  }
 
   function applyPreset(preset: SuitePreset) {
     setSel({
@@ -191,9 +201,12 @@ export function PrimarySuiteStudio() {
           >
             2 · Design the suite
           </button>
-          <span className="ml-auto text-xs text-text-dim">
-            {suiteVisions.length} suite visions · live estimate
-          </span>
+          <div className="ml-auto flex flex-wrap items-center gap-3">
+            <span className="text-xs text-text-dim">
+              {suiteVisions.length} suite visions · live estimate
+            </span>
+            <ToolResetButton onReset={handleReset} />
+          </div>
         </div>
 
         {step === "vision" ? (

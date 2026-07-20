@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { trackInvestorEvent } from "@/lib/investors/analytics";
 import { illustrativeAssumptions, investorDisclaimer } from "@/lib/investors/content";
 import { formatUsd, modelStructures, type StructureId } from "@/lib/investors/model";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 
 const structureAccent: Record<StructureId, string> = {
   loan: "#c4a035",
@@ -16,6 +17,13 @@ export function DealModeler() {
   const [investment, setInvestment] = useState<number>(a.defaultInvestment);
   const [holdMonths, setHoldMonths] = useState<number>(a.defaultHoldMonths);
   const [projectCost, setProjectCost] = useState<number>(a.defaultProjectCost);
+
+  function handleReset() {
+    setInvestment(a.defaultInvestment);
+    setHoldMonths(a.defaultHoldMonths);
+    setProjectCost(a.defaultProjectCost);
+    trackInvestorEvent("deal_modeler_reset");
+  }
 
   const outcomes = useMemo(
     () => modelStructures({ investment, holdMonths, projectCost }),
@@ -37,6 +45,9 @@ export function DealModeler() {
             <strong className="text-ivory">illustrative</strong> project. This is an educational
             tool, not an offer or performance projection.
           </p>
+          <div className="mt-5 flex justify-center">
+            <ToolResetButton onReset={handleReset} />
+          </div>
         </div>
 
         <div className="mt-6 rounded-xl border border-amber-700/30 bg-amber-50/80 px-5 py-4 text-sm text-amber-950">

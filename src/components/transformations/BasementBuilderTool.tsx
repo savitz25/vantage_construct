@@ -17,12 +17,23 @@ import {
   type FinishTier,
 } from "@/lib/transformations/basement";
 import { estimateDisclaimer, financingDisclaimer } from "@/lib/transformations/disclaimers";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
+
+const DEFAULT_ZONES: BasementZoneId[] = ["guest", "bath"];
 
 export function BasementBuilderTool() {
   const [footprint, setFootprint] = useState(1200);
   const [lowCeiling, setLowCeiling] = useState(false);
-  const [zones, setZones] = useState<BasementZoneId[]>(["guest", "bath"]);
+  const [zones, setZones] = useState<BasementZoneId[]>(DEFAULT_ZONES);
   const [finish, setFinish] = useState<FinishTier>("premium");
+
+  function handleReset() {
+    setFootprint(1200);
+    setLowCeiling(false);
+    setZones([...DEFAULT_ZONES]);
+    setFinish("premium");
+    trackTransformEvent("basement-builder", "tool_reset");
+  }
 
   useEffect(() => {
     trackTransformEvent("basement-builder", "tool_started");
@@ -69,15 +80,18 @@ export function BasementBuilderTool() {
   return (
     <div id="tool" className="section scroll-mt-28 !py-8 sm:!py-10">
       <div className="container-wide">
-        <div className="mb-6 max-w-2xl">
-          <p className="eyebrow">Lower Level Studio</p>
-          <h2 className="mt-2 font-display text-3xl text-ivory sm:text-4xl">
-            Design your private retreat below grade
-          </h2>
-          <p className="mt-2 text-text-muted">
-            Cinema, wellness, guest suite, speakeasy — shape the lower level that unlocks the home
-            you already own. Live floor mock + planning range update as you choose.
-          </p>
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Lower Level Studio</p>
+            <h2 className="mt-2 font-display text-3xl text-ivory sm:text-4xl">
+              Design your private retreat below grade
+            </h2>
+            <p className="mt-2 text-text-muted">
+              Cinema, wellness, guest suite, speakeasy — shape the lower level that unlocks the home
+              you already own. Live floor mock + planning range update as you choose.
+            </p>
+          </div>
+          <ToolResetButton onReset={handleReset} className="shrink-0 self-start" />
         </div>
 
         <StudioWorkspace

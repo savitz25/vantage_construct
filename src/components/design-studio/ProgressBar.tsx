@@ -1,19 +1,29 @@
 "use client";
 
 import { STEP_LABELS, STEPS, type StudioStep } from "@/lib/design-studio/types";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 
-export function ProgressBar({ step }: { step: StudioStep }) {
+export function ProgressBar({
+  step,
+  onReset,
+}: {
+  step: StudioStep;
+  onReset?: () => void;
+}) {
   const index = STEPS.indexOf(step);
   const pct = ((index + 1) / STEPS.length) * 100;
 
   return (
     <div className="border-b border-border bg-surface">
       <div className="container-wide py-4">
-        <div className="mb-3 flex items-center justify-between gap-3">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-text-dim">
             Design Studio · Step {index + 1} of {STEPS.length}
           </p>
-          <p className="text-xs text-gold-deep">{STEP_LABELS[step]}</p>
+          <div className="flex items-center gap-3">
+            <p className="text-xs text-gold-deep">{STEP_LABELS[step]}</p>
+            {onReset ? <ToolResetButton onReset={onReset} /> : null}
+          </div>
         </div>
         <div
           className="h-1.5 overflow-hidden rounded-full bg-bg-elevated"

@@ -17,6 +17,7 @@ import {
   type QuizAnswers,
   type IssueId,
 } from "@/lib/rebuilds/quiz";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 
 export function RenovateVsRebuildQuiz() {
   const [step, setStep] = useState(0);
@@ -98,14 +99,19 @@ export function RenovateVsRebuildQuiz() {
     <div id="assessment" className="scroll-mt-28">
       <div className="card overflow-hidden">
         <div className="border-b border-border bg-bg-elevated px-6 py-5 sm:px-8">
-          <p className="eyebrow">Interactive decision tool</p>
-          <h2 className="mt-2 font-display text-3xl text-ivory sm:text-4xl">
-            Renovate vs rebuild assessment
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm text-text-muted">
-            Six honest questions. One of the outcomes genuinely recommends renovation when that is
-            smarter — we also build renovations, so the recommendation is not a sales trick.
-          </p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="eyebrow">Interactive decision tool</p>
+              <h2 className="mt-2 font-display text-3xl text-ivory sm:text-4xl">
+                Renovate vs rebuild assessment
+              </h2>
+              <p className="mt-2 text-sm text-text-muted">
+                Six honest questions. One of the outcomes genuinely recommends renovation when that is
+                smarter — we also build renovations, so the recommendation is not a sales trick.
+              </p>
+            </div>
+            <ToolResetButton onReset={reset} className="shrink-0 self-start" />
+          </div>
           <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-bg-soft">
             <div
               className="h-full rounded-full bg-gold transition-all duration-300"

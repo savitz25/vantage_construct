@@ -13,6 +13,7 @@ import {
 import { calculateGarageEstimate, formatRange, formatUsd } from "@/lib/garage-studio/pricing";
 import { getPurpose } from "@/lib/garage-studio/purposes";
 import type { FinishTier, GaragePurposeId } from "@/lib/garage-studio/types";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 
 /**
  * Lightweight Accessory Building configurator — purpose → size → finish → live range.
@@ -26,6 +27,13 @@ export function AccessoryBuildingConfigurator() {
   useEffect(() => {
     trackEvent("accessory_config_started", { event_category: "accessory_buildings" });
   }, []);
+
+  function handleReset() {
+    setPurposeId("pool-pavilion");
+    setSizeId("standard");
+    setFinish("luxury");
+    trackEvent("accessory_config_reset", { event_category: "accessory_buildings" });
+  }
 
   const purpose = getPurpose(purposeId);
   const size = accessorySizeOptions.find((s) => s.id === sizeId) ?? accessorySizeOptions[1];
@@ -53,6 +61,9 @@ export function AccessoryBuildingConfigurator() {
 
   return (
     <div id="configurator" className="scroll-mt-28">
+      <div className="mb-4 flex justify-end">
+        <ToolResetButton onReset={handleReset} />
+      </div>
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
         {/* Visual */}
         <div className="card overflow-hidden p-0">

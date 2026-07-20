@@ -43,6 +43,7 @@ import type {
   StyleId,
 } from "@/lib/outdoor-studio/types";
 import { estimateDisclaimer, financingDisclaimer } from "@/lib/transformations/disclaimers";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { OutdoorScene } from "./OutdoorScene";
 
 const defaultVision = outdoorVisions[0];
@@ -89,6 +90,20 @@ export function OutdoorStudio() {
   const vision = getVision(sel.visionId);
   const hasKitchen = sel.kitchenLevel !== "none";
   const impliedUpgrades = new Set(packageImpliedUpgrades[sel.kitchenLevel] ?? []);
+
+  function handleReset() {
+    setSel({
+      ...initial,
+      amenities: [...initial.amenities],
+      kitchenUpgrades: [...initial.kitchenUpgrades],
+    });
+    setStep("vision");
+    setViewMode("photo");
+    setShowMore(false);
+    setShowKitchenDetail(true);
+    setActivePresetId(null);
+    trackOutdoorEvent("tool_reset");
+  }
 
   function applyPreset(preset: OutdoorPreset) {
     setSel({
@@ -220,9 +235,12 @@ export function OutdoorStudio() {
           >
             2 · Build your space
           </button>
-          <span className="ml-auto text-xs text-text-dim">
-            {outdoorVisions.length} outdoor visions · live estimate
-          </span>
+          <div className="ml-auto flex flex-wrap items-center gap-3">
+            <span className="text-xs text-text-dim">
+              {outdoorVisions.length} outdoor visions · live estimate
+            </span>
+            <ToolResetButton onReset={handleReset} />
+          </div>
         </div>
 
         {step === "vision" ? (

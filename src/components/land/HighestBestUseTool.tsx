@@ -9,6 +9,7 @@ import {
   formatUsdShort,
   multiLotDisclaimer,
 } from "@/lib/land/multi-lot-content";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 
 const towns = [
   ...company.focusTowns,
@@ -44,8 +45,19 @@ export function HighestBestUseTool() {
     trackEvent("multi_lot_acres_change", { event_category: "multi_lot", acres: v });
   }
 
+  function handleReset() {
+    setAcres(5);
+    setTown(company.focusTowns[0]);
+    setCondition("vacant");
+    setUtilities("partial");
+    trackEvent("multi_lot_tool_reset", { event_category: "multi_lot" });
+  }
+
   return (
     <div id="highest-best-use" className="scroll-mt-28">
+      <div className="mb-4 flex justify-end">
+        <ToolResetButton onReset={handleReset} />
+      </div>
       <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start">
         {/* Visual parcel */}
         <div className="card overflow-hidden p-0">

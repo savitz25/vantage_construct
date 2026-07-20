@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { trackRealtorEvent } from "@/lib/realtors/analytics";
 import { qualifyQuestions } from "@/lib/realtors/content";
 import { scoreListing } from "@/lib/realtors/model";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 
 export function QualifyListing() {
   const [answers, setAnswers] = useState<Record<string, string>>({
@@ -11,6 +12,11 @@ export function QualifyListing() {
     lot: "",
     utilities: "",
   });
+
+  function handleReset() {
+    setAnswers({ town: "", lot: "", utilities: "" });
+    trackRealtorEvent("qualify_reset");
+  }
 
   const complete = Boolean(answers.town && answers.lot && answers.utilities);
   const result = useMemo(() => {
@@ -31,6 +37,9 @@ export function QualifyListing() {
           <p className="mt-3 text-text-muted">
             Quick pre-filter so you only submit strong package candidates — and we respond faster.
           </p>
+          <div className="mt-5 flex justify-center">
+            <ToolResetButton onReset={handleReset} />
+          </div>
         </div>
 
         <div className="card mt-10 space-y-8 p-6 sm:p-8">

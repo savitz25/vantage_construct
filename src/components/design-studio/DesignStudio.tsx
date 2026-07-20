@@ -29,6 +29,7 @@ import {
   type StudioStep,
 } from "@/lib/design-studio/types";
 import { lifestyleMedia, roofMedia, sizeBandMedia, styleMedia } from "@/lib/plan-media";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { EstimateBar } from "./EstimateBar";
 import { OptionCard } from "./OptionCard";
 import { PlanDetailModal } from "./PlanDetailModal";
@@ -91,6 +92,21 @@ export function DesignStudio() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [emailNote, setEmailNote] = useState<string | null>(null);
   const [detailSlug, setDetailSlug] = useState<string | null>(null);
+
+  const handleReset = useCallback(() => {
+    const next = createInitialState();
+    setState(next);
+    setSubmitError(null);
+    setEmailNote(null);
+    setDetailSlug(null);
+    setSubmitting(false);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+    trackStudioEvent("tool_reset");
+  }, []);
 
   useEffect(() => {
     setState(loadState());
@@ -293,7 +309,7 @@ export function DesignStudio() {
 
   return (
     <div id="studio" className="bg-bg">
-      <ProgressBar step={state.step} />
+      <ProgressBar step={state.step} onReset={handleReset} />
       {state.step !== "welcome" ? <EstimateBar selections={s} /> : null}
 
       <div className="section pt-10">
@@ -301,6 +317,9 @@ export function DesignStudio() {
           {/* WELCOME */}
           {state.step === "welcome" ? (
             <div className="mx-auto max-w-3xl">
+              <div className="mb-4 flex justify-end">
+                <ToolResetButton onReset={handleReset} />
+              </div>
               <p className="eyebrow">Design Your Vantage Vision</p>
               <h2 className="mt-3 font-display text-4xl text-ivory sm:text-5xl">
                 A private design studio for your future home

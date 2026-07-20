@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import { siteCostFlags } from "@/lib/land/evaluation-content";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 
 const LOT_W = 100; // feet (illustrative)
 const LOT_D = 150;
@@ -78,6 +79,15 @@ export function SetbackVisualizer() {
     });
   }
 
+  function handleReset() {
+    setFront(40);
+    setRear(40);
+    setLeft(15);
+    setRight(15);
+    setFlags([]);
+    trackEvent("land_eval_tool_reset", { event_category: "land_evaluation" });
+  }
+
   // SVG layout: lot maps to viewBox 0 0 400 520 with margin
   const pad = 36;
   const svgW = 400;
@@ -95,6 +105,9 @@ export function SetbackVisualizer() {
 
   return (
     <div id="feasibility-tool" className="scroll-mt-28">
+      <div className="mb-4 flex justify-end">
+        <ToolResetButton onReset={handleReset} />
+      </div>
       <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
         {/* Diagram */}
         <div className="card overflow-hidden p-0">

@@ -4,11 +4,19 @@ import { useMemo, useState } from "react";
 import { trackRealtorEvent } from "@/lib/realtors/analytics";
 import { realtorTermsNote } from "@/lib/realtors/content";
 import { calculateCommission, formatUsd } from "@/lib/realtors/model";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 
 export function CommissionCalculator() {
   const [landPrice, setLandPrice] = useState(150000);
   const [buildCost, setBuildCost] = useState(700000);
   const [yearly, setYearly] = useState(2);
+
+  function handleReset() {
+    setLandPrice(150000);
+    setBuildCost(700000);
+    setYearly(2);
+    trackRealtorEvent("commission_reset");
+  }
 
   const result = useMemo(
     () => calculateCommission({ landPrice, buildCost, yearlyPackages: yearly }),
@@ -27,6 +35,9 @@ export function CommissionCalculator() {
             Plug in a land price and build cost. Watch land-only commission transform into a package
             opportunity — and model yearly impact if you convert just a few listings.
           </p>
+          <div className="mt-5 flex justify-center">
+            <ToolResetButton onReset={handleReset} />
+          </div>
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">

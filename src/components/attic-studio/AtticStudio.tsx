@@ -31,6 +31,7 @@ import type {
   StorageOption,
 } from "@/lib/attic-studio/types";
 import { estimateDisclaimer, financingDisclaimer } from "@/lib/transformations/disclaimers";
+import { ToolResetButton } from "@/components/tools/ToolResetButton";
 import { AtticScene } from "./AtticScene";
 
 const defaultVision = atticVisions[0];
@@ -50,6 +51,13 @@ export function AtticStudio() {
 
   const estimate = useMemo(() => calculateAtticEstimate(sel), [sel]);
   const vision = getVision(sel.visionId);
+
+  function handleReset() {
+    setSel({ ...initial });
+    setStep("vision");
+    setViewMode("photo");
+    trackAtticEvent("tool_reset");
+  }
 
   function pickVision(id: AtticVisionId) {
     const v = getVision(id);
@@ -107,9 +115,12 @@ export function AtticStudio() {
           >
             2 · Customize features
           </button>
-          <span className="ml-auto text-xs text-text-dim">
-            {atticVisions.length} upper-level visions · live estimate
-          </span>
+          <div className="ml-auto flex flex-wrap items-center gap-3">
+            <span className="text-xs text-text-dim">
+              {atticVisions.length} upper-level visions · live estimate
+            </span>
+            <ToolResetButton onReset={handleReset} />
+          </div>
         </div>
 
         {step === "vision" ? (
