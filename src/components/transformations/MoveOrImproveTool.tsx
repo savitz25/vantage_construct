@@ -215,7 +215,7 @@ function Slider({
       </div>
       <input
         type="range"
-        className="mt-3 w-full accent-[#b8893d]"
+        className="mt-3 w-full accent-[#c4a035]"
         min={min}
         max={max}
         step={step}

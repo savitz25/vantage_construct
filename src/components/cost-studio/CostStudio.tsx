@@ -244,7 +244,7 @@ export function CostStudio() {
                     step={50}
                     value={s.sqft}
                     onChange={(e) => patch({ sqft: Number(e.target.value) }, "sqft")}
-                    className="mt-6 w-full accent-[#b8893d]"
+                    className="mt-6 w-full accent-[#c4a035]"
                     aria-label="Home size in square feet"
                   />
                   <div className="mt-2 flex justify-between text-xs text-text-dim">

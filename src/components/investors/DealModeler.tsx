@@ -6,9 +6,9 @@ import { illustrativeAssumptions, investorDisclaimer } from "@/lib/investors/con
 import { formatUsd, modelStructures, type StructureId } from "@/lib/investors/model";
 
 const structureAccent: Record<StructureId, string> = {
-  loan: "#b8893d",
-  equity: "#5f8a58",
-  hybrid: "#6b8f9a",
+  loan: "#c4a035",
+  equity: "#4f7d52",
+  hybrid: "#3d4f73",
 };
 
 export function DealModeler() {
@@ -202,7 +202,7 @@ function Control({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-3 w-full accent-[#b8893d]"
+        className="mt-3 w-full accent-[#c4a035]"
         aria-label={label}
       />
       <div className="mt-1 flex justify-between text-[0.65rem] text-text-dim">

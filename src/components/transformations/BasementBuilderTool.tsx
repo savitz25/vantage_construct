@@ -211,7 +211,7 @@ export function BasementBuilderTool() {
                         value: e.target.value,
                       });
                     }}
-                    className="w-full accent-[#b8893d]"
+                    className="w-full accent-[#c4a035]"
                   />
                 </div>
               </StudioControlGroup>
@@ -246,7 +246,7 @@ export function BasementBuilderTool() {
                         value: e.target.checked,
                       });
                     }}
-                    className="accent-[#b8893d]"
+                    className="accent-[#c4a035]"
                   />
                   Low ceilings (dig-out conversation)
                 </label>

@@ -90,7 +90,7 @@ export function buildLeadEmailHtml(opts: {
         <img src="${escapeHtml(logoUrl)}" width="160" height="87" alt="Vantage Construction" style="display:block;width:160px;height:auto;border:0;outline:none;" />
       </td>
     </tr>
-    <tr><td style="padding:18px 24px;background:#0b1f4a;color:#f5efe6;">
+    <tr><td style="padding:18px 24px;background:#0b1f4a;color:#f7f4ef;">
       <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.8;">Website lead</div>
       <div style="font-size:22px;margin-top:8px;font-family:Georgia,serif;">${escapeHtml(opts.leadType)}</div>
       <div style="font-size:13px;margin-top:6px;opacity:0.9;">Route: ${escapeHtml(LEAD_SEGMENT_LABEL[opts.segment])}</div>

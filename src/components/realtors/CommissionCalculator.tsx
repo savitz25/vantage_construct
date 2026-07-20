@@ -173,7 +173,7 @@ function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-3 w-full accent-[#b8893d]"
+        className="mt-3 w-full accent-[#c4a035]"
         aria-label={label}
       />
       <div className="mt-1 flex justify-between text-[0.65rem] text-text-dim">

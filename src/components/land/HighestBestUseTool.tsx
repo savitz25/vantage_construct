@@ -60,7 +60,7 @@ export function HighestBestUseTool() {
           </div>
           <div className="bg-[#ebe4d6] p-6 sm:p-8">
             <div
-              className="relative mx-auto aspect-[5/4] max-w-md overflow-hidden rounded-xl border-2 border-[#8f6a28]/40 bg-[#d8cfc0]"
+              className="relative mx-auto aspect-[5/4] max-w-md overflow-hidden rounded-xl border-2 border-[#9a7a28]/40 bg-[#d8cfc0]"
               aria-hidden
             >
               <div className="absolute inset-3 grid gap-1.5"
@@ -101,7 +101,7 @@ export function HighestBestUseTool() {
                 step={0.5}
                 value={acres}
                 onChange={(e) => onAcres(Number(e.target.value))}
-                className="mt-2 w-full accent-[#b8893d]"
+                className="mt-2 w-full accent-[#c4a035]"
               />
             </div>
 

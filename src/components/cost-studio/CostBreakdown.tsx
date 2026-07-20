@@ -4,7 +4,7 @@ import type { CostEstimate } from "@/lib/cost-studio/types";
 import { formatUsd } from "@/lib/cost-studio/model";
 
 const colors: Record<string, string> = {
-  structure: "#b8893d",
+  structure: "#c4a035",
   foundation: "#8a6a3a",
   exterior: "#6b8f9a",
   garage: "#7d6b58",
@@ -33,7 +33,7 @@ export function CostBreakdown({ estimate }: { estimate: CostEstimate }) {
             title={`${line.label}: ${formatUsd(line.amount)}`}
             style={{
               width: `${(line.amount / total) * 100}%`,
-              background: colors[line.category] || "#b8893d",
+              background: colors[line.category] || "#c4a035",
             }}
           />
         ))}
@@ -46,7 +46,7 @@ export function CostBreakdown({ estimate }: { estimate: CostEstimate }) {
             <li key={line.id} className="flex items-center gap-3">
               <span
                 className="h-3 w-3 shrink-0 rounded-full"
-                style={{ background: colors[line.category] || "#b8893d" }}
+                style={{ background: colors[line.category] || "#c4a035" }}
               />
               <div className="min-w-0 flex-1">
                 <div className="flex items-baseline justify-between gap-3">
@@ -60,7 +60,7 @@ export function CostBreakdown({ estimate }: { estimate: CostEstimate }) {
                     className="h-full rounded-full"
                     style={{
                       width: `${pct}%`,
-                      background: colors[line.category] || "#b8893d",
+                      background: colors[line.category] || "#c4a035",
                     }}
                   />
                 </div>

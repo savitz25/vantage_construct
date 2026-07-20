@@ -36,7 +36,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "border-b border-border bg-[rgba(251,249,246,0.92)] backdrop-blur-xl shadow-[0_8px_30px_rgba(40,30,15,0.06)]"
+          ? "border-b border-[rgba(11,31,74,0.12)] bg-[rgba(251,249,246,0.94)] backdrop-blur-xl shadow-[0_8px_30px_rgba(7,21,52,0.08)]"
           : "bg-transparent"
       }`}
     >
@@ -58,7 +58,7 @@ export function Header() {
             >
               <Link
                 href={item.href}
-                className="rounded-full px-3 py-2 text-sm text-text-muted transition hover:text-gold-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                className="rounded-full px-3 py-2 text-sm text-text-muted transition hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                 aria-haspopup={"children" in item && item.children ? "menu" : undefined}
                 aria-expanded={
                   "children" in item && item.children ? activeMenu === item.label : undefined
@@ -79,9 +79,9 @@ export function Header() {
                         key={`${child.href}-${child.label}`}
                         href={child.href}
                         role="menuitem"
-                        className={`block rounded-lg px-3 py-2.5 text-sm transition hover:bg-bg-elevated hover:text-gold-deep focus-visible:bg-bg-elevated focus-visible:outline-none ${
+                        className={`block rounded-lg px-3 py-2.5 text-sm transition hover:bg-bg-elevated hover:text-navy focus-visible:bg-bg-elevated focus-visible:outline-none ${
                           idx === 0 && item.label === "Transformations"
-                            ? "font-medium text-ivory"
+                            ? "font-medium text-navy"
                             : "text-text-muted"
                         }`}
                         onClick={() => onNav(`${item.label} › ${child.label}`, child.href, "desktop")}
@@ -99,7 +99,7 @@ export function Header() {
         <div className="flex items-center gap-2 sm:gap-3">
           <a
             href={`tel:${company.phoneTel}`}
-            className="hidden text-sm text-text-muted transition hover:text-gold-deep md:inline"
+            className="hidden text-sm text-text-muted transition hover:text-navy md:inline"
           >
             {company.phone}
           </a>
@@ -135,7 +135,7 @@ export function Header() {
       {open ? (
         <div
           id={menuId}
-          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-border bg-bg-elevated xl:hidden"
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-[rgba(11,31,74,0.1)] bg-bg-elevated xl:hidden"
         >
           <div className="container-wide space-y-2 py-5">
             {nav.map((item) => {
@@ -147,7 +147,7 @@ export function Header() {
                   <div className="flex items-center justify-between gap-2">
                     <Link
                       href={item.href}
-                      className="font-display text-2xl text-ivory"
+                      className="font-display text-2xl text-navy"
                       onClick={() => onNav(item.label, item.href, "mobile")}
                     >
                       {item.label}
@@ -155,7 +155,7 @@ export function Header() {
                     {hasChildren ? (
                       <button
                         type="button"
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-gold-deep"
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-navy"
                         aria-expanded={expanded}
                         aria-label={expanded ? `Collapse ${item.label}` : `Expand ${item.label}`}
                         onClick={() =>

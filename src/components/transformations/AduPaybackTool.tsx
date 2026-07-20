@@ -121,7 +121,7 @@ export function AduPaybackTool() {
                   step={50}
                   value={rent}
                   onChange={(e) => setRent(Number(e.target.value))}
-                  className="mt-2 w-full accent-[#b8893d]"
+                  className="mt-2 w-full accent-[#c4a035]"
                 />
               </div>
             ) : null}

@@ -134,7 +134,7 @@ export function SetbackVisualizer() {
                 width={lotPw}
                 height={lotPh}
                 fill="#ebe4d6"
-                stroke="#8f6a28"
+                stroke="#9a7a28"
                 strokeWidth="2"
               />
               <text
@@ -211,7 +211,7 @@ export function SetbackVisualizer() {
                 y={lotY + front * scaleY * 0.55}
                 textAnchor="middle"
                 fontSize="10"
-                fill="#8f6a28"
+                fill="#9a7a28"
                 fontFamily="system-ui,sans-serif"
               >
                 Front {front}&apos;
@@ -221,7 +221,7 @@ export function SetbackVisualizer() {
                 y={lotY + lotPh - rear * scaleY * 0.35}
                 textAnchor="middle"
                 fontSize="10"
-                fill="#8f6a28"
+                fill="#9a7a28"
                 fontFamily="system-ui,sans-serif"
               >
                 Rear {rear}&apos;
@@ -281,7 +281,7 @@ export function SetbackVisualizer() {
                   onChange={(e) =>
                     onSetbackChange(key, Number(e.target.value))
                   }
-                  className="mt-2 w-full accent-[#b8893d]"
+                  className="mt-2 w-full accent-[#c4a035]"
                 />
               </div>
             ))}
