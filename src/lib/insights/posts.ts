@@ -559,6 +559,14 @@ export function getAllPostSlugs() {
   return insightPosts.map((p) => p.slug);
 }
 
+/** Newest first — for blog index and listings */
+export function getPostsByDate(): InsightPost[] {
+  return [...insightPosts].sort(
+    (a, b) =>
+      new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime(),
+  );
+}
+
 /** Canonical slug if request used an alias */
 export function resolveCanonicalSlug(slug: string): string | null {
   const post = getPostBySlug(slug);
