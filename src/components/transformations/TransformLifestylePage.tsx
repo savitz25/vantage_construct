@@ -99,15 +99,19 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           <h2 className="font-display text-4xl text-ivory">{c.spaceHeading}</h2>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {c.spaces.map((space) => (
-              <article key={space.title} className="card overflow-hidden p-0">
-                <div className="relative aspect-[16/10] overflow-hidden">
+              <article key={space.title} className="card card-hover group overflow-hidden p-0">
+                <div className="relative aspect-[16/10] overflow-hidden bg-bg-soft">
                   {space.image ? (
-                    <SmartImage
-                      src={space.image}
-                      alt={`${space.title} — Vantage inspiration`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
+                    <>
+                      <SmartImage
+                        src={space.image}
+                        alt={`${space.title} — luxury finished basement inspiration by Vantage Construction`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="transition duration-500 group-hover:scale-[1.03]"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                    </>
                   ) : (
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${space.gradient}`}
