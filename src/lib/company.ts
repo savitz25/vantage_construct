@@ -156,6 +156,12 @@ export const nav = [
     children: [
       { label: "Our Story", href: "/about" },
       { label: "Values", href: "/about#values" },
+      { label: "Town guides", href: "/locations" },
+      { label: "Warren", href: "/locations/warren-nj" },
+      { label: "Watchung", href: "/locations/watchung-nj" },
+      { label: "Basking Ridge", href: "/locations/basking-ridge-nj" },
+      { label: "Millburn–Short Hills", href: "/locations/millburn-short-hills-nj" },
+      { label: "Westfield", href: "/locations/westfield-nj" },
       { label: "Careers", href: "/about/careers" },
     ],
   },

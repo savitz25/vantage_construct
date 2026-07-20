@@ -5,9 +5,9 @@ import { plans, plansByBand, pricingDisclaimer } from "@/lib/plans";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Available Custom Home Designs",
+  title: "Available Custom Home Designs NJ | Plans & Base Pricing",
   description:
-    "Browse fully customizable luxury home plans in Central New Jersey — organized by size with transparent base pricing from Vantage Construction.",
+    "Browse fully customizable luxury home plans for Central & Northern New Jersey — organized by size with transparent base pricing from Vantage Construction.",
   path: "/available-homes",
 });
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LocationsStrip } from "@/components/LocationsStrip";
 import { PageHero } from "@/components/PageHero";
 import { SmartImage } from "@/components/SmartImage";
 import { designStudios } from "@/lib/calculators/catalog";
@@ -6,9 +7,9 @@ import { createMetadata } from "@/lib/seo";
 import { visualForTool } from "@/lib/transformations/studio-media";
 
 export const metadata = createMetadata({
-  title: "Vantage Studios | Visual Design & Configurator Tools",
+  title: "Design Studios NJ | Kitchen, Basement, Garage & Home Tools",
   description:
-    "Interactive design Studios for North Jersey: Design Studio, Kitchen Studio, Attic Studio, Garage Studio, Outdoor Living Studio, Primary Suite Studio, and Basement Builder — visual first, then plan.",
+    "Interactive Vantage Studios for North Jersey homeowners: Design Studio, Kitchen Studio, Basement Builder, Garage Studio, Outdoor Living, Attic & Primary Suite — visual design with live planning ranges.",
   path: "/studios",
 });
 
@@ -34,7 +35,33 @@ export default function StudiosHubPage() {
         </div>
       </PageHero>
 
-      <section id="studios-grid" className="section scroll-mt-28 pt-0">
+      <section className="section-sm border-b border-border bg-bg-elevated">
+        <div className="container-wide grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <div>
+            <p className="eyebrow">How Studios work</p>
+            <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
+              See the space. Adjust the details. Leave with a clearer range.
+            </h2>
+          </div>
+          <div className="space-y-4 text-sm text-text-muted leading-relaxed sm:text-base">
+            <p>
+              Each Studio is built for homeowners who want to explore options before a sales
+              meeting — style, features, and directional investment — then continue into a real
+              conversation about their home and lot.
+            </p>
+            <p>
+              Looking for pure feasibility math (move vs improve, ADU payback, multi-lot HBU)?
+              Those live on the{" "}
+              <Link href="/calculators" className="font-semibold text-navy underline-offset-2 hover:underline">
+                Calculators hub
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="studios-grid" className="section scroll-mt-28">
         <div className="container-wide grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {designStudios.map((s) => {
             const visual = visualForTool(s.href);
@@ -107,8 +134,17 @@ export default function StudiosHubPage() {
           <Link href="/custom-homes" className="text-sm font-semibold text-gold-deep hover:underline">
             Custom homes →
           </Link>
+          <Link href="/insights/faq" className="text-sm font-semibold text-gold-deep hover:underline">
+            Planning FAQ →
+          </Link>
         </div>
       </section>
+
+      <LocationsStrip
+        compact
+        heading="Studios for North Jersey homes"
+        body="Configure for how you live in Warren, Watchung, Basking Ridge, Short Hills, and nearby towns — then refine on your actual house."
+      />
     </>
   );
 }

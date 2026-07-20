@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CtaBanner } from "@/components/CtaBanner";
+import { LocationsStrip } from "@/components/LocationsStrip";
 import { PageHero } from "@/components/PageHero";
 import { SmartImage } from "@/components/SmartImage";
 import {
@@ -14,9 +15,9 @@ import {
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Home Transformations NJ | Renovations, Additions & Lower Levels",
+  title: "Home Renovations North Jersey | Kitchens, Basements & Additions",
   description:
-    "Luxury renovations across Central & Northern NJ — finished basements, kitchens, additions, garages, outdoor living, and attics. Interactive tools and clear process.",
+    "Luxury home transformations in North Jersey — finished basements, kitchens, additions, outdoor living, attics & more. Interactive Studios, clear process, no surprises from Vantage Construction.",
   path: "/transformations",
 });
 
@@ -210,9 +211,18 @@ export default function TransformationsPage() {
             <Link href="/studios" className="btn btn-primary">
               All Studios
             </Link>
+            <Link href="/move-or-improve-calculator-nj" className="btn btn-secondary">
+              Move or improve?
+            </Link>
           </div>
         </div>
       </section>
+
+      <LocationsStrip
+        compact
+        heading="Renovations where we work most"
+        body="Town-specific notes on basements, kitchens, and additions — plus paths into Cost Studio and consultation."
+      />
 
       <CtaBanner />
     </>

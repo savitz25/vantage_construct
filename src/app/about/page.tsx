@@ -4,9 +4,9 @@ import { company } from "@/lib/company";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "About Vantage Construction & Victor Lobozzo",
+  title: "About Vantage Construction | Victor Lobozzo Master Builder NJ",
   description:
-    "Family-owned luxury custom home builder founded in 1990 by Master Builder Victor Lobozzo — craftsmanship, cost discipline, and a No Surprises philosophy across Warren, Watchung, Basking Ridge, and Millburn-Short Hills.",
+    "Family-owned luxury custom home builder founded in 1990 by Master Builder Victor Lobozzo. Craftsmanship, cost discipline, and No Surprises across Warren, Watchung, Basking Ridge & Short Hills.",
   path: "/about",
 });
 
@@ -398,6 +398,9 @@ export default function AboutPage() {
               <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3">
                 <Link href="/locations" className="btn btn-primary min-h-12">
                   Explore town guides
+                </Link>
+                <Link href="/custom-homes" className="btn btn-secondary min-h-12">
+                  Custom homes
                 </Link>
                 <Link href="/about/careers" className="btn btn-secondary min-h-12">
                   Join our team

@@ -62,11 +62,52 @@ export function Footer() {
               </div>
             ))}
             <div>
+              <p className="text-sm font-semibold tracking-wide text-on-navy">Locations</p>
+              <ul className="mt-3 space-y-2 text-sm text-on-navy/65">
+                <li>
+                  <Link href="/locations" className="transition hover:text-gold-bright">
+                    All town guides
+                  </Link>
+                </li>
+                {company.focusTowns.map((town) => {
+                  const slug =
+                    town === "Millburn-Short Hills"
+                      ? "millburn-short-hills-nj"
+                      : `${town.toLowerCase().replace(/\s+/g, "-")}-nj`;
+                  return (
+                    <li key={town}>
+                      <Link
+                        href={`/locations/${slug}`}
+                        className="transition hover:text-gold-bright"
+                      >
+                        {town}
+                      </Link>
+                    </li>
+                  );
+                })}
+                <li>
+                  <Link href="/locations/westfield-nj" className="transition hover:text-gold-bright">
+                    Westfield
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
               <p className="text-sm font-semibold tracking-wide text-on-navy">Connect</p>
               <ul className="mt-3 space-y-2 text-sm text-on-navy/65">
                 <li>
                   <Link href="/start" className="transition hover:text-gold-bright">
                     Schedule Consultation
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/calculators" className="transition hover:text-gold-bright">
+                    Calculators
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/studios" className="transition hover:text-gold-bright">
+                    Studios
                   </Link>
                 </li>
                 <li>

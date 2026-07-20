@@ -4,9 +4,9 @@ import { company } from "@/lib/company";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Careers & Join Our Team",
+  title: "Careers at Vantage Construction | Join Our NJ Building Team",
   description:
-    "Join Vantage Construction — a family-owned luxury custom home builder in Central & Northern New Jersey.",
+    "Careers with Vantage Construction — craftspeople and project professionals for luxury custom homes and renovations in Central & Northern New Jersey.",
   path: "/about/careers",
 });
 

@@ -4,9 +4,9 @@ import { commercialServices, commercialStartingNote } from "@/lib/content";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Commercial Construction",
+  title: "Commercial Construction NJ | Offices, Medical & Retail",
   description:
-    "Commercial construction by Vantage Construction — offices, medical/dental, retail, restaurant, tenant improvements, and light industrial in New Jersey.",
+    "Commercial construction in Central & Northern New Jersey — offices, medical/dental, retail, restaurant, tenant improvements, and light industrial with Vantage Construction.",
   path: "/commercial",
 });
 

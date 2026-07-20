@@ -5,9 +5,9 @@ import { transformServices, transformTools } from "@/lib/transformations/ia";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Existing Home Transformation Process | Vantage",
+  title: "Home Renovation Process NJ | Existing Home Transformation",
   description:
-    "How Vantage Construction renovates and customizes existing homes in New Jersey — clear phases, communication, and no surprises.",
+    "How Vantage Construction renovates and customizes existing homes in North Jersey — clear phases, communication, and a no-surprises process from first meeting to walkthrough.",
   path: "/transformations/process",
 });
 

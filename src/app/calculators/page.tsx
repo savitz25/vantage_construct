@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { CalculatorHubCards } from "@/components/calculators/CalculatorHubCards";
 import { TrackCalculatorHubView } from "@/components/calculators/TrackCalculatorHubView";
+import { LocationsStrip } from "@/components/LocationsStrip";
 import { PageHero } from "@/components/PageHero";
 import { calculators } from "@/lib/calculators/catalog";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Planning Calculators NJ | Cost, Feasibility & Decision Tools",
+  title: "Home Building Calculators NJ | Cost Studio & Feasibility Tools",
   description:
-    "Cost Studio, Move or Improve, ADU Payback, lot feasibility, multi-lot highest-and-best-use, and renovate-vs-rebuild tools from Vantage Construction — plan with clarity before you commit.",
+    "North Jersey planning calculators: Cost Studio, Move or Improve, ADU payback, lot feasibility, multi-lot HBU, and renovate vs rebuild — free tools from Vantage Construction before you commit.",
   path: "/calculators",
 });
 
@@ -35,7 +36,31 @@ export default function CalculatorsHubPage() {
         </div>
       </PageHero>
 
-      <section id="tools" className="section scroll-mt-28 pt-0">
+      <section className="section-sm border-b border-border bg-bg-elevated">
+        <div className="container-wide grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "Who these are for",
+              body: "Homeowners and landowners who want directional ranges and tradeoffs before a formal bid — not a substitute for site-specific pricing.",
+            },
+            {
+              title: "What you get",
+              body: "Clear inputs, honest assumptions, and next steps into Cost Studio, land evaluation, Studios, or a conversation with the team.",
+            },
+            {
+              title: "What they are not",
+              body: "Appraisals, bank quotes, or guaranteed contracts. Every tool includes disclaimers so expectations stay clean.",
+            },
+          ].map((c) => (
+            <div key={c.title} className="card p-6">
+              <h2 className="font-display text-xl text-ivory sm:text-2xl">{c.title}</h2>
+              <p className="mt-2 text-sm text-text-muted leading-relaxed">{c.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="tools" className="section scroll-mt-28">
         <div className="container-wide">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-xl">
@@ -91,6 +116,12 @@ export default function CalculatorsHubPage() {
           </div>
         </div>
       </section>
+
+      <LocationsStrip
+        compact
+        heading="Local context behind the numbers"
+        body="Ranges mean more when you know the town. Pair calculators with our Warren, Watchung, Basking Ridge, and Short Hills guides."
+      />
     </>
   );
 }

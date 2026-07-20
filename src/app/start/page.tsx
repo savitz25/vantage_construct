@@ -4,9 +4,9 @@ import { company } from "@/lib/company";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Start Your Project — Schedule a Consultation",
+  title: "Schedule a Consultation | Custom Home Builder North Jersey",
   description:
-    "Schedule a complimentary, no-obligation consultation with Vantage Construction. Phone or Zoom — luxury custom homes and renovations in Central & Northern New Jersey.",
+    "Start a complimentary consultation with Vantage Construction — phone or Zoom. Luxury custom homes, rebuilds, and renovations in Central & Northern New Jersey.",
   path: "/start",
 });
 

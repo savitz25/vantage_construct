@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { LandHubRouter } from "@/components/land/LandHubRouter";
+import { LocationsStrip } from "@/components/LocationsStrip";
 import { PageHero } from "@/components/PageHero";
 import { SmartImage } from "@/components/SmartImage";
 import { landDevelopments } from "@/lib/content";
@@ -9,9 +10,9 @@ import { landCredibility, landHubRelated } from "@/lib/land/hub-content";
 import { createMetadata, localBusinessJsonLd, serviceJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Land Opportunities NJ | Evaluation, Signature Builds & Multi-Lot",
+  title: "Land for Sale & Lot Evaluation NJ | Signature Builds & Multi-Lot",
   description:
-    "What is your land actually capable of? Explore lot evaluation, Signature Builds under construction, and multi-lot development across Central & Northern New Jersey with Vantage Construction.",
+    "Evaluate buildable lots, explore Signature Builds, and assess multi-lot potential in Central & Northern New Jersey. Honest feasibility from Vantage Construction — Warren, Watchung, Basking Ridge & beyond.",
   path: "/land",
 });
 
@@ -155,6 +156,12 @@ export default function LandPage() {
           </div>
         </div>
       </section>
+
+      <LocationsStrip
+        compact
+        heading="Land decisions by town"
+        body="Pair lot evaluation with local guides — zoning culture and lot patterns differ across our core communities."
+      />
     </>
   );
 }
