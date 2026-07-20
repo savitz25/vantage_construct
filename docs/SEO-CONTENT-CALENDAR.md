@@ -52,12 +52,21 @@ Use `articleJsonLd()` from `src/lib/seo.ts` when full posts ship as routes.
 
 ---
 
-## Project / case study pages (parallel track)
+## Project / case study pages (live)
 
-Promote named projects when photos/testimonials ready:
+**Hub:** `/projects` · **Template:** `/projects/[slug]` · **Data:** `src/lib/projects/case-studies.ts`
 
-- Birchmont Lane, Watchung Residence, Westfield Residence, etc.  
-- URL pattern suggestion: `/projects/[slug]`  
+Initial studies (update names/photos when approved):
+
+| Slug | Town | Type |
+|------|------|------|
+| `warren-family-compound-rebuild` | Warren | Rebuild |
+| `watchung-hillside-outdoor-living` | Watchung | Outdoor |
+| `basking-ridge-primary-suite-addition` | Basking Ridge | Addition |
+| `short-hills-kitchen-transformation` | Short Hills | Kitchen |
+| `westfield-stay-and-improve-expansion` | Westfield | Addition + reno |
+
+See also: [`docs/INSIGHTS-CADENCE.md`](./INSIGHTS-CADENCE.md)
 - Include: town, scope, challenge, photos, testimonial, related Studio  
 
 ---

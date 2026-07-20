@@ -12,6 +12,8 @@
 
 ## 1. Google Business Profile (do this week)
 
+**Full checklist:** see [`docs/GBP-OPTIMIZATION.md`](./GBP-OPTIMIZATION.md)
+
 | Action | Target |
 |--------|--------|
 | Website URL | `https://vantagecustombuilds.com` |
@@ -22,6 +24,7 @@
 | Photos | 30+ project photos (exteriors, kitchens, basements, outdoor, team) |
 | Posts | Weekly: project updates, Studio launches, process tips |
 | Products/Services | Custom homes, knockdowns, basements, kitchens, additions, ADUs, outdoor living |
+| Case studies | Link GBP posts to `/projects/*` when live |
 
 **Hours:** Match real availability (site schema currently Mon–Fri 9–5 — align GBP if different).
 
@@ -70,15 +73,16 @@ Kill any lingering **vantageconstruct.com** website fields once 301s are live on
 
 Live under `/locations/`:
 
-| Town | URL |
-|------|-----|
-| Warren | `/locations/warren-nj` |
-| Watchung | `/locations/watchung-nj` |
-| Basking Ridge | `/locations/basking-ridge-nj` |
-| Millburn–Short Hills | `/locations/millburn-short-hills-nj` |
-| Westfield | `/locations/westfield-nj` |
+| Town | URL | Case study |
+|------|-----|------------|
+| Warren | `/locations/warren-nj` | `/projects/warren-family-compound-rebuild` |
+| Watchung | `/locations/watchung-nj` | `/projects/watchung-hillside-outdoor-living` |
+| Basking Ridge | `/locations/basking-ridge-nj` | `/projects/basking-ridge-primary-suite-addition` |
+| Millburn–Short Hills | `/locations/millburn-short-hills-nj` | `/projects/short-hills-kitchen-transformation` |
+| Westfield | `/locations/westfield-nj` | `/projects/westfield-stay-and-improve-expansion` |
 
-**Next content upgrades:** add named project photos and 1 real case study per town as portfolio assets are ready.
+**Portfolio hub:** `/projects`  
+**Next upgrades:** replace representative photography with client-approved project shoots; add real project names when releases are signed.
 
 ---
 

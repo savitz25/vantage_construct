@@ -337,11 +337,15 @@ export default function RebuildsPage() {
             {[
               { href: "/land/evaluation", label: "Land evaluation", note: "Lot capacity first" },
               { href: "/cost-to-build-a-house-nj", label: "Cost Studio", note: "Build cost ranges" },
+              {
+                href: "/projects/warren-family-compound-rebuild",
+                label: "Warren rebuild case study",
+                note: "Challenge → solution → outcome",
+              },
+              { href: "/projects", label: "All case studies", note: "By town and type" },
               { href: "/design-studio", label: "Design Studio", note: "Style & vision" },
               { href: "/transformations", label: "Transformations", note: "If renovate wins" },
               { href: "/move-or-improve-calculator-nj", label: "Move or Improve", note: "Stay vs sell" },
-              { href: "/custom-homes", label: "Custom homes", note: "New construction" },
-              { href: "/custom-homes/process", label: "7-step process", note: "How we build" },
               { href: "/start", label: "Schedule consult", note: "Talk with the team" },
             ].map((l) => (
               <Link key={l.href} href={l.href} className="card card-hover p-5">

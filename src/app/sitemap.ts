@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { locationHubs } from "@/lib/content";
 import { getAllPostSlugs } from "@/lib/insights/posts";
 import { plans } from "@/lib/plans";
+import { getAllCaseStudySlugs } from "@/lib/projects/case-studies";
 import { signatureBuilds } from "@/lib/spec-homes/inventory";
 import { SITE_URL } from "@/lib/site";
 
@@ -50,6 +51,7 @@ const staticRoutes: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/insights/faq", priority: 0.7, changeFrequency: "monthly" },
   { path: "/insights/blog", priority: 0.65, changeFrequency: "weekly" },
   { path: "/locations", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/projects", priority: 0.85, changeFrequency: "weekly" },
   { path: "/start", priority: 0.85, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
@@ -93,11 +95,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const projectEntries = getAllCaseStudySlugs().map((slug) => ({
+    url: `${SITE_URL}/projects/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticEntries,
     ...insightPostEntries,
     ...planEntries,
     ...locationEntries,
     ...specHomeEntries,
+    ...projectEntries,
   ];
 }

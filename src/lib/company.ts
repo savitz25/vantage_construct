@@ -156,6 +156,7 @@ export const nav = [
     children: [
       { label: "Our Story", href: "/about" },
       { label: "Values", href: "/about#values" },
+      { label: "Projects", href: "/projects" },
       { label: "Town guides", href: "/locations" },
       { label: "Warren", href: "/locations/warren-nj" },
       { label: "Watchung", href: "/locations/watchung-nj" },
@@ -172,6 +173,7 @@ export const nav = [
       { label: "Resource Center", href: "/insights" },
       { label: "FAQs", href: "/insights/faq" },
       { label: "Blog notes", href: "/insights/blog" },
+      { label: "Project case studies", href: "/projects" },
     ],
   },
 ] as const;
