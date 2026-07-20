@@ -11,7 +11,7 @@ import {
 } from "@/lib/land/hub-content";
 
 /**
- * Routing question + three pathway cards.
+ * Routing question + pathway cards.
  * Selecting “What best describes you?” highlights the matching card and tracks analytics.
  */
 export function LandHubRouter() {
@@ -69,7 +69,7 @@ export function LandHubRouter() {
           One answer steers you to the right opportunity — then open the matching card below.
         </p>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-3" role="radiogroup" aria-labelledby={`${groupId}-label`}>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" role="radiogroup" aria-labelledby={`${groupId}-label`}>
           {landDescribeOptions.map((opt) => {
             const selected = active === opt.pathId;
             return (
@@ -97,7 +97,7 @@ export function LandHubRouter() {
       {/* Three pathways */}
       <div id="pathways" className="scroll-mt-28">
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <p className="eyebrow justify-center">Three opportunities</p>
+          <p className="eyebrow justify-center">Land pathways</p>
           <h2 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
             Choose the door that matches your goal
           </h2>
@@ -107,7 +107,7 @@ export function LandHubRouter() {
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {landPathways.map((path) => {
             const highlighted = active === path.id;
             return (

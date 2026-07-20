@@ -12,7 +12,7 @@ import { createMetadata, localBusinessJsonLd, serviceJsonLd } from "@/lib/seo";
 export const metadata = createMetadata({
   title: "Land for Sale & Lot Evaluation NJ | Signature Builds & Multi-Lot",
   description:
-    "Evaluate buildable lots, explore Signature Builds, and assess multi-lot potential in Central & Northern New Jersey. Honest feasibility from Vantage Construction — Warren, Watchung, Basking Ridge & beyond.",
+    "Browse land opportunities, evaluate buildable lots, explore Signature Builds, and assess multi-lot potential in Central & Northern New Jersey. Honest feasibility from Vantage Construction — Warren, Watchung, Basking Ridge & beyond.",
   path: "/land",
 });
 
@@ -24,7 +24,7 @@ export default function LandPage() {
         data={serviceJsonLd({
           name: "Land Opportunities — Evaluation, Signature Builds & Multi-Lot",
           description:
-            "Land opportunity hub for Central & Northern New Jersey: single-lot feasibility, Signature Builds inventory, and multi-lot development advisory.",
+            "Land opportunity hub for Central & Northern New Jersey: lot directory, single-lot feasibility, Signature Builds inventory, and multi-lot development advisory.",
           path: "/land",
           serviceType: "Land development and lot feasibility consulting",
         })}
@@ -44,7 +44,7 @@ export default function LandPage() {
             Explore your path
           </a>
           <a href="#pathways" className="btn btn-secondary">
-            View all three opportunities
+            View all pathways
           </a>
         </div>
       </PageHero>

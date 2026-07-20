@@ -3,6 +3,7 @@ import { locationHubs } from "@/lib/content";
 import { getAllPostSlugs } from "@/lib/insights/posts";
 import { plans } from "@/lib/plans";
 import { getAllCaseStudySlugs } from "@/lib/projects/case-studies";
+import { landOpportunities } from "@/lib/land/opportunities";
 import { signatureBuilds } from "@/lib/spec-homes/inventory";
 import { SITE_URL } from "@/lib/site";
 
@@ -38,6 +39,7 @@ const staticRoutes: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/transformations/remodeling", priority: 0.75, changeFrequency: "monthly" },
   { path: "/transformations/process", priority: 0.7, changeFrequency: "monthly" },
   { path: "/land", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/land/opportunities", priority: 0.9, changeFrequency: "weekly" },
   { path: "/land/evaluation", priority: 0.7, changeFrequency: "monthly" },
   { path: "/land/spec-homes", priority: 0.85, changeFrequency: "weekly" },
   { path: "/land/multi-lot", priority: 0.8, changeFrequency: "monthly" },
@@ -102,12 +104,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const landOpportunityEntries = landOpportunities.map((l) => ({
+    url: `${SITE_URL}/land/opportunities/${l.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
+
   return [
     ...staticEntries,
     ...insightPostEntries,
     ...planEntries,
     ...locationEntries,
     ...specHomeEntries,
+    ...landOpportunityEntries,
     ...projectEntries,
   ];
 }

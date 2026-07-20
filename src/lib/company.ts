@@ -110,7 +110,9 @@ export const nav = [
     label: "Land & Spec",
     href: "/land",
     children: [
-      { label: "Land Opportunities", href: "/land" },
+      { label: "Land Hub", href: "/land" },
+      { label: "Land Opportunities", href: "/land/opportunities" },
+      { label: "Land Evaluation", href: "/land/evaluation" },
       { label: "Spec Homes", href: "/land/spec-homes" },
       { label: "Multi-Lot Development", href: "/land/multi-lot" },
     ],

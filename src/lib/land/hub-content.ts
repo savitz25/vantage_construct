@@ -5,6 +5,17 @@ import { company } from "@/lib/company";
 
 export const landPathways = [
   {
+    id: "opportunities",
+    href: "/land/opportunities",
+    audience: "For land shoppers",
+    title: "Land Opportunities",
+    tagline: "Prime lots over ½ acre in our key towns",
+    body: "Browse curated homesites across Warren, Watchung, Basking Ridge, Millburn–Short Hills, and Westfield — filter by acreage, price, and features, then request evaluation.",
+    cta: "Browse land opportunities",
+    image: "/media/plans/c5405c72-ridgeview-hires-drone1_1-768x435.webp",
+    imageAlt: "Aerial view of North Jersey land opportunities and homesites",
+  },
+  {
     id: "evaluation",
     href: "/land/evaluation",
     audience: "For lot owners & buyers",
@@ -12,7 +23,7 @@ export const landPathways = [
     tagline: "Can you build what you want here?",
     body: "Already looking at a specific parcel — or under contract? Get a clear read on setbacks, site risk, and whether to pursue, redesign, or walk away.",
     cta: "Start a feasibility check",
-    image: "/media/plans/c5405c72-ridgeview-hires-drone1_1-768x435.webp",
+    image: "/media/plans/d973d32e-ridgeview-hires17-768x512.webp",
     imageAlt: "Aerial view of a residential homesite — land evaluation and lot potential",
   },
   {
@@ -70,6 +81,11 @@ export const landCredibility = [
  */
 export const landDescribeOptions = [
   {
+    id: "shopping-land",
+    label: "I’m shopping for a lot or land to build on",
+    pathId: "opportunities" as LandPathwayId,
+  },
+  {
     id: "have-lot",
     label: "I have (or am considering) a specific lot",
     pathId: "evaluation" as LandPathwayId,
@@ -87,6 +103,7 @@ export const landDescribeOptions = [
 ] as const;
 
 export const landHubRelated = [
+  { href: "/land/opportunities", label: "Land Opportunities", note: "Lots & land ½ acre+" },
   { href: "/custom-homes/rebuilds", label: "Knockdowns & rebuilds", note: "Right lot, wrong house" },
   { href: "/cost-to-build-a-house-nj", label: "Cost Studio", note: "Construction ranges" },
   { href: "/design-studio", label: "Design Studio", note: "Style & program vision" },
