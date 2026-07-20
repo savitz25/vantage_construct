@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { SmartImage } from "@/components/SmartImage";
 import { createMetadata } from "@/lib/seo";
+import { visualForTool } from "@/lib/transformations/studio-media";
 
 export const metadata = createMetadata({
   title: "Vantage Studios | Design, Cost & Transformation Tools",
@@ -101,27 +103,52 @@ export default function StudiosHubPage() {
         description="A unified suite — premium visuals, live math, honest disclaimers, and clear next steps into consultation. Built for Central & Northern New Jersey."
       />
       <section className="section pt-0">
-        <div className="container-wide grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {studios.map((s) => (
-            <article key={s.href} className="card flex flex-col p-8">
-              <p className="text-xs uppercase tracking-[0.16em] text-gold-deep">{s.eyebrow}</p>
-              <h2 className="mt-2 font-display text-3xl text-ivory">{s.title}</h2>
-              <p className="mt-3 flex-1 text-text-muted">{s.body}</p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href={s.href} className="btn btn-primary !py-2.5 text-sm">
-                  Open tool
-                </Link>
-                {"serviceHref" in s && s.serviceHref ? (
-                  <Link href={s.serviceHref} className="btn btn-secondary !py-2.5 text-sm">
-                    {s.serviceLabel}
-                  </Link>
-                ) : null}
-              </div>
-            </article>
-          ))}
+        <div className="container-wide grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          {studios.map((s) => {
+            const visual = visualForTool(s.href);
+            return (
+              <article
+                key={s.href}
+                className="card card-hover group flex flex-col overflow-hidden p-0"
+              >
+                <div className="relative aspect-[16/10] bg-bg-soft">
+                  {visual ? (
+                    <SmartImage
+                      src={visual.image}
+                      alt={visual.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className="transition duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : null}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <p className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/35 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                    {s.eyebrow}
+                  </p>
+                </div>
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <h2 className="font-display text-2xl text-ivory sm:text-3xl">{s.title}</h2>
+                  <p className="mt-2 flex-1 text-sm text-text-muted">{s.body}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    <Link href={s.href} className="btn btn-primary !px-4 !py-2.5 text-xs">
+                      Open tool
+                    </Link>
+                    {"serviceHref" in s && s.serviceHref ? (
+                      <Link
+                        href={s.serviceHref}
+                        className="btn btn-secondary !px-4 !py-2.5 text-xs"
+                      >
+                        {s.serviceLabel}
+                      </Link>
+                    ) : null}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
         <div className="container-wide mt-10">
-          <Link href="/transformations" className="text-sm text-gold-deep hover:underline">
+          <Link href="/transformations" className="text-sm font-semibold text-gold-deep hover:underline">
             Browse all home transformation services →
           </Link>
         </div>
