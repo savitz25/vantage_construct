@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PageHero } from "@/components/PageHero";
+import { RelatedServices } from "@/components/transformations/RelatedServices";
+import { TransformServiceNav } from "@/components/transformations/TransformServiceNav";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -46,6 +49,14 @@ const focusAreas = [
 export default function RemodelingPage() {
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Transformations", href: "/transformations" },
+          { label: "Whole-home remodeling" },
+        ]}
+      />
+      <TransformServiceNav currentPath="/transformations/remodeling" sticky />
       <PageHero
         eyebrow="Whole-home remodeling"
         title="Transform outdated spaces into rooms you’ll use every day"
@@ -108,6 +119,7 @@ export default function RemodelingPage() {
         </div>
       </section>
 
+      <RelatedServices currentPath="/transformations/remodeling" variant="full" />
       <CtaBanner />
     </>
   );

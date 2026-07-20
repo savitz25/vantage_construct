@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { SmartImage } from "@/components/SmartImage";
 import { TrackedLink } from "@/components/TrackedLink";
 import { RelatedServices } from "@/components/transformations/RelatedServices";
+import { TransformServiceNav } from "@/components/transformations/TransformServiceNav";
 import type { TransformServiceContent } from "@/lib/transformations/service-pages";
 import { faqJsonLd, serviceJsonLd } from "@/lib/seo";
 
@@ -46,6 +47,7 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
         })}
       />
       <Breadcrumbs items={crumbs} />
+      <TransformServiceNav currentPath={c.path} sticky />
 
       <PageHero eyebrow={c.eyebrow} title={c.headline} description={c.subhead}>
         <div className="flex flex-wrap gap-3">
@@ -64,6 +66,9 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           )}
           <Link href={c.secondaryCta.href} className="btn btn-secondary">
             {c.secondaryCta.label}
+          </Link>
+          <Link href="/transformations" className="btn btn-secondary">
+            All transformations
           </Link>
         </div>
       </PageHero>
@@ -105,7 +110,7 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
                     <>
                       <SmartImage
                         src={space.image}
-                        alt={`${space.title} — luxury finished basement inspiration by Vantage Construction`}
+                        alt={`${space.title} — luxury home transformation inspiration by Vantage Construction`}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="transition duration-500 group-hover:scale-[1.03]"
@@ -128,6 +133,9 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
           </div>
         </div>
       </section>
+
+      {/* Mid-page discovery — no need to scroll to top for other rooms */}
+      <RelatedServices currentPath={c.path} variant="mid" />
 
       <section className="section bg-bg-elevated">
         <div className="container-wide">
@@ -249,11 +257,14 @@ export function TransformLifestylePage({ content }: { content: TransformServiceC
             <Link href={c.secondaryCta.href} className="btn btn-secondary">
               {c.secondaryCta.label}
             </Link>
+            <Link href="/transformations" className="btn btn-secondary">
+              Browse all rooms
+            </Link>
           </div>
         </div>
       </section>
 
-      <RelatedServices currentPath={c.path} />
+      <RelatedServices currentPath={c.path} variant="full" />
       <CtaBanner />
     </>
   );
