@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { brand } from "./brand";
 import { company } from "./company";
 import { absoluteUrl, SITE_URL } from "./site";
 
@@ -16,6 +17,7 @@ export function createMetadata({
   noIndex?: boolean;
 }): Metadata {
   const fullTitle = formatPageTitle(title);
+  const ogImage = absoluteUrl(brand.logo);
 
   return {
     title: fullTitle,
@@ -28,11 +30,20 @@ export function createMetadata({
       siteName: company.name,
       locale: "en_US",
       type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 640,
+          height: 349,
+          alt: `${company.name} logo`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
+      images: [ogImage],
     },
     robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
   };
@@ -60,7 +71,8 @@ export function localBusinessJsonLd() {
     telephone: company.phone,
     email: company.email,
     foundingDate: String(company.founded),
-    image: absoluteUrl("/media/plans/fallback-luxury-home.svg"),
+    image: absoluteUrl(brand.logo),
+    logo: absoluteUrl(brand.logo),
     founder: {
       "@type": "Person",
       name: company.founder,

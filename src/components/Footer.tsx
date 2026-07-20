@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
 import { company, nav } from "@/lib/company";
 
 export function Footer() {
@@ -7,7 +8,7 @@ export function Footer() {
       <div className="container-wide section">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div>
-            <div className="font-display text-3xl text-ivory">Vantage Construction</div>
+            <BrandLogo variant="footer" />
             <p className="mt-4 max-w-md text-text-muted">
               Family-owned luxury custom home builder serving {company.serviceAreaLabel} since{" "}
               {company.founded}. {company.tagline}

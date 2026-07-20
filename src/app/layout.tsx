@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { StickyCta } from "@/components/StickyCta";
+import { brand } from "@/lib/brand";
 import { company } from "@/lib/company";
 import { createMetadata, localBusinessJsonLd, webSiteJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
@@ -31,6 +32,11 @@ export const metadata: Metadata = {
   }),
   // Self-referencing base for all relative OG/canonical URLs
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: [{ url: "/brand/vantage-mark.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+    shortcut: ["/brand/favicon-32.png"],
+  },
   // Do NOT set meta keywords — ignored by Google; only reveals keyword list to competitors
 };
 

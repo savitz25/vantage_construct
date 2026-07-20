@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { trackNavClick } from "@/lib/analytics";
 import { company, nav } from "@/lib/company";
 
@@ -40,18 +41,11 @@ export function Header() {
       }`}
     >
       <div className="container-wide flex h-[4.5rem] items-center justify-between gap-4">
-        <Link
-          href="/"
-          className="group flex flex-col"
+        <BrandLogo
+          variant="header"
+          priority
           onClick={() => onNav("Logo", "/", open ? "mobile" : "desktop")}
-        >
-          <span className="font-display text-2xl tracking-[0.04em] text-ivory transition group-hover:text-gold-deep">
-            Vantage
-          </span>
-          <span className="text-[0.65rem] uppercase tracking-[0.28em] text-text-dim">
-            Construction
-          </span>
-        </Link>
+        />
 
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary">
           {nav.map((item) => (

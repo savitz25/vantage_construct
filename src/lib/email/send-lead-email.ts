@@ -1,3 +1,4 @@
+import { brandLogoAbsolute } from "@/lib/brand";
 import {
   LEAD_SEGMENT_LABEL,
   leadRecipients,
@@ -79,19 +80,26 @@ export function buildLeadEmailHtml(opts: {
     )
     .join("");
 
+  const logoUrl = brandLogoAbsolute("logoEmail");
+
   const html = `<!DOCTYPE html>
-<html><body style="margin:0;padding:24px;background:#f6f3ee;font-family:Georgia,serif;">
+<html><body style="margin:0;padding:24px;background:#f6f3ee;font-family:Georgia,'Times New Roman',serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#fff;border:1px solid #e0d8cc;border-radius:12px;overflow:hidden;">
-    <tr><td style="padding:20px 24px;background:#1a1612;color:#f5efe6;">
-      <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.75;">Vantage Construction · Website lead</div>
-      <div style="font-size:22px;margin-top:8px;">${escapeHtml(opts.leadType)}</div>
-      <div style="font-size:13px;margin-top:6px;opacity:0.85;">Route: ${escapeHtml(LEAD_SEGMENT_LABEL[opts.segment])}</div>
+    <tr>
+      <td style="padding:20px 24px;background:#fbf9f6;border-bottom:1px solid #e8e4dc;text-align:left;">
+        <img src="${escapeHtml(logoUrl)}" width="160" height="87" alt="Vantage Construction" style="display:block;width:160px;height:auto;border:0;outline:none;" />
+      </td>
+    </tr>
+    <tr><td style="padding:18px 24px;background:#0b1f4a;color:#f5efe6;">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.8;">Website lead</div>
+      <div style="font-size:22px;margin-top:8px;font-family:Georgia,serif;">${escapeHtml(opts.leadType)}</div>
+      <div style="font-size:13px;margin-top:6px;opacity:0.9;">Route: ${escapeHtml(LEAD_SEGMENT_LABEL[opts.segment])}</div>
     </td></tr>
     <tr><td style="padding:8px 12px 20px;">
       <table width="100%" cellpadding="0" cellspacing="0">${rows}</table>
     </td></tr>
     <tr><td style="padding:16px 24px;background:#faf8f5;font-size:12px;color:#6b635a;">
-      Segmented routing · ${escapeHtml(LEAD_SEGMENT_LABEL[opts.segment])} inbox · Do not reply to automated systems for CRM sync.
+      Segmented routing · ${escapeHtml(LEAD_SEGMENT_LABEL[opts.segment])} · Vantage Construction
     </td></tr>
   </table>
 </body></html>`;
